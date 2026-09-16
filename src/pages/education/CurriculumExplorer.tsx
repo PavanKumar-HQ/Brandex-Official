@@ -46,11 +46,11 @@ export default function ExplorePage() {
           
           {/* Back Navigation */}
           <div>
-            <Link to="/"
+            <Link to="/education"
               className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-indigo-600 transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs cursor-pointer"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Back to Home</span>
+              <span>Back to Education</span>
             </Link>
           </div>
 
@@ -152,7 +152,7 @@ export default function ExplorePage() {
               return (
                 <Link 
                   key={cls.id}
-                  href={`/explore/${cls.slug}`}
+                  to={`/education/explore/${cls.slug}`}
                   className="group bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/90 hover:border-indigo-500 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-200 flex flex-col lg:flex-row lg:items-center justify-between gap-5 shadow-xs hover:-translate-y-0.5"
                 >
                   <div className="flex items-start sm:items-center gap-4">

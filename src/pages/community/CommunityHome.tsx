@@ -235,110 +235,184 @@ export default function CommunityHome() {
             <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-slate-900">
               Community Hub & Portals
             </h2>
-            <Link to="/community/search" className="text-xs font-bold text-[#4f47e6] hover:underline">
-              Search All Portals →
+            <Link
+              to="/community/search"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50 hover:bg-[#4f47e6] text-[#4f47e6] hover:text-white border border-indigo-100/80 text-xs font-bold transition-all shadow-2xs group"
+            >
+              <span>Search All Portals</span>
+              <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link
               to="/community/projects"
-              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+              className="group liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col justify-between"
             >
-              <Code2 size={26} className="text-[#4f47e6] mb-3" />
-              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Open-Source Projects</h3>
-              <p className="text-xs text-slate-500 mb-3">Explore active community repositories, core architectures, and contribute to production tools.</p>
-              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Browse Projects &rarr;</span>
+              <div>
+                <Code2 size={26} className="text-[#4f47e6] mb-3 transition-transform group-hover:scale-110" />
+                <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Open-Source Projects</h3>
+                <p className="text-xs text-slate-500 mb-4">Explore active community repositories, core architectures, and contribute to production tools.</p>
+              </div>
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50/80 group-hover:bg-[#4f47e6] text-[#4f47e6] group-hover:text-white border border-indigo-100/80 group-hover:border-[#4f47e6] text-xs font-bold transition-all shadow-2xs">
+                  <span>Browse Projects</span>
+                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
             </Link>
 
             <Link
               to="/community/events"
-              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+              className="group liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col justify-between"
             >
-              <Calendar size={26} className="text-[#4f47e6] mb-3" />
-              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Meetups & Sprints</h3>
-              <p className="text-xs text-slate-500 mb-3">Explore in-person Bangalore meetups, hack sprints, and live system teardowns.</p>
-              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Browse Events &rarr;</span>
+              <div>
+                <Calendar size={26} className="text-[#4f47e6] mb-3 transition-transform group-hover:scale-110" />
+                <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Meetups & Sprints</h3>
+                <p className="text-xs text-slate-500 mb-4">Explore in-person Bangalore meetups, hack sprints, and live system teardowns.</p>
+              </div>
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50/80 group-hover:bg-[#4f47e6] text-[#4f47e6] group-hover:text-white border border-indigo-100/80 group-hover:border-[#4f47e6] text-xs font-bold transition-all shadow-2xs">
+                  <span>Browse Events</span>
+                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
             </Link>
 
             <Link
               to="/community/training"
-              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+              className="group liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col justify-between"
             >
-              <GraduationCap size={26} className="text-[#4f47e6] mb-3" />
-              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Training Bootcamps</h3>
-              <p className="text-xs text-slate-500 mb-3">Hands-on master modules in sub-second web performance, databases & webhook architecture.</p>
-              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">View Curriculum &rarr;</span>
+              <div>
+                <GraduationCap size={26} className="text-[#4f47e6] mb-3 transition-transform group-hover:scale-110" />
+                <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Training Bootcamps</h3>
+                <p className="text-xs text-slate-500 mb-4">Hands-on master modules in sub-second web performance, databases & webhook architecture.</p>
+              </div>
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50/80 group-hover:bg-[#4f47e6] text-[#4f47e6] group-hover:text-white border border-indigo-100/80 group-hover:border-[#4f47e6] text-xs font-bold transition-all shadow-2xs">
+                  <span>View Curriculum</span>
+                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
             </Link>
 
             <Link
               to="/community/careers"
-              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+              className="group liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col justify-between"
             >
-              <Zap size={26} className="text-[#4f47e6] mb-3" />
-              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Careers & Roles</h3>
-              <p className="text-xs text-slate-500 mb-3">Apply to engineering, design, and developer relations roles within the Brandex ecosystem.</p>
-              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">View Open Positions &rarr;</span>
+              <div>
+                <Zap size={26} className="text-[#4f47e6] mb-3 transition-transform group-hover:scale-110" />
+                <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Careers & Roles</h3>
+                <p className="text-xs text-slate-500 mb-4">Apply to engineering, design, and developer relations roles within the Brandex ecosystem.</p>
+              </div>
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50/80 group-hover:bg-[#4f47e6] text-[#4f47e6] group-hover:text-white border border-indigo-100/80 group-hover:border-[#4f47e6] text-xs font-bold transition-all shadow-2xs">
+                  <span>View Open Positions</span>
+                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
             </Link>
 
             <Link
               to="/community/stories"
-              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+              className="group liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col justify-between"
             >
-              <MessageSquare size={26} className="text-[#4f47e6] mb-3" />
-              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Builder Stories</h3>
-              <p className="text-xs text-slate-500 mb-3">In-depth case journeys and interviews from engineers building high-scale applications.</p>
-              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Read Stories &rarr;</span>
+              <div>
+                <MessageSquare size={26} className="text-[#4f47e6] mb-3 transition-transform group-hover:scale-110" />
+                <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Builder Stories</h3>
+                <p className="text-xs text-slate-500 mb-4">In-depth case journeys and interviews from engineers building high-scale applications.</p>
+              </div>
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50/80 group-hover:bg-[#4f47e6] text-[#4f47e6] group-hover:text-white border border-indigo-100/80 group-hover:border-[#4f47e6] text-xs font-bold transition-all shadow-2xs">
+                  <span>Read Stories</span>
+                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
             </Link>
 
             <Link
               to="/community/status"
-              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+              className="group liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col justify-between"
             >
-              <ShieldCheck size={26} className="text-[#4f47e6] mb-3" />
-              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Application Tracker</h3>
-              <p className="text-xs text-slate-500 mb-3">Check your live application status for ambassador, internship, and partner programs.</p>
-              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Check Status &rarr;</span>
+              <div>
+                <ShieldCheck size={26} className="text-[#4f47e6] mb-3 transition-transform group-hover:scale-110" />
+                <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Application Tracker</h3>
+                <p className="text-xs text-slate-500 mb-4">Check your live application status for ambassador, internship, and partner programs.</p>
+              </div>
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50/80 group-hover:bg-[#4f47e6] text-[#4f47e6] group-hover:text-white border border-indigo-100/80 group-hover:border-[#4f47e6] text-xs font-bold transition-all shadow-2xs">
+                  <span>Check Status</span>
+                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
             </Link>
 
             <Link
               to="/community/college-partnership"
-              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+              className="group liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col justify-between"
             >
-              <Building2 size={26} className="text-[#4f47e6] mb-3" />
-              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">College Partnership</h3>
-              <p className="text-xs text-slate-500 mb-3">Partner with Brandex through school programs, university research mentorship, and campus innovation tracks.</p>
-              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Partner With Us &rarr;</span>
+              <div>
+                <Building2 size={26} className="text-[#4f47e6] mb-3 transition-transform group-hover:scale-110" />
+                <h3 className="font-display font-bold text-lg text-slate-900 mb-1">College Partnership</h3>
+                <p className="text-xs text-slate-500 mb-4">Partner with Brandex through school programs, university research mentorship, and campus innovation tracks.</p>
+              </div>
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50/80 group-hover:bg-[#4f47e6] text-[#4f47e6] group-hover:text-white border border-indigo-100/80 group-hover:border-[#4f47e6] text-xs font-bold transition-all shadow-2xs">
+                  <span>Partner With Us</span>
+                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
             </Link>
 
             <Link
               to="/community/ambassador"
-              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+              className="group liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col justify-between"
             >
-              <Award size={26} className="text-[#4f47e6] mb-3" />
-              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Brand Ambassador</h3>
-              <p className="text-xs text-slate-500 mb-3">Lead campus chapters, organize local tech circles, and gain exclusive fellowship grants.</p>
-              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Apply as Ambassador &rarr;</span>
+              <div>
+                <Award size={26} className="text-[#4f47e6] mb-3 transition-transform group-hover:scale-110" />
+                <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Brand Ambassador</h3>
+                <p className="text-xs text-slate-500 mb-4">Lead campus chapters, organize local tech circles, and gain exclusive fellowship grants.</p>
+              </div>
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50/80 group-hover:bg-[#4f47e6] text-[#4f47e6] group-hover:text-white border border-indigo-100/80 group-hover:border-[#4f47e6] text-xs font-bold transition-all shadow-2xs">
+                  <span>Apply as Ambassador</span>
+                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
             </Link>
 
             <Link
               to="/media"
-              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+              className="group liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col justify-between"
             >
-              <Share2 size={26} className="text-[#4f47e6] mb-3" />
-              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Media Vault & Gallery</h3>
-              <p className="text-xs text-slate-500 mb-3">High-resolution summit captures, brand assets, and event documentation.</p>
-              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">View Media &rarr;</span>
+              <div>
+                <Share2 size={26} className="text-[#4f47e6] mb-3 transition-transform group-hover:scale-110" />
+                <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Media Vault & Gallery</h3>
+                <p className="text-xs text-slate-500 mb-4">High-resolution summit captures, brand assets, and event documentation.</p>
+              </div>
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50/80 group-hover:bg-[#4f47e6] text-[#4f47e6] group-hover:text-white border border-indigo-100/80 group-hover:border-[#4f47e6] text-xs font-bold transition-all shadow-2xs">
+                  <span>View Media</span>
+                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
             </Link>
 
             <Link
               to="/community/guidelines"
-              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+              className="group liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 flex flex-col justify-between"
             >
-              <CheckCircle2 size={26} className="text-[#4f47e6] mb-3" />
-              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Community Guidelines</h3>
-              <p className="text-xs text-slate-500 mb-3">Our code of conduct, peer collaboration rules, and security guidelines.</p>
-              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Read Guidelines &rarr;</span>
+              <div>
+                <CheckCircle2 size={26} className="text-[#4f47e6] mb-3 transition-transform group-hover:scale-110" />
+                <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Community Guidelines</h3>
+                <p className="text-xs text-slate-500 mb-4">Our code of conduct, peer collaboration rules, and security guidelines.</p>
+              </div>
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50/80 group-hover:bg-[#4f47e6] text-[#4f47e6] group-hover:text-white border border-indigo-100/80 group-hover:border-[#4f47e6] text-xs font-bold transition-all shadow-2xs">
+                  <span>Read Guidelines</span>
+                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
             </Link>
           </div>
         </div>

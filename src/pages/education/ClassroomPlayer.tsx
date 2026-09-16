@@ -30,7 +30,7 @@ export default function ClassroomHubPage() {
       {/* Top Classroom Bar */}
       <div className="h-14 px-4 sm:px-6 bg-[#0B1120] border-b border-slate-800/80 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-3">
-          <Link to="/"
+          <Link to="/education"
             className="flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-white transition-colors bg-slate-800/60 px-3 py-1.5 rounded-lg border border-slate-700/60"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> Exit

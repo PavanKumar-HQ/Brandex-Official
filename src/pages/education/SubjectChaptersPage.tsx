@@ -21,7 +21,7 @@ export default function SubjectChaptersPage() {
         
         {/* Navigation & Header */}
         <div className="border-b border-[#E2E8F0] pb-8 space-y-4">
-          <Link to={`/explore/${currentClass.slug}`}
+          <Link to={`/education/explore/${currentClass.slug}`}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#4F46E5] transition-colors bg-white px-3.5 py-2 rounded-xl border border-[#E2E8F0] shadow-2xs cursor-pointer"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> Back to {currentClass.name} Subjects
@@ -144,7 +144,7 @@ export default function SubjectChaptersPage() {
 
                           {/* Action Button */}
                           <div className="flex items-center gap-2 self-end lg:self-center shrink-0">
-                            <Link to={`/lesson/${lesson.slug}`}
+                            <Link to={`/education/lesson/${lesson.slug}`}
                               className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-xs hover:shadow-indigo-600/20 whitespace-nowrap"
                             >
                               <span>Watch Lesson</span>

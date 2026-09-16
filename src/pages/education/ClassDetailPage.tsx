@@ -68,7 +68,7 @@ export default function ClassDetailPage() {
         
         {/* Navigation & Header */}
         <div className="border-b border-[#E2E8F0] pb-8 space-y-4">
-          <Link to="/explore"
+          <Link to="/education/explore"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#4F46E5] transition-colors bg-white px-3.5 py-2 rounded-xl border border-[#E2E8F0] shadow-2xs cursor-pointer"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> Back to All Classes
@@ -104,7 +104,7 @@ export default function ClassDetailPage() {
             return (
               <Link 
                 key={subject.slug}
-                href={`/explore/${currentClass.slug}/${subject.slug}`}
+                to={`/education/explore/${currentClass.slug}/${subject.slug}`}
                 className={`group bg-white p-7 rounded-2xl border border-slate-200/90 ${config.glowBorder} hover:shadow-lg transition-all duration-200 hover:-translate-y-1 flex flex-col justify-between h-[340px] shadow-xs relative overflow-hidden`}
               >
                 {/* Top Subtle Accent Bar */}

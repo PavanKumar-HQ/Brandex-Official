@@ -177,7 +177,7 @@ export function GuidedTourModal({ isOpen, onClose }: GuidedTourModalProps) {
 
           {isLastStep ? (
             <Link
-              href="/explore"
+              to="/education/explore"
               onClick={onClose}
               className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs flex items-center gap-2 transition-all shadow-md shadow-indigo-600/20 cursor-pointer"
             >

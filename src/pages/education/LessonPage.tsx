@@ -49,7 +49,7 @@ export default function LessonPage() {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center">
         <h2 className="text-2xl font-bold text-[#0F172A]">Lesson Not Found</h2>
-        <Link to="/explore"
+        <Link to="/education/explore"
           className="mt-4 px-6 py-3 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-colors shadow-xs"
         >
           Return to Curriculum Explorer
@@ -89,23 +89,23 @@ export default function LessonPage() {
           {lesson.quiz && (
             <button
               onClick={() => setIsQuizOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors shadow-xs cursor-pointer"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors shadow-xs cursor-pointer"
             >
-              <HelpCircle className="w-3.5 h-3.5" /> Take Quiz
+              <HelpCircle className="w-4 h-4" /> Start Lesson Quiz
             </button>
           )}
 
+          {/* Toggle Playlist Button */}
           <button
             onClick={() => setShowPlaylist(!showPlaylist)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors border cursor-pointer ${
               showPlaylist
-                ? "bg-indigo-950 border-indigo-500/60 text-indigo-300"
-                : "bg-slate-800/80 border-slate-700 text-slate-300 hover:text-white"
+                ? "bg-indigo-600 text-white border-indigo-500"
+                : "bg-slate-800 text-slate-300 hover:text-white border-slate-700"
             }`}
-            title="Toggle Lessons Sidebar"
           >
-            <Layers className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Lessons List</span>
+            <List className="w-4 h-4" />
+            <span className="hidden sm:inline">Playlist</span>
           </button>
 
           {/* Fullscreen Button at Top */}
@@ -117,7 +117,7 @@ export default function LessonPage() {
             {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
           </button>
 
-          <Link to={`/explore/${classLevel.slug}/${subject.slug}`}
+          <Link to={`/education/explore/${classLevel.slug}/${subject.slug}`}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-rose-600/90 text-slate-200 hover:text-white text-xs font-semibold transition-colors border border-slate-700 hover:border-rose-500 cursor-pointer"
           >
             <X className="w-4 h-4" /> Exit
@@ -159,7 +159,7 @@ export default function LessonPage() {
                 return (
                   <Link
                     key={item.id}
-                    href={`/lesson/${item.slug}`}
+                    to={`/education/lesson/${item.slug}`}
                     className={`p-3 rounded-xl block transition-all border ${
                       isActive
                         ? "bg-indigo-950/80 border-indigo-500 text-white shadow-xs"
@@ -209,7 +209,7 @@ export default function LessonPage() {
 
         <div className="flex items-center gap-3">
           {prevLesson ? (
-            <Link to={`/lesson/${prevLesson.slug}`}
+            <Link to={`/education/lesson/${prevLesson.slug}`}
               className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors border border-slate-700 cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" /> Previous Lesson
@@ -221,7 +221,7 @@ export default function LessonPage() {
           )}
 
           {nextLesson ? (
-            <Link to={`/lesson/${nextLesson.slug}`}
+            <Link to={`/education/lesson/${nextLesson.slug}`}
               className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-colors shadow-md shadow-indigo-600/25 cursor-pointer"
             >
               Next Lesson <ChevronRight className="w-4 h-4" />

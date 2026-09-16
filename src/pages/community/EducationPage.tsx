@@ -97,7 +97,7 @@ export const EducationPage: React.FC = () => {
 
           <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
             <NavLink
-              to="/training"
+              to="/community/training"
               className="inline-flex items-center justify-center gap-2.5 bg-indigo-600 text-white px-6 py-3.5 rounded-xl font-semibold text-sm hover:bg-indigo-700 transition-all shadow-md active:scale-95 text-center"
             >
               <span>View Available Training</span>
@@ -106,7 +106,7 @@ export const EducationPage: React.FC = () => {
 
             <button
               onClick={() => openModal('partnership', { track: 'College Research Lab & Thesis Mentorship' })}
-              className="inline-flex items-center justify-center gap-2 bg-slate-100 text-slate-800 border border-slate-200 px-6 py-3.5 rounded-xl font-semibold text-sm hover:bg-slate-200 transition-colors text-center"
+              className="inline-flex items-center justify-center gap-2 bg-slate-100 text-slate-800 border border-slate-200 px-6 py-3.5 rounded-xl font-semibold text-sm hover:bg-slate-200 transition-colors text-center cursor-pointer"
             >
               <span>Inquire for Institution Cohort</span>
             </button>
@@ -131,7 +131,7 @@ export const EducationPage: React.FC = () => {
           <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10">
             <span className="text-xs font-semibold text-indigo-300">NEXT SESSION: 18 AUGUST 2026</span>
             <NavLink
-              to="/events/geniusphere-school-series-2026"
+              to="/community/events/geniusphere-school-series-2026"
               className="inline-flex items-center justify-center gap-1.5 bg-white text-slate-900 px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-50 transition-colors shadow-sm border border-slate-200 text-center"
             >
               <span>View Event Details</span>

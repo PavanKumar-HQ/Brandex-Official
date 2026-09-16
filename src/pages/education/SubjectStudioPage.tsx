@@ -48,9 +48,9 @@ export default function SubjectStudioPage() {
       
       {/* Top Header / Back Button */}
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <Link to="/" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-[#4F46E5] transition-colors bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm w-fit group">
+        <Link to="/education" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-[#4F46E5] transition-colors bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm w-fit group">
           <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-          Back to Dashboard
+          Back to Education
         </Link>
       </div>
 

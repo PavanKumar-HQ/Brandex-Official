@@ -119,10 +119,10 @@ export default function AdminDashboardPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link to="/"
+            <Link to="/education"
               className="px-4 py-2 text-xs font-semibold text-slate-300 hover:text-white bg-slate-900 hover:bg-slate-800 rounded-xl border border-slate-700 transition-colors"
             >
-              Back to Public App
+              Back to Education
             </Link>
             <button
               onClick={() => setIsAddModalOpen(true)}
@@ -221,7 +221,7 @@ export default function AdminDashboardPage() {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {filteredLessons.map(({ lesson, className, subjectName, chapterTitle }) => (
-                  <tr key={lesson.id} className="hover:bg-slate-50/80 transition-colors">
+                  <tr key={lesson.id} className="hover:bg-slate-50/85 transition-colors">
                     <td className="py-3.5 px-4">
                       <div className="font-bold text-slate-900">{lesson.title}</div>
                       <div className="text-[11px] text-slate-400 mt-0.5">{lesson.duration}</div>
@@ -252,7 +252,7 @@ export default function AdminDashboardPage() {
                     </td>
                     <td className="py-3.5 px-4 text-right">
                       <div className="inline-flex items-center gap-2">
-                        <Link to={`/lesson/${lesson.slug}`}
+                        <Link to={`/education/lesson/${lesson.slug}`}
                           className="p-1 text-slate-400 hover:text-blue-600"
                           title="Preview Lesson"
                         >

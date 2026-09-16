@@ -272,7 +272,7 @@ export default function ProductLandingPage() {
               >
                 <Link
                   id="tour-explore-cta"
-                  href="/explore"
+                  to="/education/explore"
                   className="px-7 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm sm:text-base transition-all shadow-md shadow-indigo-600/20 hover:shadow-indigo-600/30 hover:-translate-y-0.5 flex items-center gap-2"
                 >
                   <BookOpen className="w-4 h-4" />
@@ -508,7 +508,7 @@ export default function ProductLandingPage() {
               </p>
             </div>
 
-            <Link to="/explore"
+            <Link to="/education/explore"
               className="px-4 py-2 rounded-xl bg-white hover:bg-slate-50 text-indigo-600 font-bold text-xs border border-slate-200 shadow-2xs hover:border-indigo-300 flex items-center gap-1.5 transition-all self-start md:self-auto"
             >
               <span>View full curriculum</span>
@@ -533,7 +533,7 @@ export default function ProductLandingPage() {
               return (
                 <Link
                   key={cls.id}
-                  href={`/explore/${cls.slug}`}
+                  to={`/education/explore/${cls.slug}`}
                   className="group bg-[#FAFAFC] hover:bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/90 hover:border-indigo-500 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs hover:-translate-y-0.5"
                 >
                   <div className="flex items-center gap-4">
@@ -650,36 +650,35 @@ export default function ProductLandingPage() {
           
           <div className="text-center space-y-3">
             <span className="text-xs font-bold font-mono uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
-              Got Questions?
+              Clear Answers
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
               Frequently Asked Questions
             </h2>
-            <p className="text-sm text-slate-600 font-normal">
-              Everything you need to know about Brandex Digital Learning for your school.
+            <p className="text-sm sm:text-base text-slate-600 font-normal">
+              Find answers regarding coverage, offline usability, teacher logins, and content updates.
             </p>
           </div>
 
-          <div className="space-y-3.5">
+          <div className="space-y-3">
             {faqs.map((faq, index) => {
               const isOpen = openFaq === index;
               return (
                 <div
                   key={index}
-                  className="rounded-2xl border border-slate-200/90 bg-[#FAFAFC] overflow-hidden transition-all"
+                  className="border border-slate-200/90 rounded-2xl overflow-hidden bg-[#FAFAFC] transition-all"
                 >
                   <button
                     onClick={() => setOpenFaq(isOpen ? null : index)}
-                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-slate-900 hover:text-indigo-600 transition-colors cursor-pointer"
+                    className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-slate-900 hover:text-indigo-600 transition-colors"
                   >
-                    <span>{faq.q}</span>
+                    <span className="text-base sm:text-lg tracking-tight">{faq.q}</span>
                     <ChevronDown
-                      className={`w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0 ${
+                      className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
                         isOpen ? "rotate-180 text-indigo-600" : ""
                       }`}
                     />
                   </button>
-
                   <AnimatePresence>
                     {isOpen && (
                       <motion.div
@@ -687,9 +686,10 @@ export default function ProductLandingPage() {
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-600 font-normal leading-relaxed border-t border-slate-200/60 pt-3"
                       >
-                        {faq.a}
+                        <div className="px-6 pb-5 text-sm sm:text-base text-slate-600 font-normal leading-relaxed border-t border-slate-100 pt-3">
+                          {faq.a}
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -711,7 +711,7 @@ export default function ProductLandingPage() {
             Choose your class and start teaching with curated video modules and assessments today.
           </p>
           <div className="pt-2 flex justify-center items-center">
-            <Link to="/explore"
+            <Link to="/education/explore"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base transition-all shadow-md shadow-indigo-600/20 hover:shadow-indigo-600/30 hover:-translate-y-0.5"
             >
               <BookOpen className="w-5 h-5" />

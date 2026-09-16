@@ -246,7 +246,7 @@ export const Home: React.FC = () => {
           {/* Bento Card 2: Training (Tall Feature Card - 5 cols) */}
           <FadeIn className="md:col-span-5" delay={0.2}>
             <NavLink
-              to="/training"
+              to="/community/training"
               className="group relative h-full min-h-0 sm:min-h-[260px] bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-4 sm:p-7 flex flex-col justify-between hover:border-indigo-300 hover:bg-white hover:shadow-md transition-all duration-300"
             >
               <div className="space-y-2 sm:space-y-3">
@@ -310,7 +310,7 @@ export const Home: React.FC = () => {
           {/* Bento Card 4: Live Events & Summits (7 cols) */}
           <FadeIn className="md:col-span-7" delay={0.4}>
             <NavLink
-              to="/events"
+              to="/community/events"
               className="group relative h-full min-h-0 sm:min-h-[240px] bg-white border border-slate-200 rounded-xl sm:rounded-2xl p-4 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-6 hover:border-indigo-300 hover:shadow-md transition-all duration-300"
             >
               <div className="space-y-2 sm:space-y-3 max-w-md">

@@ -355,7 +355,7 @@ const FusedCareerTracker: React.FC = () => {
           </p>
           <div className="pt-2">
             <NavLink
-              to="/status"
+              to="/community/status"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all shadow-xs active:scale-98"
             >
               <span>Search Platform Tracker</span>
