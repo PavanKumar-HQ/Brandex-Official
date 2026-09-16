@@ -3,49 +3,84 @@ import { useLocation } from "react-router-dom";
 
 const pageMeta: Record<string, { title: string; description: string; keywords?: string }> = {
   "/": {
-    title: "Brandex | Next-Gen Digital Solutions for Ambitious Brands",
-    description: "Brandex empowers businesses with high-performance websites, custom applications, and automated workflows designed to accelerate growth.",
+    title: "Brandex — Engineering Digital Systems Built For Real Scale",
+    description: "Bespoke web platforms, high-throughput cloud applications, and automated workflows. Sub-second performance, zero recurring platform tax, 100% client code ownership.",
     keywords: "web development, custom software, business automation, React, Next.js, digital engineering, Bangalore",
   },
   "/services": {
-    title: "Services – Brandex | Web Development, Automation & Custom Apps",
-    description: "End-to-end digital services including web development, business automation, custom applications, and cloud software engineering.",
+    title: "Services – Brandex | Software Development, AI & Cloud Infrastructure",
+    description: "End-to-end bespoke digital services: sub-second web applications, AI automation engines, and cloud microservices designed for scale.",
     keywords: "custom software development, business workflows, API automation, responsive web design, mobile apps",
+  },
+  "/pricing": {
+    title: "Engineering Sprints & Investment Packages – Brandex",
+    description: "Transparent engineering sprint packages. Zero hidden costs, 100% client code ownership, fixed deliverables, and sub-second SLAs.",
+    keywords: "web development pricing, engineering sprints, software packages",
   },
   "/solutions": {
     title: "Solutions – Brandex | Industry-Specific Digital Systems",
-    description: "Tailored digital solutions for restaurants, healthcare, finance, logistics, and retail. Built to solve real business bottlenecks.",
+    description: "Tailored digital systems for restaurants, healthcare, finance, logistics, and retail. Built to solve real operational bottlenecks.",
     keywords: "industry solutions, enterprise SaaS, workflow automation, healthcare tech, restaurant digital systems",
   },
   "/case-studies": {
     title: "Case Studies – Brandex | Real Projects, Real Results",
-    description: "Explore how Brandex drove 340% order growth, 60% fewer no-shows, and 40+ hours saved weekly through digital transformation.",
+    description: "Explore how Brandex drove +340% order growth, sub-18ms latency, and 40+ hours saved weekly through digital transformation.",
     keywords: "case studies, client portfolio, software transformation, ROI metrics, web design success",
+  },
+  "/community": {
+    title: "Brandex Community | 500+ Software Builders & Founders Guild",
+    description: "Connect with 500+ software engineers, product architects, and startup founders in Bangalore. Live meetups, peer reviews, and open-source sprints.",
+    keywords: "developer community, Bangalore tech meetup, open source contributors, builder guild",
+  },
+  "/education": {
+    title: "Brandex Digital Education | Smart Classroom Curriculum (KSEEB)",
+    description: "Curriculum-mapped video lessons and interactive formative assessments for Karnataka State Board Classes 6 to 10 with distraction-free smartboard player.",
+    keywords: "Karnataka State syllabus video lessons, KSEEB digital learning, smartboard classroom edtech",
+  },
+  "/education/explore": {
+    title: "Curriculum Explorer – Classes 6 to 10 Video Lessons & Quizzes | Brandex EDU",
+    description: "Explore chapter-wise Karnataka State Board video lessons, interactive quizzes, and learning objectives for Classes 6 through 10.",
+    keywords: "KSEEB curriculum explorer, class 10 science video lessons, class 9 maths quiz",
+  },
+  "/pavan-kumar": {
+    title: "Pavan Kumar — Co-Founder & Chief Systems Architect | Brandex",
+    description: "Engineering sub-second web platforms, enterprise cloud pipelines, and bespoke software systems. Bangalore, India.",
+    keywords: "Pavan Kumar, systems architect, Brandex founder, full stack engineer Bangalore",
+  },
+  "/sathvik": {
+    title: "Sathvik Nagesh — Co-Founder & Head of Product Design | Brandex",
+    description: "Bridging human-centered interaction design with high-performance digital engineering and the Liquid Glass design system.",
+    keywords: "Sathvik Nagesh, product designer, Brandex co-founder, UI UX architect",
   },
   "/about": {
     title: "About – Brandex | The Team Behind Your Digital Growth",
-    description: "Meet the engineering and design leaders at Brandex. Four co-founders driving technology, delivery, growth, and finance.",
+    description: "Meet the engineering and design leaders at Brandex. Engineering bespoke digital infrastructure for ambitious businesses.",
     keywords: "Brandex team, founders, engineering agency, Bangalore startup, digital transformation team",
   },
   "/blog": {
-    title: "Blog – Brandex | Insights on Engineering, Design & Growth",
-    description: "Thoughts on software engineering, product design, and scaling digital systems straight from the Brandex team.",
+    title: "Blog – Brandex | Insights on Engineering, Design & Scale",
+    description: "Deep-dives on software architecture, sub-second web performance, and automated systems straight from the Brandex team.",
     keywords: "engineering blog, tech articles, web architecture, automation insights, design patterns",
   },
   "/contact": {
-    title: "Contact – Brandex | Start Your Digital Project Today",
-    description: "Get in touch with Brandex to discuss your software, website, or automation project. Bangalore based, operating worldwide.",
+    title: "Start Your Project – Brandex | Bespoke Digital Engineering",
+    description: "Schedule a diagnostic with Brandex founders. Discuss your custom software, website architecture, or workflow automation project.",
     keywords: "contact Brandex, hire software developers, web development quote, project inquiry",
   },
   "/contact-us": {
-    title: "Contact Us – Brandex | Legal & Merchant Information",
-    description: "Official merchant and legal contact details for Brandex. Registered legal entity information and support channels.",
+    title: "Contact Us – Brandex | Merchant & Support Information",
+    description: "Official merchant and support channels for Brandex Digital Infrastructure. Vijaynagar, Bangalore.",
     keywords: "merchant information, legal entity, Brandex support",
   },
   "/terms-and-conditions": {
     title: "Terms & Conditions – Brandex",
-    description: "Read the Terms and Conditions governing use of Brandex website, software development services, and liability policies.",
+    description: "Read the Terms and Conditions governing use of Brandex website, software development services, and IP ownership policies.",
     keywords: "terms and conditions, refund policy, service agreement",
+  },
+  "/privacy-policy": {
+    title: "Privacy Policy – Brandex",
+    description: "Official Privacy Policy regarding user data protection, encryption standards, and digital telemetry.",
+    keywords: "privacy policy, data protection",
   },
 };
 
