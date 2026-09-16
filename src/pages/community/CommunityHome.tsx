@@ -14,6 +14,7 @@ import {
   Code2,
   Share2,
   Zap,
+  Building2,
 } from "lucide-react";
 import { getCommunities, getDiscussions, getOpportunities } from "@/community/repositories/repository";
 import type { Community, Discussion, Opportunity } from "@/community/models/types";
@@ -298,6 +299,16 @@ export default function CommunityHome() {
               <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Application Tracker</h3>
               <p className="text-xs text-slate-500 mb-3">Check your live application status for ambassador, internship, and partner programs.</p>
               <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Check Status &rarr;</span>
+            </Link>
+
+            <Link
+              to="/community/college-partnership"
+              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+            >
+              <Building2 size={26} className="text-[#4f47e6] mb-3" />
+              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">College Partnership</h3>
+              <p className="text-xs text-slate-500 mb-3">Partner with Brandex through school programs, university research mentorship, and campus innovation tracks.</p>
+              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Partner With Us &rarr;</span>
             </Link>
 
             <Link

@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Search,
   BookOpen,
+  Building2,
 } from "lucide-react";
 
 const communityLinks = [
@@ -18,6 +19,7 @@ const communityLinks = [
   { label: "Projects", href: "/community/projects", icon: Code2 },
   { label: "Events", href: "/community/events", icon: Calendar },
   { label: "Training", href: "/community/training", icon: GraduationCap },
+  { label: "College Partnership", href: "/community/college-partnership", icon: Building2 },
   { label: "Stories", href: "/community/stories", icon: MessageSquare },
   { label: "Careers", href: "/community/careers", icon: Zap },
   { label: "Media", href: "/community/media", icon: Share2 },

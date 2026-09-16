@@ -55,6 +55,7 @@ import SearchPage from "./pages/community/SearchPage";
 import BrandexHQPage from "./pages/community/BrandexHQPage";
 import PrivacyPolicyPage from "./pages/community/PrivacyPolicyPage";
 import TermsPage from "./pages/community/TermsPage";
+import CommunityEducationPage from "./pages/community/EducationPage";
 
 const queryClient = new QueryClient();
 
@@ -129,6 +130,8 @@ function AnimatedRoutes() {
             <Route path="/community/overview" element={<CommunityPage />} />
             <Route path="/community/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/community/terms" element={<TermsPage />} />
+            <Route path="/community/college-partnership" element={<CommunityEducationPage />} />
+            <Route path="/community/education-pathways" element={<CommunityEducationPage />} />
             <Route path="/work-with-us" element={<WorkWithBrandexPage />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/events/:slug" element={<EventDetailPage />} />
