@@ -1,0 +1,608 @@
+import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { ArrowRight, Calendar, Users, BookOpen, Terminal, Play, MessageSquare, Award, BookText, ChevronDown, ChevronUp } from 'lucide-react';
+import { useRegistration } from '@/community/contexts/RegistrationContext';
+import { SectionHeading } from '@/community/components/ui/SectionHeading';
+import { Marquee } from '@/community/components/layout/Marquee';
+import { FadeIn } from '@/community/components/ui/FadeIn';
+import { TrainingCard } from '@/community/components/cards/TrainingCard';
+import { EventCard } from '@/community/components/cards/EventCard';
+import { MediaCard } from '@/community/components/cards/MediaCard';
+import { ImpactStatisticsSection } from '@/community/components/showcase/ImpactStatisticsSection';
+import { EventRegistrationModal } from '@/community/components/events/EventRegistrationModal';
+import { VideoModalPlayer } from '@/community/components/ui/VideoModalPlayer';
+import { MediaPlaceholderCard } from '@/community/components/ui/MediaPlaceholders';
+import { useSEO } from '@/community/hooks/useSEO';
+import { BrandexUnifiedHub } from '@/community/components/home/BrandexUnifiedHub';
+import { getTrainingPrograms, getEvents, getMedia, getCommunities, getStories, getAchievements } from '@/community/repositories/repository';
+import { TrainingProgram, Event, Media, Community, Story, Achievement } from '@/community/models/types';
+
+const TypewriterText: React.FC<{ words: string[] }> = ({ words }) => {
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [reverse, setReverse] = useState(false);
+
+  useEffect(() => {
+    if (subIndex === words[index].length + 1 && !reverse) {
+      const timeout = setTimeout(() => setReverse(true), 1600);
+      return () => clearTimeout(timeout);
+    }
+
+    if (subIndex === 0 && reverse) {
+      setReverse(false);
+      setIndex((prev) => (prev + 1) % words.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (reverse ? -1 : 1));
+    }, reverse ? 40 : 100);
+
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, reverse, words]);
+
+  // Find the longest word to prevent layout shift
+  const longestWord = words.reduce((a, b) => (a.length > b.length ? a : b), '');
+
+  return (
+    <span className="inline-flex items-center relative text-indigo-600 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700">
+      {/* Hidden text to reserve space */}
+      <span className="invisible">{longestWord}</span>
+      {/* Actual typing text */}
+      <span className="absolute left-0 top-0 bottom-0 flex items-center bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700">
+        <span>{words[index].substring(0, subIndex)}</span>
+        <span className="animate-pulse ml-1 w-2 h-[0.8em] bg-purple-600 inline-block rounded-sm" />
+      </span>
+    </span>
+  );
+};
+
+export const Home: React.FC = () => {
+  useSEO("Brandex Community", "Discover the Brandex Community platform - showcasing emerging technology, high school workshops, and professional cohort training.");
+  const { openModal } = useRegistration();
+  const [featuredTraining, setFeaturedTraining] = useState<TrainingProgram[]>([]);
+  const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
+  const [pastEvents, setPastEvents] = useState<Event[]>([]);
+  const [featuredMedia, setFeaturedMedia] = useState<Media[]>([]);
+  const [communities, setCommunities] = useState<Community[]>([]);
+  const [stories, setStories] = useState<Story[]>([]);
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
+
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [isRsvpOpen, setIsRsvpOpen] = useState(false);
+
+  const [activeVideo, setActiveVideo] = useState<Media | null>(null);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  useEffect(() => {
+    async function loadHomeData() {
+      const programs = await getTrainingPrograms();
+      setFeaturedTraining(programs.filter(p => p.featured).slice(0, 3));
+
+      const upEvts = await getEvents('upcoming');
+      setUpcomingEvents(upEvts);
+
+      const pastEvts = await getEvents('past');
+      setPastEvents(pastEvts.slice(0, 2));
+
+      const med = await getMedia();
+      setFeaturedMedia(med.filter(m => m.featured).slice(0, 3));
+
+      const comms = await getCommunities();
+      setCommunities(comms.slice(0, 3));
+
+      const st = await getStories();
+      setStories(st.slice(0, 2));
+
+      const ach = await getAchievements();
+      setAchievements(ach.slice(0, 2));
+    }
+    loadHomeData();
+  }, []);
+
+  const openRsvp = (evt: Event) => {
+    setSelectedEvent(evt);
+    setIsRsvpOpen(true);
+  };
+
+  const openVideo = (m: Media) => {
+    setActiveVideo(m);
+    setIsVideoModalOpen(true);
+  };
+
+  const marqueeItems = [
+    'ARTIFICIAL INTELLIGENCE',
+    'CYBERSECURITY',
+    'DISTRIBUTED SYSTEMS',
+    'DESIGN & UX',
+    'GENIUSPHERE SCHOOL SERIES',
+    'COMMUNITY WORKSHOPS',
+  ];
+
+  return (
+    <div className="space-y-6 sm:space-y-14 pb-8 sm:pb-12 pt-16 sm:pt-24 bg-white text-slate-900">
+      
+      {/* ==========================================
+          01. HERO SECTION (High Quality Institutional Media + Messaging)
+         ========================================== */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-16 items-center">
+          
+          {/* Left Column */}
+          <div className="lg:col-span-6 space-y-3 sm:space-y-6">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-indigo-50 text-indigo-700 text-xs sm:text-sm font-semibold rounded-full uppercase tracking-wider shadow-2xs border border-indigo-100">
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-indigo-600 rounded-full animate-pulse" />
+              Brandex Community & Education
+            </span>
+
+            <div className="min-h-[40px] sm:min-h-[75px] flex items-center">
+              <h1 className="text-2xl sm:text-5xl lg:text-6xl font-display font-bold text-slate-900 tracking-tight leading-tight flex flex-wrap gap-x-2 sm:gap-x-3 items-center">
+                <span>Learn.</span>
+                <span>Build.</span>
+                <TypewriterText words={["Share.", "Showcase.", "Scale.", "Grow."]} />
+              </h1>
+            </div>
+
+            <p className="text-xs sm:text-lg text-slate-600 max-w-lg leading-relaxed font-medium">
+              A community space for everyone—bringing people together to learn new skills, share stories, celebrate student achievements, and build the future together.
+            </p>
+
+            <div className="flex flex-row items-center gap-2 sm:gap-4 pt-1 sm:pt-3">
+              <button
+                onClick={() => openModal('community')}
+                className="btn-primary flex-1 sm:flex-initial justify-center px-4 sm:px-8 py-2.5 sm:py-3.5 text-xs sm:text-sm group hover:shadow-indigo-500/30 hover:shadow-md"
+              >
+                <span>Member Portal</span>
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              <NavLink
+                to="/education"
+                className="btn-secondary flex-1 sm:flex-initial justify-center px-4 sm:px-8 py-2.5 sm:py-3.5 text-xs sm:text-sm bg-white border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all text-center"
+              >
+                <span>Courses</span>
+              </NavLink>
+            </div>
+          </div>
+
+          {/* Right Column: Hero Visual Showcase */}
+          <div className="lg:col-span-6 flex items-center justify-center">
+            <div className="relative w-full overflow-hidden rounded-xl sm:rounded-2xl shadow-xs">
+              <div className="absolute inset-0 bg-purple-600/15 mix-blend-color z-20 pointer-events-none" />
+              <img 
+                src="/geniusphere-collab-indigo.webp" 
+                alt="Geniusphere School Coding Workshop" 
+                className="w-full h-auto object-cover relative z-10 max-h-[260px] sm:max-h-none"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Marquee Strip */}
+      <Marquee items={marqueeItems} />
+
+      {/* ==========================================
+          02. UNIFIED BRANDEX ECOSYSTEM (6 Core Pillars)
+         ========================================== */}
+      <BrandexUnifiedHub />
+
+      {/* ==========================================
+          03. IMPACT / STATISTICS (Configurable Admin Telemetry)
+         ========================================== */}
+      <div className="bg-slate-50/50">
+        <ImpactStatisticsSection />
+      </div>
+
+      {/* ==========================================
+          03. WHAT BRANDEX OFFERS (Bento Grid Visual Hierarchy)
+         ========================================== */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 py-4 sm:py-10">
+        <FadeIn>
+          <SectionHeading
+            tag="SHOWCASE PILLARS"
+            title="Core Platform Ecosystem"
+            subtitle="Explore specialized initiatives across education, cohorts, circles, and summits."
+          />
+        </FadeIn>
+
+        {/* Bento Grid with Asymmetric Hierarchy & Brand Palette */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-3 sm:gap-6 mt-4 sm:mt-6">
+          
+          {/* Bento Card 1: Community (Hero Wide Card - 7 cols) */}
+          <FadeIn className="md:col-span-7" delay={0.1}>
+            <NavLink
+              to="/community"
+              className="group relative h-full min-h-0 sm:min-h-[260px] bg-white border border-indigo-100 rounded-xl sm:rounded-2xl p-4 sm:p-7 flex flex-col justify-between overflow-hidden shadow-2xs hover:border-indigo-300 hover:shadow-md transition-all duration-300"
+            >
+              <div className="space-y-2 sm:space-y-3">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-indigo-50 rounded-full text-indigo-700 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider border border-indigo-100">
+                  <Users className="w-3 h-3 text-indigo-600" />
+                  <span>Domain Guilds & Circles</span>
+                </div>
+                
+                <h3 className="font-display font-bold text-base sm:text-2xl text-slate-900 tracking-tight leading-snug group-hover:text-indigo-600 transition-colors">
+                  Collaborative circles for AI, Cybersecurity & Swiss UX.
+                </h3>
+                
+                <p className="text-xs sm:text-sm text-slate-600 max-w-xl leading-relaxed line-clamp-2 sm:line-clamp-none">
+                  Connect with student builders and research mentors. Share code snippets, participate in weekly teardowns, and build production projects together.
+                </p>
+              </div>
+
+              <div className="pt-3 sm:pt-5 flex items-center justify-between border-t border-slate-100 mt-2.5">
+                <span className="text-[10px] sm:text-xs font-bold text-indigo-600 tracking-wider uppercase">15+ Active Circles</span>
+                <span className="inline-flex items-center gap-1 bg-indigo-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl text-xs font-bold hover:bg-indigo-700 transition-colors shadow-2xs">
+                  <span>Explore</span>
+                  <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </div>
+            </NavLink>
+          </FadeIn>
+
+          {/* Bento Card 2: Training (Tall Feature Card - 5 cols) */}
+          <FadeIn className="md:col-span-5" delay={0.2}>
+            <NavLink
+              to="/training"
+              className="group relative h-full min-h-0 sm:min-h-[260px] bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-4 sm:p-7 flex flex-col justify-between hover:border-indigo-300 hover:bg-white hover:shadow-md transition-all duration-300"
+            >
+              <div className="space-y-2 sm:space-y-3">
+                <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-indigo-50 text-indigo-600 border border-indigo-100 flex items-center justify-center">
+                  <Terminal className="w-4 h-4 sm:w-5 sm:h-5" />
+                </div>
+                
+                <span className="text-[10px] sm:text-xs font-bold text-indigo-600 uppercase tracking-wider block">Cohort Training</span>
+                
+                <h3 className="font-display font-bold text-base sm:text-2xl text-slate-900 group-hover:text-indigo-600 transition-colors">
+                  Production-grade cohort engineering.
+                </h3>
+                
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2 sm:line-clamp-none">
+                  Rigorous technical courses engineered by industry leads covering AI agent pipelines, zero-trust infrastructure, and distributed concurrency.
+                </p>
+              </div>
+
+              <div className="pt-3 sm:pt-5 flex items-center justify-between border-t border-slate-200/60 mt-2.5">
+                <span className="text-[10px] sm:text-xs font-semibold text-slate-500">Applications Open</span>
+                <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-indigo-50 group-hover:bg-indigo-600 group-hover:text-white text-indigo-700 text-xs font-bold rounded-lg sm:rounded-xl transition-all shadow-2xs">
+                  <span>Syllabus</span>
+                  <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                </span>
+              </div>
+            </NavLink>
+          </FadeIn>
+
+          {/* Bento Card 3: Education & Schools (5 cols) */}
+          <FadeIn className="md:col-span-5" delay={0.3}>
+            <NavLink
+              to="/education"
+              className="group relative h-full min-h-0 sm:min-h-[240px] bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl p-4 sm:p-7 flex flex-col justify-between hover:border-indigo-300 hover:bg-white hover:shadow-md transition-all duration-300"
+            >
+              <div className="space-y-2 sm:space-y-3">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center">
+                  <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />
+                </div>
+                
+                <span className="text-[10px] sm:text-xs font-bold text-blue-600 uppercase tracking-wider block">Geniusphere Series</span>
+                
+                <h3 className="font-display font-bold text-base sm:text-xl text-slate-900 group-hover:text-indigo-600 transition-colors">
+                  Secondary School & College Pathways
+                </h3>
+                
+                <p className="text-xs text-slate-600 leading-relaxed line-clamp-2 sm:line-clamp-none">
+                  Structured robotics logic, algorithmic thinking, and campus lab partnerships for youth innovators.
+                </p>
+              </div>
+
+              <div className="pt-2.5 sm:pt-4 flex items-center justify-between border-t border-slate-200/60 mt-2.5">
+                <span className="text-[10px] sm:text-xs text-slate-500">Geniusphere</span>
+                <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-indigo-50 group-hover:bg-indigo-600 group-hover:text-white text-indigo-700 text-xs font-bold rounded-lg sm:rounded-xl transition-all shadow-2xs">
+                  <span>Tracks</span>
+                  <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                </span>
+              </div>
+            </NavLink>
+          </FadeIn>
+
+          {/* Bento Card 4: Live Events & Summits (7 cols) */}
+          <FadeIn className="md:col-span-7" delay={0.4}>
+            <NavLink
+              to="/events"
+              className="group relative h-full min-h-0 sm:min-h-[240px] bg-white border border-slate-200 rounded-xl sm:rounded-2xl p-4 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-6 hover:border-indigo-300 hover:shadow-md transition-all duration-300"
+            >
+              <div className="space-y-2 sm:space-y-3 max-w-md">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center">
+                  <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
+                </div>
+                
+                <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-wider block">Summits & Wargames</span>
+                
+                <h3 className="font-display font-bold text-base sm:text-2xl text-slate-900 group-hover:text-indigo-600 transition-colors">
+                  Live Summits, Hackathons & CTF Wargames
+                </h3>
+                
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2 sm:line-clamp-none">
+                  Annual technology summits, capture-the-flag defensive simulations, and institutional buildathon championships.
+                </p>
+              </div>
+
+              <div className="shrink-0 flex sm:flex-col items-end justify-between sm:justify-center gap-3 w-full sm:w-auto border-t sm:border-t-0 border-slate-100 pt-2.5 sm:pt-0">
+                <span className="inline-flex items-center gap-1 bg-indigo-600 text-white px-3.5 py-1.5 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl text-xs font-bold hover:bg-indigo-700 transition-colors shadow-2xs">
+                  <span>View Events</span>
+                  <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </div>
+            </NavLink>
+          </FadeIn>
+
+        </div>
+      </section>
+
+      {/* ==========================================
+          04. UPCOMING EVENTS
+         ========================================== */}
+      <div className="bg-slate-50/50 py-4 sm:py-8">
+        <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-24">
+          <FadeIn>
+            <SectionHeading
+              tag="UPCOMING EVENTS"
+              title="Upcoming Live Events"
+              subtitle="Explore upcoming events and register via external URLs."
+              actionText="View Scheduled Events"
+              actionPath="/events"
+            />
+          </FadeIn>
+
+          <div className="grid grid-cols-1 gap-2.5 sm:gap-4 max-w-4xl mx-auto mt-4 sm:mt-6">
+            {upcomingEvents.map((evt, idx) => (
+              <FadeIn key={evt.id} delay={idx * 0.1}>
+                <EventCard event={evt} onRegisterClick={openRsvp} />
+              </FadeIn>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      {/* ==========================================
+          05. STORIES & ACHIEVEMENTS SHOWCASE
+         ========================================== */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-24 py-4 sm:py-8">
+        <FadeIn>
+          <SectionHeading
+            tag="STORIES & ACHIEVEMENTS"
+            title="Platform Impact Stories"
+            subtitle="Documenting student achievements, workshop breakthroughs, and community awards."
+            actionText="View Published Stories"
+            actionPath="/stories"
+          />
+        </FadeIn>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 sm:gap-8 mt-4 sm:mt-6">
+          {/* Stories Column */}
+          <div className="lg:col-span-7 space-y-2.5 sm:space-y-4">
+            {stories.map((story, idx) => (
+              <FadeIn key={story.id} delay={idx * 0.1}>
+                <NavLink
+                  to={`/stories/${story.slug}`}
+                  className="bg-white border border-slate-200 rounded-xl p-3 sm:p-4 flex flex-row gap-3 sm:gap-4 hover:border-indigo-300 hover:shadow-md transition-all group shadow-2xs items-center"
+                >
+                  <img
+                    src={story.coverImage || '/brandex-full-logo.webp'}
+                    alt={story.title}
+                    className="w-20 h-20 sm:w-36 sm:h-28 object-cover rounded-lg shrink-0"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="space-y-1 sm:space-y-1.5 flex-1 min-w-0">
+                    <span className="text-[9px] sm:text-[10px] font-semibold text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded">
+                      {story.category}
+                    </span>
+                    <h4 className="font-display font-bold text-xs sm:text-sm text-slate-900 group-hover:text-indigo-600 transition-colors leading-snug line-clamp-2">
+                      {story.title}
+                    </h4>
+                    <p className="text-[10px] sm:text-xs text-slate-600 line-clamp-1 sm:line-clamp-2 leading-relaxed">
+                      {story.excerpt}
+                    </p>
+                  </div>
+                </NavLink>
+              </FadeIn>
+            ))}
+          </div>
+
+          {/* Achievements Sidebar */}
+          <div className="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-xl p-3.5 sm:p-5 space-y-2.5 sm:space-y-3">
+            <h3 className="font-display font-bold text-sm sm:text-base text-slate-900 border-b border-slate-200 pb-2 flex items-center gap-1.5">
+              <Award className="w-4 h-4 text-indigo-600" />
+              <span>Recognitions & Awards</span>
+            </h3>
+
+            <div className="space-y-2 sm:space-y-3">
+              {achievements.map((ach) => (
+                <div key={ach.id} className="bg-white border border-slate-200 rounded-lg p-2.5 sm:p-3 space-y-1 shadow-2xs">
+                  <div className="flex items-center justify-between text-[9px] sm:text-[10px] text-slate-500 font-medium">
+                    <span className="text-indigo-600 font-semibold">{ach.category}</span>
+                    <span>{ach.date}</span>
+                  </div>
+                  <h4 className="font-display font-bold text-xs text-slate-900">
+                    {ach.title}
+                  </h4>
+                  <p className="text-[10px] sm:text-xs text-slate-600 leading-relaxed line-clamp-2">
+                    {ach.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==========================================
+          06. BRANDEX IN ACTION (MEDIA HUB)
+         ========================================== */}
+      <div className="bg-slate-50/50 py-4 sm:py-8 !mt-2 sm:!mt-6">
+        <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-24">
+          <SectionHeading
+            tag="MEDIA VAULT"
+            title="Archived Video Recordings"
+            subtitle="Explore recorded keynote talks, technical workshops, and video archives."
+            actionText="Access Recorded Media"
+            actionPath="/media"
+            asButton={true}
+          />
+
+          <div className="relative w-full overflow-hidden pb-2 pt-1 mt-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div className="flex gap-4 sm:gap-6 w-max animate-marquee hover:[animation-play-state:paused]">
+              {[...featuredMedia, ...featuredMedia, ...featuredMedia, ...featuredMedia].map((m, idx) => (
+                <div key={`${m.id}-${idx}`} className="w-[260px] sm:w-[340px] shrink-0">
+                  <MediaCard media={m} onPlayClick={openVideo} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* ==========================================
+          06b. FAQ SECTION
+         ========================================== */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-24 py-4 sm:py-8 border-t border-slate-200">
+        <FadeIn>
+          <SectionHeading
+            tag="FAQ"
+            title="Platform FAQ Hub"
+            subtitle="Common questions regarding the Brandex ecosystem, training cohorts, and community circles."
+          />
+        </FadeIn>
+
+        <div className="w-full space-y-2 sm:space-y-2.5 mt-3 sm:mt-6">
+          {[
+            {
+              q: "What is the Brandex Showcase Ecosystem?",
+              a: "Brandex is a hybrid education and tech showcase platform. We support emerging developers through domain circles in AI, Cybersecurity, and UX design, hosting workshops, curriculum series, and local summits."
+            },
+            {
+              q: "Who can enroll in the training programs?",
+              a: "Our educational courses are open to students (both high school and university levels) and self-taught software engineers. We offer cohort paths ranging from basic programming logic to industrial systems engineering."
+            },
+            {
+              q: "Are credentials issued upon course completion?",
+              a: "Yes. All students completing cohort training tracks receive verified digital completion credentials. These can be integrated into LinkedIn profiles and shared with hiring organizations."
+            },
+            {
+              q: "How can academic institutions collaborate?",
+              a: "We partner with schools and colleges to host custom training programs, technology events, and Capture The Flag cybersecurity wargames. Please email our administrative desk to set up a cohort strategy."
+            },
+            {
+              q: "Where are the events and circles hosted?",
+              a: "We operate a hybrid model. Circle meetings and developer labs are held virtually, while larger summits and workshops are organized at partner campus venues or our headquarters in Bangalore."
+            },
+            {
+              q: "How do I check my career application status?",
+              a: "If you applied for a vacancy or our Brand Ambassador cohort, navigate to our Careers Portal. Enter your submission email in the Status Tracker to get real-time evaluations of your application."
+            }
+          ].map((item, idx) => {
+            const isOpen = openFaq === idx;
+            return (
+              <div key={idx} className="border border-slate-200 bg-white transition-all rounded-xl overflow-hidden shadow-2xs">
+                <button
+                  onClick={() => setOpenFaq(isOpen ? null : idx)}
+                  className="w-full px-3 py-2.5 sm:px-5 sm:py-3.5 flex items-center justify-between text-left focus:outline-none gap-2.5"
+                >
+                  <span className="font-display font-bold text-xs sm:text-sm text-slate-900 leading-snug">{item.q}</span>
+                  {isOpen ? <ChevronUp className="w-4 h-4 text-indigo-600 shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />}
+                </button>
+                {isOpen && (
+                  <div className="px-3 pb-3 sm:px-5 sm:pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-2 text-left">
+                    {item.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ==========================================
+          07. FINAL JOIN CTA
+         ========================================== */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-24 py-4 sm:py-8 !mt-2 sm:!mt-4">
+        <div className="bg-indigo-50/50 border border-indigo-100 rounded-2xl sm:rounded-[2rem] p-4 sm:p-8 text-left shadow-xs relative overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-8 items-center">
+          <div className="absolute inset-0 bg-gradient-to-tr from-indigo-100/30 to-purple-100/30 mix-blend-overlay pointer-events-none"></div>
+          
+          {/* Left Column: Text & Action */}
+          <div className="lg:col-span-7 space-y-3 sm:space-y-4 relative z-10">
+            <div className="space-y-1.5 sm:space-y-2">
+              <span className="inline-block px-2.5 py-0.5 bg-white text-indigo-600 text-[10px] sm:text-xs font-semibold rounded-full uppercase tracking-wider border border-indigo-100 shadow-2xs">
+                Get Connected
+              </span>
+              <h2 className="text-xl sm:text-3xl font-display font-bold text-slate-900 leading-tight">
+                Access Member Ecosystem
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl">
+                Participate in upcoming workshops, explore community initiatives, and connect with peers.
+              </p>
+            </div>
+
+            <div className="pt-1 flex flex-col sm:flex-row justify-start">
+              <button
+                onClick={() => openModal('community')}
+                className="btn-primary w-full sm:w-auto justify-center px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm"
+              >
+                <span>Access Member Portal</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Right Column: Visual graphics / Social Proof / Stats to fill the space */}
+          <div className="lg:col-span-5 relative z-10 flex justify-center lg:justify-end">
+            <div className="bg-white/90 backdrop-blur-md border border-indigo-100/60 p-4 sm:p-5 rounded-xl sm:rounded-2xl shadow-sm max-w-sm w-full space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="flex -space-x-2.5">
+                  <div className="w-8 h-8 rounded-full bg-indigo-600 border-2 border-white flex items-center justify-center text-[9px] font-bold text-white shadow-2xs">PK</div>
+                  <div className="w-8 h-8 rounded-full bg-purple-600 border-2 border-white flex items-center justify-center text-[9px] font-bold text-white shadow-2xs">SN</div>
+                  <div className="w-8 h-8 rounded-full bg-indigo-50 border-2 border-white flex items-center justify-center text-xs font-bold text-indigo-600 shadow-2xs">+</div>
+                </div>
+                <div className="text-xs">
+                  <p className="font-bold text-slate-900">1,200+ Active Builders</p>
+                  <p className="text-slate-500 text-[11px]">Collaborating on projects</p>
+                </div>
+              </div>
+              
+              <div className="border-t border-slate-100 pt-2.5 flex items-center justify-between text-xs text-slate-600">
+                <div>
+                  <span className="font-bold text-indigo-600 block text-xs sm:text-sm">15+ Circles</span>
+                  <span className="text-[10px] text-slate-500">Active Domains</span>
+                </div>
+                <div className="border-l border-slate-150 pl-3 flex-1">
+                  <span className="font-bold text-indigo-600 block text-xs sm:text-sm">Weekly Labs</span>
+                  <span className="text-[10px] text-slate-500">Interactive Workshops</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* RSVP Modal */}
+      <EventRegistrationModal
+        event={selectedEvent}
+        isOpen={isRsvpOpen}
+        onClose={() => setIsRsvpOpen(false)}
+      />
+
+      {/* Video Modal Player */}
+      <VideoModalPlayer
+        media={activeVideo}
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+      />
+
+    </div>
+  );
+};
+
+export default Home;

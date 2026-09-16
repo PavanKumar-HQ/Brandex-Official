@@ -24,6 +24,8 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 // Education Sub-Portal Pages
 import EducationHome from "./pages/education/EducationHome";
 import CurriculumExplorer from "./pages/education/CurriculumExplorer";
+import ClassDetailPage from "./pages/education/ClassDetailPage";
+import SubjectChaptersPage from "./pages/education/SubjectChaptersPage";
 import ClassroomPlayer from "./pages/education/ClassroomPlayer";
 import EducatorLoginPage from "./pages/education/EducatorLoginPage";
 import EducatorAdminPage from "./pages/education/EducatorAdminPage";
@@ -32,6 +34,7 @@ import LessonPage from "./pages/education/LessonPage";
 
 // Community Sub-Portal Pages
 import CommunityHome from "./pages/community/CommunityHome";
+import CommunityPage from "./pages/community/CommunityPage";
 import EventsPage from "./pages/community/EventsPage";
 import EventDetailPage from "./pages/community/EventDetailPage";
 import TrainingPage from "./pages/community/TrainingPage";
@@ -47,6 +50,8 @@ import CareersPage from "./pages/community/CareersPage";
 import MediaPage from "./pages/community/MediaPage";
 import SearchPage from "./pages/community/SearchPage";
 import BrandexHQPage from "./pages/community/BrandexHQPage";
+import PrivacyPolicyPage from "./pages/community/PrivacyPolicyPage";
+import TermsPage from "./pages/community/TermsPage";
 
 const queryClient = new QueryClient();
 
@@ -85,14 +90,16 @@ function AnimatedRoutes() {
             {/* Education Sub-Portal Routes */}
             <Route path="/education" element={<EducationHome />} />
             <Route path="/education/explore" element={<CurriculumExplorer />} />
-            <Route path="/education/explore/:classId" element={<CurriculumExplorer />} />
+            <Route path="/education/explore/:classId" element={<ClassDetailPage />} />
+            <Route path="/education/explore/:classId/:subjectSlug" element={<SubjectChaptersPage />} />
             <Route path="/education/classroom" element={<ClassroomPlayer />} />
             <Route path="/education/studio/:classId/:subjectSlug" element={<SubjectStudioPage />} />
             <Route path="/education/lesson/:slug" element={<LessonPage />} />
             <Route path="/education/login" element={<EducatorLoginPage />} />
             <Route path="/education/admin" element={<EducatorAdminPage />} />
             <Route path="/explore" element={<CurriculumExplorer />} />
-            <Route path="/explore/:classId" element={<CurriculumExplorer />} />
+            <Route path="/explore/:classId" element={<ClassDetailPage />} />
+            <Route path="/explore/:classId/:subjectSlug" element={<SubjectChaptersPage />} />
             <Route path="/classroom" element={<ClassroomPlayer />} />
             <Route path="/studio/:classId/:subjectSlug" element={<SubjectStudioPage />} />
             <Route path="/lesson/:slug" element={<LessonPage />} />
@@ -116,6 +123,9 @@ function AnimatedRoutes() {
             <Route path="/community/brandex" element={<BrandexHQPage />} />
             <Route path="/community/guidelines" element={<CommunityGuidelinesPage />} />
             <Route path="/community/work-with-us" element={<WorkWithBrandexPage />} />
+            <Route path="/community/overview" element={<CommunityPage />} />
+            <Route path="/community/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/community/terms" element={<TermsPage />} />
             <Route path="/work-with-us" element={<WorkWithBrandexPage />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/events/:slug" element={<EventDetailPage />} />
@@ -132,6 +142,8 @@ function AnimatedRoutes() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/brandex" element={<BrandexHQPage />} />
             <Route path="/ecosystem" element={<BrandexHQPage />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
             
             {/* Founder Direct Slug Routes */}
             <Route path="/pavan-kumar" element={<FounderProfile founderKey="pavan" />} />

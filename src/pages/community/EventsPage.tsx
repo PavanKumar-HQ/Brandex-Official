@@ -1,138 +1,314 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import {
-  Calendar,
-  MapPin,
-  Users,
-  ArrowRight,
-  ArrowLeft,
-  Clock,
-  ExternalLink,
-  CheckCircle2,
-} from "lucide-react";
-import { getEvents } from "@/data/community/repository";
-import { Event } from "@/models/community";
-import { Button } from "@/components/ui/button";
+import { useSEO } from '@/community/hooks/useSEO';
+import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { Calendar, MapPin, Users, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { SectionHeading } from '@/community/components/ui/SectionHeading';
+import { PageHero } from '@/community/components/ui/PageHero';
+import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
+import { EventCard } from '@/community/components/cards/EventCard';
+import { EventRegistrationModal } from '@/community/components/events/EventRegistrationModal';
+import { EmptyState } from '@/community/components/ui/EmptyState';
+import { getEvents } from '@/community/repositories/repository';
+import { Event } from '@/community/models/types';
 
-export default function EventsPage() {
-  const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
+export const EventsPage: React.FC = () => {
+  useSEO("Live Events & Summits", "Browse upcoming and past live summits, hands-on buildathons, wargames, and workshops.");
+  const [activeTab, setActiveTab] = useState<'upcoming' | 'past' | 'calendar'>('upcoming');
   const [events, setEvents] = useState<Event[]>([]);
+  const [allEvents, setAllEvents] = useState<Event[]>([]);
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [isRsvpOpen, setIsRsvpOpen] = useState(false);
+
+  // Calendar State
+  const [currentYear, setCurrentYear] = useState(2026);
+  const [currentMonth, setCurrentMonth] = useState(9); // Default: October (9)
+  const [selectedCalendarEvent, setSelectedCalendarEvent] = useState<Event | null>(null);
 
   useEffect(() => {
-    async function loadData() {
-      const data = await getEvents(activeTab);
+    async function loadEventData() {
+      const data = await getEvents(activeTab === 'calendar' ? 'upcoming' : activeTab);
       setEvents(data);
     }
-    loadData();
+    loadEventData();
   }, [activeTab]);
 
-  return (
-    <div className="min-h-screen bg-[#f8fafd] pt-24 pb-16 lg:pt-28 lg:pb-20 selection:bg-[#4f47e6] selection:text-white">
-      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 space-y-10">
-        
-        {/* Navigation & Header */}
-        <div className="border-b border-slate-200/90 pb-8 space-y-4">
-          <Link
-            to="/community"
-            className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#4f47e6] transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to Community Hub</span>
-          </Link>
+  useEffect(() => {
+    // Load all events (both upcoming and past) for the calendar view
+    async function loadAllEventData() {
+      const upcoming = await getEvents('upcoming');
+      const past = await getEvents('past');
+      setAllEvents([...upcoming, ...past]);
+    }
+    loadAllEventData();
+  }, []);
 
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pt-2">
-            <div className="space-y-1.5 max-w-2xl">
-              <div className="liquid-glass-pill inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold text-[#4f47e6] mb-1">
-                Bangalore & Worldwide Summits
+  const handleOpenRsvp = (evt: Event) => {
+    setSelectedEvent(evt);
+    setIsRsvpOpen(true);
+  };
+
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  // Calendar Helper Logic
+  const getDaysInMonth = (year: number, month: number) => new Date(year, month + 1, 0).getDate();
+  const getFirstDayOfMonth = (year: number, month: number) => new Date(year, month, 1).getDay();
+
+  const handlePrevMonth = () => {
+    if (currentMonth === 0) {
+      setCurrentMonth(11);
+      setCurrentYear(prev => prev - 1);
+    } else {
+      setCurrentMonth(prev => prev - 1);
+    }
+    setSelectedCalendarEvent(null);
+  };
+
+  const handleNextMonth = () => {
+    if (currentMonth === 11) {
+      setCurrentMonth(0);
+      setCurrentYear(prev => prev + 1);
+    } else {
+      setCurrentMonth(prev => prev + 1);
+    }
+    setSelectedCalendarEvent(null);
+  };
+
+  // Find events on a specific date (day, currentMonth, currentYear)
+  const getEventForDay = (day: number) => {
+    const monthName = monthNames[currentMonth];
+    return allEvents.find(evt => {
+      // Event date string is formatted like "18 August 2026" or "14 October 2026"
+      const dateParts = evt.date.split(' ');
+      if (dateParts.length >= 3) {
+        const evtDay = parseInt(dateParts[0], 10);
+        const evtMonth = dateParts[1];
+        const evtYear = parseInt(dateParts[2], 10);
+        return evtDay === day && evtMonth.toLowerCase() === monthName.toLowerCase() && evtYear === currentYear;
+      }
+      return false;
+    });
+  };
+
+  const daysInMonth = getDaysInMonth(currentYear, currentMonth);
+  const firstDayIndex = getFirstDayOfMonth(currentYear, currentMonth);
+  const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+  const paddingArray = Array.from({ length: firstDayIndex }, (_, i) => i);
+
+  return (
+    <div className="space-y-6 pb-16 pt-24 w-full px-4 sm:px-8 lg:px-12 xl:px-24 bg-white text-slate-900 font-sans">
+      <Breadcrumb items={[{ label: 'Events & Summits' }]} />
+
+      {/* Hero Header */}
+      <PageHero 
+        tag="Brandex Summits & Gatherings"
+        title="Events & Summits Timeline"
+        description="Live technical summits, hands-on buildathons, school series workshops (e.g. Geniusphere Series), and cybersecurity capture-the-flag wargames."
+        widgetTitle="Events.Calendar"
+        widgetStatLabel="Upcoming Events"
+        widgetStatValue="12"
+        widgetStatusLabel="Registration"
+        widgetStatusText="Open for RSVPs"
+      />
+
+      {/* Filter / View Selector */}
+      <section className="space-y-6">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between border-b border-slate-200 pb-3 gap-3">
+          {/* Mobile Select Dropdown Menu */}
+          <div className="block sm:hidden w-full">
+            <select
+              value={activeTab}
+              onChange={(e) => setActiveTab(e.target.value as any)}
+              className="w-full px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-300 text-slate-800 shadow-xs focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="upcoming">Upcoming Events</option>
+              <option value="past">Past Event Archive</option>
+              <option value="calendar">Interactive Calendar View</option>
+            </select>
+          </div>
+
+          {/* Desktop & Tablet Segmented Selector (Zero horizontal scroll) */}
+          <div className="hidden sm:flex items-center gap-2">
+            <button
+              onClick={() => setActiveTab('upcoming')}
+              className={`px-4 py-2 text-xs font-semibold rounded-xl transition-all shadow-xs ${
+                activeTab === 'upcoming'
+                  ? 'bg-slate-900 text-white shadow-sm'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
+            >
+              Upcoming Events
+            </button>
+            <button
+              onClick={() => setActiveTab('past')}
+              className={`px-4 py-2 text-xs font-semibold rounded-xl transition-all shadow-xs ${
+                activeTab === 'past'
+                  ? 'bg-slate-900 text-white shadow-sm'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
+            >
+              Past Event Archive
+            </button>
+            <button
+              onClick={() => setActiveTab('calendar')}
+              className={`px-4 py-2 text-xs font-semibold rounded-xl transition-all shadow-xs ${
+                activeTab === 'calendar'
+                  ? 'bg-slate-900 text-white shadow-sm'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              }`}
+            >
+              Calendar View
+            </button>
+          </div>
+
+          <span className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-bold rounded-full uppercase tracking-wider shadow-sm self-start sm:self-auto shrink-0">
+            <span className="w-1.5 h-1.5 bg-indigo-600 rounded-full animate-pulse" />
+            {activeTab === 'calendar' ? 'Calendar Mode' : `Showing ${events.length} ${activeTab === 'upcoming' ? 'Upcoming Events' : 'Archived Events'}`}
+          </span>
+        </div>
+
+        {activeTab === 'calendar' ? (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 animate-fade-in">
+            {/* Calendar Grid Container */}
+            <div className="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="font-display font-bold text-lg text-slate-900">
+                  {monthNames[currentMonth]} {currentYear}
+                </h3>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={handlePrevMonth}
+                    className="p-2 bg-white border border-slate-200 rounded-lg hover:bg-slate-100 text-slate-700 shadow-sm"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={handleNextMonth}
+                    className="p-2 bg-white border border-slate-200 rounded-lg hover:bg-slate-100 text-slate-700 shadow-sm"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
-              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-                Live Events, Sprints & Meetups
-              </h1>
-              <p className="text-sm sm:text-base text-slate-600 font-normal">
-                Hands-on buildathons, system engineering teardowns, and networking sessions.
-              </p>
+
+              {/* Day Headers */}
+              <div className="grid grid-cols-7 gap-2 text-center text-xs font-bold text-slate-500 uppercase tracking-wide mb-3">
+                <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+              </div>
+
+              {/* Month Cells Grid */}
+              <div className="grid grid-cols-7 gap-2">
+                {paddingArray.map(idx => (
+                  <div key={`pad-${idx}`} className="aspect-square bg-slate-100/40 rounded-lg border border-transparent" />
+                ))}
+
+                {daysArray.map(day => {
+                  const dayEvent = getEventForDay(day);
+                  const isSelected = selectedCalendarEvent && dayEvent && selectedCalendarEvent.id === dayEvent.id;
+                  return (
+                    <button
+                      key={`day-${day}`}
+                      onClick={() => dayEvent && setSelectedCalendarEvent(dayEvent)}
+                      disabled={!dayEvent}
+                      className={`aspect-square rounded-lg border flex flex-col items-center justify-between p-1.5 transition-all text-xs relative ${
+                        dayEvent
+                          ? isSelected
+                            ? 'bg-indigo-600 border-indigo-700 text-white shadow-md'
+                            : 'bg-white border-slate-250 hover:border-indigo-500 hover:shadow-sm cursor-pointer'
+                          : 'bg-white/40 border-slate-100 text-slate-400 cursor-default'
+                      }`}
+                    >
+                      <span className="font-bold self-start">{day}</span>
+                      {dayEvent && (
+                        <span className={`w-2 h-2 rounded-full absolute bottom-2 right-2 ${isSelected ? 'bg-white' : 'bg-indigo-600 animate-pulse'}`} />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Filter Pills */}
-            <div className="flex items-center gap-2 bg-white p-1.5 rounded-2xl border border-slate-200 shadow-2xs shrink-0">
-              <button
-                onClick={() => setActiveTab("upcoming")}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  activeTab === "upcoming"
-                    ? "bg-[#4f47e6] text-white shadow-2xs"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
-                }`}
-              >
-                Upcoming Sprints
-              </button>
-              <button
-                onClick={() => setActiveTab("past")}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  activeTab === "past"
-                    ? "bg-[#4f47e6] text-white shadow-2xs"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
-                }`}
-              >
-                Past Archives
-              </button>
+            {/* Event Description Panel */}
+            <div className="lg:col-span-5 space-y-4">
+              {selectedCalendarEvent ? (
+                <div className="bg-slate-50 border-2 border-indigo-600 rounded-2xl p-6 shadow-md space-y-4 animate-fade-in relative">
+                  <span className="absolute top-4 right-4 text-[10px] font-bold px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded border border-indigo-200 uppercase">
+                    {selectedCalendarEvent.type}
+                  </span>
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-wider">
+                      {selectedCalendarEvent.category}
+                    </span>
+                    <h3 className="font-display font-bold text-lg text-slate-900 leading-snug">
+                      {selectedCalendarEvent.title}
+                    </h3>
+                  </div>
+
+                  <p className="text-xs text-slate-650 leading-relaxed">
+                    {selectedCalendarEvent.shortDescription}
+                  </p>
+
+                  <div className="space-y-2 pt-2 border-t border-slate-200 text-xs text-slate-700">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-indigo-600 shrink-0" />
+                      <span>{selectedCalendarEvent.date} @ {selectedCalendarEvent.time}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-indigo-600 shrink-0" />
+                      <span className="truncate">{selectedCalendarEvent.venue} ({selectedCalendarEvent.location})</span>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => handleOpenRsvp(selectedCalendarEvent)}
+                    className="btn-primary w-full py-2.5 text-xs font-semibold rounded-lg flex items-center justify-center gap-2 mt-4"
+                  >
+                    <span>Register for Event</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              ) : (
+                <div className="bg-slate-50 border border-slate-200 border-dashed rounded-2xl p-8 text-center flex flex-col items-center justify-center h-full min-h-[300px] text-slate-500">
+                  <Calendar className="w-10 h-10 text-slate-300 mb-3" />
+                  <h4 className="font-display font-bold text-sm text-slate-800">Select an Event Date</h4>
+                  <p className="text-xs text-slate-500 max-w-xs mt-1">
+                    Click on highlighted dates (marked with indicators) on the calendar to preview summit details and access RSVPs.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
-        </div>
-
-        {/* Events Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {events.map((evt) => (
-            <div
-              key={evt.id}
-              className="liquid-glass-card hover:bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] font-mono font-bold text-[#4f47e6] liquid-glass-pill px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                    {evt.category}
-                  </span>
-                  <span className="text-xs font-mono font-bold text-slate-500">
-                    {evt.rsvpCount} Registered
-                  </span>
-                </div>
-
-                <h3 className="font-display font-bold text-xl text-slate-900 mb-2">
-                  {evt.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-5 line-clamp-3">
-                  {evt.description}
-                </p>
-
-                <div className="space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-600">
-                  <div className="flex items-center gap-2">
-                    <Calendar size={14} className="text-[#4f47e6] shrink-0" />
-                    <span>{evt.date} &bull; {evt.time}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <MapPin size={14} className="text-[#4f47e6] shrink-0" />
-                    <span className="truncate">{evt.location}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-5 border-t border-slate-100 mt-5 flex items-center justify-between">
-                <span className="text-xs font-mono font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-                  {evt.badge || "RSVP Open"}
-                </span>
-                
-                <Link
-                  to={`/community/events/${evt.slug}`}
-                  className="px-4 py-2 rounded-xl bg-[#4f47e6] hover:bg-[#4338ca] text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-2xs"
-                >
-                  <span>Event Details</span>
-                  <ArrowRight size={13} />
-                </Link>
-              </div>
+        ) : (
+          events.length === 0 ? (
+            <EmptyState
+              title={activeTab === 'upcoming' ? 'No upcoming events scheduled.' : 'No archived events found.'}
+              description={
+                activeTab === 'upcoming'
+                  ? "We're preparing the next Brandex session. Check back soon."
+                  : 'Brandex past sessions and recordings will appear here.'
+              }
+            />
+          ) : (
+            <div className="flex flex-col gap-6 animate-fade-in">
+              {events.map((evt) => (
+                <EventCard key={evt.id} event={evt} onRegisterClick={handleOpenRsvp} />
+              ))}
             </div>
-          ))}
-        </div>
+          )
+        )}
+      </section>
 
-      </div>
+      {/* RSVP Modal */}
+      <EventRegistrationModal
+        event={selectedEvent}
+        isOpen={isRsvpOpen}
+        onClose={() => setIsRsvpOpen(false)}
+      />
+
     </div>
   );
-}
+};
+
+export default EventsPage;

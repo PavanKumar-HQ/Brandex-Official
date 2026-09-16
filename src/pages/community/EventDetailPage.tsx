@@ -1,140 +1,212 @@
-import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import {
-  Calendar,
-  MapPin,
-  Clock,
-  Users,
-  ArrowLeft,
-  CheckCircle2,
-  Share2,
-  ExternalLink,
-  ShieldCheck,
-} from "lucide-react";
-import { getEventBySlug } from "@/data/community/repository";
-import { Event } from "@/models/community";
-import { Button } from "@/components/ui/button";
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Calendar, MapPin, Clock, Users, ArrowUpRight, Play, CheckCircle } from 'lucide-react';
+import { getEventBySlug } from '@/community/repositories/repository';
+import { Event } from '@/community/models/types';
+import { EventRegistrationModal } from '@/community/components/events/EventRegistrationModal';
+import { MediaPlaceholderCard } from '@/community/components/ui/MediaPlaceholders';
+import { EmptyState } from '@/community/components/ui/EmptyState';
+import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
 
-export default function EventDetailPage() {
+export const EventDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const [event, setEvent] = useState<Event | null>(null);
-  const [registered, setRegistered] = useState(false);
+  const [isRsvpOpen, setIsRsvpOpen] = useState(false);
 
   useEffect(() => {
-    async function loadData() {
-      if (slug) {
-        const data = await getEventBySlug(slug);
-        setEvent(data || null);
-      }
+    async function loadEvent() {
+      if (!slug) return;
+      const data = await getEventBySlug(slug);
+      setEvent(data);
     }
-    loadData();
+    loadEvent();
   }, [slug]);
 
   if (!event) {
     return (
-      <div className="min-h-screen bg-[#f8fafd] flex items-center justify-center p-6 text-center">
-        <div className="space-y-4">
-          <h2 className="font-display font-extrabold text-2xl text-slate-900">Event Not Found</h2>
-          <p className="text-xs text-slate-500">The requested event could not be found or has concluded.</p>
-          <Button asChild variant="brand" size="sm" className="rounded-xl">
-            <Link to="/community/events">Browse All Events</Link>
-          </Button>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 py-32 text-center bg-white">
+        <EmptyState
+          title="EVENT NOT FOUND"
+          description="The event slug you requested does not exist or has been removed."
+          actionText="Back to Events Timeline"
+          onAction={() => navigate('/events')}
+        />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#f8fafd] py-12 sm:py-16 selection:bg-[#4f47e6] selection:text-white pt-10">
-      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-8 space-y-8">
-        
-        {/* Navigation */}
-        <div>
-          <Link
-            to="/community/events"
-            className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#4f47e6] transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to All Events</span>
-          </Link>
-        </div>
+    <div className="space-y-8 sm:space-y-12 pb-16 pt-20 bg-white">
+      
+      {/* Breadcrumb Navigation */}
+      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-24">
+        <Breadcrumb items={[{ label: 'Events', path: '/events' }, { label: event.title }]} />
+      </div>
 
-        {/* Main Event Card */}
-        <div className="liquid-glass rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm space-y-8">
-          
-          <div className="space-y-3">
-            <div className="flex items-center gap-2.5 flex-wrap">
-              <span className="text-xs font-mono font-bold text-[#4f47e6] bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100 uppercase tracking-wider">
-                {event.category}
+      {/* Hero Poster & Header */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-24 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="lg:col-span-7 space-y-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="font-mono text-xs uppercase text-[#4f46e5] bg-[#e0e7ff] border border-[#4f46e5]/30 px-3 py-1 font-bold">
+              [{event.category}]
+            </span>
+            <span className="font-mono text-xs text-[#0f142e] bg-[#f1f5f9] border border-[#cbd5e1] px-3 py-1 font-bold">
+              {event.type}
+            </span>
+            {event.isPast && (
+              <span className="font-mono text-xs text-[#475569] bg-[#f1f5f9] border border-[#cbd5e1] px-3 py-1 font-bold">
+                ARCHIVED SESSION
               </span>
-              <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
-                {event.rsvpCount} Registered
-              </span>
-            </div>
-
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
-              {event.title}
-            </h1>
-          </div>
-
-          <div className="grid sm:grid-cols-3 gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs sm:text-sm text-slate-700">
-            <div className="flex items-center gap-2.5">
-              <Calendar size={18} className="text-[#4f47e6] shrink-0" />
-              <div>
-                <div className="font-bold text-slate-900">Date</div>
-                <div className="text-xs text-slate-500">{event.date}</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2.5">
-              <Clock size={18} className="text-[#4f47e6] shrink-0" />
-              <div>
-                <div className="font-bold text-slate-900">Time</div>
-                <div className="text-xs text-slate-500">{event.time}</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2.5">
-              <MapPin size={18} className="text-[#4f47e6] shrink-0" />
-              <div>
-                <div className="font-bold text-slate-900">Location</div>
-                <div className="text-xs text-slate-500 truncate">{event.location}</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <h2 className="font-display font-bold text-xl text-slate-900">About this Summit / Meetup</h2>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-              {event.description}
-            </p>
-          </div>
-
-          {/* Registration Section */}
-          <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <div className="text-sm font-bold text-slate-900">Free Community RSVP</div>
-              <p className="text-xs text-slate-500">Includes direct Slack / Telegram networking group access</p>
-            </div>
-
-            {registered ? (
-              <div className="px-6 py-3 rounded-xl bg-emerald-50 text-emerald-700 font-bold text-xs border border-emerald-200 flex items-center gap-2">
-                <CheckCircle2 size={16} />
-                <span>You're on the RSVP list! Check email for pass.</span>
-              </div>
-            ) : (
-              <Button
-                onClick={() => setRegistered(true)}
-                className="bg-[#4f47e6] hover:bg-[#4338ca] text-white font-bold rounded-xl px-8 h-12 text-sm shadow-md"
-              >
-                RSVP For This Event
-              </Button>
             )}
           </div>
 
+          <h1 className="text-3xl sm:text-5xl font-editorial font-bold uppercase tracking-tight text-[#0f142e] leading-tight">
+            {event.title}
+          </h1>
+
+          <p className="font-sans text-base text-[#475569] leading-relaxed">
+            {event.description}
+          </p>
+
+          {/* Quick Meta Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs text-[#0f142e] border-2 border-[#0f142e] p-4 bg-[#f8fafc] shadow-brutal-sm font-bold">
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-[#4f46e5]" />
+              <span>{event.date} ({event.time})</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-[#4f46e5]" />
+              <span>{event.location}</span>
+            </div>
+          </div>
+
+          {!event.isPast && (
+            <div className="pt-2">
+              <button
+                onClick={() => setIsRsvpOpen(true)}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0f142e] text-white px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider hover:bg-[#1e2756] transition-all shadow-brutal-sm text-center"
+              >
+                <span>RSVP for Event</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+            </div>
+          )}
         </div>
 
-      </div>
+        {/* Hero Poster Frame */}
+        <div className="lg:col-span-5">
+          <MediaPlaceholderCard
+            type="image"
+            src={event.coverImage}
+            title={event.title}
+            category={event.category}
+            aspectRatio="video"
+          />
+        </div>
+      </section>
+
+      {/* Agenda & Speakers */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-24 grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        {/* Agenda Timeline */}
+        <div className="lg:col-span-7 space-y-6 border-2 border-[#0f142e] bg-white p-8 grid-lines shadow-brutal-sm">
+          <h2 className="font-editorial font-bold text-2xl uppercase tracking-tight text-[#0f142e] border-b-2 border-[#0f142e] pb-4">
+            Event Agenda & Timeline
+          </h2>
+
+          {event.agenda && event.agenda.length > 0 ? (
+            <div className="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-[#cbd5e1]">
+              {event.agenda.map((item, idx) => (
+                <div key={idx} className="relative pl-10 space-y-1">
+                  <div className="absolute left-0 top-1 w-7 h-7 bg-white border-2 border-[#0f142e] text-[#4f46e5] font-mono text-[10px] font-bold flex items-center justify-center shadow-brutal-sm">
+                    {idx + 1}
+                  </div>
+                  <span className="font-mono text-xs text-[#4f46e5] font-bold block">
+                    {item.time}
+                  </span>
+                  <h4 className="font-editorial font-bold text-lg uppercase text-[#0f142e]">
+                    {item.title}
+                  </h4>
+                  {item.speaker && (
+                    <span className="font-mono text-xs text-[#475569] font-bold block">
+                      Speaker: {item.speaker}
+                    </span>
+                  )}
+                  {item.description && (
+                    <p className="font-sans text-xs text-[#475569] leading-relaxed">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="font-mono text-xs text-[#475569]">
+              Detailed timetable will be released closer to event start.
+            </p>
+          )}
+        </div>
+
+        {/* Speakers List */}
+        <div className="lg:col-span-5 space-y-6">
+          <div className="border-2 border-[#0f142e] bg-white p-8 space-y-6 grid-lines shadow-brutal-sm">
+            <h2 className="font-editorial font-bold text-2xl uppercase tracking-tight text-[#0f142e] border-b-2 border-[#0f142e] pb-4">
+              Featured Speakers
+            </h2>
+
+            <div className="space-y-4">
+              {event.speakers.map((spk, idx) => (
+                <div key={idx} className="border border-[#0f142e] p-4 bg-[#f8fafc] flex items-center gap-4">
+                  <div className="w-10 h-10 bg-white border border-[#0f142e] font-editorial font-bold text-[#0f142e] flex items-center justify-center">
+                    {spk.name.charAt(0)}
+                  </div>
+                  <div>
+                    <h4 className="font-editorial font-bold text-base uppercase text-[#0f142e]">
+                      {spk.name}
+                    </h4>
+                    <span className="font-mono text-xs text-[#475569] font-semibold block">
+                      {spk.role} · {spk.organization}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Past Event Media Recording */}
+          {event.isPast && event.recordingUrl && (
+            <div className="border-2 border-[#0f142e] bg-[#f8fafc] p-6 space-y-4 shadow-brutal-sm">
+              <span className="font-mono text-xs uppercase text-[#4f46e5] font-bold block">
+                PAST SESSION RECORDING
+              </span>
+              <p className="font-sans text-xs text-[#475569]">
+                This session has concluded. Watch the full recorded keynote and panel stream.
+              </p>
+              <a
+                href={event.recordingUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full flex items-center justify-center gap-2 bg-[#0f142e] text-white py-3 font-mono text-xs uppercase font-bold hover:bg-[#1e2756]"
+              >
+                <Play className="w-4 h-4 fill-current" />
+                <span>Watch Recorded Stream</span>
+              </a>
+            </div>
+          )}
+        </div>
+
+      </section>
+
+      {/* RSVP Modal */}
+      <EventRegistrationModal
+        event={event}
+        isOpen={isRsvpOpen}
+        onClose={() => setIsRsvpOpen(false)}
+      />
+
     </div>
   );
-}
+};
+
+export default EventDetailPage;

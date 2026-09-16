@@ -1,108 +1,146 @@
-import { Link } from "react-router-dom";
-import { Globe, ShieldCheck, ArrowUpRight, Zap, ArrowLeft, ArrowRight, Layers, Building2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { useSEO } from '@/community/hooks/useSEO';
+import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
+import { PageHero } from '@/community/components/ui/PageHero';
+import { Globe, ShieldCheck, ArrowUpRight, Zap } from 'lucide-react';
 
-export default function BrandexHQPage() {
+export const BrandexHQPage: React.FC = () => {
+  useSEO(
+    'Brandex Official Portal | brandex.co.in',
+    'Official corporate portal and parent ecosystem bridge for Brandex.'
+  );
+
   return (
-    <div className="min-h-screen bg-[#f8fafd] pt-24 pb-16 lg:pt-28 lg:pb-20 selection:bg-[#4f47e6] selection:text-white">
-      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-8 space-y-10">
-        
-        {/* Navigation */}
-        <div className="flex items-center gap-3">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#4f47e6] transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to Home</span>
-          </Link>
-          <Link
-            to="/community"
-            className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#4f47e6] transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs"
-          >
-            <span>Community Hub</span>
-          </Link>
-        </div>
+    <div className="space-y-12 pb-20 pt-24 w-full px-4 sm:px-8 lg:px-12 xl:px-24 bg-white text-slate-900 font-sans">
+      <Breadcrumb items={[{ label: 'Brandex Parent Ecosystem' }]} />
 
-        {/* Hero */}
-        <div className="liquid-glass rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm space-y-6">
+      {/* Hero Header */}
+      <PageHero
+        tag="OFFICIAL PARENT ECOSYSTEM"
+        title="Brandex Corporate HQ & Innovation Group"
+        description="Brandex is a multi-disciplinary technology collective building enterprise digital products, autonomous systems, and open developer education cohorts across India."
+        widgetTitle="Ecosystem.Portal"
+        widgetStatLabel="Primary Domain"
+        widgetStatValue="brandex.co.in"
+        widgetStatusLabel="Entity Status"
+        widgetStatusText="Active Enterprise Parent"
+      />
+
+      {/* Main Light Bridge Section */}
+      <section className="bg-slate-50 border border-slate-200 rounded-2xl p-8 sm:p-12 relative overflow-hidden">
+        <div className="relative z-10 max-w-4xl space-y-6">
+
           <div className="space-y-3">
-            <div className="liquid-glass-pill inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold text-[#4f47e6]">
-              Official Parent Ecosystem
-            </div>
-            <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
-              Brandex Corporate HQ & Innovation Group
-            </h1>
-            <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-3xl">
-              Brandex is a technology collective engineering bespoke web platforms, enterprise software architectures, open-source developer tooling, and statewide digital education initiatives in Karnataka.
+            <h2 className="text-2xl sm:text-4xl font-display font-bold text-slate-900 tracking-tight leading-tight">
+              The Engine Behind Next-Generation Digital Experiences.
+            </h2>
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-3xl">
+              Brandex Community operates as the open education and talent research wing of the <strong>Brandex Parent Organization</strong>. For commercial solutions, digital software development, and enterprise partnerships, visit our official corporate portal.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-4 pt-4 border-t border-slate-200">
-            <div className="p-4 rounded-2xl bg-white border border-slate-200 space-y-1">
-              <span className="text-[10px] font-mono uppercase text-slate-400 font-bold">HQ Base</span>
-              <p className="text-sm font-bold text-slate-900">Bangalore, Karnataka</p>
-            </div>
-            <div className="p-4 rounded-2xl bg-white border border-slate-200 space-y-1">
-              <span className="text-[10px] font-mono uppercase text-slate-400 font-bold">Engineering SLA</span>
-              <p className="text-sm font-bold text-slate-900">Sub-Second Core Web Vitals</p>
-            </div>
-            <div className="p-4 rounded-2xl bg-white border border-slate-200 space-y-1">
-              <span className="text-[10px] font-mono uppercase text-slate-400 font-bold">Ecosystem Model</span>
-              <p className="text-sm font-bold text-slate-900">Microservice Architecture</p>
-            </div>
+          <div className="flex flex-wrap items-center gap-4 pt-2">
+            <a
+              href="https://www.brandex.co.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-xl shadow-sm transition-all active:scale-95"
+            >
+              <span>Visit Official Portal (brandex.co.in)</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+
+            <NavLink
+              to="/work-with-us"
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-sm font-semibold rounded-xl transition-all"
+            >
+              <span>Partner With Us</span>
+            </NavLink>
           </div>
         </div>
+      </section>
 
-        {/* Tri-Pillar Ecosystem Grid */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="liquid-glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
-            <div className="space-y-3">
-              <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-[#4f47e6] flex items-center justify-center font-bold font-mono">
-                01
-              </div>
-              <h3 className="font-display font-bold text-xl text-slate-900">Software Studio</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Bespoke high-concurrency web apps, automated data ingestion pipelines, and multi-tenant cloud platforms for commercial clients.
-              </p>
-            </div>
-            <Button asChild variant="brand" size="sm" className="rounded-xl mt-6">
-              <Link to="/services">Explore Services</Link>
-            </Button>
-          </div>
-
-          <div className="liquid-glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
-            <div className="space-y-3">
-              <div className="w-10 h-10 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold font-mono">
-                02
-              </div>
-              <h3 className="font-display font-bold text-xl text-slate-900">Digital Education</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Smartboard classroom theater, chapter quizzes, and offline-ready syllabus lectures mapped to the Karnataka State Board (KSEEB).
-              </p>
-            </div>
-            <Button asChild variant="brand" size="sm" className="rounded-xl mt-6">
-              <Link to="/education">Launch Learning</Link>
-            </Button>
-          </div>
-
-          <div className="liquid-glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
-            <div className="space-y-3">
-              <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold font-mono">
-                03
-              </div>
-              <h3 className="font-display font-bold text-xl text-slate-900">Builder Community</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Peer reviews, open-source repositories, developer bootcamps, and live Bangalore engineering summits.
-              </p>
-            </div>
-            <Button asChild variant="brand" size="sm" className="rounded-xl mt-6">
-              <Link to="/community">Join Community</Link>
-            </Button>
-          </div>
+      {/* Ecosystem Architecture Cards */}
+      <section className="space-y-6 pt-2">
+        <div className="border-b border-slate-200 pb-4">
+          <h3 className="text-2xl font-display font-bold text-slate-900">
+            Brandex Ecosystem Architecture
+          </h3>
+          <p className="text-sm text-slate-600 mt-1">
+            Understanding the structure between our commercial venture and open community initiatives.
+          </p>
         </div>
 
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="p-6 bg-white border border-slate-200 rounded-2xl space-y-4 hover:border-indigo-300 hover:shadow-sm transition-all flex flex-col justify-between">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+                <Globe className="w-5 h-5" />
+              </div>
+              <h4 className="font-display font-bold text-lg text-slate-900">
+                Commercial Studio
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Delivering high-scalability web systems, modern digital product design, and strategic technology solutions for fast-growing ventures.
+              </p>
+            </div>
+            <a
+              href="https://www.brandex.co.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 border border-slate-200 hover:border-indigo-200 text-xs font-bold rounded-xl transition-all shadow-2xs active:scale-98 w-fit"
+            >
+              <span>brandex.co.in</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+          <div className="p-6 bg-white border border-slate-200 rounded-2xl space-y-4 hover:border-indigo-300 hover:shadow-sm transition-all flex flex-col justify-between">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold">
+                <Zap className="w-5 h-5" />
+              </div>
+              <h4 className="font-display font-bold text-lg text-slate-900">
+                Education & Community
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Workshops, Geniusphere student series, technical cohort training, cybersecurity capture-the-flag wargames, and public summits.
+              </p>
+            </div>
+            <NavLink
+              to="/education"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 border border-slate-200 hover:border-indigo-200 text-xs font-bold rounded-xl transition-all shadow-2xs active:scale-98 w-fit"
+            >
+              <span>View Education Pathways</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </NavLink>
+          </div>
+
+          <div className="p-6 bg-white border border-slate-200 rounded-2xl space-y-4 hover:border-indigo-300 hover:shadow-sm transition-all flex flex-col justify-between">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h4 className="font-display font-bold text-lg text-slate-900">
+                Verified Legal Entity
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Brandex is registered under Indian GST legislation (GSTIN: 29OGNPS8060K1Z5) based in Bengaluru, Karnataka.
+              </p>
+            </div>
+            <NavLink
+              to="/terms"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 border border-slate-200 hover:border-indigo-200 text-xs font-bold rounded-xl transition-all shadow-2xs active:scale-98 w-fit"
+            >
+              <span>Read Legal & Terms</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </NavLink>
+          </div>
+        </div>
+      </section>
     </div>
   );
-}
+};
+
+export default BrandexHQPage;

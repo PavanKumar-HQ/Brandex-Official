@@ -1,28 +1,33 @@
-import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import {
-  GraduationCap,
-  Clock,
-  Layers,
-  ArrowLeft,
-  CheckCircle2,
-  BookOpen,
-  Award,
-} from "lucide-react";
-import { getTrainingProgramBySlug } from "@/data/community/repository";
-import { TrainingProgram } from "@/models/community";
-import { Button } from "@/components/ui/button";
+import React, { useEffect, useState } from 'react';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
+import { Clock, BarChart, CheckCircle2, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
+import { useRegistration } from '@/community/contexts/RegistrationContext';
+import { getTrainingProgramBySlug, getTrainingPrograms } from '@/community/repositories/repository';
+import { TrainingProgram } from '@/community/models/types';
+import { EmptyState } from '@/community/components/ui/EmptyState';
+import { TrainingCard } from '@/community/components/cards/TrainingCard';
+import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
 
-export default function TrainingDetailPage() {
+export const TrainingDetailPage: React.FC = () => {
+  const { openModal } = useRegistration();
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const [program, setProgram] = useState<TrainingProgram | null>(null);
-  const [enrolled, setEnrolled] = useState(false);
+  const [related, setRelated] = useState<TrainingProgram[]>([]);
+  const [openModuleId, setOpenModuleId] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadData() {
-      if (slug) {
-        const data = await getTrainingProgramBySlug(slug);
-        setProgram(data || null);
+      if (!slug) return;
+      const data = await getTrainingProgramBySlug(slug);
+      setProgram(data);
+
+      if (data) {
+        if (data.modules && data.modules.length > 0) {
+          setOpenModuleId(data.modules[0].id);
+        }
+        const all = await getTrainingPrograms();
+        setRelated(all.filter(p => p.id !== data.id).slice(0, 2));
       }
     }
     loadData();
@@ -30,123 +35,187 @@ export default function TrainingDetailPage() {
 
   if (!program) {
     return (
-      <div className="min-h-screen bg-[#f8fafd] flex items-center justify-center p-6 text-center">
-        <div className="space-y-4">
-          <h2 className="font-display font-extrabold text-2xl text-slate-900">Training Module Not Found</h2>
-          <Button asChild variant="brand" size="sm" className="rounded-xl">
-            <Link to="/community/training">Browse All Training Programs</Link>
-          </Button>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 py-32 text-center bg-white">
+        <EmptyState
+          title="TRAINING PROGRAM NOT FOUND"
+          description="The program slug you requested does not exist or has been archived."
+          actionText="Back to Training Catalog"
+          onAction={() => navigate('/training')}
+        />
       </div>
     );
   }
 
-  return (
-    <div className="min-h-screen bg-[#f8fafd] pt-24 pb-16 lg:pt-28 lg:pb-20 selection:bg-[#4f47e6] selection:text-white">
-      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-8 space-y-8">
-        
-        {/* Navigation */}
-        <div>
-          <Link
-            to="/community/training"
-            className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#4f47e6] transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to All Training Programs</span>
-          </Link>
-        </div>
+  const toggleModule = (id: string) => {
+    setOpenModuleId(openModuleId === id ? null : id);
+  };
 
-        {/* Main Card */}
-        <div className="liquid-glass rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm space-y-8">
-          
-          <div className="space-y-3">
-            <div className="flex items-center gap-2.5 flex-wrap">
-              <span className="text-xs font-mono font-bold text-[#4f47e6] bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100 uppercase tracking-wider">
-                {program.category}
+  const instructorName = typeof program.instructor === 'object' ? program.instructor.name : program.instructor;
+  const instructorRole = typeof program.instructor === 'object' ? program.instructor.role : 'Lead Instructor';
+  const instructorBio = typeof program.instructor === 'object' ? program.instructor.bio : 'Instructor and domain specialist at Brandex.';
+  const instructorAvatar = (typeof program.instructor === 'object' && program.instructor.avatar) ? program.instructor.avatar : '/brandex-logo.webp';
+
+  return (
+    <div className="space-y-8 sm:space-y-12 pb-16 pt-20 bg-white">
+      
+      {/* Breadcrumb Navigation */}
+      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-24">
+        <Breadcrumb items={[{ label: 'Training', path: '/training' }, { label: program.title }]} />
+      </div>
+
+      {/* Hero Header */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-24">
+        <div className="border border-slate-200 bg-white p-8 sm:p-12 rounded-2xl shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div className="space-y-4 flex-1">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-xs uppercase text-indigo-600 bg-indigo-50 border border-indigo-200 px-3 py-1 font-semibold rounded">
+                [{program.category}]
               </span>
-              <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
-                {program.level} Level
+              <span className="text-xs text-slate-700 bg-slate-100 border border-slate-200 px-3 py-1 font-semibold rounded flex items-center gap-1.5">
+                <BarChart className="w-3.5 h-3.5 text-slate-500" />
+                {program.level}
+              </span>
+              <span className="text-xs text-slate-500 font-semibold flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-indigo-600" />
+                {program.duration}
               </span>
             </div>
 
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-slate-900 max-w-5xl leading-tight">
               {program.title}
             </h1>
-          </div>
 
-          <div className="grid sm:grid-cols-3 gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs sm:text-sm text-slate-700">
-            <div className="flex items-center gap-2.5">
-              <Clock size={18} className="text-[#4f47e6] shrink-0" />
-              <div>
-                <div className="font-bold text-slate-900">Duration & Format</div>
-                <div className="text-xs text-slate-500">{program.duration} ({program.format})</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2.5">
-              <Layers size={18} className="text-[#4f47e6] shrink-0" />
-              <div>
-                <div className="font-bold text-slate-900">Next Cohort</div>
-                <div className="text-xs text-slate-500">{program.schedule}</div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2.5">
-              <Award size={18} className="text-[#4f47e6] shrink-0" />
-              <div>
-                <div className="font-bold text-slate-900">Certification</div>
-                <div className="text-xs text-slate-500">Brandex Verified Architect</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <h2 className="font-display font-bold text-xl text-slate-900">Program Curriculum & Goals</h2>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            <p className="text-sm sm:text-base text-slate-600 max-w-4xl leading-relaxed">
               {program.description}
             </p>
           </div>
 
-          {/* Highlights */}
-          {program.highlights && program.highlights.length > 0 && (
-            <div className="space-y-3 pt-4 border-t border-slate-200">
-              <h3 className="font-display font-bold text-base text-slate-900">What You Will Master:</h3>
-              <div className="grid sm:grid-cols-2 gap-2.5">
-                {program.highlights.map((h, i) => (
-                  <div key={i} className="flex items-center gap-2 text-xs sm:text-sm text-slate-700">
-                    <CheckCircle2 size={15} className="text-[#4f47e6] shrink-0" />
-                    <span>{h}</span>
-                  </div>
+          <div className="shrink-0 pt-4 md:pt-0 border-t md:border-t-0 border-slate-100">
+            <button
+              onClick={() => openModal('enroll', { program: program.title })}
+              className="w-full md:w-auto inline-flex items-center justify-center gap-2.5 bg-indigo-600 text-white px-8 py-4 rounded-xl text-sm font-bold hover:bg-indigo-700 transition-all shadow-md hover:shadow-lg active:scale-95 whitespace-nowrap cursor-pointer"
+            >
+              <span>Enroll in Cohort</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Detail Grid */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-24 grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        {/* Left Column: Outcomes & Syllabus */}
+        <div className="lg:col-span-8 space-y-8">
+          
+          {/* Outcomes */}
+          {program.outcomes && program.outcomes.length > 0 && (
+            <div className="border border-slate-200 bg-white p-6 sm:p-8 rounded-2xl space-y-4 shadow-sm">
+              <h2 className="font-display font-bold text-xl text-slate-900 border-b border-slate-200 pb-3">
+                Key Learning Outcomes
+              </h2>
+
+              <ul className="space-y-3">
+                {program.outcomes.map((outcome, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 leading-relaxed">
+                    <CheckCircle2 className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
+                    <span>{outcome}</span>
+                  </li>
                 ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Syllabus Accordion */}
+          {program.modules && program.modules.length > 0 && (
+            <div className="border border-slate-200 bg-white p-6 sm:p-8 rounded-2xl space-y-4 shadow-sm">
+              <div className="border-b border-slate-200 pb-3 flex items-center justify-between">
+                <h2 className="font-display font-bold text-xl text-slate-900">
+                  Course Syllabus & Modules
+                </h2>
+                <span className="text-xs text-slate-500 font-semibold">
+                  {program.modules.length} Modules
+                </span>
+              </div>
+
+              <div className="space-y-3">
+                {program.modules.map((mod) => {
+                  const isOpen = openModuleId === mod.id;
+                  return (
+                    <div key={mod.id} className="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+                      <button
+                        onClick={() => toggleModule(mod.id)}
+                        className="w-full p-4 text-left flex items-center justify-between font-display font-bold text-base text-slate-900 hover:text-indigo-600 transition-colors"
+                      >
+                        <span className="pr-4">{mod.title}</span>
+                        {isOpen ? <ChevronUp className="w-5 h-5 shrink-0" /> : <ChevronDown className="w-5 h-5 shrink-0" />}
+                      </button>
+
+                      {isOpen && (
+                        <div className="p-4 pt-0 border-t border-slate-200 space-y-2 bg-white">
+                          <p className="text-xs text-slate-600 leading-relaxed pt-2">
+                            {mod.description}
+                          </p>
+
+                          <div className="pt-2">
+                            <span className="text-[10px] uppercase text-slate-400 font-semibold block mb-1">
+                              Topics Covered:
+                            </span>
+                            <div className="flex flex-wrap gap-1 text-[11px] text-slate-700">
+                              {mod.topics.map((topic, i) => (
+                                <span key={i} className="bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
+                                  • {topic}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
 
-          {/* Action Row */}
-          <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <div className="text-sm font-bold text-slate-900">Cohort Enrollment Application</div>
-              <p className="text-xs text-slate-500">Includes live mentor office hours and GitHub code reviews</p>
+        </div>
+
+        {/* Right Column: Instructor & Sidebar */}
+        <div className="lg:col-span-4 space-y-6">
+          
+          {/* Instructor Card */}
+          <div className="border border-slate-200 bg-white p-6 rounded-2xl space-y-4 shadow-sm">
+            <span className="text-[10px] uppercase text-indigo-600 font-semibold tracking-wider block">
+              LEAD INSTRUCTOR
+            </span>
+
+            <div className="flex items-center gap-4">
+              <img
+                src={instructorAvatar}
+                alt={instructorName}
+                className="w-12 h-12 rounded-full border border-slate-200 object-cover"
+              />
+              <div>
+                <h3 className="font-display font-bold text-base text-slate-900">
+                  {instructorName}
+                </h3>
+                <span className="text-xs text-slate-500 font-semibold block">
+                  {instructorRole}
+                </span>
+              </div>
             </div>
 
-            {enrolled ? (
-              <div className="px-6 py-3 rounded-xl bg-emerald-50 text-emerald-700 font-bold text-xs border border-emerald-200 flex items-center gap-2">
-                <CheckCircle2 size={16} />
-                <span>Application Submitted! Check email for syllabus.</span>
-              </div>
-            ) : (
-              <Button
-                onClick={() => setEnrolled(true)}
-                className="bg-[#4f47e6] hover:bg-[#4338ca] text-white font-bold rounded-xl px-8 h-12 text-sm shadow-md"
-              >
-                Apply for Cohort
-              </Button>
-            )}
+            <p className="text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              {instructorBio}
+            </p>
           </div>
 
         </div>
 
-      </div>
+      </section>
+
     </div>
   );
-}
+};
+
+export default TrainingDetailPage;

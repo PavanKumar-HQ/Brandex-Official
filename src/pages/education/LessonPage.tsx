@@ -1,37 +1,56 @@
-import { useState, useMemo } from "react";
-import { Link, useParams } from "react-router-dom";
-import { CURRICULUM_DATA, Lesson, Chapter, getLessonBySlug } from "@/lib/curriculum-data";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { notFound, useRouter } from "next/navigation";
 import {
   ChevronLeft,
   ChevronRight,
   Tv,
   HelpCircle,
+  Maximize2,
+  Minimize2,
   Layers,
   ArrowLeft,
-  PlayCircle,
-  Volume2,
-  CheckCircle2,
-  RotateCcw,
+  X,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { getLessonBySlug, Lesson } from "@/education/lib/curriculum-data";
+import { BrandexYouTubePlayer } from "@/education/learning/BrandexYouTubePlayer";
+import { QuizRunnerModal } from "@/education/quiz/QuizRunnerModal";
+
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
 
 export default function LessonPage() {
-  const { slug = "" } = useParams();
-  const data = useMemo(() => getLessonBySlug(slug), [slug]);
+  const navigate = useNavigate();
+  const { slug } = use(params);
+  const data = getLessonBySlug(slug);
 
-  const [activeTab, setActiveTab] = useState<"video" | "quiz">("video");
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
-  const [quizScore, setQuizScore] = useState<number | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
+  const [showPlaylist, setShowPlaylist] = useState(true);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen().catch(() => {});
+    }
+  };
 
   if (!data) {
     return (
-      <div className="min-h-[80vh] flex flex-col items-center justify-center p-6 text-center pt-28">
-        <h2 className="text-2xl font-bold text-slate-900">Lesson Not Found</h2>
-        <p className="text-sm text-slate-600 mt-2">The requested curriculum lesson could not be located.</p>
-        <Link
-          to="/education/explore"
-          className="mt-6 px-6 py-3 rounded-xl bg-[#4f47e6] text-white text-xs font-bold hover:bg-[#4338ca] transition-colors shadow-md"
+      <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center">
+        <h2 className="text-2xl font-bold text-[#0F172A]">Lesson Not Found</h2>
+        <Link to="/explore"
+          className="mt-4 px-6 py-3 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-colors shadow-xs"
         >
           Return to Curriculum Explorer
         </Link>
@@ -46,300 +65,112 @@ export default function LessonPage() {
   const nextLesson =
     currentIndex < allChapterLessons.length - 1 ? allChapterLessons[currentIndex + 1] : null;
 
-  const currentQuiz = lesson.quiz?.questions || [
-    {
-      question: `What is the primary objective of studying ${lesson.title}?`,
-      options: [
-        "Master the foundational principles according to Karnataka board syllabus",
-        "Memorize terms without conceptual derivation",
-        "Skip laboratory experiments",
-        "Use unauthorized reference guides"
-      ],
-      correctAnswer: 0,
-      explanation: "Karnataka State Board emphasizes conceptual understanding and practical application."
-    }
-  ];
-
-  const handleSelectOption = (qIdx: number, optIdx: number) => {
-    setSelectedAnswers((prev) => ({ ...prev, [qIdx]: optIdx }));
-  };
-
-  const handleEvaluateQuiz = () => {
-    let score = 0;
-    currentQuiz.forEach((q, idx) => {
-      if (selectedAnswers[idx] === q.correctAnswer) score += 1;
-    });
-    setQuizScore(score);
-  };
-
-  const resetQuiz = () => {
-    setQuizScore(null);
-    setSelectedAnswers({});
-  };
-
   return (
-    <div className="min-h-screen bg-[#f8fafd] pt-24 pb-16 lg:pt-28 lg:pb-20 selection:bg-[#4f47e6] selection:text-white">
-      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 space-y-6">
-        
-        {/* Navigation Breadcrumb Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-4">
-          <div className="flex items-center gap-3">
-            <Link
-              to={`/education/explore/${classLevel.slug}`}
-              className="inline-flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-[#4f47e6] transition-colors bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-2xs"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back to {classLevel.name} Syllabus</span>
-            </Link>
+    <div className="h-[calc(100vh-64px)] flex flex-col bg-[#070B14] text-white overflow-hidden select-none">
+      
+      {/* Top Presentation Header */}
+      <div className="h-14 px-4 sm:px-6 bg-[#0B1120] border-b border-slate-800/80 flex items-center justify-between shrink-0">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-indigo-500/20 text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider border border-indigo-500/30">
+            <Tv className="w-3.5 h-3.5" /> Classroom Mode
           </div>
-
-          <div className="flex items-center gap-2">
-            <Link
-              to={`/education/classroom?class=${classLevel.slug}&subject=${subject.slug}`}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#4f47e6] hover:bg-[#4338ca] text-white font-bold text-xs shadow-md transition-all"
-            >
-              <Tv size={14} />
-              <span>Launch Classroom Smartboard Mode</span>
-            </Link>
+          <div className="h-4 w-px bg-slate-800 hidden sm:block" />
+          <div className="text-xs sm:text-sm text-slate-300 font-medium truncate max-w-xl">
+            <span className="text-slate-400">{classLevel.name}</span>
+            <span className="mx-1.5 text-slate-600">/</span>
+            <span className="text-indigo-400 font-semibold">{subject.name}</span>
+            <span className="mx-1.5 text-slate-600">/</span>
+            <span className="text-slate-200">Ch {chapter.chapterNumber}: {chapter.title}</span>
           </div>
         </div>
 
-        {/* Video Player & Sidebar Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start w-full">
-          
-          {/* Main Stage (8 cols) */}
-          <div className="lg:col-span-8 space-y-6">
-            <div className="bg-slate-950 rounded-3xl overflow-hidden shadow-xl border border-slate-800 p-6 flex flex-col justify-between aspect-[16/9] relative text-white">
-              <div className="flex items-center justify-between z-10">
-                <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-mono font-bold text-white border border-white/10">
-                  {classLevel.name} &bull; {subject.name} &bull; Ch {chapter.chapterNumber}
-                </span>
-                <span className="px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-xs font-mono font-bold border border-emerald-500/30">
-                  1080p Stream
-                </span>
-              </div>
+        {/* Right Action Controls */}
+        <div className="flex items-center gap-2.5">
+          {lesson.quiz && (
+            <button
+              onClick={() => setIsQuizOpen(true)}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors shadow-xs cursor-pointer"
+            >
+              <HelpCircle className="w-3.5 h-3.5" /> Take Quiz
+            </button>
+          )}
 
-              <div className="flex flex-col items-center justify-center my-auto text-center space-y-3 z-10">
-                <button
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  className="w-16 h-16 rounded-2xl bg-[#4f47e6] hover:bg-[#4338ca] flex items-center justify-center text-white shadow-[0_0_30px_rgba(79,71,230,0.6)] cursor-pointer transition-transform hover:scale-105"
-                >
-                  <PlayCircle size={32} />
-                </button>
-                <p className="text-xs text-slate-300 font-mono">
-                  {isPlaying ? "Classroom playback active" : "Click to play syllabus lecture"}
-                </p>
-              </div>
+          <button
+            onClick={() => setShowPlaylist(!showPlaylist)}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors cursor-pointer ${
+              showPlaylist
+                ? "bg-indigo-950 border-indigo-500/60 text-indigo-300"
+                : "bg-slate-800/80 border-slate-700 text-slate-300 hover:text-white"
+            }`}
+            title="Toggle Lessons Sidebar"
+          >
+            <Layers className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Lessons List</span>
+          </button>
 
-              <div className="flex items-center justify-between text-xs font-mono text-slate-300 pt-3 border-t border-white/10 z-10">
-                <div className="flex items-center gap-3">
-                  <span>04:15 / {lesson.duration}</span>
-                  <Volume2 size={15} />
-                </div>
-                <div className="flex items-center gap-2">
-                  <Link
-                    to={`/education/classroom?class=${classLevel.slug}&subject=${subject.slug}`}
-                    className="px-2.5 py-1 rounded bg-[#4f47e6] text-white font-bold text-[11px] flex items-center gap-1"
-                  >
-                    <Tv size={12} />
-                    <span>Smartboard Mode</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
+          {/* Fullscreen Button at Top */}
+          <button
+            onClick={toggleFullscreen}
+            className="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg transition-colors cursor-pointer border border-slate-700/80"
+            title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+          >
+            {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+          </button>
 
-            {/* Lesson Card Details */}
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#4f47e6] bg-indigo-50 px-2.5 py-0.5 rounded-md border border-indigo-100">
-                      {classLevel.name} &bull; {subject.name} &bull; Ch {chapter.chapterNumber}
-                    </span>
-                    <span className="text-xs font-mono font-medium text-slate-400">
-                      {lesson.duration}
-                    </span>
-                  </div>
-                  <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
-                    {lesson.title}
-                  </h1>
-                </div>
+          <Link to={`/explore/${classLevel.slug}/${subject.slug}`}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-rose-600/90 text-slate-200 hover:text-white text-xs font-semibold transition-colors border border-slate-700 hover:border-rose-500 cursor-pointer"
+          >
+            <X className="w-4 h-4" /> Exit
+          </Link>
+        </div>
+      </div>
 
-                {/* Next / Prev */}
-                <div className="flex items-center gap-2 shrink-0">
-                  {prevLesson ? (
-                    <Link
-                      to={`/education/lesson/${prevLesson.slug}`}
-                      className="flex items-center gap-1 px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-800 hover:bg-slate-50 transition-colors"
-                    >
-                      <ChevronLeft className="w-4 h-4" /> Prev Lesson
-                    </Link>
-                  ) : (
-                    <span className="px-3.5 py-2 text-xs font-bold text-slate-300 border border-slate-200 rounded-xl cursor-not-allowed">
-                      Prev
-                    </span>
-                  )}
-
-                  {nextLesson ? (
-                    <Link
-                      to={`/education/lesson/${nextLesson.slug}`}
-                      className="flex items-center gap-1 px-4 py-2 rounded-xl bg-[#4f47e6] hover:bg-[#4338ca] text-white text-xs font-bold transition-colors shadow-2xs"
-                    >
-                      Next Lesson <ChevronRight className="w-4 h-4" />
-                    </Link>
-                  ) : (
-                    <span className="px-3.5 py-2 text-xs font-bold text-slate-300 border border-slate-200 rounded-xl cursor-not-allowed">
-                      Next
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Formative Assessment Quiz */}
-              <div className="space-y-4 pt-2">
-                <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#4f47e6]">
-                    Formative Quiz Check
-                  </h4>
-                  {quizScore !== null && (
-                    <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                      {quizScore} / {currentQuiz.length} Correct
-                    </span>
-                  )}
-                </div>
-
-                <div className="space-y-4">
-                  {currentQuiz.map((q, qIdx) => (
-                    <div key={qIdx} className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
-                      <p className="text-xs sm:text-sm font-bold text-slate-900">
-                        {qIdx + 1}. {q.question}
-                      </p>
-                      <div className="grid sm:grid-cols-2 gap-2">
-                        {q.options.map((opt, optIdx) => {
-                          const isSelected = selectedAnswers[qIdx] === optIdx;
-                          const isCorrect = q.correctAnswer === optIdx;
-                          const showFeedback = quizScore !== null;
-
-                          return (
-                            <button
-                              key={optIdx}
-                              onClick={() => handleSelectOption(qIdx, optIdx)}
-                              disabled={quizScore !== null}
-                              className={`p-2.5 rounded-xl text-left text-xs font-medium border transition-all cursor-pointer ${
-                                showFeedback
-                                  ? isCorrect
-                                    ? "bg-emerald-100/80 border-emerald-500 text-emerald-900 font-bold"
-                                    : isSelected
-                                    ? "bg-rose-100/80 border-rose-500 text-rose-900 font-bold"
-                                    : "bg-white border-slate-200 text-slate-400"
-                                  : isSelected
-                                  ? "bg-[#4f47e6] text-white border-[#4f47e6] font-bold"
-                                  : "bg-white text-slate-700 border-slate-200 hover:border-slate-300"
-                              }`}
-                            >
-                              <span className="font-mono mr-1.5 opacity-60">{String.fromCharCode(65 + optIdx)}.</span>
-                              <span>{opt}</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                      {quizScore !== null && q.explanation && (
-                        <p className="text-xs text-slate-600 bg-white p-2.5 rounded-xl border border-slate-200">
-                          <strong>Explanation: </strong>{q.explanation}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex items-center justify-end gap-3 pt-2">
-                  {quizScore === null ? (
-                    <Button
-                      onClick={handleEvaluateQuiz}
-                      disabled={Object.keys(selectedAnswers).length < currentQuiz.length}
-                      className="bg-[#4f47e6] hover:bg-[#4338ca] text-white font-bold rounded-xl text-xs h-9"
-                    >
-                      Submit Assessment
-                    </Button>
-                  ) : (
-                    <Button
-                      onClick={resetQuiz}
-                      variant="outline"
-                      className="rounded-xl text-xs font-bold border-slate-200 flex items-center gap-1.5"
-                    >
-                      <RotateCcw size={13} />
-                      <span>Retake Assessment</span>
-                    </Button>
-                  )}
-                </div>
-              </div>
-
-              {/* Topic Summary */}
-              <div className="space-y-2 pt-4 border-t border-slate-100">
-                <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
-                  Topic Summary
-                </h4>
-                <p className="text-sm text-slate-600 leading-relaxed font-normal">
-                  {lesson.description}
-                </p>
-              </div>
-
-              {/* Learning Objectives */}
-              {lesson.learningObjectives && lesson.learningObjectives.length > 0 && (
-                <div className="space-y-3 pt-2">
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
-                    Key Learning Objectives
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    {lesson.learningObjectives.map((obj, i) => (
-                      <div
-                        key={i}
-                        className="flex items-start gap-2.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-slate-900 font-medium"
-                      >
-                        <CheckCircle2 className="w-4 h-4 text-[#4f47e6] shrink-0 mt-0.5" />
-                        <span>{obj}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+      {/* Main Workspace (Stage + Lessons Sidebar) */}
+      <div className="flex-1 flex flex-col lg:flex-row min-h-0 overflow-hidden">
+        
+        {/* Main Video Frame */}
+        <div className="flex-1 flex flex-col min-h-0 p-3 sm:p-6 bg-black items-center justify-center overflow-hidden">
+          <div className="w-full h-full max-w-6xl aspect-video rounded-xl overflow-hidden shadow-2xl border border-slate-800/80 bg-black flex items-center justify-center">
+            <BrandexYouTubePlayer
+              videoId={lesson.youtubeId}
+              title={lesson.title}
+              isClassroomMode={true}
+            />
           </div>
+        </div>
 
-          {/* Right Column: Chapter Lessons Playlist (4 cols) */}
-          <div className="lg:col-span-4 bg-white rounded-3xl border border-slate-200/90 shadow-sm p-5 space-y-4">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+        {/* Right Lessons Sidebar */}
+        {showPlaylist && (
+          <div className="w-full lg:w-88 border-t lg:border-t-0 lg:border-l border-slate-800/80 bg-[#0B1120]/95 flex flex-col shrink-0 min-h-0 overflow-hidden">
+            <div className="p-4 border-b border-slate-800/80 shrink-0 flex items-center justify-between">
               <div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">
-                  Chapter Playlist
-                </span>
-                <h3 className="text-sm font-bold text-slate-900 mt-0.5">
-                  Ch {chapter.chapterNumber}: {chapter.title}
+                <h3 className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
+                  Chapter Lessons ({allChapterLessons.length})
                 </h3>
+                <p className="text-xs font-bold text-white mt-0.5 truncate max-w-xs">
+                  Ch {chapter.chapterNumber}: {chapter.title}
+                </p>
               </div>
-              <span className="text-xs font-mono font-bold text-[#4f47e6] bg-indigo-50 px-2 py-0.5 rounded-md">
-                {allChapterLessons.length} Lessons
-              </span>
             </div>
 
-            <div className="space-y-2 max-h-[600px] overflow-y-auto pr-1">
+            <div className="flex-1 overflow-y-auto p-3 space-y-2 min-h-0">
               {allChapterLessons.map((item, idx) => {
                 const isActive = item.id === lesson.id;
                 return (
                   <Link
                     key={item.id}
-                    to={`/education/lesson/${item.slug}`}
-                    className={`p-3 rounded-2xl block transition-all border ${
+                    href={`/lesson/${item.slug}`}
+                    className={`p-3 rounded-xl block transition-all border ${
                       isActive
-                        ? "bg-[#4f47e6] text-white border-[#4f47e6] shadow-sm"
-                        : "bg-slate-50/70 border-slate-200/70 hover:bg-slate-100 hover:border-slate-300 text-slate-700"
+                        ? "bg-indigo-950/80 border-indigo-500 text-white shadow-xs"
+                        : "bg-slate-900/50 border-slate-800/70 hover:bg-slate-800/70 text-slate-300"
                     }`}
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <span className={`text-[10px] font-mono ${isActive ? "text-indigo-200" : "text-slate-400"}`}>
+                      <span className="text-[10px] font-mono text-slate-400">
                         Lesson {(idx + 1).toString().padStart(2, "0")}
                       </span>
-                      <span className={`text-[10px] font-mono ${isActive ? "text-indigo-100 font-bold" : "text-slate-500"}`}>
+                      <span className="text-[10px] font-mono text-indigo-400">
                         {item.duration}
                       </span>
                     </div>
@@ -347,7 +178,7 @@ export default function LessonPage() {
                       {item.title}
                     </p>
                     {item.quiz && (
-                      <span className={`inline-flex items-center gap-1 text-[10px] font-bold mt-1 ${isActive ? "text-emerald-200" : "text-emerald-600"}`}>
+                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 mt-1">
                         <HelpCircle className="w-3 h-3" /> Predefined Quiz
                       </span>
                     )}
@@ -356,10 +187,61 @@ export default function LessonPage() {
               })}
             </div>
           </div>
-
-        </div>
+        )}
 
       </div>
+
+      {/* Bottom Action Bar */}
+      <div className="h-16 px-6 bg-[#0B1120] border-t border-slate-800/80 flex items-center justify-between shrink-0">
+        <div>
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">
+              ACTIVE LESSON
+            </span>
+            <span className="text-[10px] font-mono font-bold text-indigo-400 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-800/50">
+              {lesson.duration}
+            </span>
+          </div>
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight mt-0.5 truncate max-w-md">
+            {lesson.title}
+          </h2>
+        </div>
+
+        <div className="flex items-center gap-3">
+          {prevLesson ? (
+            <Link to={`/lesson/${prevLesson.slug}`}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors border border-slate-700 cursor-pointer"
+            >
+              <ChevronLeft className="w-4 h-4" /> Previous Lesson
+            </Link>
+          ) : (
+            <span className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 text-slate-600 text-xs font-bold border border-slate-800 cursor-not-allowed">
+              <ChevronLeft className="w-4 h-4" /> Previous Lesson
+            </span>
+          )}
+
+          {nextLesson ? (
+            <Link to={`/lesson/${nextLesson.slug}`}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-colors shadow-md shadow-indigo-600/25 cursor-pointer"
+            >
+              Next Lesson <ChevronRight className="w-4 h-4" />
+            </Link>
+          ) : (
+            <span className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 text-slate-600 text-xs font-bold border border-slate-800 cursor-not-allowed">
+              Next Lesson <ChevronRight className="w-4 h-4" />
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Quiz Modal within Classroom Mode */}
+      {lesson.quiz && isQuizOpen && (
+        <QuizRunnerModal
+          quiz={lesson.quiz}
+          isOpen={isQuizOpen}
+          onClose={() => setIsQuizOpen(false)}
+        />
+      )}
     </div>
   );
 }

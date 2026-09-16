@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from "framer-motion";
 import {
   BookOpen,
@@ -11,6 +11,7 @@ import {
   GraduationCap,
   HelpCircle,
   Clock,
+  Sparkles,
   ChevronDown,
   Layers,
   Star,
@@ -21,10 +22,10 @@ import {
   Lightbulb,
   Check,
 } from "lucide-react";
-import { CURRICULUM_DATA } from "@/lib/curriculum-data";
-import { InteractiveSpotlightTour } from "@/components/education/InteractiveSpotlightTour";
+import { CURRICULUM_DATA } from "@/education/lib/curriculum-data";
+import { InteractiveSpotlightTour } from "@/education/tour/InteractiveSpotlightTour";
 
-export default function EducationHome() {
+export default function ProductLandingPage() {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -123,7 +124,7 @@ export default function EducationHome() {
         },
         {
           title: "Lightweight & Blazing Fast",
-          desc: "Optimized React engine loads in under a second.",
+          desc: "Optimized Next.js Turbopack engine loads in under a second.",
         },
         {
           title: "Enterprise Grade Security",
@@ -132,6 +133,39 @@ export default function EducationHome() {
       ],
       previewBadge: "Offline PWA Shell",
       previewTitle: "Class 7 • English: Grammar & Sentence Structure",
+    },
+  ];
+
+  const comparisonFeatures = [
+    {
+      feature: "Karnataka State Board (KSEEB) Aligned",
+      brandex: true,
+      generic: "Generic / Mixed State",
+      description: "Mapped directly chapter-by-chapter to Karnataka textbooks",
+    },
+    {
+      feature: "Distraction-Free Smartboard Theater",
+      brandex: true,
+      generic: "Ad-heavy with popups",
+      description: "Custom player controls with zero YouTube watermarks or sidebars",
+    },
+    {
+      feature: "Built-In Formative Quizzes & Feedback",
+      brandex: true,
+      generic: "Requires 3rd party tool",
+      description: "Pre-built assessments for instant classroom comprehension check",
+    },
+    {
+      feature: "Zero Student Login Friction",
+      brandex: true,
+      generic: "Complex account setup",
+      description: "Teachers present directly without student credential headaches",
+    },
+    {
+      feature: "Installable Offline-Ready PWA",
+      brandex: true,
+      generic: "Web browser only",
+      description: "Caches app shell for reliable performance on school Wi-Fi",
     },
   ];
 
@@ -168,6 +202,14 @@ export default function EducationHome() {
       school: "Hubli Modern English School",
       rating: 5,
     },
+    {
+      quote:
+        "The PWA app installed instantly on our classroom laptops. Even when school Wi-Fi fluctuates, teachers can navigate chapters effortlessly.",
+      name: "Kiran Patil",
+      role: "IT & Digital Learning Head",
+      school: "Belgaum Central Academy",
+      rating: 5,
+    },
   ];
 
   const faqs = [
@@ -194,22 +236,11 @@ export default function EducationHome() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f8fafd] flex flex-col selection:bg-[#4f47e6] selection:text-white">
+    <div className="min-h-screen bg-[#FAFAFC] flex flex-col selection:bg-indigo-500 selection:text-white">
       
       {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden bg-white pt-24 sm:pt-28 pb-16 lg:pb-20 border-b border-slate-200/90 w-full">
-        <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
-          
-          {/* Back Button */}
-          <div className="mb-6">
-            <Link
-              to="/"
-              className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 hover:text-[#4f47e6] transition-colors"
-            >
-              &larr; Back to Main Website
-            </Link>
-          </div>
-
+      <section className="relative overflow-hidden bg-white pt-20 sm:pt-28 pb-20 border-b border-slate-200/90">
+        <div className="w-full px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             {/* Left Content Column */}
@@ -220,168 +251,320 @@ export default function EducationHome() {
                 transition={{ duration: 0.4 }}
                 className="space-y-4"
               >
-                <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest text-[#4f47e6] uppercase shadow-2xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-                  Karnataka State Board (KSEEB) Aligned
-                </div>
-
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight text-slate-900 leading-[1.12]">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.12]">
                   Digital learning <br />
-                  <span className="text-[#4f47e6]">built for smart schools.</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600">
+                    built for schools.
+                  </span>
                 </h1>
-
-                <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-xl">
-                  Streamline classroom teaching with distraction-free smartboard video lessons, structured chapter modules, and built-in formative assessment quizzes for Classes 6 to 10.
+                
+                <p className="text-base sm:text-lg text-slate-600 max-w-xl font-normal leading-relaxed">
+                  Karnataka State Syllabus video lessons and interactive chapter assessments for Classes 6 to 10. Present on smartboards, explore modules, and evaluate comprehension with zero setup friction.
                 </p>
               </motion.div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              {/* Call To Action Button with Spotlight Tour ID */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="flex items-center gap-4 pt-1"
+              >
                 <Link
                   id="tour-explore-cta"
-                  to="/education/explore"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#4f47e6] hover:bg-[#4338ca] text-white font-bold text-sm shadow-[0_4px_16px_rgba(79,71,230,0.3)] hover:shadow-[0_6px_22px_rgba(79,71,230,0.4)] transition-all hover:-translate-y-0.5"
+                  href="/explore"
+                  className="px-7 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm sm:text-base transition-all shadow-md shadow-indigo-600/20 hover:shadow-indigo-600/30 hover:-translate-y-0.5 flex items-center gap-2"
                 >
-                  <BookOpen size={16} />
-                  <span>Explore Class 6–10 Syllabus</span>
-                  <ArrowRight size={15} />
+                  <BookOpen className="w-4 h-4" />
+                  <span>Explore Curriculum</span>
+                  <ArrowRight className="w-4 h-4 ml-0.5" />
                 </Link>
+              </motion.div>
 
-                <Link
-                  to="/education/classroom"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 text-slate-800 font-bold text-sm border border-slate-200 transition-all hover:-translate-y-0.5 shadow-2xs"
-                >
-                  <Tv size={16} className="text-[#4f47e6]" />
-                  <span>Launch Live Classroom Mode</span>
-                </Link>
-              </div>
-
-              {/* Key Trust Highlights */}
-              <div className="pt-6 border-t border-slate-100 grid grid-cols-3 gap-4 text-xs font-semibold text-slate-600">
+              {/* Trust Indicators */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className="pt-2 flex flex-wrap items-center gap-6 text-xs font-semibold text-slate-500"
+              >
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 size={15} className="text-[#4f47e6] shrink-0" />
-                  <span>Classes 6 to 10</span>
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>Classes 6 to 10 (KSEEB)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 size={15} className="text-[#4f47e6] shrink-0" />
-                  <span>Maths & Science</span>
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>All Core Subjects</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 size={15} className="text-[#4f47e6] shrink-0" />
-                  <span>Instant Quizzes</span>
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>Predefined Quizzes</span>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            {/* Right Visual Column: Interactive Smartboard Simulation */}
-            <div className="lg:col-span-6" id="tour-hero-stage">
-              <div className="relative rounded-3xl p-4 sm:p-6 liquid-glass border border-slate-200 shadow-xl overflow-hidden">
-                <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 shadow-inner flex flex-col justify-between p-5 text-white">
-                  {/* Top Status Bar */}
-                  <div className="flex items-center justify-between z-10">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="text-[11px] font-mono tracking-wider uppercase font-bold text-emerald-300">
-                        Live Smartboard Stage
-                      </span>
-                    </div>
-                    <span className="px-3 py-1 rounded-full bg-white/10 text-[10px] font-mono font-bold backdrop-blur-md border border-white/10">
-                      Class 10 • Mathematics
-                    </span>
-                  </div>
-
-                  {/* Center Play Graphic */}
-                  <div className="flex flex-col items-center justify-center my-auto text-center space-y-3 z-10">
-                    <div className="w-16 h-16 rounded-2xl bg-[#4f47e6] flex items-center justify-center text-white shadow-[0_0_30px_rgba(79,71,230,0.6)] cursor-pointer hover:scale-110 transition-transform">
-                      <Play size={24} className="ml-1 fill-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-display font-extrabold text-lg text-white">
-                        Quadratic Equations & Roots
-                      </h3>
-                      <p className="text-xs text-slate-300 font-mono">
-                        Chapter 10 • Video Lecture (18:45)
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Bottom Controls Bar */}
-                  <div className="flex items-center justify-between text-xs font-mono text-slate-300 pt-3 border-t border-white/10 z-10">
-                    <div className="flex items-center gap-3">
-                      <span>04:12 / 18:45</span>
-                      <span className="text-slate-500">|</span>
-                      <span>1080p HD</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="px-2 py-0.5 rounded bg-white/10 text-[10px]">Quiz Ready</span>
-                      <span className="px-2 py-0.5 rounded bg-[#4f47e6] text-white text-[10px] font-bold">Classroom Mode</span>
-                    </div>
-                  </div>
-
-                  {/* Ambient Glow */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#4f47e6]/30 via-transparent to-cyan-500/20 pointer-events-none" />
-                </div>
+            {/* Right Hero Teacher Teaching Illustration (Blends 100% naturally with pure white background) */}
+            <motion.div
+              id="tour-hero-stage"
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="lg:col-span-6 relative flex items-center justify-center select-none"
+            >
+              <div className="relative w-full max-w-xl">
+                <img
+                  src="/hero-teacher.webp"
+                  alt="Teacher presenting interactive lesson with Brandex Digital Curriculum"
+                  className="w-full h-auto object-contain select-none"
+                  loading="eager"
+                  decoding="async"
+                />
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
       </section>
 
-      {/* 2. GRADE-WISE QUICK EXPLORER */}
-      <section className="py-16 sm:py-20 bg-[#f8fafd] border-b border-slate-200/90 w-full" id="tour-classes-list">
-        <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+      {/* 2. INTERACTIVE TABBED FEATURE DISCOVERY SECTION with Spotlight Tour ID */}
+      <section id="tour-feature-tabs" className="py-20 bg-white border-b border-slate-200/90">
+        <div className="w-full px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto space-y-12">
           
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest text-[#4f47e6] uppercase mb-3 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-              Direct Grade Selection
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Select Your Classroom Grade
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <span className="text-xs font-bold font-mono uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+              Transformative Upgrades
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+              Discover the latest upgrades for schools & teachers
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base mt-2 font-normal">
-              Structured chapters, topic breakdowns, and assessments for Karnataka State Board.
+            <p className="text-sm sm:text-base text-slate-600 font-normal">
+              Built from the ground up to solve real classroom teaching challenges.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          {/* Feature Tabs Selector */}
+          <div className="flex items-center justify-center border-b border-slate-200/90 overflow-x-auto gap-2 sm:gap-6 pb-2">
+            {featureTabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm whitespace-nowrap transition-all cursor-pointer relative ${
+                  activeTab === tab.id
+                    ? "text-indigo-600 bg-indigo-50/80 border border-indigo-200"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                }`}
+              >
+                {tab.title}
+                {activeTab === tab.id && (
+                  <motion.div
+                    layoutId="activeTabIndicator"
+                    className="absolute -bottom-2.5 left-0 right-0 h-0.5 bg-indigo-600"
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Active Tab Content Card */}
+          <div className="bg-[#F8FAFC] rounded-2xl border border-slate-200/90 p-8 sm:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              
+              {/* Left Details */}
+              <div className="lg:col-span-7 space-y-6">
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+                    {featureTabs[activeTab].tagline}
+                  </h3>
+                  <p className="text-sm text-slate-600 font-normal mt-2 leading-relaxed">
+                    {featureTabs[activeTab].desc}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                  {featureTabs[activeTab].points.map((pt, i) => (
+                    <div key={i} className="p-4 bg-white rounded-xl border border-slate-200/80 shadow-2xs space-y-1">
+                      <h4 className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
+                        <span>{pt.title}</span>
+                      </h4>
+                      <p className="text-xs text-slate-500 font-normal leading-relaxed">
+                        {pt.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right Visual Frame */}
+              <div className="lg:col-span-5">
+                <div className="bg-white rounded-xl border border-slate-200 shadow-md p-5 space-y-4">
+                  <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                    <span className="text-[11px] font-mono font-bold text-indigo-600 bg-indigo-50 px-2.5 py-0.5 rounded border border-indigo-100">
+                      {featureTabs[activeTab].previewBadge}
+                    </span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  </div>
+
+                  <div className="aspect-video rounded-lg bg-slate-950 flex flex-col justify-between p-4 relative overflow-hidden shadow-inner">
+                    <div className="flex items-center justify-between text-white/70 text-[10px] font-mono">
+                      <span>BRANDEX HD ENGINE</span>
+                      <span className="bg-white/10 px-2 py-0.5 rounded">1080p 60fps</span>
+                    </div>
+
+                    <div className="flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/30 shadow-lg">
+                        <Play className="w-5 h-5 fill-white ml-0.5" />
+                      </div>
+                    </div>
+
+                    <div className="text-white">
+                      <span className="text-[10px] font-mono text-indigo-300 block uppercase">
+                        Active Presentation
+                      </span>
+                      <p className="text-xs font-bold truncate">
+                        {featureTabs[activeTab].previewTitle}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="p-3 bg-slate-50 rounded-lg text-xs font-semibold text-slate-600 flex items-center justify-between border border-slate-200/70">
+                    <span>Syllabus Verified</span>
+                    <span className="text-indigo-600 font-bold">100% KSEEB Standard</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. HOW WE STAND APART (Comparison Matrix) */}
+      <section className="py-20 bg-[#FAFAFC] border-b border-slate-200/90">
+        <div className="w-full px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto space-y-12">
+          
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <span className="text-xs font-bold font-mono uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+              Why Schools Choose Brandex
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+              How Brandex stands apart from generic platforms
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 font-normal">
+              Engineered specifically for classroom teachers rather than passive consumer viewing.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden divide-y divide-slate-100">
+            {/* Header row */}
+            <div className="grid grid-cols-12 p-5 bg-slate-50/80 text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">
+              <div className="col-span-6 sm:col-span-7">Feature & Classroom Benefit</div>
+              <div className="col-span-3 sm:col-span-3 text-center text-indigo-700 font-bold">Brandex EDU</div>
+              <div className="col-span-3 sm:col-span-2 text-center text-slate-400">Generic Tools</div>
+            </div>
+
+            {comparisonFeatures.map((item, idx) => (
+              <div
+                key={idx}
+                className="grid grid-cols-12 p-5 sm:p-6 items-center hover:bg-slate-50/50 transition-colors"
+              >
+                <div className="col-span-6 sm:col-span-7 pr-4">
+                  <h4 className="text-sm font-bold text-slate-900">{item.feature}</h4>
+                  <p className="text-xs text-slate-500 mt-0.5">{item.description}</p>
+                </div>
+
+                <div className="col-span-3 sm:col-span-3 flex justify-center">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold">
+                    <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />
+                    <span>Included</span>
+                  </div>
+                </div>
+
+                <div className="col-span-3 sm:col-span-2 flex justify-center text-center">
+                  <span className="text-xs text-slate-400 font-medium">{item.generic}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 4. CLASSES LIST VIEW SECTION with Spotlight Tour ID */}
+      <section id="tour-classes-list" className="py-20 bg-white border-b border-slate-200/90">
+        <div className="w-full px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto space-y-10">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <span className="text-xs font-bold font-mono uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+                Full Curriculum Library
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mt-2">
+                Explore by Class
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 mt-1 font-normal">
+                Select your class to enter the step-by-step curriculum browser.
+              </p>
+            </div>
+
+            <Link to="/explore"
+              className="px-4 py-2 rounded-xl bg-white hover:bg-slate-50 text-indigo-600 font-bold text-xs border border-slate-200 shadow-2xs hover:border-indigo-300 flex items-center gap-1.5 transition-all self-start md:self-auto"
+            >
+              <span>View full curriculum</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          {/* Classes List View */}
+          <div className="space-y-3.5 max-w-5xl mx-auto">
             {CURRICULUM_DATA.map((cls) => {
               const totalLessons = cls.subjects.reduce(
-                (sum, s) => sum + s.chapters.reduce((cSum, ch) => cSum + ch.topics.reduce((tSum, t) => tSum + t.lessons.length, 0), 0),
+                (sum, s) =>
+                  sum +
+                  s.chapters.reduce(
+                    (cSum, ch) =>
+                      cSum + ch.topics.reduce((tSum, t) => tSum + t.lessons.length, 0),
+                    0
+                  ),
                 0
               );
 
               return (
                 <Link
                   key={cls.id}
-                  to={`/education/explore`}
-                  className="group liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200/90 hover:border-[#4f47e6] shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1.5 flex flex-col justify-between h-[240px]"
+                  href={`/explore/${cls.slug}`}
+                  className="group bg-[#FAFAFC] hover:bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/90 hover:border-indigo-500 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs hover:-translate-y-0.5"
                 >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-12 h-12 rounded-2xl bg-indigo-50 group-hover:bg-[#4f47e6] text-[#4f47e6] group-hover:text-white border border-indigo-100 flex items-center justify-center font-display font-extrabold text-xl transition-colors shadow-2xs">
-                        {cls.grade}
-                      </div>
-                      <span className="text-[10px] font-mono font-bold text-[#4f47e6] liquid-glass-pill px-2.5 py-0.5 rounded-full">
-                        {cls.subjects.length} Subjects
-                      </span>
+                  <div className="flex items-center gap-4">
+                    <div className="w-13 h-13 rounded-xl bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white border border-indigo-100 flex items-center justify-center font-bold text-2xl transition-colors shrink-0 shadow-2xs">
+                      {cls.grade}
                     </div>
 
-                    <h3 className="font-display font-bold text-lg text-slate-900 group-hover:text-[#4f47e6] transition-colors leading-snug">
-                      {cls.name}
-                    </h3>
-                    <p className="text-xs text-slate-500 mt-1 font-normal line-clamp-2">
-                      {cls.description}
-                    </p>
+                    <div>
+                      <div className="flex items-center gap-2.5">
+                        <h3 className="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors tracking-tight">
+                          {cls.name}
+                        </h3>
+                        <span className="text-xs font-mono font-bold text-indigo-600 bg-indigo-50 px-2.5 py-0.5 rounded-md border border-indigo-100">
+                          {cls.subjects.length} Core Subjects
+                        </span>
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-500 font-normal mt-0.5">
+                        {cls.description} • Karnataka State Board Syllabus
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                    <span className="font-mono text-slate-500 font-semibold">{totalLessons} Lessons</span>
-                    <span className="font-bold text-[#4f47e6] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                  <div className="flex items-center justify-between sm:justify-end gap-3.5 shrink-0 pt-3 sm:pt-0 border-t sm:border-t-0 border-slate-100">
+                    <div className="text-xs font-mono font-semibold text-slate-600 whitespace-nowrap bg-white px-3 py-1.5 rounded-lg border border-slate-200/70">
+                      {totalLessons} Video Lessons
+                    </div>
+                    
+                    <div className="px-5 py-2.5 rounded-xl bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white font-bold text-xs flex items-center gap-2 transition-all shadow-2xs whitespace-nowrap">
                       <span>Explore</span>
-                      <ArrowRight size={13} />
-                    </span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
                   </div>
                 </Link>
               );
@@ -391,177 +574,99 @@ export default function EducationHome() {
         </div>
       </section>
 
-      {/* 3. FEATURE TABS & CLASSROOM TOOLS */}
-      <section className="py-20 lg:py-24 bg-white border-b border-slate-200/90 w-full" id="tour-feature-tabs">
-        <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+      {/* 5. INFINITE MARQUEE TESTIMONIALS SECTION */}
+      <section className="py-20 bg-[#F8FAFC] border-b border-slate-200/90 overflow-hidden">
+        <div className="w-full space-y-12">
           
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest text-[#4f47e6] uppercase mb-3 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-              Classroom Superpowers
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-              Engineered specifically for the <span className="text-[#4f47e6]">live classroom</span>
+          <div className="text-center max-w-3xl mx-auto space-y-3 px-6">
+            <span className="text-xs font-bold font-mono uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+              Trusted by Educators
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+              What Karnataka school teachers say
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg mt-3 font-normal">
-              Eliminate distractions and empower educators with purpose-built presentation and evaluation tools.
+            <p className="text-sm sm:text-base text-slate-600 font-normal">
+              Empowering classrooms across Karnataka with reliable, structured digital curriculum.
             </p>
           </div>
 
-          {/* Feature Tab Selector Strip */}
-          <div className="flex items-center justify-center gap-2 mb-12 flex-wrap">
-            {featureTabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
-                  activeTab === tab.id
-                    ? "bg-[#4f47e6] text-white shadow-[0_4px_14px_rgba(79,71,230,0.3)] scale-102"
-                    : "liquid-glass text-slate-700 hover:bg-slate-50 hover:text-slate-900"
-                }`}
-              >
-                {tab.title}
-              </button>
-            ))}
-          </div>
+          {/* Continuous Marquee Container with fade edge masks */}
+          <div className="relative w-full overflow-hidden">
+            {/* Left & Right Gradient Shadows */}
+            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
 
-          {/* Active Feature Detail Card */}
-          <div className="liquid-glass rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-md">
-            <div className="grid lg:grid-cols-12 gap-10 items-center">
-              
-              <div className="lg:col-span-7 space-y-6">
-                <div>
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#4f47e6]">
-                    {featureTabs[activeTab].tagline}
-                  </span>
-                  <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-slate-900 mt-1 mb-3">
-                    {featureTabs[activeTab].title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-                    {featureTabs[activeTab].desc}
-                  </p>
-                </div>
+            {/* Scrolling Track */}
+            <div className="flex gap-6 animate-[marquee_35s_linear_infinite] hover:[animation-play-state:paused] w-max py-2">
+              {[...testimonials, ...testimonials].map((t, idx) => (
+                <div
+                  key={idx}
+                  className="w-[380px] sm:w-[420px] p-7 bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-all flex flex-col justify-between space-y-5 shrink-0"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-1 text-amber-400">
+                      {[...Array(t.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-amber-400" />
+                      ))}
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal italic">
+                      "{t.quote}"
+                    </p>
+                  </div>
 
-                <div className="grid sm:grid-cols-2 gap-4 pt-2">
-                  {featureTabs[activeTab].points.map((pt) => (
-                    <div key={pt.title} className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                      <div className="flex items-center gap-2 font-bold text-sm text-slate-900 mb-1">
-                        <CheckCircle2 size={15} className="text-[#4f47e6] shrink-0" />
-                        <span>{pt.title}</span>
-                      </div>
-                      <p className="text-xs text-slate-600 leading-relaxed pl-5 font-normal">
-                        {pt.desc}
+                  <div className="pt-3 border-t border-slate-100 flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-sm shadow-xs">
+                      {t.name.charAt(0)}
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-bold text-slate-900">{t.name}</h4>
+                      <p className="text-[11px] text-slate-500 font-medium">
+                        {t.role} • {t.school}
                       </p>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="lg:col-span-5">
-                <div className="p-6 rounded-2xl bg-slate-900 text-white shadow-xl space-y-4 border border-slate-800">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold text-emerald-400">
-                      {featureTabs[activeTab].previewBadge}
-                    </span>
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  </div>
-                  <h4 className="font-display font-bold text-base text-white">
-                    {featureTabs[activeTab].previewTitle}
-                  </h4>
-                  <div className="aspect-[16/9] w-full rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center p-4 text-center">
-                    <div className="space-y-2">
-                      <Tv size={28} className="text-[#4f47e6] mx-auto animate-pulse" />
-                      <p className="text-xs text-slate-300 font-mono">Dedicated Smartboard Stage</p>
-                    </div>
                   </div>
                 </div>
-              </div>
-
+              ))}
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* 4. VERIFIED EDUCATOR REVIEWS */}
-      <section className="py-20 lg:py-24 bg-[#f8fafd] border-b border-slate-200/90 w-full">
-        <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+      {/* 6. FREQUENTLY ASKED QUESTIONS (FAQS) */}
+      <section className="py-20 bg-white border-b border-slate-200/90">
+        <div className="w-full px-6 sm:px-10 lg:px-16 max-w-4xl mx-auto space-y-10">
           
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest text-[#4f47e6] uppercase mb-3 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-              School Endorsements
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Trusted by Karnataka Educators
+          <div className="text-center space-y-3">
+            <span className="text-xs font-bold font-mono uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+              Got Questions?
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+              Frequently Asked Questions
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base mt-2 font-normal">
-              Principals and subject faculties sharing their classroom outcomes with Brandex.
+            <p className="text-sm text-slate-600 font-normal">
+              Everything you need to know about Brandex Digital Learning for your school.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {testimonials.map((t, idx) => (
-              <div
-                key={idx}
-                className="liquid-glass-card hover:bg-white rounded-3xl p-6 flex flex-col justify-between border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
-              >
-                <div>
-                  <div className="flex gap-0.5 text-amber-400 mb-4">
-                    {Array.from({ length: t.rating }).map((_, i) => (
-                      <Star key={i} size={14} className="fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal mb-5">
-                    "{t.quote}"
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-slate-100">
-                  <div className="font-display font-bold text-sm text-slate-900">{t.name}</div>
-                  <div className="text-xs text-slate-500 font-medium">{t.role} &bull; {t.school}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* 5. FAQ */}
-      <section className="py-20 lg:py-24 bg-white border-b border-slate-200/90 w-full">
-        <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
-          
-          <div className="max-w-3xl mx-auto space-y-4">
-            <div className="text-center mb-10">
-              <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest text-[#4f47e6] uppercase mb-3 shadow-2xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-                Frequently Asked Questions
-              </div>
-              <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                Frequently Asked Questions
-              </h2>
-            </div>
-
-            {faqs.map((faq, i) => {
-              const isOpen = openFaq === i;
+          <div className="space-y-3.5">
+            {faqs.map((faq, index) => {
+              const isOpen = openFaq === index;
               return (
                 <div
-                  key={i}
-                  className={`liquid-glass-card rounded-2xl p-5 sm:p-6 transition-all border ${
-                    isOpen ? "border-[#4f47e6] bg-white shadow-md ring-1 ring-[#4f47e6]/15" : "border-slate-200"
-                  }`}
+                  key={index}
+                  className="rounded-2xl border border-slate-200/90 bg-[#FAFAFC] overflow-hidden transition-all"
                 >
                   <button
-                    onClick={() => setOpenFaq(isOpen ? null : i)}
-                    className="w-full flex items-center justify-between text-left group focus:outline-none cursor-pointer gap-4"
+                    onClick={() => setOpenFaq(isOpen ? null : index)}
+                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-slate-900 hover:text-indigo-600 transition-colors cursor-pointer"
                   >
-                    <span className={`font-display font-bold text-base sm:text-lg transition-colors ${
-                      isOpen ? "text-[#4f47e6]" : "text-slate-900"
-                    }`}>
-                      {faq.q}
-                    </span>
-                    <ChevronDown size={16} className={`text-slate-500 transition-transform ${isOpen ? "rotate-180 text-[#4f47e6]" : ""}`} />
+                    <span>{faq.q}</span>
+                    <ChevronDown
+                      className={`w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0 ${
+                        isOpen ? "rotate-180 text-indigo-600" : ""
+                      }`}
+                    />
                   </button>
 
                   <AnimatePresence>
@@ -570,11 +675,10 @@ export default function EducationHome() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        className="overflow-hidden"
+                        transition={{ duration: 0.2 }}
+                        className="px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-600 font-normal leading-relaxed border-t border-slate-200/60 pt-3"
                       >
-                        <p className="text-slate-600 text-sm sm:text-base pt-3 border-t border-slate-100 mt-3 font-normal leading-relaxed">
-                          {faq.a}
-                        </p>
+                        {faq.a}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -586,43 +690,28 @@ export default function EducationHome() {
         </div>
       </section>
 
-      {/* 6. EDUCATOR & ADMIN ACCESS PORTAL */}
-      <section className="py-16 bg-[#0b132b] text-white border-t border-slate-800 w-full">
-        <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-[#818cf8] text-xs font-mono font-bold uppercase tracking-wider mb-2">
-                Educator Access Gateway
-              </div>
-              <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-white">
-                School Faculty & Admin Portals
-              </h3>
-              <p className="text-sm text-slate-400 mt-1 max-w-xl">
-                Log into your licensed teacher smartboard session, manage class roster analytics, or manage syllabus video feeds.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-3">
-              <Link
-                to="/education/login"
-                className="px-6 py-3 rounded-xl bg-[#4f47e6] hover:bg-[#4338ca] text-white font-bold text-xs shadow-md transition-all flex items-center gap-2"
-              >
-                <GraduationCap size={15} />
-                <span>Educator Login</span>
-              </Link>
-              <Link
-                to="/education/admin"
-                className="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700 transition-all flex items-center gap-2"
-              >
-                <ShieldCheck size={15} />
-                <span>Admin Console</span>
-              </Link>
-            </div>
+      {/* 7. BOTTOM CTA BANNER */}
+      <section className="py-24 bg-gradient-to-b from-white to-[#F8FAFC]">
+        <div className="w-full px-6 sm:px-10 lg:px-16 max-w-4xl mx-auto text-center space-y-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+            Ready to modernize your classroom learning?
+          </h2>
+          <p className="text-base text-slate-600 max-w-xl mx-auto font-normal">
+            Choose your class and start teaching with curated video modules and assessments today.
+          </p>
+          <div className="pt-2 flex justify-center items-center">
+            <Link to="/explore"
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base transition-all shadow-md shadow-indigo-600/20 hover:shadow-indigo-600/30 hover:-translate-y-0.5"
+            >
+              <BookOpen className="w-5 h-5" />
+              <span>Explore Curriculum Library</span>
+              <ArrowRight className="w-4 h-4 ml-0.5" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Floating Spotlight Tour Trigger */}
+      {/* First-time Visitor Spotlight Onboarding Tour */}
       <InteractiveSpotlightTour />
 
     </div>

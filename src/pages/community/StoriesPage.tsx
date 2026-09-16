@@ -1,93 +1,133 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { ArrowLeft, BookOpen, User, ArrowRight } from "lucide-react";
-import { getStories } from "@/data/community/repository";
-import { Story } from "@/models/community";
+import { useSEO } from '@/community/hooks/useSEO';
+import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { Calendar, User, ArrowRight, BookOpen } from 'lucide-react';
+import { getStories } from '@/community/repositories/repository';
+import { Story } from '@/community/models/types';
+import { SectionHeading } from '@/community/components/ui/SectionHeading';
+import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
+import { EmptyState } from '@/community/components/ui/EmptyState';
 
-export default function StoriesPage() {
+export const StoriesPage: React.FC = () => {
+  useSEO("Impact Stories & Blog", "Read tech articles, case studies, and impact stories written by Pavan Kumar.S and Sathvik.N.");
   const [stories, setStories] = useState<Story[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
   useEffect(() => {
-    async function loadData() {
+    async function loadStories() {
       const data = await getStories();
       setStories(data);
     }
-    loadData();
+    loadStories();
   }, []);
 
-  return (
-    <div className="min-h-screen bg-[#f8fafd] pt-24 pb-16 lg:pt-28 lg:pb-20 selection:bg-[#4f47e6] selection:text-white">
-      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 space-y-10">
-        
-        {/* Navigation & Header */}
-        <div className="border-b border-slate-200/90 pb-8 space-y-4">
-          <Link
-            to="/community"
-            className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#4f47e6] transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to Community Hub</span>
-          </Link>
+  const categories = ['All', 'School Impact Story', 'Community Story', 'Achievement Story'];
 
-          <div className="space-y-1.5 max-w-2xl pt-2">
-            <div className="liquid-glass-pill inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold text-[#4f47e6] mb-1">
-              Builder Spotlights
-            </div>
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-              Founder & Builder Stories
-            </h1>
-            <p className="text-sm sm:text-base text-slate-600 font-normal">
-              Insights, production post-mortems, and journeys from members in the Brandex ecosystem.
-            </p>
-          </div>
+  const filtered = selectedCategory === 'All'
+    ? stories
+    : stories.filter(s => s.category.toLowerCase() === selectedCategory.toLowerCase());
+
+  return (
+    <div className="space-y-6 pb-16 pt-24 w-full px-4 sm:px-8 lg:px-12 xl:px-24 bg-white text-slate-900 font-sans">
+      <Breadcrumb items={[{ label: 'Impact Stories' }]} />
+
+      {/* Header */}
+      <div className="space-y-4 max-w-3xl">
+        <span className="inline-block px-3 py-1 bg-indigo-50 text-indigo-600 text-xs font-semibold rounded-full uppercase tracking-wider">
+          Community Stories & Milestones
+        </span>
+        <h1 className="text-3xl sm:text-5xl font-display font-bold text-slate-900 tracking-tight">
+          Brandex Impact Stories
+        </h1>
+        <p className="text-base text-slate-600 leading-relaxed">
+          Real narratives highlighting student accomplishments, faculty innovations, workshop breakthroughs, and community milestones.
+        </p>
+      </div>
+
+      {/* Filter Menu */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
+        <div className="flex items-center gap-2">
+          <BookOpen className="w-4 h-4 text-indigo-600" />
+          <span className="text-xs font-semibold text-slate-700">Filter Stories by Category:</span>
         </div>
 
-        {/* Stories Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {stories.map((story) => (
-            <div
+        <div className="w-full sm:w-auto">
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="w-full sm:w-64 bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:border-indigo-600 focus:bg-white"
+          >
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat === 'All' ? 'All Stories' : cat}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {/* Stories Grid */}
+      {filtered.length === 0 ? (
+        <EmptyState
+          title="No stories found in this category."
+          description="Try selecting a different filter."
+          actionText="Show All Stories"
+          onAction={() => setSelectedCategory('All')}
+        />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {filtered.map((story) => (
+            <NavLink
               key={story.id}
-              className="liquid-glass-card hover:bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1"
+              to={`/stories/${story.slug}`}
+              className="bg-white border border-slate-200 rounded-2xl overflow-hidden group hover:border-indigo-300 hover:shadow-xl transition-all duration-200 flex flex-col justify-between"
             >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] font-mono font-bold text-[#4f47e6] liquid-glass-pill px-2.5 py-0.5 rounded-full uppercase">
-                    {story.category}
-                  </span>
-                  <span className="text-xs font-mono text-slate-400">
-                    {story.readTime}
-                  </span>
-                </div>
-
-                <h3 className="font-display font-bold text-xl text-slate-900 mb-2">
-                  {story.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-5 line-clamp-3">
-                  {story.summary}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-[#4f47e6] text-white flex items-center justify-center text-xs font-bold">
-                    {story.authorName[0]}
-                  </div>
-                  <div className="text-xs">
-                    <div className="font-bold text-slate-900">{story.authorName}</div>
-                    <div className="text-[11px] text-slate-500">{story.authorRole}</div>
-                  </div>
-                </div>
-
-                <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">
-                  <span>Read</span>
-                  <ArrowRight size={12} />
+              <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
+                <img
+                  src={story.coverImage || '/brandex-full-logo.webp'}
+                  alt={story.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span className="absolute top-3 left-3 text-xs font-semibold bg-slate-900/90 text-white px-2.5 py-1 rounded">
+                  {story.category}
                 </span>
               </div>
-            </div>
+
+              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3 text-xs text-slate-500 font-medium">
+                    <span className="flex items-center gap-1">
+                      <User className="w-3.5 h-3.5 text-indigo-600" />
+                      {story.author}
+                    </span>
+                    <span>•</span>
+                    <span className="flex items-center gap-1">
+                      <Calendar className="w-3.5 h-3.5 text-indigo-600" />
+                      {story.date}
+                    </span>
+                  </div>
+
+                  <h3 className="font-display font-bold text-xl text-slate-900 group-hover:text-indigo-600 transition-colors leading-snug">
+                    {story.title}
+                  </h3>
+
+                  <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                    {story.excerpt}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-indigo-600 group-hover:translate-x-0.5 transition-all">
+                  <span>Read Full Story</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              </div>
+            </NavLink>
           ))}
         </div>
+      )}
 
-      </div>
     </div>
   );
-}
+};
+
+export default StoriesPage;

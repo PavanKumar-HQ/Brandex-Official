@@ -1,18 +1,21 @@
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User, Share2, Linkedin, Mail, BookOpen, Clock, ArrowRight } from "lucide-react";
-import { getStoryBySlug, getStories } from "@/data/community/repository";
-import { Story } from "@/models/community";
-import { Button } from "@/components/ui/button";
+import React, { useEffect, useState } from 'react';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
+import { Calendar, User, Share2, Linkedin, Mail, BookOpen } from 'lucide-react';
+import { getStoryBySlug, getStories } from '@/community/repositories/repository';
+import { Story } from '@/community/models/types';
+import { EmptyState } from '@/community/components/ui/EmptyState';
+import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
 
-export default function StoryDetailPage() {
+export const StoryDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const [story, setStory] = useState<Story | null>(null);
   const [recommendations, setRecommendations] = useState<Story[]>([]);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function loadStory() {
+    async function loadStoryAndRecommendations() {
       if (!slug) {
         setLoading(false);
         return;
@@ -20,10 +23,11 @@ export default function StoryDetailPage() {
       setLoading(true);
       try {
         const data = await getStoryBySlug(slug);
-        setStory(data || null);
+        setStory(data);
 
         const allStories = await getStories();
-        const filtered = allStories.filter((s) => s.slug !== slug).slice(0, 2);
+        // Filter out current story and take top 2 for recommendation
+        const filtered = allStories.filter(s => s.slug !== slug).slice(0, 2);
         setRecommendations(filtered);
       } catch (err) {
         console.error(err);
@@ -31,113 +35,174 @@ export default function StoryDetailPage() {
         setLoading(false);
       }
     }
-    loadStory();
+    loadStoryAndRecommendations();
   }, [slug]);
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f8fafd] flex items-center justify-center p-6">
-        <div className="w-8 h-8 rounded-full border-2 border-[#4f47e6] border-t-transparent animate-spin" />
+      <div className="max-w-7xl mx-auto px-4 py-32 text-center bg-white flex justify-center items-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
       </div>
     );
   }
 
   if (!story) {
     return (
-      <div className="min-h-screen bg-[#f8fafd] flex items-center justify-center p-6 text-center">
-        <div className="space-y-4">
-          <h2 className="font-display font-extrabold text-2xl text-slate-900">Story Not Found</h2>
-          <Button asChild variant="brand" size="sm" className="rounded-xl">
-            <Link to="/community/stories">Browse All Builder Stories</Link>
-          </Button>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 py-32 text-center bg-white">
+        <EmptyState
+          title="Story Not Found"
+          description="The story you requested does not exist or has been archived."
+          actionText="Back to Stories"
+          onAction={() => navigate('/stories')}
+        />
       </div>
     );
   }
 
-  return (
-    <div className="min-h-screen bg-[#f8fafd] pt-24 pb-16 lg:pt-28 lg:pb-20 selection:bg-[#4f47e6] selection:text-white">
-      <div className="w-full max-w-[1000px] mx-auto px-4 sm:px-8 space-y-8">
-        
-        {/* Navigation */}
-        <div className="flex items-center gap-3">
-          <Link
-            to="/community/stories"
-            className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#4f47e6] transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to All Stories</span>
-          </Link>
-          <Link
-            to="/community"
-            className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#4f47e6] transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs"
-          >
-            <span>Community Hub</span>
-          </Link>
-        </div>
+  // Author details mapping
+  const isPavan = story.author.includes('Pavan');
+  const authorInfo = isPavan 
+    ? {
+        name: 'Pavan Kumar.S',
+        role: 'Co-founder & CEO, Brandex',
+        bio: 'Driving platform engineering and AI systems at Brandex. Focused on bridging the gap between classroom theory and real-world execution.',
+        linkedin: 'https://www.linkedin.com/in/pavankumarofficialcareers/',
+        avatar: '/brandex-dp.webp'
+      }
+    : {
+        name: 'Sathvik.N',
+        role: 'Founder & CTO, Brandex',
+        bio: 'Pioneering technology education initiatives, wargames, and CTFs. Lead builder of the open-sourced Geniusphere workshop curriculum.',
+        linkedin: 'https://www.linkedin.com/in/sathvik-nagesh/',
+        avatar: '/brandex-dp.webp'
+      };
 
-        {/* Story Card Header */}
-        <div className="liquid-glass rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm space-y-6">
-          <div className="space-y-3">
-            <div className="liquid-glass-pill inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold text-[#4f47e6]">
-              {story.category || "Builder Journey"}
-            </div>
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
+  return (
+    <div className="pb-20 pt-24 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 xl:px-24 bg-white text-slate-900 font-sans">
+      
+      {/* Breadcrumb Navigation */}
+      <Breadcrumb items={[{ label: 'Stories', path: '/stories' }, { label: story.title }]} />
+
+      {/* Main Grid: 2 Columns */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        {/* Left Column: Article Content */}
+        <article className="lg:col-span-8 space-y-6">
+          <div className="space-y-4">
+            <span className="inline-block px-3 py-1 bg-indigo-50 text-indigo-600 text-xs font-bold rounded-full uppercase tracking-wider">
+              {story.category}
+            </span>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-slate-900 tracking-tight leading-[1.1]">
               {story.title}
             </h1>
-            <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
-              {story.summary}
+
+            <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 font-medium pt-2 border-b border-slate-100 pb-4">
+              <span className="flex items-center gap-1.5 text-slate-800 font-semibold">
+                <User className="w-4 h-4 text-indigo-600" />
+                {authorInfo.name}
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1.5">
+                <Calendar className="w-4 h-4 text-indigo-600" />
+                {story.date}
+              </span>
+            </div>
+          </div>
+
+          {/* Hero Cover Image */}
+          <div className="rounded-2xl overflow-hidden shadow-md aspect-[16/9] bg-slate-100 border border-slate-100">
+            <img
+              src={story.coverImage || '/brandex-full-logo.webp'}
+              alt={story.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Editorial Content */}
+          <div className="prose prose-slate max-w-none text-slate-700 text-base leading-relaxed pt-2 space-y-6">
+            <p className="text-base font-semibold text-slate-800 leading-relaxed bg-slate-50 border border-slate-200/80 p-4 rounded-2xl">
+              {story.excerpt}
             </p>
+            <p className="whitespace-pre-line text-slate-600">{story.content}</p>
           </div>
+        </article>
 
-          <div className="flex flex-wrap items-center gap-6 pt-4 border-t border-slate-200 text-xs font-medium text-slate-500">
-            <div className="flex items-center gap-2 text-slate-900 font-semibold">
-              <User size={15} className="text-[#4f47e6]" />
-              <span>{story.author}</span>
-              <span className="text-slate-400 font-normal">&bull; {story.authorRole}</span>
+        {/* Right Column: Sticky Author Details Sidebar */}
+        <aside className="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+          <div className="border border-slate-200/80 bg-slate-50/50 p-6 rounded-2xl space-y-4 shadow-sm">
+            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest border-b border-slate-200/60 pb-2">
+              ABOUT THE AUTHOR
+            </h3>
+            
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 bg-slate-900 rounded-xl overflow-hidden shadow shrink-0 border border-slate-800">
+                <img src={authorInfo.avatar} alt={authorInfo.name} className="w-full h-full object-cover p-1 bg-slate-950" />
+              </div>
+              <div>
+                <h4 className="font-display font-bold text-base text-slate-900">{authorInfo.name}</h4>
+                <p className="text-xs text-indigo-600 font-semibold">{authorInfo.role}</p>
+              </div>
             </div>
-            <div className="flex items-center gap-1.5">
-              <Calendar size={14} className="text-slate-400" />
-              <span>{story.publishedAt}</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <Clock size={14} className="text-slate-400" />
-              <span>{story.readTime || "5 min read"}</span>
-            </div>
-          </div>
 
-          {/* Story Body Content */}
-          <div className="pt-6 border-t border-slate-200 space-y-4 text-slate-700 leading-relaxed text-sm sm:text-base font-normal">
-            <p>{story.content || story.summary}</p>
-          </div>
-        </div>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              {authorInfo.bio}
+            </p>
 
-        {/* Recommended Stories */}
-        {recommendations.length > 0 && (
-          <div className="space-y-4 pt-6">
-            <h3 className="font-display font-bold text-xl text-slate-900">More Builder Stories</h3>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {recommendations.map((rec) => (
-                <Link
-                  key={rec.id}
-                  to={`/community/stories/${rec.slug}`}
-                  className="liquid-glass-card p-5 rounded-2xl border border-slate-200 hover:bg-white transition-all block group"
-                >
-                  <span className="text-[10px] font-mono font-bold text-[#4f47e6] uppercase">{rec.category}</span>
-                  <h4 className="font-display font-bold text-base text-slate-900 group-hover:text-[#4f47e6] transition-colors mt-1">
-                    {rec.title}
-                  </h4>
-                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">{rec.summary}</p>
-                  <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1 mt-3">
-                    Read Story <ArrowRight size={12} />
-                  </span>
-                </Link>
-              ))}
+            <div className="pt-2 flex gap-3 text-slate-500 border-t border-slate-200/60">
+              <a 
+                href={authorInfo.linkedin} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-white border border-slate-200 rounded-xl hover:bg-indigo-600 hover:border-indigo-600 hover:text-white transition-all text-xs font-bold text-slate-700 shadow-sm"
+              >
+                <Linkedin className="w-3.5 h-3.5" />
+                <span>LinkedIn</span>
+              </a>
+              <a 
+                href="mailto:contact@brandex.co.in" 
+                className="flex items-center justify-center p-2.5 bg-white border border-slate-200 rounded-xl hover:bg-indigo-600 hover:border-indigo-600 hover:text-white transition-all text-slate-700 shadow-sm"
+              >
+                <Mail className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
-        )}
-
+        </aside>
       </div>
+
+      {/* Recommended Reads section */}
+      {recommendations.length > 0 && (
+        <section className="mt-16 pt-12 border-t border-slate-200 space-y-6">
+          <h3 className="font-display font-bold text-xl text-slate-900 flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-indigo-600" />
+            <span>Recommended Reading</span>
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {recommendations.map((rec) => (
+              <NavLink 
+                key={rec.id} 
+                to={`/stories/${rec.slug}`}
+                className="flex gap-4 p-4 border border-slate-200 hover:border-indigo-200 hover:shadow-md rounded-2xl bg-slate-50/20 transition-all group"
+              >
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden shrink-0 border border-slate-100">
+                  <img src={rec.coverImage} alt={rec.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                </div>
+                <div className="flex flex-col justify-between py-1">
+                  <div className="space-y-1">
+                    <span className="text-[10px] text-indigo-600 font-bold uppercase tracking-wider">{rec.category}</span>
+                    <h4 className="font-display font-bold text-sm sm:text-base text-slate-900 line-clamp-2 leading-tight">{rec.title}</h4>
+                  </div>
+                  <span className="text-[11px] text-slate-500 font-medium">{rec.date}</span>
+                </div>
+              </NavLink>
+            ))}
+          </div>
+        </section>
+      )}
+
     </div>
   );
-}
+};
+
+export default StoryDetailPage;

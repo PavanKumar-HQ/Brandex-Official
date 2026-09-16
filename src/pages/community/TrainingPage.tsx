@@ -1,139 +1,129 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import {
-  GraduationCap,
-  Clock,
-  Layers,
-  ArrowRight,
-  ArrowLeft,
-  CheckCircle2,
-  SlidersHorizontal,
-} from "lucide-react";
-import { getTrainingPrograms } from "@/data/community/repository";
-import { TrainingProgram } from "@/models/community";
+import { useSEO } from '@/community/hooks/useSEO';
+import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { Filter, SlidersHorizontal, BookOpen, Clock, BarChart, ArrowRight } from 'lucide-react';
+import { SectionHeading } from '@/community/components/ui/SectionHeading';
+import { PageHero } from '@/community/components/ui/PageHero';
+import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
+import { TrainingCard } from '@/community/components/cards/TrainingCard';
+import { EmptyState } from '@/community/components/ui/EmptyState';
+import { getTrainingPrograms } from '@/community/repositories/repository';
+import { TrainingProgram } from '@/community/models/types';
 
-export default function TrainingPage() {
+export const TrainingPage: React.FC = () => {
+  useSEO("Rigorous Cohort Training", "Level up your technical skills with intensive, practical cohort-based training.");
   const [programs, setPrograms] = useState<TrainingProgram[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const [selectedLevel, setSelectedLevel] = useState<string>("All");
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [selectedLevel, setSelectedLevel] = useState<string>('All');
 
   useEffect(() => {
-    async function loadData() {
+    async function loadPrograms() {
       const data = await getTrainingPrograms(selectedCategory, selectedLevel);
       setPrograms(data);
     }
-    loadData();
+    loadPrograms();
   }, [selectedCategory, selectedLevel]);
 
   const categories = [
-    "All",
-    "Artificial Intelligence",
-    "Cybersecurity",
-    "Digital Skills & Software",
-    "Design & UX",
-    "Business & Strategy",
+    'All',
+    'Artificial Intelligence',
+    'Cybersecurity',
+    'Digital Skills & Software',
+    'Design & UX',
+    'Business & Strategy',
   ];
 
+  const levels = ['All', 'Beginner', 'Intermediate', 'Advanced'];
+
   return (
-    <div className="min-h-screen bg-[#f8fafd] pt-24 pb-16 lg:pt-28 lg:pb-20 selection:bg-[#4f47e6] selection:text-white">
-      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 space-y-10">
-        
-        {/* Navigation & Header */}
-        <div className="border-b border-slate-200/90 pb-8 space-y-4">
-          <Link
-            to="/community"
-            className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#4f47e6] transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to Community Hub</span>
-          </Link>
+    <div className="space-y-6 pb-20 pt-24 w-full px-4 sm:px-8 lg:px-12 xl:px-24 bg-white text-slate-900 font-sans">
+      <Breadcrumb items={[{ label: 'Technical Training' }]} />
 
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pt-2">
-            <div className="space-y-1.5 max-w-2xl">
-              <div className="liquid-glass-pill inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold text-[#4f47e6] mb-1">
-                Engineering Bootcamps & Modules
-              </div>
-              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-                Hands-On Engineering Bootcamps
-              </h1>
-              <p className="text-sm sm:text-base text-slate-600 font-normal">
-                Intensive, production-focused curriculums teaching sub-second web architecture, automation webhooks & AI models.
-              </p>
-            </div>
+      {/* Training Hero */}
+      <PageHero 
+        tag="Technical Training Catalog"
+        title="Brandex Cohort Training Catalog"
+        description="Rigorous, cohort-based courses engineered to take you from foundational concepts to production-grade engineering mastery across AI, Cybersecurity, Systems, and Swiss UX."
+        widgetTitle="Training.Cohorts"
+        widgetStatLabel="Active Students"
+        widgetStatValue="450+"
+        widgetStatusLabel="Enrollment Status"
+        widgetStatusText="Accepting Applications"
+      />
 
-            {/* Filter Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1">
-              {categories.slice(0, 4).map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
-                    selectedCategory === cat
-                      ? "bg-[#4f47e6] text-white shadow-2xs"
-                      : "liquid-glass text-slate-600 hover:text-slate-900"
-                  }`}
-                >
-                  {cat}
-                </button>
+      {/* Filter Bar & Controls */}
+      <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 space-y-3 shadow-sm">
+        <div className="flex items-center gap-2 text-xs text-slate-700 font-semibold">
+          <SlidersHorizontal className="w-4 h-4 text-indigo-600" />
+          <span>Filter Training Programs</span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* Category Dropdown */}
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="training-category" className="text-xs text-slate-500 font-medium">Category</label>
+            <select
+              id="training-category"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+            >
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat === 'All' ? 'All Categories' : cat}
+                </option>
               ))}
-            </div>
+            </select>
+          </div>
+
+          {/* Level Dropdown */}
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="training-level" className="text-xs text-slate-500 font-medium">Proficiency Level</label>
+            <select
+              id="training-level"
+              value={selectedLevel}
+              onChange={(e) => setSelectedLevel(e.target.value)}
+              className="bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
+            >
+              {levels.map((lvl) => (
+                <option key={lvl} value={lvl}>
+                  {lvl === 'All' ? 'All Levels' : lvl}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
-
-        {/* Training Programs Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {programs.map((prog) => (
-            <div
-              key={prog.id}
-              className="liquid-glass-card hover:bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] font-mono font-bold text-[#4f47e6] liquid-glass-pill px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                    {prog.category}
-                  </span>
-                  <span className="text-xs font-mono font-bold text-slate-500">
-                    {prog.level}
-                  </span>
-                </div>
-
-                <h3 className="font-display font-bold text-xl text-slate-900 mb-2">
-                  {prog.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-5 line-clamp-3">
-                  {prog.description}
-                </p>
-
-                <div className="space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-600">
-                  <div className="flex items-center gap-2">
-                    <Clock size={14} className="text-[#4f47e6] shrink-0" />
-                    <span>{prog.duration} &bull; {prog.format}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Layers size={14} className="text-[#4f47e6] shrink-0" />
-                    <span>{prog.enrolledCount} Enrolled Students</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-5 border-t border-slate-100 mt-5 flex items-center justify-between">
-                <span className="text-xs font-mono font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-100">
-                  {prog.schedule}
-                </span>
-                
-                <Link
-                  to={`/community/training/${prog.slug}`}
-                  className="px-4 py-2 rounded-xl bg-[#4f47e6] hover:bg-[#4338ca] text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-2xs"
-                >
-                  <span>Syllabus Breakdown</span>
-                  <ArrowRight size={13} />
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-
       </div>
+
+      {/* Programs Grid */}
+      <section className="space-y-6">
+        <SectionHeading
+          tag="COURSES"
+          title={`Available Programs (${programs.length})`}
+          subtitle="Select a course to view detailed syllabus, outcomes, and enrollment schedule."
+        />
+
+        {programs.length === 0 ? (
+          <EmptyState
+            title="No training programs match your filters."
+            description="Try resetting your category or level filters to view available Brandex courses."
+            actionText="Reset Filters"
+            onAction={() => {
+              setSelectedCategory('All');
+              setSelectedLevel('All');
+            }}
+          />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {programs.map((program) => (
+              <TrainingCard key={program.id} program={program} />
+            ))}
+          </div>
+        )}
+      </section>
+
     </div>
   );
-}
+};
+
+export default TrainingPage;
