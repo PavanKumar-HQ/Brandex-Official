@@ -62,7 +62,7 @@ export default function Hero() {
   }, [text, isDeleting, phraseIndex]);
 
   return (
-    <section className="relative flex items-center justify-center overflow-hidden pt-8 pb-12 lg:pt-12 lg:pb-16 bg-[#f8fafd] border-b border-slate-200/60 w-full">
+    <section className="relative flex items-center justify-center overflow-hidden pt-24 pb-12 lg:pt-28 lg:pb-16 bg-[#f8fafd] border-b border-slate-200/60 w-full">
       {/* Background Grid across entire width */}
       <div className="absolute inset-0 bg-grid opacity-50 pointer-events-none" />
 

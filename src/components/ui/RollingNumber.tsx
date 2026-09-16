@@ -8,6 +8,7 @@ interface RollingNumberProps {
   decimals?: number;
   duration?: number;
   className?: string;
+  triggerKey?: number;
 }
 
 export function RollingNumber({
@@ -15,11 +16,12 @@ export function RollingNumber({
   prefix = "",
   suffix = "",
   decimals = 0,
-  duration = 1.8,
+  duration = 1.6,
   className = "",
+  triggerKey = 0,
 }: RollingNumberProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-40px" });
+  const isInView = useInView(ref, { once: false, margin: "-40px" });
   const [displayValue, setDisplayValue] = useState<string>(
     decimals > 0 ? (0).toFixed(decimals) : "0"
   );
@@ -40,7 +42,7 @@ export function RollingNumber({
     });
 
     return () => controls.stop();
-  }, [isInView, value, decimals, duration]);
+  }, [isInView, value, decimals, duration, triggerKey]);
 
   return (
     <span ref={ref} className={className}>

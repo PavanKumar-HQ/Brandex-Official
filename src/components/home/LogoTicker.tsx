@@ -133,9 +133,9 @@ export default function LogoTicker() {
                   {client.metric}
                 </span>
 
-                <span className="inline-flex items-center gap-1 text-xs font-bold text-slate-900 group-hover:text-[#4f47e6] transition-colors">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-900 group-hover:text-[#4f47e6] transition-colors whitespace-nowrap shrink-0">
                   <span>Visit Platform</span>
-                  <ArrowUpRight size={13} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <ArrowUpRight size={13} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
                 </span>
               </div>
             </motion.a>

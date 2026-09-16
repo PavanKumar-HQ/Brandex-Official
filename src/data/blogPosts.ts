@@ -15,7 +15,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "sub-second-web-performance",
     title: "Engineering Sub-Second Web Platforms: How to Achieve 99+ Core Web Vitals",
-    excerpt: "A deep technical breakdown of asset bundling, edge CDN caching, Next.js 15 Server Components, and zero-runtime CSS hydration strategies to achieve sub-second TTFB and 100/100 Lighthouse scores.",
+    excerpt: "A deep technical breakdown of asset bundling, edge CDN caching, Next.js Server Components, and zero-runtime CSS hydration strategies to achieve sub-second TTFB and 100/100 Lighthouse scores.",
     category: "Engineering",
     date: "Jun 24, 2026",
     readTime: "7 min read",
@@ -23,15 +23,12 @@ export const blogPosts: BlogPost[] = [
     gradient: "from-accent/30 to-accent/10",
     author: "Pavan Kumar S",
     content: [
-      "Sub-second web performance is no longer a vanity metric; it is the fundamental baseline for organic search ranking and user conversion. Google's Interaction to Next Paint (INP < 50ms) and Largest Contentful Paint (LCP < 1.2s) directly punish heavy client-side JavaScript payloads.",
+      "Sub-second web performance is the fundamental baseline for organic search ranking and user conversion. Google Interaction to Next Paint (INP < 50ms) and Largest Contentful Paint (LCP < 1.2s) directly reward lightweight client architectures.",
       "## 1. Zero-Bloat Asset Pipelines & Code Splitting",
       "Most production websites suffer from multi-megabyte JavaScript bundles. By replacing heavy legacy libraries with modern tree-shakeable primitives, stripping unused font glyphs, and utilizing modern format codecs (AVIF, WebP), we routinely drop initial payload sizes by over 70%.",
-      "```tsx\n// Next.js 15 Partial Prerendering (PPR) Optimization\nexport const experimental_ppr = true;\n\nexport default async function DashboardPage() {\n  return (\n    <div className=\"dashboard-grid\">\n      <StaticHeader /> {/* Prerendered statically at the edge */}\n      <Suspense fallback={<DashboardSkeleton />}>\n        <DynamicAnalyticsStream /> {/* Streamed via HTTP chunked transfer */}\n      </Suspense>\n    </div>\n  );\n}\n```",
       "## 2. Distributed Edge Rendering & Sub-18ms TTFB",
-      "By positioning compute workers at global edge points of presence (Cloudflare Workers / Vercel Edge Runtime), server response times are compressed to under 18ms globally. Leveraging stale-while-revalidate (SWR) cache headers ensures that 99.4% of page requests are served directly from RAM without touching the origin database.",
-      "## 3. The Progressive Hydration Bottleneck",
-      "Selective progressive hydration allows critical viewport interactive elements to bind immediately while secondary background assets stream in asynchronously.",
-      "> **💡 Production Engineering Blueprint:** At Brandex, every web application we ship is guaranteed to achieve 95+ Core Web Vitals with sub-second LCP. [Explore our Web Engineering Services](/services) or [Consult our Founding Architects](/contact)."
+      "By positioning compute workers at global edge points of presence, server response times are compressed to under 18ms globally. Leveraging stale-while-revalidate (SWR) cache headers ensures that 99.4% of page requests are served directly from RAM.",
+      "> **Production Engineering Blueprint:** At Brandex, every web application we ship is guaranteed to achieve 95+ Core Web Vitals with sub-second LCP."
     ]
   },
   {
@@ -45,14 +42,12 @@ export const blogPosts: BlogPost[] = [
     gradient: "from-accent/20 to-accent/5",
     author: "Sathvik Nagesh",
     content: [
-      "Great user experience is not decorative art; it is functional psychology. When a high-intent prospect arrives on your digital platform, you have under 2.5 seconds to establish authority, communicate value proposition, and present a frictionless next step.",
+      "Great user experience is functional psychology. When a high-intent prospect arrives on your digital platform, you have under 2.5 seconds to establish authority, communicate value proposition, and present a frictionless next step.",
       "## The 3 Pillars of High-Trust Digital Interfaces",
-      "* **Immediate Spatial Hierarchy**: Hero sections must answer *What is this?*, *Who is it for?*, and *What is the outcome?* above the fold without overwhelming visual noise.",
+      "* **Immediate Spatial Hierarchy**: Hero sections must answer What is this?, Who is it for?, and What is the outcome? above the fold.",
       "* **Progressive Disclosure Architecture**: Breaking complex checkout or onboarding flows into frictionless multi-step micro-interactions increases completion rates by up to 65%.",
-      "* **Zero-Friction Tactile Action Anchors**: Buttons must look unmistakably like clickable physical elements with tactile borders, specular highlights, and active-press states.",
-      "## Eliminating Choice Fatigue in SaaS & E-Commerce",
-      "By stripping away duplicate navigation paths and focusing the eye on a single high-contrast primary action, bounce rates drop by 42% on average.",
-      "> **💡 Design Engineering Blueprint:** Brandex designs conversion-engineered digital canvases that transform cold traffic into high-LTV customers. [View our Product Design Case Studies](/case-studies)."
+      "* **Zero-Friction Tactile Action Anchors**: Buttons must look unmistakably like clickable physical elements with tactile borders and active-press states.",
+      "> **Design Engineering Blueprint:** Brandex designs conversion-engineered digital canvases that transform cold traffic into high-LTV customers."
     ]
   },
   {
@@ -68,11 +63,10 @@ export const blogPosts: BlogPost[] = [
     content: [
       "Webhooks are the backbone of modern automated business systems. However, network partitions, provider retries, and out-of-order delivery can corrupt state if not engineered with strict idempotency.",
       "## 1. Implementing Idempotency Keys in PostgreSQL",
-      "Every inbound webhook payload must be cryptographically hashed (SHA-256) and verified against an atomic ledger before execution. This guarantees duplicate deliveries from Stripe, Shopify, or custom APIs produce identical outcomes without side effects.",
-      "```sql\n-- Atomic Idempotency Ledger with PostgreSQL Row-Level Locks\nCREATE TABLE webhook_events (\n  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  event_id VARCHAR(255) UNIQUE NOT NULL,\n  provider VARCHAR(64) NOT NULL,\n  status VARCHAR(32) DEFAULT 'PENDING',\n  payload JSONB NOT NULL,\n  processed_at TIMESTAMPTZ\n);\n```",
+      "Every inbound webhook payload must be cryptographically hashed (SHA-256) and verified against an atomic ledger before execution.",
       "## 2. Asynchronous Queue Workers with Redis & BullMQ",
-      "Never process long-running business logic inside the HTTP request handler. Acknowledge with `200 OK` in under 15ms and offload processing to distributed BullMQ workers with exponential backoff and dead-letter queues.",
-      "> **💡 Need Automated Workflows?** Brandex engineers bulletproof webhook architectures and automated business pipelines with zero data loss. [Explore Business Automation Services](/services)."
+      "Never process long-running business logic inside the HTTP request handler. Acknowledge with 200 OK in under 15ms and offload processing to distributed workers with exponential backoff.",
+      "> **Need Automated Workflows?** Brandex engineers bulletproof webhook architectures and automated business pipelines with zero data loss."
     ]
   },
   {
@@ -86,326 +80,674 @@ export const blogPosts: BlogPost[] = [
     gradient: "from-accent/20 to-accent/10",
     author: "Sathvik Nagesh",
     content: [
-      "Translucent glassmorphism often fails on the web due to poor contrast, muddy blurs, and illegible text. Apple's modern macOS and iOS interface guidelines succeed because of precise specular lighting and structural borders.",
+      "Translucent glassmorphism succeeds when precision specular lighting and structural borders are applied correctly.",
       "## The Liquid Glass CSS Formula",
-      "1. **High-Saturation Backdrop Filter**: `backdrop-filter: blur(24px) saturate(190%)` prevents washed-out milky textures and allows vibrant underlying colors to refract cleanly.",
-      "2. **Dual-Layer Specular Inset Highlights**: Top edge micro-highlights (`inset 0 1px 1px 0 rgba(255, 255, 255, 1)`) mimic physical glass refraction.",
-      "3. **Strict High-Contrast Structural Borders**: Using `#e2e8f0` structural borders guarantees crisp component separation on both light and dark backgrounds.",
-      "> **💡 Brandex Design Language 2.0:** We engineer ultra-premium, tactile web interfaces that wow customers at first glance. [Learn About Our Founders & Design Philosophy](/about)."
+      "1. **High-Saturation Backdrop Filter**: Prevents washed-out milky textures and allows vibrant underlying colors to refract cleanly.",
+      "2. **Dual-Layer Specular Inset Highlights**: Top edge micro-highlights mimic physical glass refraction.",
+      "3. **Strict High-Contrast Structural Borders**: Structural borders guarantee crisp component separation on both light and dark backgrounds."
     ]
   },
   {
     id: "postgresql-connection-pooling",
     title: "Scaling PostgreSQL for High-Concurrency Web Applications: PgBouncer & Indexing",
-    excerpt: "Optimizing PostgreSQL connection pools, transaction limits, partial indexes, and query plans for serverless Next.js runtimes and edge compute.",
+    excerpt: "Optimizing PostgreSQL connection pools, transaction limits, partial indexes, and query plans for serverless runtimes and edge compute.",
     category: "Engineering",
-    date: "Jun 16, 2026",
-    readTime: "10 min read",
-    featured: false,
-    gradient: "from-accent/25 to-accent/5",
-    author: "Pavan Kumar S",
-    content: [
-      "Serverless functions and edge workers can quickly exhaust PostgreSQL connection limits under sudden traffic spikes. Here is how we configure connection pooling and query performance for high-throughput enterprise platforms.",
-      "## 1. Transaction Pooling with PgBouncer",
-      "Configuring PgBouncer in transaction mode allows 5,000+ concurrent serverless worker threads to seamlessly share a modest pool of 50 active PostgreSQL database connections with sub-millisecond connection checkout times.",
-      "## 2. Partial Indexes & Query Plan Analysis",
-      "Never deploy a production query without inspecting `EXPLAIN (ANALYZE, BUFFERS)`. Adding targeted partial indexes for active statuses reduces index RAM footprint by over 80% while accelerating query execution to under 3ms.",
-      "> **💡 Custom Cloud Architecture:** Brandex designs distributed databases, custom backends, and high-concurrency cloud systems. [Schedule an Architecture Diagnostic](/contact)."
-    ]
-  },
-  {
-    id: "b2b-saas-pricing-page-ux",
-    title: "High-Converting B2B SaaS Pricing Page Architecture",
-    excerpt: "How to structure tier comparison matrices, annual toggle savings, feature tooltips, and enterprise custom quote discovery pathways that maximize Average Contract Value (ACV).",
-    category: "Design",
-    date: "Jun 14, 2026",
-    readTime: "7 min read",
-    featured: false,
-    gradient: "from-accent/20 to-accent/5",
-    author: "Sathvik Nagesh",
-    content: [
-      "Your pricing page is the highest-intent screen in your entire digital ecosystem. Cluttered feature matrices and ambiguous packaging confuse prospects and stall buying momentum.",
-      "## Key Pricing UX Rules",
-      "* **Prominent Default Recommendation**: Highlight the primary growth tier with visual elevation, tactile borders, and popular badges.",
-      "* **Interactive Annual / Monthly Billing Toggle**: Instant dynamic savings calculations encourage annual upfront cash flow.",
-      "* **Clear Enterprise Callout**: Direct access to executive architecture booking for high-ticket clients with complex compliance needs.",
-      "> **💡 Drive More Revenue:** We design high-converting SaaS landing pages and digital storefronts tailored to your unit economics. [View Our Case Studies](/case-studies)."
-    ]
-  },
-  {
-    id: "real-time-3d-webgl-threejs",
-    title: "Architecting Interactive 3D WebGL Labs with Three.js & React Three Fiber",
-    excerpt: "How Brandex engineered GeniuSphere's real-time 3D simulation engine with custom GLSL shaders, 60fps GPU optimization, and procedural rendering.",
-    category: "Engineering",
-    date: "Jun 12, 2026",
-    readTime: "11 min read",
-    featured: true,
-    gradient: "from-accent/30 to-accent/15",
-    author: "Pavan Kumar S",
-    content: [
-      "Modern web browsers can deliver desktop-class interactive 3D simulations when WebGL rendering loops are decoupled from main thread JavaScript execution.",
-      "## 1. Frame Rate Stabilization & Geometry Instancing",
-      "In our production deployment for **GeniuSphere**, rendering thousands of interactive 3D lab components required batching draw calls using `THREE.InstancedMesh`. This reduced CPU draw overhead from 1,200 calls/frame down to a single GPU draw call, locking render performance at a smooth 60 FPS on mobile devices.",
-      "```tsx\n// Instanced WebGL Mesh with React Three Fiber\nexport function InstancedLabParticles({ count = 2000 }) {\n  const meshRef = useRef<THREE.InstancedMesh>(null);\n  useFrame(({ clock }) => {\n    // Procedural GPU rotation and light oscillation\n  });\n  return (\n    <instancedMesh ref={meshRef} args={[geometry, material, count]} />\n  );\n}\n```",
-      "## 2. Dynamic Level of Detail (LOD) Management",
-      "Switching shader complexity based on client device GPU tier ensures seamless performance from low-power iPhones to high-end workstations.",
-      "> **💡 Interactive WebGL Engineering:** Brandex builds bespoke 3D WebGL applications and digital platforms. [Read the GeniuSphere Case Study](/case-studies/geniusphere)."
-    ]
-  },
-  {
-    id: "ecommerce-checkout-optimization-razorpay",
-    title: "Engineering High-Throughput E-Commerce: Razorpay UPI & Automated Invoicing",
-    excerpt: "How we scaled Srushti Publications' online bookstore to a +340% sales increase with instant 1-click guest checkout, automated GST invoices, and Prisma PostgreSQL.",
-    category: "Engineering",
-    date: "Jun 10, 2026",
+    date: "Jun 15, 2026",
     readTime: "8 min read",
     featured: false,
     gradient: "from-accent/25 to-accent/10",
     author: "Pavan Kumar S",
     content: [
-      "Checkout friction is the number one cause of lost e-commerce revenue. In regional e-commerce, forcing user registration before checkout causes over 68% cart abandonment.",
-      "## 1. 1-Click Guest Checkout with Mobile UPI Auto-Intent",
-      "For **Srushti Publications**, Brandex architected a streamlined checkout flow with instant mobile UPI deep linking (GPay, PhonePe, Paytm). Users complete orders in under 30 seconds without creating passwords.",
-      "## 2. Automated PDF Invoice Generation & WhatsApp Confirmation",
-      "Upon payment verification via secure cryptographic webhooks, a background worker generates GST-compliant PDF invoices and dispatches tracking updates via the official WhatsApp Business API.",
-      "> **💡 E-Commerce Engineering:** Brandex develops custom full-stack e-commerce platforms with zero monthly platform tax. [Read the Srushti Publications Case Study](/case-studies/srushti-publications)."
+      "Database connection exhaustion is the number one cause of production downtime during traffic spikes.",
+      "## 1. Transaction-Mode PgBouncer Connection Pooling",
+      "By placing PgBouncer in transaction mode between serverless edge functions and PostgreSQL, 10,000 concurrent client requests can be multiplexed across 50 dedicated database connections.",
+      "## 2. Covering Indexes & Partial Index Optimization",
+      "Adding targeted partial indexes reduces index disk footprint by 80% and accelerates hot query execution from 450ms to under 2ms."
+    ]
+  },
+  {
+    id: "b2b-saas-pricing-page-ux",
+    title: "The Psychology of B2B SaaS Pricing Pages: Reducing Decision Paralysis",
+    excerpt: "Design patterns that increase high-ticket enterprise conversion. Decoy tiers, feature matrices, interactive ROI sliders, and transparent billing triggers.",
+    category: "Business",
+    date: "Jun 12, 2026",
+    readTime: "7 min read",
+    featured: false,
+    gradient: "from-accent/15 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "Your pricing page is the highest-leverage touchpoint in your entire digital funnel.",
+      "## 1. Anchoring and Tier Highlighting",
+      "Visually elevating the Recommended tier with high-contrast borders and ROI badges guides buyer consensus.",
+      "## 2. Direct Technical Discussion CTAs",
+      "Enterprise buyers prefer booking a direct technical discussion over generic contact forms."
+    ]
+  },
+  {
+    id: "real-time-3d-webgl-threejs",
+    title: "Building Interactive 3D Web Experiences with Three.js & React Three Fiber",
+    excerpt: "How to integrate GPU-accelerated 3D globes, shader materials, and interactive physics without degrading page performance or battery life.",
+    category: "Engineering",
+    date: "Jun 10, 2026",
+    readTime: "9 min read",
+    featured: false,
+    gradient: "from-accent/30 to-accent/15",
+    author: "Pavan Kumar S",
+    content: [
+      "Interactive 3D graphics create instant emotional connection when properly optimized for 60fps across mobile and desktop devices.",
+      "## 1. Viewport Observer & Lazy Canvas Initialization",
+      "Never initialize WebGL contexts until the container enters the active viewport.",
+      "## 2. Procedural Canvas Shaders vs Heavy GLTF Meshes",
+      "Procedurally generating textures directly in canvas buffers eliminates multi-megabyte 3D asset downloads."
+    ]
+  },
+  {
+    id: "ecommerce-checkout-optimization-razorpay",
+    title: "Zero-Drop Checkout Architecture: Optimizing Razorpay & Stripe Ingestion",
+    excerpt: "Eliminating payment abandonment in high-volume e-commerce. Webhook reconciliation, UPI intent dispatch, and instant retry state machines.",
+    category: "Business",
+    date: "Jun 08, 2026",
+    readTime: "8 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/5",
+    author: "Pavan Kumar S",
+    content: [
+      "Payment drop-off directly reduces net revenue. Seamless UPI intent dispatch and automated fallback mechanisms ensure maximum transaction completion."
     ]
   },
   {
     id: "algorithmic-trading-bot-architecture",
-    title: "Zero-Latency Quantitative Trading Bot Architecture with Python & MT5 Cloud Sync",
-    excerpt: "Designing emotion-free, automated algorithmic execution engines for PropQuant.ai with sub-50ms order execution and dynamic risk management.",
+    title: "Low-Latency WebSocket Architectures for Real-Time Financial Dashboards",
+    excerpt: "Handling 50,000 tick-per-second market data streams in React with Web Workers, ArrayBuffers, and offscreen canvas rendering.",
     category: "Engineering",
-    date: "Jun 08, 2026",
-    readTime: "12 min read",
-    featured: true,
-    gradient: "from-accent/30 to-accent/10",
+    date: "Jun 05, 2026",
+    readTime: "10 min read",
+    featured: false,
+    gradient: "from-accent/25 to-accent/10",
     author: "Pavan Kumar S",
     content: [
-      "In algorithmic finance, milliseconds determine profitability. Manual trade execution suffers from emotional bias, slippage, and delayed entry triggers.",
-      "## 1. High-Precision MT5 Bridge Architecture",
-      "For **PropQuant.ai**, Brandex built a low-latency Python execution service communicating directly with MetaTrader 5 via IPC pipes and asynchronous ZeroMQ sockets. The system executes complex multi-pair breakout strategies in sub-50ms intervals.",
-      "## 2. Dynamic Trailing Drawdown & Real-Time Risk Failsafes",
-      "Hard stops, max daily loss limits, and automated trailing drawdown logic are enforced at the socket level to safeguard institutional capital 24/7 without human intervention.",
-      "> **💡 Algorithmic Automation:** Brandex engineers custom automation bots, AI pipelines, and financial dashboards. [Explore the PropQuant.ai Case Study](/case-studies/propquant-ai)."
+      "High-frequency data streaming requires isolating serialization in dedicated Web Workers to keep the UI thread buttery smooth at 60fps."
     ]
   },
   {
     id: "educational-portal-architecture-vignan",
-    title: "Modernizing Campus Portals: Scaling Vignan Public School & Tutorials to 10k+ Users",
-    excerpt: "Building high-availability educational portals with sub-second page loads, automated student admission intake, and dynamic learning management.",
+    title: "Smartboard Classroom Engineering: Zero-Latency Video & Offline PWA Sync",
+    excerpt: "How Brandex engineered the Karnataka State Board digital learning platform for instantaneous classroom playback and smartboard presentation.",
     category: "Engineering",
-    date: "Jun 06, 2026",
-    readTime: "7 min read",
+    date: "Jun 02, 2026",
+    readTime: "8 min read",
     featured: false,
-    gradient: "from-accent/20 to-accent/5",
-    author: "Sathvik Nagesh",
+    gradient: "from-accent/20 to-accent/10",
+    author: "Pavan Kumar S",
     content: [
-      "Educational institutions frequently struggle with outdated, slow legacy portals that confuse prospective parents and crash during peak admission cycles.",
-      "## 1. Fast, Clean Information Architecture",
-      "Brandex redesigned and deployed modern web platforms for **Vignan Public School** and **Vignan Tutorials**, delivering mobile-first responsive interfaces, dynamic syllabus schedules, and instant parent inquiry forms.",
-      "## 2. Sub-Second Performance on Mobile 4G Networks",
-      "Through edge caching and responsive image optimization, average page load times dropped from 4.8 seconds to 0.7 seconds, driving a significant surge in direct student admissions.",
-      "> **💡 Campus & EdTech Web Systems:** Brandex transforms institutional digital presence into modern, fast web platforms. [View Our Client Portfolio](/)."
+      "Digital classrooms require distraction-free playback, offline curriculum caching, and instant formative assessment evaluation."
     ]
   },
   {
     id: "nextjs-15-app-router-migration",
-    title: "Migrating Enterprise Web Applications to Next.js 15 & React 19 Server Actions",
-    excerpt: "Architectural patterns for zero-downtime migration, streaming SSR, async request handlers, and caching lifecycle management in Next.js 15.",
+    title: "Next.js 15 App Router in Production: Lessons from 30+ Enterprise Deployments",
+    excerpt: "Server Actions, parallel routing, optimistic state mutations, and dynamic segment caching strategies for scalable web apps.",
     category: "Engineering",
-    date: "Jun 04, 2026",
+    date: "May 30, 2026",
     readTime: "9 min read",
     featured: false,
     gradient: "from-accent/20 to-accent/5",
     author: "Pavan Kumar S",
     content: [
-      "Next.js 15 introduces fundamental architectural shifts with asynchronous request headers, default un-cached fetch behavior, and React 19 Server Actions. Migrating enterprise applications requires careful state management.",
-      "## 1. Eliminating Client-Side Form Handlers with Server Actions",
-      "Server Actions enable direct database mutations without writing boilerplate REST API routes, reducing frontend bundle size and eliminating state synchronization bugs.",
-      "## 2. Advanced Route Handler Caching in Next.js 15",
-      "Understanding explicit `revalidateTag` and `revalidatePath` patterns ensures your dynamic data remains fresh without incurring unnecessary origin database queries.",
-      "> **💡 Full-Stack Engineering Services:** Brandex delivers production Next.js 15 applications with world-class architecture. [Contact Our Engineering Team](/contact)."
+      "Structuring server components and co-locating data queries unlocks sub-second initial render speeds."
     ]
   },
   {
     id: "saas-mvp-to-scale-roadmap",
-    title: "From Concept to Production: The 4-Week SaaS MVP Sprint Blueprint",
-    excerpt: "How ambitious founders can launch secure, scalable full-stack SaaS applications in 4 weeks with authentication, payments, database, and admin dashboard.",
+    title: "From MVP to 100k Users: The Technical Architecture Blueprint",
+    excerpt: "A step-by-step engineering roadmap for modern founders. Database isolation, background workers, and CI/CD pipelines.",
+    category: "Business",
+    date: "May 26, 2026",
+    readTime: "8 min read",
+    featured: false,
+    gradient: "from-accent/15 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "Scalable startup execution requires clean separation between presentation, business rules, and asynchronous queue workers."
+    ]
+  },
+  {
+    id: "seo-technical-architecture-schema",
+    title: "Technical SEO Engineering: JSON-LD Graph Schemas & Sub-Second Indexing",
+    excerpt: "How to structure multi-entity Knowledge Graphs, canonical routing, and automated sitemaps to dominate Google rankings.",
     category: "Engineering",
-    date: "Jun 02, 2026",
+    date: "May 22, 2026",
+    readTime: "7 min read",
+    featured: false,
+    gradient: "from-accent/25 to-accent/10",
+    author: "Pavan Kumar S",
+    content: [
+      "Search crawler optimization relies on structured semantic HTML, canonical graph hierarchies, and instant TTFB."
+    ]
+  },
+  {
+    id: "design-system-consistency-tokens",
+    title: "Creating Maintainable Design Token Architectures with Tailwind & Figma",
+    excerpt: "Synchronizing design tokens between Figma and production CSS variables for seamless developer handoff.",
+    category: "Design",
+    date: "May 18, 2026",
+    readTime: "6 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/10",
+    author: "Sathvik Nagesh",
+    content: [
+      "Design tokenization creates a single source of truth across color palettes, spacing scales, and typography."
+    ]
+  },
+  {
+    id: "multi-tenant-rbac-security",
+    title: "Architecting Multi-Tenant RBAC Security in Modern Cloud Platforms",
+    excerpt: "Role-based access control, tenant database isolation, and JWT session rotation for enterprise software.",
+    category: "Engineering",
+    date: "May 14, 2026",
+    readTime: "9 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/5",
+    author: "Pavan Kumar S",
+    content: [
+      "Securing multi-tenant SaaS requires strict policy enforcement at the database row level and tamper-proof claim tokens."
+    ]
+  },
+  {
+    id: "redis-distributed-caching-patterns",
+    title: "Distributed Caching Patterns with Redis: Cache-Aside, Write-Through & Eviction",
+    excerpt: "Preventing cache stampedes, setting optimal TTLs, and managing atomic invalidation across distributed edge clusters.",
+    category: "Engineering",
+    date: "May 10, 2026",
+    readTime: "8 min read",
+    featured: false,
+    gradient: "from-accent/30 to-accent/10",
+    author: "Pavan Kumar S",
+    content: [
+      "Properly configured cache-aside strategies reduce database load by over 90% during sudden traffic surges."
+    ]
+  },
+  {
+    id: "full-stack-typescript-type-safety",
+    title: "End-to-End Type Safety: Unifying Frontend, Backend & Database Schemas",
+    excerpt: "Eliminating runtime type errors using Zod, tRPC, and Prisma/Drizzle schema synchronization across the stack.",
+    category: "Engineering",
+    date: "May 06, 2026",
+    readTime: "7 min read",
+    featured: false,
+    gradient: "from-accent/15 to-accent/5",
+    author: "Pavan Kumar S",
+    content: [
+      "Shared schema validations ensure that API payload contracts are checked at compile time before deployment."
+    ]
+  },
+  {
+    id: "dark-mode-light-mode-contrast",
+    title: "Designing Accessible Dark & Light Modes with Zero Layout Flash",
+    excerpt: "CSS custom properties, perceptual color contrast ratios (APCA), and anti-flicker inline theme bootstrap scripts.",
+    category: "Design",
+    date: "May 02, 2026",
+    readTime: "6 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/10",
+    author: "Sathvik Nagesh",
+    content: [
+      "Preventing theme flash requires executing minimal blocking scripts in document head before stylesheet parsing."
+    ]
+  },
+  {
+    id: "automated-business-crm-sync",
+    title: "Automating Multi-System Data Synchronization with Event-Driven Architecture",
+    excerpt: "Connecting HubSpot, Zoho, Google Sheets, and custom databases with zero manual human data entry.",
+    category: "Business",
+    date: "Apr 28, 2026",
     readTime: "8 min read",
     featured: false,
     gradient: "from-accent/25 to-accent/10",
     author: "Pavan Kumar S",
     content: [
-      "Building a software product should not take 6 months and $100,000. By utilizing battle-tested architecture scaffolds and proven cloud primitives, a production-grade MVP can be deployed in 4 weeks.",
-      "## The 4-Week Sprint Schedule",
-      "* **Week 1 (Architecture & UX)**: Entity relationship diagrams, schema definitions, and high-fidelity Figma design systems.",
-      "* **Week 2 (Core Backend & Auth)**: PostgreSQL database schema, Prisma ORM migrations, JWT/OAuth2 authentication, and API endpoints.",
-      "* **Week 3 (Frontend & Payments)**: Responsive liquid glass UI, Stripe/Razorpay billing integration, and real-time dashboard data streams.",
-      "* **Week 4 (Testing & Deployment)**: End-to-end testing, Core Web Vitals optimization, automated CI/CD pipeline, and domain launch.",
-      "> **💡 Ready to Build Your SaaS?** Brandex specializes in high-velocity, fixed-cost engineering sprints. [Schedule a Scope Discussion](/contact)."
+      "Event-driven automation eliminates administrative busywork and syncs client records instantly across tools."
     ]
   },
   {
-    id: "seo-technical-architecture-schema",
-    title: "Advanced Technical SEO: Schema.org JSON-LD, Dynamic OG & Crawler Optimization",
-    excerpt: "How structural data markup, canonical routing, and sub-second TTFB boost Google search indexing and drive inbound high-ticket customer acquisition.",
+    id: "future-of-web-applications-2026",
+    title: "The Future of Web Applications in 2026: Micro-Frontends & Edge AI",
+    excerpt: "How local-first software, edge compute, and progressive web apps are redefining client expectations.",
     category: "Engineering",
-    date: "May 30, 2026",
-    readTime: "7 min read",
-    featured: false,
-    gradient: "from-accent/20 to-accent/5",
-    author: "Sathvik Nagesh",
-    content: [
-      "Search Engine Optimization is fundamentally an engineering discipline. Without structured data and clean crawler architectures, high-quality content remains invisible to Google.",
-      "## Key Technical SEO Requirements",
-      "* **Schema.org JSON-LD Entities**: Providing rich graph definitions for `Organization`, `WebSite`, `Article`, and `FAQPage` gives search engines exact semantic understanding.",
-      "* **Dynamic OpenGraph Image Generation**: Auto-generating crisp 1200x630 social preview cards on edge workers drives 3x higher social click-through rates.",
-      "* **Semantic Heading Hierarchies**: Ensuring exactly one `<h1>` per view and logical heading cascading.",
-      "> **💡 Organic Growth Engineering:** Brandex builds SEO-optimized web applications engineered for top search engine positioning. [Explore Our Work](/case-studies)."
-    ]
-  },
-  {
-    id: "design-system-consistency-tokens",
-    title: "Building Scalable Design Systems with Tailwind CSS & CSS Custom Properties",
-    excerpt: "How to structure design tokens, spacing scales, typographic hierarchies, and interactive states for rapid multi-page web application development.",
-    category: "Design",
-    date: "May 28, 2026",
-    readTime: "6 min read",
-    featured: false,
-    gradient: "from-accent/20 to-accent/5",
-    author: "Sathvik Nagesh",
-    content: [
-      "Inconsistent spacing, mismatched font weights, and ad-hoc color codes degrade product credibility. A standardized design token system enforces visual polish across every team.",
-      "## Core Token Hierarchies",
-      "By defining strict semantic CSS variables for surfaces, borders, text, and brand accents, changes to global brand themes propagate across hundreds of components instantly.",
-      "> **💡 Premium UI Design:** Brandex crafts bespoke design systems and component libraries that stand the test of time. [Learn More About Us](/about)."
-    ]
-  },
-  {
-    id: "multi-tenant-rbac-security",
-    title: "Architecting Secure Multi-Tenant RBAC in PostgreSQL & Node.js",
-    excerpt: "Row-Level Security (RLS), role-based access control, tenant isolation patterns, and token-based authentication for enterprise SaaS.",
-    category: "Engineering",
-    date: "May 26, 2026",
-    readTime: "10 min read",
-    featured: false,
-    gradient: "from-accent/30 to-accent/10",
+    date: "Apr 24, 2026",
+    readTime: "9 min read",
+    featured: true,
+    gradient: "from-accent/30 to-accent/15",
     author: "Pavan Kumar S",
     content: [
-      "Enterprise clients demand ironclad data isolation between organizations. Relying on application-level filtering (`WHERE tenant_id = x`) is prone to catastrophic data leaks.",
-      "## 1. PostgreSQL Row-Level Security (RLS)",
-      "Enforcing tenant isolation directly inside PostgreSQL via RLS policies guarantees that even flawed API queries cannot read cross-tenant records.",
-      "## 2. Granular Role-Based Permissions (RBAC)",
-      "Implementing bitwise or table-driven permissions ensures team owners, admins, and members have precisely scoped capabilities.",
-      "> **💡 Enterprise Cloud Software:** Brandex engineers compliant, secure multi-tenant architectures. [Consult With Our Chief Architect](/pavan-kumar)."
+      "Web applications in 2026 combine desktop-grade responsiveness with instant cloud synchronization."
     ]
   },
-  // Adding additional high-impact technical articles
   {
-    id: "redis-distributed-caching-patterns",
-    title: "High-Throughput Redis Caching: Cache-Aside, Write-Through & Mutex Locks",
-    excerpt: "Preventing cache stampedes, dogpiling, and stale data in high-concurrency Node.js and Next.js applications with distributed Redis mutex locks.",
+    id: "microservice-event-mesh-patterns",
+    title: "Microservice Event Mesh Architectures: Building Decoupled Cloud Engines",
+    excerpt: "Designing independent, decoupled services with pub/sub event meshes, Kafka, and Redis Streams for zero-downtime deployments.",
     category: "Engineering",
-    date: "May 24, 2026",
+    date: "Apr 20, 2026",
     readTime: "8 min read",
     featured: false,
-    gradient: "from-accent/25 to-accent/5",
-    author: "Pavan Kumar S",
-    content: [
-      "Caching is critical for sub-second web platforms, but naive caching strategies cause catastrophic cache stampedes when hot keys expire under load.",
-      "## 1. Distributed Redlock Mutex for Hot Keys",
-      "Using Redis distributed locks guarantees that only one worker thread regenerates expensive database queries while other clients await the cached result.",
-      "## 2. Probabilistic Early Expiration (XFetch)",
-      "Background worker refreshes keys slightly before TTL expiration based on access frequency, eliminating user-facing latency spikes.",
-      "> **💡 High-Performance Web Systems:** Brandex delivers sub-second architectures that never buckle under pressure. [Start Your Project Today](/contact)."
-    ]
-  },
-  {
-    id: "full-stack-typescript-type-safety",
-    title: "End-to-End Type Safety: Unifying Frontend & Backend Schemas with Zod & Prisma",
-    excerpt: "Eliminating runtime API contract mismatches across React, tRPC, Prisma ORM, and REST endpoints with single-source-of-truth validation schemas.",
-    category: "Engineering",
-    date: "May 22, 2026",
-    readTime: "7 min read",
-    featured: false,
     gradient: "from-accent/20 to-accent/5",
     author: "Pavan Kumar S",
     content: [
-      "Runtime exceptions caused by unexpected nulls or renamed API fields cost businesses thousands in lost sales and debugging hours. End-to-end type safety eliminates this entirely.",
-      "## 1. Shared Schema Definitions with Zod",
-      "Define schemas once and infer both TypeScript types and client-side form validation rules automatically.",
-      "## 2. Automated API Contract Generation",
-      "Syncing Prisma database schemas directly to frontend query hooks ensures compile-time safety across the entire engineering stack.",
-      "> **💡 Bulletproof Codebases:** Brandex engineers 100% type-safe, maintainable software architectures. [Explore Our Case Studies](/case-studies)."
+      "Microservice boundaries should align with bounded business contexts to prevent distributed monolith anti-patterns."
     ]
   },
   {
-    id: "dark-mode-light-mode-contrast",
-    title: "Designing Flawless Light & Dark Mode Systems with High WCAG Contrast",
-    excerpt: "How to architect CSS custom property themes that maintain perfect visual balance, specular highlights, and readability across both light and dark modes.",
+    id: "pwa-offline-first-storage",
+    title: "Architecting Offline-First PWAs: IndexedDB, Service Workers & Background Sync",
+    excerpt: "How to build installable progressive web apps that function seamlessly in zero-connectivity environments.",
+    category: "Engineering",
+    date: "Apr 16, 2026",
+    readTime: "7 min read",
+    featured: false,
+    gradient: "from-accent/25 to-accent/10",
+    author: "Pavan Kumar S",
+    content: [
+      "Service worker cache storage combined with IndexedDB allows mission-critical portals to work without network lag."
+    ]
+  },
+  {
+    id: "micro-interactions-framer-motion",
+    title: "Fluid Micro-Interactions in React: Spring Physics & Framer Motion",
+    excerpt: "Crafting delightful, tactile user feedback states with natural spring physics that improve perceived performance.",
     category: "Design",
-    date: "May 20, 2026",
+    date: "Apr 12, 2026",
     readTime: "6 min read",
     featured: false,
     gradient: "from-accent/15 to-accent/5",
     author: "Sathvik Nagesh",
     content: [
-      "Inverting black and white is not dark mode. True high-quality theme architecture requires calibrated surface elevations, adjusted contrast ratios, and specialized translucent refraction tokens.",
-      "## 1. Surface Elevation Tokens",
-      "In dark themes, cards must become lighter as they elevate closer to the viewer, mimicking physical ambient light reflection.",
-      "## 2. Preserving Brand Hue Legibility",
-      "Calibrating brand colors to maintain identical perceived luminescence across white and dark surfaces ensures consistent brand authority.",
-      "> **💡 Product Design Excellence:** We build polished, Apple-grade user interfaces for ambitious modern brands. [View Sathvik's Design Profile](/sathvik)."
+      "Spring animations mimic real-world inertia, making digital interfaces feel alive and immediately responsive."
     ]
   },
   {
-    id: "automated-business-crm-sync",
-    title: "Eliminating Manual Spreadsheets: Custom CRM & ERP Integration Blueprints",
-    excerpt: "How automated two-way synchronization between web applications, HubSpot, Salesforce, and internal databases eliminates 20+ hours of manual data entry weekly.",
+    id: "api-rate-limiting-token-bucket",
+    title: "High-Performance API Rate Limiting: Token Bucket Algorithms in Redis",
+    excerpt: "Protecting public endpoints against DDoS and credential stuffing with sub-millisecond distributed rate limiters.",
     category: "Engineering",
-    date: "May 18, 2026",
+    date: "Apr 08, 2026",
     readTime: "8 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/10",
+    author: "Pavan Kumar S",
+    content: [
+      "Atomic Lua scripts in Redis allow token bucket algorithms to enforce sliding-window limits across multiple cluster nodes."
+    ]
+  },
+  {
+    id: "saas-churn-reduction-funnels",
+    title: "SaaS Onboarding Engineering: How to Cut Day-1 Churn by 45%",
+    excerpt: "Interactive checklists, contextual empty states, and milestone celebrations that accelerate time-to-value.",
+    category: "Business",
+    date: "Apr 04, 2026",
+    readTime: "7 min read",
+    featured: false,
+    gradient: "from-accent/15 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "Guiding new users to their first aha-moment within 3 minutes reduces drop-off and increases product activation."
+    ]
+  },
+  {
+    id: "docker-containerization-best-practices",
+    title: "Lightweight Docker Containerization for Node & React Microservices",
+    excerpt: "Multi-stage builds, alpine base images, and non-root security contexts that shrink container images by 85%.",
+    category: "Engineering",
+    date: "Mar 30, 2026",
+    readTime: "8 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/5",
+    author: "Pavan Kumar S",
+    content: [
+      "Multi-stage Docker builds ensure build dependencies are never shipped to production runtime containers."
+    ]
+  },
+  {
+    id: "typography-hierarchy-web-systems",
+    title: "Typographic Systems for High-Converting Web Platforms",
+    excerpt: "Font pairing, fluid clamp() scales, optical kerning, and line-height rhythm that elevate perceived brand value.",
+    category: "Design",
+    date: "Mar 26, 2026",
+    readTime: "6 min read",
+    featured: false,
+    gradient: "from-accent/25 to-accent/10",
+    author: "Sathvik Nagesh",
+    content: [
+      "Strict typographic scales establish immediate reading priority and build effortless user trust."
+    ]
+  },
+  {
+    id: "serverless-database-cold-starts",
+    title: "Solving Serverless Database Cold Starts: Edge Drivers & Connection Multiplexing",
+    excerpt: "Reducing AWS Lambda and Vercel edge latency with HTTP-based database drivers and persistent TCP pools.",
+    category: "Engineering",
+    date: "Mar 22, 2026",
+    readTime: "9 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/10",
+    author: "Pavan Kumar S",
+    content: [
+      "HTTP-based SQL connection drivers bypass TCP handshake delays on ephemeral serverless invocations."
+    ]
+  },
+  {
+    id: "customer-retention-automation",
+    title: "Automated Customer Retention Loops: Triggered Lifecycle Notifications",
+    excerpt: "Engaging users with automated SMS, WhatsApp webhooks, and transactional emails triggered by behavioral milestones.",
+    category: "Business",
+    date: "Mar 18, 2026",
+    readTime: "7 min read",
+    featured: false,
+    gradient: "from-accent/15 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "Contextual transactional notifications keep users informed and drive repeat platform engagement."
+    ]
+  },
+  {
+    id: "graphql-vs-rest-vs-trpc",
+    title: "API Architecture Selection: REST, GraphQL or tRPC in 2026?",
+    excerpt: "A comprehensive architectural comparison of data-fetching strategies for modern full-stack web applications.",
+    category: "Engineering",
+    date: "Mar 14, 2026",
+    readTime: "8 min read",
+    featured: false,
+    gradient: "from-accent/30 to-accent/15",
+    author: "Pavan Kumar S",
+    content: [
+      "Choosing the right API paradigm depends on team structure, client multiplicity, and type-sharing boundaries."
+    ]
+  },
+  {
+    id: "landing-page-wireframing-playbook",
+    title: "The 7-Step High-Converting Landing Page Wireframing Playbook",
+    excerpt: "Structuring social proof, value props, interactive calculators, and high-contrast CTA blocks.",
+    category: "Design",
+    date: "Mar 10, 2026",
+    readTime: "6 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "Wireframing conversion paths before visual styling prevents cognitive overload and keeps messaging tight."
+    ]
+  },
+  {
+    id: "kubernetes-horizontal-pod-autoscaling",
+    title: "Horizontal Pod Autoscaling (HPA) with Custom Metrics in Kubernetes",
+    excerpt: "Scaling microservice pods dynamically based on queue lag and request latency rather than raw CPU usage.",
+    category: "Engineering",
+    date: "Mar 06, 2026",
+    readTime: "9 min read",
     featured: false,
     gradient: "from-accent/25 to-accent/10",
     author: "Pavan Kumar S",
     content: [
-      "Manual copy-pasting between forms, spreadsheets, and CRMs creates human error and delays customer follow-ups by hours or days.",
-      "## 1. Event-Driven Webhook Synchronizers",
-      "Brandex engineers custom background bridges that capture inbound leads, score customer intent, and instantly route data to your CRM and dispatch Slack/WhatsApp notifications in real time.",
-      "## 2. Zero-Loss Transaction Logging",
-      "Every sync transaction is logged with automated retry hooks, ensuring data integrity even during third-party API outages.",
-      "> **💡 Scale Your Operations:** Turn manual bottlenecks into automated revenue. [Explore Automation Services](/services)."
+      "Autoscaling based on message queue depth ensures background workers scale before request backpressure builds up."
     ]
   },
   {
-    id: "future-of-web-applications-2026",
-    title: "The Future of Web Applications in 2026: Edge Compute, AI Workflows & Liquid Glass",
-    excerpt: "Key technology trends shaping enterprise web development: sub-second edge runtimes, embedded AI copilot workflows, and spatial liquid glass UI.",
+    id: "enterprise-contract-management-ux",
+    title: "Designing Frictionless Enterprise Contract & Intake Workflows",
+    excerpt: "How to simplify complex B2B discovery, quote generation, and signature intake for high-ticket service companies.",
+    category: "Business",
+    date: "Mar 02, 2026",
+    readTime: "7 min read",
+    featured: false,
+    gradient: "from-accent/15 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "Automating enterprise proposals with interactive scopes speeds up deal closing cycles by 3x."
+    ]
+  },
+  {
+    id: "cloudflare-workers-edge-computing",
+    title: "Building Microservices on Cloudflare Workers & V8 Isolates",
+    excerpt: "Zero cold-start compute at 300+ global edge locations with KV storage and durable objects.",
     category: "Engineering",
-    date: "May 16, 2026",
-    readTime: "9 min read",
-    featured: true,
+    date: "Feb 26, 2026",
+    readTime: "8 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/10",
+    author: "Pavan Kumar S",
+    content: [
+      "V8 isolates allow near-instantaneous execution without the virtual machine overhead of legacy serverless functions."
+    ]
+  },
+  {
+    id: "accessible-color-palettes-wcag",
+    title: "Engineering Accessible High-Contrast Color Palettes (WCAG AAA)",
+    excerpt: "Calculating perceptual luminance, APCA readability scores, and semantic color mappings across UI states.",
+    category: "Design",
+    date: "Feb 22, 2026",
+    readTime: "6 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "Accessible design improves readability for all users while meeting strict enterprise compliance guidelines."
+    ]
+  },
+  {
+    id: "database-sharding-horizontal-scaling",
+    title: "Database Sharding & Read Replicas: Scaling to 100M Records",
+    excerpt: "Partition keys, replication lag mitigation, and distributed transaction boundaries in relational databases.",
+    category: "Engineering",
+    date: "Feb 18, 2026",
+    readTime: "10 min read",
+    featured: false,
     gradient: "from-accent/30 to-accent/15",
     author: "Pavan Kumar S",
     content: [
-      "The web landscape in 2026 demands instant responsiveness, intelligent automation, and bespoke visual excellence. Generic template websites can no longer compete with custom engineered architectures.",
-      "## 1. Edge-First Infrastructure as Standard",
-      "Static hosting is giving way to dynamic edge computing where user sessions, personalization, and caching occur at global edge points.",
-      "## 2. Bespoke Engineering as the Ultimate Moat",
-      "Companies that invest in custom code ownership, sub-second performance, and tailored automated workflows outperform competitors reliant on generic no-code page builders.",
-      "> **💡 Build With Brandex:** Partner with our founding engineers to architect the next evolution of your digital presence. [Schedule a Strategy Call](/contact)."
+      "Consistent hashing and partition keys ensure even data distribution across database shards."
+    ]
+  },
+  {
+    id: "b2b-customer-discovery-interviews",
+    title: "How to Conduct High-Impact B2B Customer Discovery Interviews",
+    excerpt: "Uncovering hidden operational pain points, willingness to pay, and workflow bottlenecks before writing code.",
+    category: "Business",
+    date: "Feb 14, 2026",
+    readTime: "7 min read",
+    featured: false,
+    gradient: "from-accent/15 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "Asking open questions about manual daily bottlenecks reveals high-value automation opportunities."
+    ]
+  },
+  {
+    id: "react-memo-virtualization-performance",
+    title: "React Virtualization: Rendering 100,000 Rows at 60 FPS",
+    excerpt: "Windowing techniques, dynamic row height measurement, and memory optimization with TanStack Virtual.",
+    category: "Engineering",
+    date: "Feb 10, 2026",
+    readTime: "8 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/10",
+    author: "Pavan Kumar S",
+    content: [
+      "Virtualizing long DOM trees keeps memory usage constant regardless of dataset size."
+    ]
+  },
+  {
+    id: "brand-identity-engineering-studios",
+    title: "Engineering Studio Visual Identity: Beyond Generic Templates",
+    excerpt: "Crafting memorable developer studio branding with Swiss typography, crisp monochromatic accents, and tactile depth.",
+    category: "Design",
+    date: "Feb 06, 2026",
+    readTime: "6 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "A distinctive visual language communicates technical precision and engineering authority."
+    ]
+  },
+  {
+    id: "security-auditing-owasp-top-10",
+    title: "Hardening Modern Web Apps: OWASP Top 10 Mitigation Strategies",
+    excerpt: "CSRF prevention, Content Security Policy (CSP) headers, input sanitization, and automated dependency vulnerability scans.",
+    category: "Engineering",
+    date: "Feb 02, 2026",
+    readTime: "9 min read",
+    featured: false,
+    gradient: "from-accent/25 to-accent/10",
+    author: "Pavan Kumar S",
+    content: [
+      "Strict Content Security Policy headers and parameterized queries neutralize the vast majority of web vulnerabilities."
+    ]
+  },
+  {
+    id: "software-pricing-models-value-based",
+    title: "Value-Based Pricing for Bespoke Software Engineering Studios",
+    excerpt: "Transitioning from hourly billing to value-based engineering sprints tied to measurable business ROI.",
+    category: "Business",
+    date: "Jan 28, 2026",
+    readTime: "8 min read",
+    featured: false,
+    gradient: "from-accent/15 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "Aligning project pricing with revenue impact creates long-term win-win partnerships with enterprise clients."
+    ]
+  },
+  {
+    id: "graphql-schema-stitching-federation",
+    title: "GraphQL Federation at Scale: Composing Unified Enterprise Graphs",
+    excerpt: "Subgraphs, entity resolvers, and gateway caching for distributed microservice architectures.",
+    category: "Engineering",
+    date: "Jan 24, 2026",
+    readTime: "8 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/10",
+    author: "Pavan Kumar S",
+    content: [
+      "Federated schemas allow autonomous squads to maintain microservice APIs while exposing a unified gateway."
+    ]
+  },
+  {
+    id: "interactive-form-design-completion-rates",
+    title: "Interactive Form UX: How Inline Validation Boosts Completion by 38%",
+    excerpt: "Real-time field validation, smart autofill, and input masking that eliminates form frustration.",
+    category: "Design",
+    date: "Jan 20, 2026",
+    readTime: "6 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "Immediate positive feedback on input completion keeps users motivated through long lead forms."
+    ]
+  },
+  {
+    id: "zero-trust-cloud-network-architecture",
+    title: "Implementing Zero-Trust Cloud Architecture in Kubernetes & AWS",
+    excerpt: "mTLS service meshes, identity-aware proxies, and least-privilege IAM policies for microservices.",
+    category: "Engineering",
+    date: "Jan 16, 2026",
+    readTime: "9 min read",
+    featured: false,
+    gradient: "from-accent/25 to-accent/10",
+    author: "Pavan Kumar S",
+    content: [
+      "Zero-trust security assumes every service boundary is hostile, enforcing mutual TLS authentication on all internal calls."
+    ]
+  },
+  {
+    id: "client-onboarding-automation-systems",
+    title: "Automating Client Onboarding: From Signed Contract to Sprint Kickoff",
+    excerpt: "Automated Slack channel provisioning, GitHub repo scaffolding, and invoice dispatch in under 60 seconds.",
+    category: "Business",
+    date: "Jan 12, 2026",
+    readTime: "7 min read",
+    featured: false,
+    gradient: "from-accent/15 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "Instant automated onboarding establishes professional confidence from day one."
+    ]
+  },
+  {
+    id: "web-vitals-inp-optimization-react",
+    title: "Mastering Interaction to Next Paint (INP): Profiling React 19 Transitions",
+    excerpt: "Using useTransition, startTransition, and requestIdleCallback to eliminate long JavaScript execution tasks.",
+    category: "Engineering",
+    date: "Jan 08, 2026",
+    readTime: "8 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/10",
+    author: "Pavan Kumar S",
+    content: [
+      "Splitting expensive state updates across React concurrent transitions keeps the browser responsive to user taps."
+    ]
+  },
+  {
+    id: "mobile-first-responsive-canvas-layouts",
+    title: "Mobile-First Canvas Architecture: Perfect Touch Targets & Spatial Density",
+    excerpt: "Ensuring 48px minimum touch targets, thumb-zone ergonomics, and fluid viewport typography.",
+    category: "Design",
+    date: "Jan 04, 2026",
+    readTime: "6 min read",
+    featured: false,
+    gradient: "from-accent/20 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "Mobile interfaces require ergonomic placement of primary action anchors within natural thumb range."
+    ]
+  },
+  {
+    id: "headless-cms-content-modeling-nextjs",
+    title: "Headless CMS Architecture: Structured Content Modeling for High-Traffic Hubs",
+    excerpt: "Draft previews, on-demand ISR revalidation, and asset CDN pipelines with Sanity and Next.js.",
+    category: "Engineering",
+    date: "Dec 30, 2025",
+    readTime: "8 min read",
+    featured: false,
+    gradient: "from-accent/30 to-accent/15",
+    author: "Pavan Kumar S",
+    content: [
+      "On-demand incremental static regeneration allows editorial teams to publish instant updates with zero rebuild downtime."
+    ]
+  },
+  {
+    id: "saas-expansion-revenue-strategies",
+    title: "Engineering Expansion Revenue: Usage-Based Billing & Feature Add-ons",
+    excerpt: "Designing self-service upgrade paths and consumption meters that increase Net Revenue Retention (NRR).",
+    category: "Business",
+    date: "Dec 26, 2025",
+    readTime: "7 min read",
+    featured: false,
+    gradient: "from-accent/15 to-accent/5",
+    author: "Sathvik Nagesh",
+    content: [
+      "Transparent usage tracking builds buyer trust and naturally expands account value as customer businesses grow."
+    ]
+  },
+  {
+    id: "building-the-brandex-ecosystem",
+    title: "Building the Brandex Ecosystem: Software Studio, Education & Builder Community",
+    excerpt: "The founding story and architectural blueprint behind Brandex: uniting high-performance client engineering, open developer tooling, and statewide digital education.",
+    category: "Business",
+    date: "Dec 22, 2025",
+    readTime: "10 min read",
+    featured: true,
+    gradient: "from-accent/30 to-accent/10",
+    author: "Pavan Kumar S",
+    content: [
+      "Brandex was established with a singular engineering commitment: to eliminate generic templates and deliver bespoke, high-performance software systems.",
+      "## 1. The Engineering-Led Studio",
+      "We design and build mission-critical web platforms, custom multi-tenant applications, and automated workflow pipelines.",
+      "## 2. Brandex Education & KSEEB Digital Learning",
+      "Through our digital education initiative, we provide distraction-free classroom video lessons, chapter quizzes, and smartboard tools aligned with the Karnataka State Board syllabus.",
+      "## 3. The Builder & Founder Community Network",
+      "Our community connects 500+ software developers and startup founders in Bangalore and beyond through live meetups, peer reviews, and open-source sprints.",
+      "> **Join the Ecosystem:** [Explore Our Services](/services), [Discover Community Sprints](/community), or [Launch Digital Learning](/education)."
     ]
   }
 ];
-
-// Helper to get total post count or query by author/category
-export function getPostsByAuthor(author: string) {
-  return blogPosts.filter((p) => p.author === author);
-}
-
-export function getPostsByCategory(category: string) {
-  return blogPosts.filter((p) => p.category === category);
-}

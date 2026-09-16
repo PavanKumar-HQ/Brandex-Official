@@ -22,17 +22,23 @@ export default function CommunityGuidelinesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f8fafd] py-12 sm:py-16 selection:bg-[#4f47e6] selection:text-white pt-10">
+    <div className="min-h-screen bg-[#f8fafd] pt-24 pb-16 lg:pt-28 lg:pb-20 selection:bg-[#4f47e6] selection:text-white">
       <div className="w-full max-w-[1000px] mx-auto px-4 sm:px-8 space-y-8">
         
         {/* Navigation */}
-        <div>
+        <div className="flex items-center gap-3">
           <Link
             to="/community"
             className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#4f47e6] transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Community Hub</span>
+          </Link>
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#4f47e6] transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs"
+          >
+            <span>Main Website</span>
           </Link>
         </div>
 
