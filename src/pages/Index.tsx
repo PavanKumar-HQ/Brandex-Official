@@ -1,5 +1,6 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Hero from "@/components/home/Hero";
+import FeatureStickerBanner from "@/components/home/FeatureStickerBanner";
 import FeatureShowcase from "@/components/home/FeatureShowcase";
 import LogoTicker from "@/components/home/LogoTicker";
 import ServicesPreview from "@/components/home/ServicesPreview";
@@ -19,6 +20,7 @@ const Index = () => {
       <div id="hero">
         <Hero />
       </div>
+      <FeatureStickerBanner />
       <div id="features">
         <FeatureShowcase />
       </div>
