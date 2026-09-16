@@ -591,17 +591,28 @@ export default function ProductLandingPage() {
           </div>
 
           {/* Continuous Marquee Container with fade edge masks */}
-          <div className="relative w-full overflow-hidden">
+          <div className="relative w-full overflow-hidden group">
             {/* Left & Right Gradient Shadows */}
-            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-36 bg-gradient-to-r from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-36 bg-gradient-to-l from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
 
-            {/* Scrolling Track */}
-            <div className="flex gap-6 animate-[marquee_35s_linear_infinite] hover:[animation-play-state:paused] w-max py-2">
-              {[...testimonials, ...testimonials].map((t, idx) => (
+            {/* Scrolling Track with Framer Motion infinite loop */}
+            <motion.div
+              className="flex gap-6 w-max py-2 select-none"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 45,
+                  ease: "linear",
+                },
+              }}
+            >
+              {[...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, idx) => (
                 <div
                   key={idx}
-                  className="w-[380px] sm:w-[420px] p-7 bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-all flex flex-col justify-between space-y-5 shrink-0"
+                  className="w-[380px] sm:w-[420px] p-7 bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md hover:border-indigo-200 transition-all flex flex-col justify-between space-y-5 shrink-0"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center gap-1 text-amber-400">
@@ -615,7 +626,7 @@ export default function ProductLandingPage() {
                   </div>
 
                   <div className="pt-3 border-t border-slate-100 flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-sm shadow-xs">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-600 to-violet-600 text-white font-bold flex items-center justify-center text-sm shadow-xs">
                       {t.name.charAt(0)}
                     </div>
                     <div>
@@ -627,7 +638,7 @@ export default function ProductLandingPage() {
                   </div>
                 </div>
               ))}
-            </div>
+            </motion.div>
           </div>
 
         </div>

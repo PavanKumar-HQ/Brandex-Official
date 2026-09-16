@@ -34,8 +34,8 @@ export default function CommunityNav() {
 
   return (
     <div className="w-full bg-white/80 backdrop-blur-md border-b border-slate-200/80 sticky top-16 z-30 shadow-2xs">
-      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
-        <div className="flex items-center gap-1.5 overflow-x-auto py-2.5 no-scrollbar">
+      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative">
+        <div className="flex items-center gap-1.5 overflow-x-auto py-2.5 no-scrollbar scroll-smooth">
           <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 mr-2 shrink-0 hidden sm:inline">
             Community Portals:
           </span>
@@ -46,7 +46,7 @@ export default function CommunityNav() {
               <Link
                 key={tab.href}
                 to={tab.href}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
                   isActive
                     ? "bg-[#4f47e6] text-white shadow-2xs"
                     : "text-slate-600 hover:text-slate-950 hover:bg-slate-100"
