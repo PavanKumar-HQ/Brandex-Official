@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Menu,
   X,
   ArrowRight,
+  ChevronDown,
   Search,
   Users,
   GraduationCap,
-  Sparkles,
-  ArrowUpRight,
   Code2,
   Calendar,
   Building2,
@@ -20,6 +19,8 @@ import {
   BookOpen,
   Tv,
   Layers,
+  Sparkles,
+  ArrowUpRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -28,64 +29,157 @@ interface NavItem {
   label: string;
   href: string;
   sectionId?: string;
-  icon?: any;
+  hasDropdown?: "community" | "education";
 }
 
-const mainNavItems: NavItem[] = [
+const navItems: NavItem[] = [
   { label: "Home", href: "/", sectionId: "hero" },
   { label: "Services", href: "/services", sectionId: "services" },
   { label: "Case Studies", href: "/case-studies", sectionId: "case-studies" },
-  { label: "Community", href: "/community" },
-  { label: "Education", href: "/education" },
+  { label: "Community", href: "/community", hasDropdown: "community" },
+  { label: "Education", href: "/education", hasDropdown: "education" },
   { label: "Pricing", href: "/#pricing", sectionId: "pricing" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
-const communityNavItems: NavItem[] = [
-  { label: "Overview", href: "/community", icon: Users },
-  { label: "Projects", href: "/community/projects", icon: Code2 },
-  { label: "Events", href: "/community/events", icon: Calendar },
-  { label: "Training", href: "/community/training", icon: GraduationCap },
-  { label: "College Partnership", href: "/community/college-partnership", icon: Building2 },
-  { label: "Stories", href: "/community/stories", icon: MessageSquare },
-  { label: "Careers", href: "/community/careers", icon: Zap },
-  { label: "Media", href: "/media", icon: Share2 },
-  { label: "Ambassador", href: "/community/ambassador", icon: Award },
-  { label: "Status", href: "/community/status", icon: ShieldCheck },
-  { label: "Guidelines", href: "/community/guidelines", icon: BookOpen },
+const communityDropdownSections = [
+  {
+    title: "Core Portals",
+    items: [
+      {
+        title: "Community Overview",
+        desc: "Builders guild, member perks & syncs",
+        href: "/community",
+        icon: Users,
+      },
+      {
+        title: "Open-Source Projects",
+        desc: "Active repos & contribution tracks",
+        href: "/community/projects",
+        icon: Code2,
+      },
+      {
+        title: "Meetups & Sprints",
+        desc: "Hackathons, Bangalore tech circles",
+        href: "/community/events",
+        icon: Calendar,
+      },
+      {
+        title: "Training Bootcamps",
+        desc: "Hands-on engineering curriculum",
+        href: "/community/training",
+        icon: GraduationCap,
+      },
+      {
+        title: "College Partnership",
+        desc: "School & university innovation tracks",
+        href: "/community/college-partnership",
+        icon: Building2,
+      },
+    ],
+  },
+  {
+    title: "Ecosystem & Guild",
+    items: [
+      {
+        title: "Builder Stories",
+        desc: "Architecture case studies & interviews",
+        href: "/community/stories",
+        icon: MessageSquare,
+      },
+      {
+        title: "Careers & Roles",
+        desc: "Open positions at Brandex HQ",
+        href: "/community/careers",
+        icon: Zap,
+      },
+      {
+        title: "Media Vault",
+        desc: "Summit keynotes & visual archives",
+        href: "/media",
+        icon: Share2,
+      },
+      {
+        title: "Brand Ambassador",
+        desc: "Lead campus tech chapters",
+        href: "/community/ambassador",
+        icon: Award,
+      },
+      {
+        title: "Application Tracker",
+        desc: "Live status for cohorts & roles",
+        href: "/community/status",
+        icon: ShieldCheck,
+      },
+      {
+        title: "Community Guidelines",
+        desc: "Conduct rules & security policy",
+        href: "/community/guidelines",
+        icon: BookOpen,
+      },
+    ],
+  },
 ];
 
-const educationNavItems: NavItem[] = [
-  { label: "Overview", href: "/education", icon: GraduationCap },
-  { label: "Classes 6–10 Syllabus", href: "/education/explore", icon: BookOpen },
-  { label: "Live Classroom", href: "/education/classroom", icon: Tv },
-  { label: "Subject Studio", href: "/education/studio/class-10/science", icon: Layers },
-  { label: "Educator Login", href: "/education/login", icon: Award },
-  { label: "Admin Console", href: "/education/admin", icon: ShieldCheck },
+const educationDropdownSections = [
+  {
+    title: "Curriculum & Learning",
+    items: [
+      {
+        title: "Education Overview",
+        desc: "State board digital curriculum hub",
+        href: "/education",
+        icon: GraduationCap,
+      },
+      {
+        title: "Classes 6–10 Syllabus",
+        desc: "Chapter-wise video lessons & quizzes",
+        href: "/education/explore",
+        icon: BookOpen,
+      },
+      {
+        title: "Live Classroom Player",
+        desc: "Smartboard full-screen video theater",
+        href: "/education/classroom",
+        icon: Tv,
+      },
+      {
+        title: "Subject Studio",
+        desc: "Interactive topic playlist workspace",
+        href: "/education/studio/class-10/science",
+        icon: Layers,
+      },
+    ],
+  },
+  {
+    title: "Educator Portal",
+    items: [
+      {
+        title: "Educator Login",
+        desc: "Teacher dashboard & student telemetry",
+        href: "/education/login",
+        icon: Award,
+      },
+      {
+        title: "Content Management Admin",
+        desc: "Video lesson catalog & quiz management",
+        href: "/education/admin",
+        icon: ShieldCheck,
+      },
+    ],
+  },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("hero");
+  const [activeDropdown, setActiveDropdown] = useState<"community" | "education" | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<"community" | "education" | null>(null);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { pathname } = useLocation();
-
-  const isCommunity =
-    pathname.startsWith("/community") ||
-    pathname === "/projects" ||
-    pathname === "/careers" ||
-    pathname === "/stories" ||
-    pathname === "/status" ||
-    pathname === "/ambassador";
-
-  const isEducation =
-    pathname.startsWith("/education") ||
-    pathname === "/explore" ||
-    pathname === "/studio" ||
-    pathname === "/login" ||
-    pathname === "/admin";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -124,7 +218,23 @@ export default function Navbar() {
 
   useEffect(() => {
     setOpen(false);
+    setActiveDropdown(null);
   }, [pathname]);
+
+  const handleMouseEnter = (type?: "community" | "education") => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    if (type) {
+      setActiveDropdown(type);
+    } else {
+      setActiveDropdown(null);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 200);
+  };
 
   const handleNavClick = (item: NavItem, e: React.MouseEvent) => {
     if (pathname === "/" && item.sectionId) {
@@ -139,12 +249,8 @@ export default function Navbar() {
   };
 
   const isItemActive = (item: NavItem) => {
-    if (isCommunity) {
-      return pathname === item.href || (item.href !== "/community" && pathname.startsWith(item.href));
-    }
-    if (isEducation) {
-      return pathname === item.href || (item.href !== "/education" && pathname.startsWith(item.href));
-    }
+    if (item.href === "/community" && pathname.startsWith("/community")) return true;
+    if (item.href === "/education" && pathname.startsWith("/education")) return true;
     if (pathname === "/" && item.sectionId) {
       if (item.sectionId === "hero" && (activeSection === "hero" || activeSection === "features" || activeSection === "clients")) return true;
       if (item.sectionId === "services" && activeSection === "services") return true;
@@ -156,163 +262,89 @@ export default function Navbar() {
     return pathname === item.href;
   };
 
-  const currentNavItems = isCommunity
-    ? communityNavItems
-    : isEducation
-    ? educationNavItems
-    : mainNavItems;
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled || isCommunity || isEducation
-          ? "liquid-glass border-b border-slate-200/70 bg-white/90 dark:bg-slate-950/90 py-3 backdrop-blur-xl shadow-2xs"
+        scrolled || activeDropdown
+          ? "liquid-glass border-b border-slate-200/70 bg-white/95 dark:bg-slate-950/95 py-3 backdrop-blur-xl shadow-2xs"
           : "bg-transparent py-4 md:py-5"
       }`}
+      onMouseLeave={handleMouseLeave}
     >
-      <div className="w-full max-w-[1720px] mx-auto flex items-center justify-between px-4 sm:px-8 lg:px-12 xl:px-16 gap-4">
+      <div className="w-full max-w-[1720px] mx-auto flex items-center justify-between px-4 sm:px-8 lg:px-12 xl:px-16 relative">
         
-        {/* Brand Logo with dynamic module badge */}
-        <div className="flex items-center gap-2.5 shrink-0">
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-xl bg-[#4f47e6] flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition-transform duration-200">
-              <img
-                src="/logo_nobg.png"
-                alt="Brandex Digital"
-                className="h-full w-full object-contain filter brightness-0 invert"
-              />
-            </div>
-            <span className="font-display text-lg font-bold tracking-tight text-slate-900 group-hover:text-[#4f47e6] transition-colors">
-              Brandex<span className="text-[#4f47e6]">.</span>
-            </span>
-          </Link>
+        {/* Brand Logo */}
+        <Link to="/" className="flex items-center gap-2.5 group shrink-0">
+          <div className="w-8 h-8 rounded-xl bg-[#4f47e6] flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition-transform duration-200">
+            <img
+              src="/logo_nobg.png"
+              alt="Brandex Digital"
+              className="h-full w-full object-contain filter brightness-0 invert"
+            />
+          </div>
+          <span className="font-display text-lg font-bold tracking-tight text-slate-900 group-hover:text-[#4f47e6] transition-colors">
+            Brandex<span className="text-[#4f47e6]">.</span>
+          </span>
+        </Link>
 
-          {/* Context Tag Pill */}
-          {isCommunity && (
-            <Link
-              to="/community"
-              className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-50 border border-indigo-200/80 text-[#4f47e6] text-[11px] font-mono font-bold tracking-tight shadow-2xs hover:bg-indigo-100 transition-colors"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-              Community
-            </Link>
-          )}
-
-          {isEducation && (
-            <Link
-              to="/education"
-              className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200/80 text-blue-600 text-[11px] font-mono font-bold tracking-tight shadow-2xs hover:bg-blue-100 transition-colors"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
-              Education
-            </Link>
-          )}
-        </div>
-
-        {/* Center Desktop Navigation - Single, Clean, Unified */}
-        <nav className="hidden lg:flex items-center gap-1 liquid-glass-pill px-2.5 py-1.5 rounded-full overflow-x-auto no-scrollbar max-w-[850px]">
-          {currentNavItems.map((item) => {
+        {/* Desktop Navigation Pill Bar */}
+        <nav className="hidden lg:flex items-center gap-1 liquid-glass-pill px-3 py-1.5 rounded-full">
+          {navItems.map((item) => {
             const active = isItemActive(item);
-            const Icon = item.icon;
+            const isDropdownOpen = activeDropdown === item.hasDropdown;
             return (
-              <Link
+              <div
                 key={item.label}
-                to={item.href}
-                onClick={(e) => handleNavClick(item, e)}
-                className={`relative flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold tracking-wide transition-all duration-200 rounded-full z-10 whitespace-nowrap ${
-                  active
-                    ? "text-[#4f47e6] font-bold"
-                    : "text-slate-600 hover:text-slate-950 hover:bg-white/60"
-                }`}
+                className="relative"
+                onMouseEnter={() => handleMouseEnter(item.hasDropdown)}
               >
-                {active && (
-                  <motion.div
-                    layoutId="activeNavPill"
-                    className="absolute inset-0 bg-white border border-slate-200/80 rounded-full -z-10 shadow-2xs"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-                {Icon && <Icon size={13} className={active ? "text-[#4f47e6]" : "opacity-60"} />}
-                <span>{item.label}</span>
-              </Link>
+                <Link
+                  to={item.href}
+                  onClick={(e) => handleNavClick(item, e)}
+                  className={`relative flex items-center gap-1 px-3.5 py-1.5 text-xs font-semibold tracking-wide transition-all duration-200 rounded-full z-10 ${
+                    active || isDropdownOpen
+                      ? "text-[#4f47e6] font-bold"
+                      : "text-slate-600 hover:text-slate-950 hover:bg-white/60"
+                  }`}
+                >
+                  {active && (
+                    <motion.div
+                      layoutId="activeNavPill"
+                      className="absolute inset-0 bg-white border border-slate-200/80 rounded-full -z-10 shadow-2xs"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span>{item.label}</span>
+                  {item.hasDropdown && (
+                    <ChevronDown
+                      size={12}
+                      className={`transition-transform duration-200 ${
+                        isDropdownOpen ? "rotate-180 text-[#4f47e6]" : "opacity-50"
+                      }`}
+                    />
+                  )}
+                </Link>
+              </div>
             );
           })}
         </nav>
 
-        {/* Right Action Section */}
-        <div className="hidden md:flex items-center gap-2.5 shrink-0">
-          {isCommunity && (
-            <>
-              <Link
-                to="/community/search"
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-white text-slate-700 hover:text-slate-900 text-xs font-semibold border border-slate-200/80 shadow-2xs transition-all"
-                title="Search Community"
-              >
-                <Search size={13} className="text-slate-500" />
-                <span>Search</span>
-              </Link>
-              <Button
-                asChild
-                size="sm"
-                variant="outline"
-                className="rounded-full px-4 h-9 text-xs font-semibold border-slate-200 hover:bg-white transition-all"
-              >
-                <Link to="/" className="flex items-center gap-1">
-                  <span>Main Site</span>
-                  <ArrowUpRight size={12} />
-                </Link>
-              </Button>
-            </>
-          )}
-
-          {isEducation && (
-            <>
-              <Link
-                to="/education/explore"
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-white text-slate-700 hover:text-slate-900 text-xs font-semibold border border-slate-200/80 shadow-2xs transition-all"
-                title="Search Curriculum"
-              >
-                <Search size={13} className="text-slate-500" />
-                <span>Explore</span>
-              </Link>
-              <Button
-                asChild
-                size="sm"
-                variant="outline"
-                className="rounded-full px-4 h-9 text-xs font-semibold border-slate-200 hover:bg-white transition-all"
-              >
-                <Link to="/" className="flex items-center gap-1">
-                  <span>Main Site</span>
-                  <ArrowUpRight size={12} />
-                </Link>
-              </Button>
-            </>
-          )}
-
-          {!isCommunity && !isEducation && (
-            <Button
-              asChild
-              size="sm"
-              className="bg-[#4f47e6] hover:bg-[#4338ca] text-white font-semibold shadow-[0_4px_16px_rgba(79,71,230,0.3)] hover:shadow-[0_6px_22px_rgba(79,71,230,0.4)] rounded-full px-5 h-9 text-xs transition-all duration-200 hover:-translate-y-0.5"
-            >
-              <Link to="/contact" className="flex items-center gap-1.5">
-                <span>Start a Project</span>
-                <ArrowRight size={13} />
-              </Link>
-            </Button>
-          )}
+        {/* Right Action Button */}
+        <div className="hidden md:flex items-center gap-3 shrink-0">
+          <Button
+            asChild
+            size="sm"
+            className="bg-[#4f47e6] hover:bg-[#4338ca] text-white font-semibold shadow-[0_4px_16px_rgba(79,71,230,0.3)] hover:shadow-[0_6px_22px_rgba(79,71,230,0.4)] rounded-full px-5 h-9 text-xs transition-all duration-200 hover:-translate-y-0.5"
+          >
+            <Link to="/contact" className="flex items-center gap-1.5">
+              <span>Start a Project</span>
+              <ArrowRight size={13} />
+            </Link>
+          </Button>
         </div>
 
         {/* Mobile Menu Trigger */}
-        <div className="lg:hidden flex items-center gap-2 shrink-0">
-          {isCommunity && (
-            <Link
-              to="/community/search"
-              className="p-2 text-slate-700 hover:text-[#4f47e6] liquid-glass-pill rounded-xl"
-            >
-              <Search size={17} />
-            </Link>
-          )}
+        <div className="lg:hidden flex items-center gap-2">
           <button
             className="p-2 text-slate-800 hover:text-[#4f47e6] liquid-glass-pill rounded-xl"
             onClick={() => setOpen(!open)}
@@ -323,7 +355,155 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* =========================================================
+          DESKTOP FLYOUT MEGA-DROPDOWN: COMMUNITY
+         ========================================================= */}
+      <AnimatePresence>
+        {activeDropdown === "community" && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 6, scale: 0.98 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            onMouseEnter={() => handleMouseEnter("community")}
+            onMouseLeave={handleMouseLeave}
+            className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[720px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl rounded-3xl border border-slate-200/90 dark:border-slate-800/90 shadow-2xl p-6 z-50 overflow-hidden"
+          >
+            <div className="grid grid-cols-2 gap-6">
+              {communityDropdownSections.map((section, idx) => (
+                <div key={idx} className="space-y-2">
+                  <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 px-2 pb-1 border-b border-slate-100 dark:border-slate-800">
+                    {section.title}
+                  </div>
+                  <div className="space-y-1">
+                    {section.items.map((subItem) => {
+                      const Icon = subItem.icon;
+                      const isSubActive = pathname === subItem.href;
+                      return (
+                        <Link
+                          key={subItem.title}
+                          to={subItem.href}
+                          onClick={() => setActiveDropdown(null)}
+                          className={`flex items-start gap-3 p-2.5 rounded-2xl transition-all group ${
+                            isSubActive
+                              ? "bg-indigo-50/90 text-[#4f47e6]"
+                              : "hover:bg-slate-50 dark:hover:bg-slate-800/60"
+                          }`}
+                        >
+                          <div className="w-8 h-8 rounded-xl bg-indigo-50 text-[#4f47e6] group-hover:bg-[#4f47e6] group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs mt-0.5">
+                            <Icon size={15} />
+                          </div>
+                          <div className="min-w-0">
+                            <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-[#4f47e6] transition-colors leading-tight">
+                              {subItem.title}
+                            </div>
+                            <div className="text-[11px] text-slate-500 font-normal truncate mt-0.5">
+                              {subItem.desc}
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Dropdown Footer Action */}
+            <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <span className="text-[11px] text-slate-500 font-medium">
+                Builders & Founders Club • 1,400+ Active Members
+              </span>
+              <Link
+                to="/community/search"
+                onClick={() => setActiveDropdown(null)}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-indigo-50 text-[#4f47e6] hover:bg-[#4f47e6] hover:text-white text-xs font-bold transition-all shadow-2xs"
+              >
+                <Search size={12} />
+                <span>Search Community</span>
+                <ArrowRight size={12} />
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* =========================================================
+          DESKTOP FLYOUT MEGA-DROPDOWN: EDUCATION
+         ========================================================= */}
+      <AnimatePresence>
+        {activeDropdown === "education" && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 6, scale: 0.98 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            onMouseEnter={() => handleMouseEnter("education")}
+            onMouseLeave={handleMouseLeave}
+            className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[680px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl rounded-3xl border border-slate-200/90 dark:border-slate-800/90 shadow-2xl p-6 z-50 overflow-hidden"
+          >
+            <div className="grid grid-cols-2 gap-6">
+              {educationDropdownSections.map((section, idx) => (
+                <div key={idx} className="space-y-2">
+                  <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 px-2 pb-1 border-b border-slate-100 dark:border-slate-800">
+                    {section.title}
+                  </div>
+                  <div className="space-y-1">
+                    {section.items.map((subItem) => {
+                      const Icon = subItem.icon;
+                      const isSubActive = pathname === subItem.href;
+                      return (
+                        <Link
+                          key={subItem.title}
+                          to={subItem.href}
+                          onClick={() => setActiveDropdown(null)}
+                          className={`flex items-start gap-3 p-2.5 rounded-2xl transition-all group ${
+                            isSubActive
+                              ? "bg-blue-50/90 text-blue-600"
+                              : "hover:bg-slate-50 dark:hover:bg-slate-800/60"
+                          }`}
+                        >
+                          <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs mt-0.5">
+                            <Icon size={15} />
+                          </div>
+                          <div className="min-w-0">
+                            <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors leading-tight">
+                              {subItem.title}
+                            </div>
+                            <div className="text-[11px] text-slate-500 font-normal truncate mt-0.5">
+                              {subItem.desc}
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Dropdown Footer Action */}
+            <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <span className="text-[11px] text-slate-500 font-medium">
+                Karnataka State Board Mapped Curriculum
+              </span>
+              <Link
+                to="/education/explore"
+                onClick={() => setActiveDropdown(null)}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white text-xs font-bold transition-all shadow-2xs"
+              >
+                <BookOpen size={12} />
+                <span>Explore Full Syllabus</span>
+                <ArrowRight size={12} />
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* =========================================================
+          MOBILE DRAWER NAVIGATION
+         ========================================================= */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -331,21 +511,97 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="lg:hidden fixed inset-x-0 top-[3.75rem] liquid-glass border-b border-slate-200 shadow-xl p-6 overflow-y-auto max-h-[calc(100vh-3.75rem)]"
+            className="lg:hidden fixed inset-x-0 top-[3.75rem] liquid-glass border-b border-slate-200 shadow-xl p-5 overflow-y-auto max-h-[calc(100vh-3.75rem)]"
           >
-            <div className="flex flex-col space-y-1.5">
-              <div className="text-[11px] font-mono tracking-widest text-[#4f47e6] uppercase mb-2 font-bold flex items-center justify-between">
-                <span>{isCommunity ? "Community Portals" : isEducation ? "Education Portals" : "Navigation"}</span>
-                {(isCommunity || isEducation) && (
-                  <Link to="/" onClick={() => setOpen(false)} className="text-[10px] text-slate-500 hover:underline">
-                    ← Main Website
-                  </Link>
-                )}
+            <div className="flex flex-col space-y-2">
+              <div className="text-[11px] font-mono tracking-widest text-[#4f47e6] uppercase mb-1 font-bold">
+                Navigation
               </div>
 
-              {currentNavItems.map((item) => {
+              {navItems.map((item) => {
                 const active = isItemActive(item);
-                const Icon = item.icon;
+
+                // For dropdown items in mobile, render collapsible groups
+                if (item.hasDropdown === "community") {
+                  const isExpanded = mobileExpanded === "community";
+                  return (
+                    <div key={item.label} className="rounded-xl overflow-hidden border border-slate-200/70 bg-white/60">
+                      <div className="flex items-center justify-between p-3">
+                        <Link
+                          to="/community"
+                          onClick={() => setOpen(false)}
+                          className="font-bold text-sm text-slate-900 flex items-center gap-2"
+                        >
+                          <Users size={16} className="text-[#4f47e6]" />
+                          <span>Community Hub</span>
+                        </Link>
+                        <button
+                          onClick={() => setMobileExpanded(isExpanded ? null : "community")}
+                          className="p-1 text-slate-500 hover:text-slate-900"
+                        >
+                          <ChevronDown size={16} className={`transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+                        </button>
+                      </div>
+
+                      {isExpanded && (
+                        <div className="p-2 pt-0 space-y-1 bg-slate-50/50 border-t border-slate-100">
+                          {communityDropdownSections.flatMap((s) => s.items).map((sub) => (
+                            <Link
+                              key={sub.title}
+                              to={sub.href}
+                              onClick={() => setOpen(false)}
+                              className="flex items-center justify-between p-2 rounded-lg text-xs font-semibold text-slate-700 hover:text-[#4f47e6] hover:bg-white"
+                            >
+                              <span>{sub.title}</span>
+                              <ArrowRight size={12} className="opacity-40" />
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                if (item.hasDropdown === "education") {
+                  const isExpanded = mobileExpanded === "education";
+                  return (
+                    <div key={item.label} className="rounded-xl overflow-hidden border border-slate-200/70 bg-white/60">
+                      <div className="flex items-center justify-between p-3">
+                        <Link
+                          to="/education"
+                          onClick={() => setOpen(false)}
+                          className="font-bold text-sm text-slate-900 flex items-center gap-2"
+                        >
+                          <GraduationCap size={16} className="text-blue-600" />
+                          <span>Education Hub</span>
+                        </Link>
+                        <button
+                          onClick={() => setMobileExpanded(isExpanded ? null : "education")}
+                          className="p-1 text-slate-500 hover:text-slate-900"
+                        >
+                          <ChevronDown size={16} className={`transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+                        </button>
+                      </div>
+
+                      {isExpanded && (
+                        <div className="p-2 pt-0 space-y-1 bg-slate-50/50 border-t border-slate-100">
+                          {educationDropdownSections.flatMap((s) => s.items).map((sub) => (
+                            <Link
+                              key={sub.title}
+                              to={sub.href}
+                              onClick={() => setOpen(false)}
+                              className="flex items-center justify-between p-2 rounded-lg text-xs font-semibold text-slate-700 hover:text-blue-600 hover:bg-white"
+                            >
+                              <span>{sub.title}</span>
+                              <ArrowRight size={12} className="opacity-40" />
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
                 return (
                   <Link
                     key={item.label}
@@ -360,36 +616,21 @@ export default function Navbar() {
                         : "text-slate-700 hover:text-slate-950 hover:bg-white/50"
                     }`}
                   >
-                    <div className="flex items-center gap-2.5">
-                      {Icon && <Icon size={16} className={active ? "text-[#4f47e6]" : "opacity-60"} />}
-                      <span>{item.label}</span>
-                    </div>
+                    <span>{item.label}</span>
                     <ArrowRight size={14} className={active ? "text-[#4f47e6]" : "opacity-40"} />
                   </Link>
                 );
               })}
 
-              <div className="pt-4 mt-2 border-t border-slate-100 flex flex-col gap-2">
-                {isCommunity || isEducation ? (
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-full rounded-xl h-11 text-sm font-semibold"
-                  >
-                    <Link to="/" onClick={() => setOpen(false)}>
-                      Return to Main Website
-                    </Link>
-                  </Button>
-                ) : (
-                  <Button
-                    asChild
-                    className="w-full bg-[#4f47e6] hover:bg-[#4338ca] text-white font-semibold rounded-xl h-11 text-sm shadow-[0_4px_14px_rgba(79,71,230,0.3)]"
-                  >
-                    <Link to="/contact" onClick={() => setOpen(false)}>
-                      Start a Project
-                    </Link>
-                  </Button>
-                )}
+              <div className="pt-4 mt-2 border-t border-slate-100">
+                <Button
+                  asChild
+                  className="w-full bg-[#4f47e6] hover:bg-[#4338ca] text-white font-semibold rounded-xl h-11 text-sm shadow-[0_4px_14px_rgba(79,71,230,0.3)]"
+                >
+                  <Link to="/contact" onClick={() => setOpen(false)}>
+                    Start a Project
+                  </Link>
+                </Button>
               </div>
             </div>
           </motion.div>
