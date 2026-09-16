@@ -8,9 +8,10 @@ interface TeamMember {
   role: string;
   tagline: string;
   bio: string;
+  punchline: string;
   initials: string;
   slug: string;
-  specialties: string[];
+  missionFocus: string[];
   status: string;
   github: string;
   linkedin: string;
@@ -26,11 +27,12 @@ export default function TeamSection() {
       {
         name: "Pavan Kumar S",
         role: "Co-Founder & Chief Systems Architect",
-        tagline: "High-throughput cloud architecture, distributed edge infrastructure, and full-stack software systems.",
-        bio: "Specializes in architecting sub-second React/TypeScript platforms, database engines, and automated webhook pipelines that eliminate operational friction.",
+        tagline: "The Brandex Idea: Stop building slow, disposable agency templates. Treat business software like high-frequency infrastructure.",
+        bio: "Pavan engineers the core machinery at Brandex — turning messy operational workflows into sub-second, event-driven web platforms and automated data pipelines with zero technical debt.",
+        punchline: "Turning caffeine, edge CDNs, and zero-compromise code into bulletproof systems so your business runs smoothly while you sleep.",
         initials: "PK",
         slug: "/pavan-kumar",
-        specialties: ["Distributed Cloud", "TypeScript Core", "Sub-100ms Edge", "Webhook Pipelines"],
+        missionFocus: ["Sub-100ms Edge", "Event Pipelines", "Smart School EdTech", "Zero-Bloat Stacks"],
         status: "Leading Systems Engineering",
         github: "https://github.com",
         linkedin: "https://linkedin.com",
@@ -39,11 +41,12 @@ export default function TeamSection() {
       {
         name: "Sathvik Nagesh",
         role: "Co-Founder & Head of Product Design",
-        tagline: "Conversion UI/UX systems, user interaction frameworks, and liquid glass design tokenization.",
-        bio: "Pioneers brand conversion architecture, design tokens, and user journey funnels that convert incoming digital traffic into long-term enterprise clients.",
+        tagline: "The Brandex Idea: Enterprise software should feel like a luxury sports car — ultra-sleek, delightfully responsive, and razor-sharp.",
+        bio: "Sathvik leads product experience and conversion architecture at Brandex — architecting translucent 'Liquid Glass' interfaces, intuitive user journeys, and leading our 500+ builder guild.",
+        punchline: "Obsessively destroying ugly corporate templates and crafting digital interfaces so addictive that even your competitors bookmark them.",
         initials: "SN",
         slug: "/sathvik",
-        specialties: ["Product Experience", "CRO Architecture", "Design Token Systems", "Framer Micro-UI"],
+        missionFocus: ["Liquid Glass UI", "Conversion Funnels", "500+ Builder Guild", "Frictionless UX"],
         status: "Leading Product & Experience",
         github: "https://github.com",
         linkedin: "https://linkedin.com",
@@ -60,13 +63,13 @@ export default function TeamSection() {
         <div className="max-w-2xl mb-8">
           <div className="liquid-glass-pill inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold tracking-widest text-[#4f47e6] uppercase mb-2 shadow-2xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-            Founding Architects
+            Founding Leadership
           </div>
           <h2 className="font-display text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight">
-            Direct Access to Founding Leadership
+            The Minds & Energy Behind Brandex
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mt-1">
-            Every engagement is led directly by our founding engineers. No account intermediaries or outsourced sub-contractors.
+            We don't outsource to junior contractors. Every line of code, architecture blueprint, and interaction flow is led directly by our founders.
           </p>
         </div>
 
@@ -109,7 +112,7 @@ export default function TeamSection() {
                     </div>
 
                     {/* Tagline & Bio */}
-                    <p className="text-xs text-slate-700 font-medium leading-relaxed bg-slate-50/70 p-3 rounded-xl border border-slate-100">
+                    <p className="text-xs text-slate-800 font-semibold leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200/80">
                       "{member.tagline}"
                     </p>
 
@@ -117,21 +120,26 @@ export default function TeamSection() {
                       {member.bio}
                     </p>
 
-                    {/* Specialties Chips */}
+                    {/* Mission Focus Chips */}
                     <div>
                       <div className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider mb-2">
-                        Core Competencies
+                        Daily Focus Areas
                       </div>
                       <div className="flex flex-wrap gap-1.5">
-                        {member.specialties.map((spec) => (
+                        {member.missionFocus.map((focus) => (
                           <span
-                            key={spec}
+                            key={focus}
                             className="px-2.5 py-0.5 rounded-lg bg-white border border-slate-200 text-slate-800 text-[11px] font-mono font-medium shadow-2xs"
                           >
-                            {spec}
+                            {focus}
                           </span>
                         ))}
                       </div>
+                    </div>
+
+                    {/* Formal Funky Fun Statement in Bold */}
+                    <div className="p-3.5 rounded-2xl bg-indigo-50/70 border border-indigo-200/70 text-xs text-slate-900 leading-relaxed">
+                      ⚡ <strong className="font-extrabold text-slate-900">{member.punchline}</strong>
                     </div>
                   </div>
 

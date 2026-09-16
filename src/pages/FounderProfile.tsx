@@ -29,9 +29,12 @@ interface FounderData {
   role: string;
   tagline: string;
   bio: string[];
+  brandexIdea: string;
+  dailyEngine: string;
+  funPunchline: string;
   avatar: string;
   location: string;
-  specialties: string[];
+  missionPillars: { title: string; desc: string }[];
   techStack: string[];
   milestones: { year: string; title: string; desc: string }[];
   projects: { title: string; category: string; description: string; impact: string }[];
@@ -49,21 +52,34 @@ const founders: Record<string, FounderData> = {
     id: "pavan-kumar",
     name: "Pavan Kumar",
     role: "Co-Founder & Chief Systems Architect",
-    tagline: "Architecting sub-second web platforms, enterprise cloud pipelines, and bespoke software systems.",
+    tagline: "Engineering sub-second web platforms, enterprise cloud pipelines, and bespoke software systems.",
     location: "Bangalore, India",
     avatar: "/logo_nobg.png",
+    brandexIdea: "Brandex wasn't created to be another mundane agency churning out bloated boilerplate WordPress templates with 40 unmaintained plugins. The thesis was simple: treat modern business software like high-frequency infrastructure — sub-second edge speeds, 100% client code ownership, zero recurring platform tax, and automated pipelines that run flawlessly.",
+    dailyEngine: "At Brandex, Pavan spends his days in the engine room turning complex business workflows into bulletproof, event-driven software. From distributed database models to sub-18ms edge frontends and automated webhook orchestrations, he builds systems designed to handle immense scale without flinching.",
+    funPunchline: "Turning caffeine, edge CDNs, and zero-compromise code into bulletproof digital systems so your business runs smoothly while you sleep.",
     bio: [
-      "Pavan Kumar is the Co-Founder and Chief Systems Architect at Brandex, leading core technical architecture, distributed edge infrastructure, and full-stack software development.",
-      "With a deep background in modern web engineering, distributed systems, and API design, Pavan specializes in building high-concurrency applications that automate operations and eliminate manual bottlenecks.",
-      "Beyond client software engineering, Pavan actively builds developer tools, mentors aspiring engineers through the Brandex Education initiative, and leads open-source architecture blueprints."
+      "Brandex wasn't created to be another mundane agency churning out bloated boilerplate WordPress templates with 40 unmaintained plugins. The thesis was simple: treat modern business software like high-frequency infrastructure — sub-second edge speeds, 100% client code ownership, zero recurring platform tax, and automated pipelines that run flawlessly.",
+      "At Brandex, Pavan spends his days in the engine room turning complex business workflows into bulletproof, event-driven software. From distributed database models to sub-18ms edge frontends and automated webhook orchestrations, he builds systems designed to handle immense scale without flinching.",
+      "Beyond engineering enterprise client software, Pavan spearheads the Brandex Education infrastructure for smart schools and builds open-source developer toolkits for the 500+ builder ecosystem in Bangalore."
     ],
-    specialties: [
-      "Distributed Cloud Systems",
-      "React / TypeScript Architecture",
-      "Sub-Second Edge Infrastructure",
-      "Enterprise Database Design",
-      "Automated Webhook Pipelines",
-      "Technical SEO & Schema Optimization"
+    missionPillars: [
+      {
+        title: "Killing Latency & Slow Agency Stacks",
+        desc: "Replacing bloated 5-second monolithic page loads with sub-100ms distributed cloud architectures."
+      },
+      {
+        title: "Automating Heavy Business Workflows",
+        desc: "Building custom transactional pipelines and database sync engines that save clients 40+ hours every week."
+      },
+      {
+        title: "Empowering Smart Classrooms",
+        desc: "Architecting distraction-free smartboard video streaming and formative evaluation tools for Karnataka schools."
+      },
+      {
+        title: "Powering the 500+ Builder Community",
+        desc: "Authoring open-source Vite presets, API blueprints, and mentoring the next generation of software architects."
+      }
     ],
     techStack: [
       "React", "TypeScript", "Next.js", "Node.js", "PostgreSQL",
@@ -72,7 +88,7 @@ const founders: Record<string, FounderData> = {
     milestones: [
       {
         year: "2024",
-        title: "Co-Founded Brandex Digital Canvas",
+        title: "Co-Founded Brandex Digital Infrastructure",
         desc: "Established Brandex as an engineering-led software studio focused on bespoke enterprise web architecture."
       },
       {
@@ -124,18 +140,31 @@ const founders: Record<string, FounderData> = {
     tagline: "Bridging human-centered interaction design with high-performance digital engineering.",
     location: "Bangalore, India",
     avatar: "/logo_nobg.png",
+    brandexIdea: "Most corporate software looks like it was designed in 2004 by someone who hated users. The idea behind Brandex is that enterprise software should feel as sleek, fluid, and delightful as a luxury sports car — zero clutter, razor-sharp typography, and conversion funnels that make users actually want to click.",
+    dailyEngine: "At Brandex, Sathvik leads product experience, UI architecture, and brand strategy. He takes messy, multifaceted business requirements and transforms them into intuitive, translucent 'Liquid Glass' interfaces that command authority, build immediate trust, and drive measurable revenue lifts.",
+    funPunchline: "Obsessively destroying ugly corporate templates and crafting digital interfaces so addictive that even your competitors bookmark them.",
     bio: [
-      "Sathvik is the Co-Founder and Head of Product Design at Brandex, steering product experience, user interface architecture, and brand design systems.",
-      "Combining sharp product strategy with visual excellence, Sathvik ensures every digital application engineered at Brandex delivers intuitive usability, brand authority, and measurable conversion lift.",
-      "Sathvik also oversees the Brandex Community Network, organizing tech builder sessions and collaborating with founders across Bangalore's tech ecosystem."
+      "Most corporate software looks like it was designed in 2004 by someone who hated users. The idea behind Brandex is that enterprise software should feel as sleek, fluid, and delightful as a luxury sports car — zero clutter, razor-sharp typography, and conversion funnels that make users actually want to click.",
+      "At Brandex, Sathvik leads product experience, UI architecture, and brand strategy. He takes messy, multifaceted business requirements and transforms them into intuitive, translucent 'Liquid Glass' interfaces that command authority, build immediate trust, and drive measurable revenue lifts.",
+      "Sathvik also runs the Brandex Community Guild, hosting in-person design teardowns, product circles, and hack sprints for 500+ builders across Bangalore's booming tech landscape."
     ],
-    specialties: [
-      "Product Design & Strategy",
-      "Conversion Rate Optimization (CRO)",
-      "Design Systems & Tokenization",
-      "Interactive UI Micro-Animations",
-      "User Journey & Funnel Mapping",
-      "Client Discovery & Architecture Scope"
+    missionPillars: [
+      {
+        title: "Eradicating Boring Corporate UX",
+        desc: "Designing high-impact, conversion-optimized interfaces that turn casual website visitors into signed enterprise clients."
+      },
+      {
+        title: "Pioneering the Liquid Glass Design System",
+        desc: "Crafting multi-viewport translucent UI components with strict typographic harmony and micro-motion choreography."
+      },
+      {
+        title: "Distraction-Free Classroom Experience",
+        desc: "Designing clean, ad-free smartboard theater stages for Karnataka educators and Class 6–10 students."
+      },
+      {
+        title: "Fostering the 500+ Builder Circle",
+        desc: "Organizing weekly meetups, UI/UX critiques, and collaborative sprints for Bangalore's top product minds."
+      }
     ],
     techStack: [
       "Figma", "UI Systems", "Framer Motion", "React UI",
@@ -305,7 +334,7 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
               </div>
             </div>
 
-            {/* Tagline & Bio */}
+            {/* Tagline, Bio & Fun Punchline */}
             <div className="pt-8 grid md:grid-cols-12 gap-8">
               <div className="md:col-span-8 space-y-4">
                 <p className="text-lg sm:text-xl font-medium text-slate-900 leading-relaxed font-display">
@@ -316,6 +345,16 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
                     {paragraph}
                   </p>
                 ))}
+
+                {/* Formal-Funky Bold Punchline */}
+                <div className="pt-2">
+                  <div className="p-4 rounded-2xl bg-indigo-50/80 border border-indigo-200/80 text-xs sm:text-sm text-slate-900 leading-relaxed">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#4f47e6] block mb-1">
+                      The Founder TL;DR
+                    </span>
+                    <strong className="font-extrabold text-slate-900">{founder.funPunchline}</strong>
+                  </div>
+                </div>
               </div>
 
               {/* Quick Tech Stack & Action */}
@@ -323,7 +362,7 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
                 <div className="liquid-glass-card rounded-2xl p-5">
                   <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-900 mb-3 flex items-center gap-1.5">
                     <Terminal size={14} className="text-[#4f47e6]" />
-                    <span>Core Technologies</span>
+                    <span>Daily Weapons of Choice</span>
                   </h3>
                   <div className="flex flex-wrap gap-1.5">
                     {founder.techStack.map((tech) => (
@@ -344,22 +383,29 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
             </div>
           </motion.div>
 
-          {/* Specialties & Engineering Focus */}
+          {/* What We Are Doing At Brandex (Mission Pillars) */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="liquid-glass rounded-3xl p-6 sm:p-7 border border-slate-200/90">
-              <div className="flex items-center gap-2 mb-4">
-                <Cpu size={18} className="text-[#4f47e6]" />
-                <h2 className="font-display text-xl font-bold text-slate-900">
-                  Architectural Specialties
-                </h2>
-              </div>
-              <div className="space-y-2.5">
-                {founder.specialties.map((spec) => (
-                  <div key={spec} className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700 font-medium">
-                    <CheckCircle2 size={15} className="text-[#4f47e6] shrink-0" />
-                    <span>{spec}</span>
-                  </div>
-                ))}
+            <div className="liquid-glass rounded-3xl p-6 sm:p-7 border border-slate-200/90 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <Zap size={18} className="text-[#4f47e6]" />
+                  <h2 className="font-display text-xl font-bold text-slate-900">
+                    What I'm Driving at Brandex
+                  </h2>
+                </div>
+                <div className="space-y-3.5">
+                  {founder.missionPillars.map((pillar) => (
+                    <div key={pillar.title} className="p-3.5 rounded-2xl bg-white/70 border border-slate-200/70 space-y-1">
+                      <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-900">
+                        <CheckCircle2 size={14} className="text-[#4f47e6] shrink-0" />
+                        <span>{pillar.title}</span>
+                      </div>
+                      <p className="text-xs text-slate-600 pl-5 leading-relaxed font-normal">
+                        {pillar.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
