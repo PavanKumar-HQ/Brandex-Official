@@ -6,7 +6,13 @@ import { motion } from "framer-motion";
 import { MagneticWrapper } from "@/components/ui/MagneticWrapper";
 import EarthGlobe from "@/components/home/EarthGlobe";
 
-const TYPED_STATEMENT = "Engineering High-Performance Web & Cloud Systems.";
+const TYPED_PHRASES = [
+  "Engineering Digital Systems",
+  "Building Scalable Cloud Apps",
+  "Automating Business Workflows",
+  "Crafting Bespoke Web Platforms",
+  "Deploying Enterprise AI Engines",
+];
 
 const container = {
   hidden: {},
@@ -19,20 +25,37 @@ const item = {
 };
 
 export default function Hero() {
+  const [phraseIndex, setPhraseIndex] = useState(0);
   const [text, setText] = useState("");
-  const [isDone, setIsDone] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
+    const currentPhrase = TYPED_PHRASES[phraseIndex];
     let timer: NodeJS.Timeout;
-    if (text.length < TYPED_STATEMENT.length) {
-      timer = setTimeout(() => {
-        setText(TYPED_STATEMENT.slice(0, text.length + 1));
-      }, 45);
+
+    if (!isDeleting) {
+      if (text.length < currentPhrase.length) {
+        timer = setTimeout(() => {
+          setText(currentPhrase.slice(0, text.length + 1));
+        }, 65);
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(true);
+        }, 2000);
+      }
     } else {
-      setIsDone(true);
+      if (text.length > 0) {
+        timer = setTimeout(() => {
+          setText(currentPhrase.slice(0, text.length - 1));
+        }, 30);
+      } else {
+        setIsDeleting(false);
+        setPhraseIndex((prev) => (prev + 1) % TYPED_PHRASES.length);
+      }
     }
+
     return () => clearTimeout(timer);
-  }, [text]);
+  }, [text, isDeleting, phraseIndex]);
 
   return (
     <section className="relative flex items-center justify-center overflow-hidden pt-24 pb-12 lg:pt-28 lg:pb-16 bg-[#f8fafd] border-b border-slate-200/60 w-full">
@@ -42,7 +65,7 @@ export default function Hero() {
       <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column: Headline with Clean Single-Statement Typewriter & Action Buttons */}
+          {/* Left Column: Headline with Rock-Solid Continuous Typewriter & Action Buttons */}
           <motion.div
             className="lg:col-span-6 text-left"
             variants={container}
@@ -50,7 +73,7 @@ export default function Hero() {
             animate="show"
           >
             {/* Liquid Glass Pill Badge */}
-            <motion.div variants={item} className="inline-block mb-4">
+            <motion.div variants={item} className="inline-block mb-5">
               <div className="liquid-glass-pill inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-slate-800 text-xs font-mono font-semibold tracking-wider uppercase shadow-2xs">
                 <span className="w-2 h-2 rounded-full bg-[#4f47e6] animate-pulse" />
                 <span className="text-[#4f47e6] font-bold">Brandex</span>
@@ -59,15 +82,21 @@ export default function Hero() {
               </div>
             </motion.div>
 
-            {/* Zero-Layout-Shift Single Statement Headline */}
+            {/* Zero-Layout-Shift Headline with Original Font Size */}
             <motion.h1
               variants={item}
-              className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.16] mb-5"
+              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[4.15rem] font-extrabold tracking-tight text-slate-900 leading-[1.08] mb-6"
             >
-              <span className="text-slate-900">
-                {text}
-                <span className="inline-block w-[3px] sm:w-[4px] h-[0.9em] bg-[#4f47e6] ml-1 animate-pulse align-middle" />
-              </span>
+              <div className="grid mb-1">
+                <span className="invisible select-none pointer-events-none opacity-0 col-start-1 row-start-1 block" aria-hidden="true">
+                  Crafting Bespoke Web Platforms
+                </span>
+                <span className="col-start-1 row-start-1 block text-slate-900">
+                  {text}
+                  <span className="inline-block w-[3.5px] sm:w-[4.5px] h-[0.88em] bg-[#4f47e6] ml-1.5 animate-pulse align-middle" />
+                </span>
+              </div>
+              <span className="block text-[#4f47e6]">Built For Real Scale.</span>
             </motion.h1>
 
             {/* Subtext */}

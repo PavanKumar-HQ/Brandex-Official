@@ -27,6 +27,8 @@ import CurriculumExplorer from "./pages/education/CurriculumExplorer";
 import ClassroomPlayer from "./pages/education/ClassroomPlayer";
 import EducatorLoginPage from "./pages/education/EducatorLoginPage";
 import EducatorAdminPage from "./pages/education/EducatorAdminPage";
+import SubjectStudioPage from "./pages/education/SubjectStudioPage";
+import LessonPage from "./pages/education/LessonPage";
 
 // Community Sub-Portal Pages
 import CommunityHome from "./pages/community/CommunityHome";
@@ -85,11 +87,15 @@ function AnimatedRoutes() {
             <Route path="/education/explore" element={<CurriculumExplorer />} />
             <Route path="/education/explore/:classId" element={<CurriculumExplorer />} />
             <Route path="/education/classroom" element={<ClassroomPlayer />} />
+            <Route path="/education/studio/:classId/:subjectSlug" element={<SubjectStudioPage />} />
+            <Route path="/education/lesson/:slug" element={<LessonPage />} />
             <Route path="/education/login" element={<EducatorLoginPage />} />
             <Route path="/education/admin" element={<EducatorAdminPage />} />
             <Route path="/explore" element={<CurriculumExplorer />} />
             <Route path="/explore/:classId" element={<CurriculumExplorer />} />
             <Route path="/classroom" element={<ClassroomPlayer />} />
+            <Route path="/studio/:classId/:subjectSlug" element={<SubjectStudioPage />} />
+            <Route path="/lesson/:slug" element={<LessonPage />} />
             <Route path="/login" element={<EducatorLoginPage />} />
             <Route path="/admin" element={<EducatorAdminPage />} />
 
