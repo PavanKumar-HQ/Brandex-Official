@@ -46,16 +46,6 @@ export default function CommunityHome() {
     <div className="min-h-screen bg-[#f8fafd] pt-24 pb-16 lg:pt-28 lg:pb-20 selection:bg-[#4f47e6] selection:text-white">
       <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 space-y-12">
         
-        {/* Back Button */}
-        <div>
-          <Link
-            to="/"
-            className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 hover:text-[#4f47e6] transition-colors"
-          >
-            <ArrowLeft size={13} /> Back to Main Website
-          </Link>
-        </div>
-
         {/* Header Hero */}
         <div className="border-b border-slate-200/90 pb-10 space-y-4">
           <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold text-[#4f47e6] uppercase shadow-2xs">
