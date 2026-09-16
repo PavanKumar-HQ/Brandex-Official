@@ -1,5 +1,5 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Globe, Workflow, AppWindow, Share2, CheckCircle, Check, Plus, Minus, Users, Zap, Database, TrendingUp, Heart, MessageSquare, Calendar, Search, Award, Settings, ArrowRight } from "lucide-react";
+import { Globe, Workflow, AppWindow, Share2, CheckCircle, Check, Plus, Minus, Users, Zap, Database, TrendingUp, Heart, MessageSquare, Calendar, Search, Award, Settings, ArrowRight, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -120,8 +120,18 @@ export default function ServicesPage() {
       />
 
       {/* Hero */}
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 bg-white border-b border-slate-100">
+      <section className="pt-24 pb-16 lg:pt-28 lg:pb-20 bg-white border-b border-slate-100">
         <div className="container mx-auto px-6">
+          {/* Back link */}
+          <div className="mb-6">
+            <Link
+              to="/"
+              className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 hover:text-[#4f47e6] transition-colors"
+            >
+              <ArrowLeft size={13} /> Back to Home
+            </Link>
+          </div>
+
           <div className="max-w-3xl scroll-reveal">
             <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest text-[#4f47e6] uppercase mb-4 shadow-2xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />

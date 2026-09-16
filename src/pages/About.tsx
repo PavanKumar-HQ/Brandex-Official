@@ -1,5 +1,5 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Target, Eye, Heart, Users, ArrowRight, ShieldCheck, Zap, Server, Code2, CheckCircle2, Sparkles } from "lucide-react";
+import { Target, Eye, Heart, Users, ArrowRight, ArrowLeft, ShieldCheck, Zap, Server, Code2, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import TeamSection from "@/components/about/TeamSection";
 import SEOHead from "@/components/SEOHead";
@@ -22,7 +22,7 @@ const values = [
   },
   {
     icon: Users,
-    title: "Direct Founder Squads",
+    title: "Direct Technical Leadership",
     description: "You work directly with founding architects. No account middlemen, no outsourced handoffs, 100% accountability.",
   },
 ];
@@ -45,10 +45,22 @@ export default function AboutPage() {
         canonicalUrl="/about"
       />
 
-      {/* Hero Header - Compact & Tight */}
-      <section className="pt-28 pb-10 lg:pt-32 lg:pb-12 relative overflow-hidden bg-white border-b border-slate-100">
-        <div className="container mx-auto px-6 relative z-10 max-w-5xl">
-          <div className="scroll-reveal">
+      {/* Hero Header */}
+      <section className="pt-24 pb-10 lg:pt-28 lg:pb-12 relative overflow-hidden bg-white border-b border-slate-100 w-full">
+        <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+          
+          {/* Back Button */}
+          <div className="mb-6">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#4f47e6] transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs cursor-pointer"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Home</span>
+            </Link>
+          </div>
+
+          <div className="scroll-reveal max-w-3xl">
             <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest text-[#4f47e6] uppercase mb-3 shadow-2xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
               About Brandex Digital
@@ -63,15 +75,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission Section - High-Density Bento Grid with Zero Wasted Negative Space */}
-      <section className="py-10 lg:py-14 bg-[#f8fafd] border-b border-slate-100">
-        <div className="container mx-auto px-6 max-w-6xl">
+      {/* Mission Section */}
+      <section className="py-12 lg:py-16 bg-[#f8fafd] border-b border-slate-100 w-full">
+        <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12">
           <div className="grid lg:grid-cols-12 gap-8 items-stretch">
             
             {/* Left Column: Mission Statement */}
             <div className="lg:col-span-6 flex flex-col justify-center scroll-reveal space-y-4">
               <div className="liquid-glass-pill inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono font-bold tracking-wider text-[#4f47e6] uppercase w-fit">
-                <Sparkles size={12} />
+                <Zap size={12} />
                 <span>Our Core Mandate</span>
               </div>
               <h2 className="font-display text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight">

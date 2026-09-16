@@ -115,7 +115,7 @@ export default function BlogPost() {
       />
 
       {/* Hero Header - Left-aligned, Tight Spacing */}
-      <section className="pt-28 pb-8 lg:pt-32 lg:pb-10 bg-[#f8fafd] relative overflow-hidden border-b border-slate-200/80">
+      <section className="pt-24 pb-8 lg:pt-28 lg:pb-10 bg-[#f8fafd] relative overflow-hidden border-b border-slate-200/80">
         <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
 
         <div className="container mx-auto px-6 relative z-10 max-w-4xl text-left">

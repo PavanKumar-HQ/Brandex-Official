@@ -11,7 +11,6 @@ import {
   GraduationCap,
   HelpCircle,
   Clock,
-  Sparkles,
   ChevronDown,
   Layers,
   Star,
@@ -195,11 +194,22 @@ export default function EducationHome() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f8fafd] flex flex-col selection:bg-[#4f47e6] selection:text-white pt-6">
+    <div className="min-h-screen bg-[#f8fafd] flex flex-col selection:bg-[#4f47e6] selection:text-white">
       
       {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden bg-white pt-16 sm:pt-24 pb-20 border-b border-slate-200/90 w-full">
+      <section className="relative overflow-hidden bg-white pt-24 sm:pt-28 pb-16 lg:pb-20 border-b border-slate-200/90 w-full">
         <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+          
+          {/* Back Button */}
+          <div className="mb-6">
+            <Link
+              to="/"
+              className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 hover:text-[#4f47e6] transition-colors"
+            >
+              &larr; Back to Main Website
+            </Link>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             {/* Left Content Column */}

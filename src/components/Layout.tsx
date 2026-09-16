@@ -5,7 +5,6 @@ import Footer from "./Footer";
 import PageLoader from "./PageLoader";
 import ScrollToTop from "./ScrollToTop";
 import SEOHead from "./SEOHead";
-import WhatsAppWidget from "./WhatsAppWidget";
 
 export default function Layout({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
@@ -20,8 +19,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <PageLoader />
       <ScrollToTop />
       <Navbar />
-      <main className="flex-1 pt-[4.25rem]">{children}</main>
-      <WhatsAppWidget />
+      <main className="flex-1">{children}</main>
       <Footer />
     </div>
   );

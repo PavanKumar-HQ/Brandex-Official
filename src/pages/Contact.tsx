@@ -4,16 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MapPin, ShieldCheck, Clock, Send, Check, Phone, ArrowRight, MessageSquare, Sparkles, CheckCircle2, Zap, Layers, Server, Shield, Laptop } from "lucide-react";
+import { Mail, MapPin, ShieldCheck, Clock, Send, Check, Phone, ArrowRight, ArrowLeft, MessageSquare, CheckCircle2, Zap, Layers, Server, Shield, Laptop, Workflow } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
 
 const scopeOptions = [
   { id: "webapp", label: "Custom Web Application", icon: Server },
   { id: "platform", label: "High-Performance Website", icon: Zap },
-  { id: "automation", label: "Workflow & Automation", icon: Sparkles },
+  { id: "automation", label: "Workflow & Automation", icon: Workflow },
   { id: "commerce", label: "E-Commerce & Billing", icon: Layers },
   { id: "edge", label: "Speed & Infrastructure", icon: Laptop },
   { id: "uiux", label: "UI/UX & Design System", icon: Shield },
@@ -137,39 +138,52 @@ export default function ContactPage() {
         canonicalUrl="/contact"
       />
 
-      {/* Hero Header - Tight Spacing */}
-      <section className="pt-28 pb-6 lg:pt-32 lg:pb-8 relative overflow-hidden bg-[#f8fafd] border-b border-slate-200/80">
+      {/* Hero Header */}
+      <section className="pt-24 pb-8 lg:pt-28 lg:pb-10 relative overflow-hidden bg-[#f8fafd] border-b border-slate-200/80 w-full">
         <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
-        <div className="container mx-auto px-6 relative z-10 max-w-4xl text-center">
+        <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+          
+          {/* Back Button */}
+          <div className="mb-6">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#4f47e6] transition-colors bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs cursor-pointer"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Home</span>
+            </Link>
+          </div>
+
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
+            className="max-w-3xl"
           >
-            <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest text-[#4f47e6] uppercase mb-2.5 shadow-2xs">
+            <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest text-[#4f47e6] uppercase mb-3 shadow-2xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-              Direct Founder Intake
+              Engineering Discovery & Scoping
             </div>
             <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-2">
               Start Your <span className="text-[#4f47e6]">Next Project</span>
             </h1>
-            <p className="text-slate-600 text-xs sm:text-sm font-normal max-w-lg mx-auto leading-relaxed">
-              No sales intermediaries or budget interrogations. Tell us what you're building and connect directly with founding engineers.
+            <p className="text-slate-600 text-sm sm:text-base font-normal max-w-xl leading-relaxed">
+              No sales intermediaries or generic templates. Share your project goals and connect directly with lead technical architects.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Main Form & Contact Information */}
-      <section className="py-8 lg:py-12 bg-white border-b border-slate-100">
-        <div className="container mx-auto px-6 max-w-6xl">
+      <section className="py-10 lg:py-16 bg-white border-b border-slate-100 w-full">
+        <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12">
           <div className="grid lg:grid-cols-12 gap-8 items-start">
             
-            {/* Left Column: Direct Founder Telemetry & Contact Info */}
+            {/* Left Column: Direct Leadership Telemetry & Contact Info */}
             <div className="lg:col-span-5 space-y-4">
               
-              {/* Founder Response Card */}
-              <div className="liquid-glass rounded-3xl p-6 border border-slate-200/90 shadow-xs space-y-4">
+              {/* Leadership Response Card */}
+              <div className="liquid-glass rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-xs space-y-4">
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#4f47e6]">
@@ -177,11 +191,11 @@ export default function ContactPage() {
                     </span>
                     <span className="liquid-glass-pill px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      <span>Response: &lt; 30 Mins</span>
+                      <span>Response: &lt; 24 Hours</span>
                     </span>
                   </div>
                   <h3 className="font-display font-extrabold text-lg text-slate-900">
-                    Direct Access to Pavan & Sathvik
+                    Direct Access to Technical Leadership
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed font-normal mt-0.5">
                     Every message goes directly to our founding engineers for technical evaluation and timeline estimation.
@@ -260,9 +274,9 @@ export default function ContactPage() {
 
             </div>
 
-            {/* Right Column: Clean, Needed Questions Only & Instant Sent Message in UI */}
+            {/* Right Column: Clean Scoping Form */}
             <div className="lg:col-span-7">
-              <div className="liquid-glass-card rounded-3xl p-6 sm:p-7 border border-slate-300/90 shadow-sm relative overflow-hidden">
+              <div className="liquid-glass-card rounded-3xl p-6 sm:p-8 border border-slate-300/90 shadow-sm relative overflow-hidden">
                 
                 {submitted ? (
                   <motion.div
@@ -277,13 +291,13 @@ export default function ContactPage() {
                     <div>
                       <div className="liquid-glass-pill inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 mb-2">
                         <CheckCircle2 size={12} className="text-emerald-600" />
-                        <span>Message Sent from Website UI</span>
+                        <span>Message Sent Successfully</span>
                       </div>
                       <h3 className="font-display font-extrabold text-xl text-slate-900">
-                        Inquiry Received by Founding Team!
+                        Inquiry Received by Lead Engineering Team!
                       </h3>
                       <p className="text-xs text-slate-600 max-w-md mx-auto mt-1 leading-relaxed">
-                        We have logged your request for <strong>{selectedService}</strong>. Pavan & Sathvik will review your requirements and reach out within 24 hours.
+                        We have logged your request for <strong>{selectedService}</strong>. Our technical leadership will review your requirements and reach out within 24 hours.
                       </p>
                     </div>
 

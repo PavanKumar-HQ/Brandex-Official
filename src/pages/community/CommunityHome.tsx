@@ -4,8 +4,9 @@ import {
   Users,
   Calendar,
   GraduationCap,
-  Sparkles,
+  Award,
   ArrowRight,
+  ArrowLeft,
   ExternalLink,
   MessageSquare,
   ShieldCheck,
@@ -39,9 +40,19 @@ export default function CommunityHome() {
   }, [selectedCategory]);
 
   return (
-    <div className="min-h-screen bg-[#f8fafd] py-12 sm:py-16 selection:bg-[#4f47e6] selection:text-white pt-10">
+    <div className="min-h-screen bg-[#f8fafd] pt-24 pb-16 lg:pt-28 lg:pb-20 selection:bg-[#4f47e6] selection:text-white">
       <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 space-y-12">
         
+        {/* Back Button */}
+        <div>
+          <Link
+            to="/"
+            className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 hover:text-[#4f47e6] transition-colors"
+          >
+            <ArrowLeft size={13} /> Back to Main Website
+          </Link>
+        </div>
+
         {/* Header Hero */}
         <div className="border-b border-slate-200/90 pb-10 space-y-4">
           <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold text-[#4f47e6] uppercase shadow-2xs">
@@ -243,7 +254,7 @@ export default function CommunityHome() {
             to="/community/ambassador"
             className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
           >
-            <Sparkles size={28} className="text-[#4f47e6] mb-3" />
+            <Award size={28} className="text-[#4f47e6] mb-3" />
             <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Brand Ambassador</h3>
             <p className="text-xs text-slate-500 mb-3">Lead campus chapters, organize local tech circles, and gain exclusive fellowship grants.</p>
             <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Apply as Ambassador &rarr;</span>

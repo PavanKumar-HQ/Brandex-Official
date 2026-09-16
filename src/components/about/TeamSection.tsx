@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Code2, Sparkles, Terminal, CheckCircle2, ShieldCheck, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Code2, Terminal, CheckCircle2, ShieldCheck, Github, Linkedin, Mail } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface TeamMember {

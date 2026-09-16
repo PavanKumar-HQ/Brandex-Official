@@ -2,7 +2,7 @@ import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Html } from "@react-three/drei";
 import * as THREE from "three";
-import { Globe2, Sparkles, Zap, ShieldCheck } from "lucide-react";
+import { Globe2, Zap, ShieldCheck } from "lucide-react";
 
 // Convert latitude and longitude to 3D Cartesian coordinates
 function latLngToVector3(lat: number, lng: number, radius: number): THREE.Vector3 {

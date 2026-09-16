@@ -33,7 +33,7 @@ export default function CaseStudyDetail() {
 
       <article className="min-h-screen bg-white">
         {/* Hero Section */}
-        <header className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-[#fbfdff] border-b border-slate-100">
+        <header className="relative pt-24 pb-12 lg:pt-28 lg:pb-16 overflow-hidden bg-[#fbfdff] border-b border-slate-100">
           <div className="container mx-auto px-6 relative z-10">
             <Link to="/case-studies" className="liquid-glass-pill inline-flex items-center text-slate-700 hover:text-[#4f47e6] transition-colors mb-10 text-xs font-semibold px-4 py-2 rounded-full group">
               <ArrowLeft size={14} className="mr-2 group-hover:-translate-x-1 transition-transform" />

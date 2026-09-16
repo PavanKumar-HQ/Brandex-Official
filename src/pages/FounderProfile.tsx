@@ -14,9 +14,11 @@ import {
   Award,
   CheckCircle2,
   Globe2,
-  Sparkles,
   BookOpen,
-  Users
+  Users,
+  ShieldCheck,
+  Zap,
+  ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/SEOHead";
@@ -201,22 +203,28 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
         canonical={`https://brandex.me/${founder.id}`}
       />
 
-      <section className="pt-28 pb-12 lg:pt-32 lg:pb-16 bg-[#f8fafd] relative overflow-hidden border-b border-slate-200/80">
+      <section className="pt-24 pb-12 lg:pt-28 lg:pb-16 bg-[#f8fafd] relative overflow-hidden border-b border-slate-200/80">
         <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
 
         <div className="container mx-auto px-6 relative z-10 max-w-5xl">
           
-          {/* Back link */}
+          {/* Back links */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-6"
+            className="flex items-center gap-3 mb-6"
           >
             <Link
               to="/about"
               className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 hover:text-[#4f47e6] transition-colors"
             >
-              <ArrowLeft size={13} /> Back to About Team
+              <ArrowLeft size={13} /> Back to About
+            </Link>
+            <Link
+              to="/"
+              className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 hover:text-[#4f47e6] transition-colors"
+            >
+              Home
             </Link>
           </motion.div>
 
@@ -238,15 +246,15 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="w-2 h-2 rounded-full bg-[#4f47e6]" />
+                    <span className="w-2 h-2 rounded-full bg-[#4f47e6] animate-pulse" />
                     <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#4f47e6]">
-                      Brandex Leadership
+                      Brandex Technical Leadership
                     </span>
                   </div>
                   <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
                     {founder.name}
                   </h1>
-                  <p className="text-base text-[#4f47e6] font-semibold mt-1 font-mono text-xs sm:text-sm">
+                  <p className="text-[#4f47e6] font-semibold mt-1 font-mono text-xs sm:text-sm">
                     {founder.role} &bull; {founder.location}
                   </p>
                 </div>
@@ -429,7 +437,7 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
 
           {/* Switch founder shortcut pill */}
           <div className="mt-14 pt-8 border-t border-slate-200/80 text-center">
-            <p className="text-xs text-slate-500 mb-3">View other founder profile:</p>
+            <p className="text-xs text-slate-500 mb-3">View other leadership profile:</p>
             <Link
               to={founder.id === "pavan-kumar" ? "/sathvik" : "/pavan-kumar"}
               className="liquid-glass-pill inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold text-slate-800 hover:text-[#4f47e6] transition-colors"

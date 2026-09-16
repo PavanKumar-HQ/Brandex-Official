@@ -14,8 +14,6 @@ const navItems: NavItem[] = [
   { label: "Home", href: "/", sectionId: "hero" },
   { label: "Services", href: "/services", sectionId: "services" },
   { label: "Case Studies", href: "/case-studies", sectionId: "case-studies" },
-  { label: "Education", href: "/education" },
-  { label: "Community", href: "/community" },
   { label: "Pricing", href: "/#pricing", sectionId: "pricing" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
@@ -72,7 +70,6 @@ export default function Navbar() {
       if (item.sectionId === "hero" && (activeSection === "hero" || activeSection === "features" || activeSection === "clients")) return true;
       if (item.sectionId === "services" && activeSection === "services") return true;
       if (item.sectionId === "case-studies" && activeSection === "case-studies") return true;
-      if (item.sectionId === "ecosystem" && activeSection === "ecosystem") return true;
       if (item.sectionId === "pricing" && (activeSection === "pricing" || activeSection === "testimonials" || activeSection === "faq")) return true;
       if (item.sectionId === "contact" && activeSection === "contact") return true;
       return false;
@@ -104,7 +101,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Liquid Glass Navigation Capsule with ScrollSpy Pill */}
+        {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-1 liquid-glass-pill px-3 py-1.5 rounded-full">
           {navItems.map((item) => {
             const active = isItemActive(item);

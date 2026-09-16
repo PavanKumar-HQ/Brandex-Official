@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Search, Clock, ArrowRight, Tag, User, BookOpen, Sparkles } from "lucide-react";
+import { Search, Clock, ArrowRight, ArrowLeft, Tag, User, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -72,9 +72,19 @@ export default function Blog() {
       />
 
       {/* Hero Header - Left-Aligned, Tight Spacing */}
-      <section className="pt-28 pb-8 lg:pt-32 lg:pb-10 bg-[#f8fafd] border-b border-slate-200/80 relative overflow-hidden">
+      <section className="pt-24 pb-8 lg:pt-28 lg:pb-10 bg-[#f8fafd] border-b border-slate-200/80 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
         <div className="container mx-auto px-6 relative z-10 max-w-6xl">
+          {/* Back Button */}
+          <div className="mb-4">
+            <Link
+              to="/"
+              className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 hover:text-[#4f47e6] transition-colors"
+            >
+              <ArrowLeft size={13} /> Back to Home
+            </Link>
+          </div>
+
           <motion.div
             className="max-w-3xl text-left"
             initial={{ opacity: 0, y: 15 }}

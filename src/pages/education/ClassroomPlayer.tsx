@@ -14,7 +14,6 @@ import {
   BookOpen,
   Award,
   RotateCcw,
-  Sparkles,
   Layers,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -185,7 +184,7 @@ export default function ClassroomPlayer() {
                       onClick={() => setActiveTab("quiz")}
                       className="text-xs font-bold px-3 py-1 rounded-lg bg-[#4f47e6] hover:bg-[#4338ca] text-white flex items-center gap-1.5"
                     >
-                      <Sparkles size={12} />
+                      <Award size={12} />
                       <span>Take Chapter Quiz</span>
                     </button>
                     <button className="hover:text-white"><Maximize2 size={15} /></button>

@@ -1,5 +1,6 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Mail, Phone, MapPin, Building2, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Building2, Clock, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const contactDetails = [
   {
@@ -53,8 +54,18 @@ export default function ContactUsPage() {
   useScrollReveal();
 
   return (
-    <section className="py-16 sm:py-24 lg:py-32">
+    <section className="pt-24 pb-16 lg:pt-28 lg:pb-20">
       <div className="container mx-auto px-4 sm:px-6">
+
+        {/* Back link */}
+        <div className="mb-6">
+          <Link
+            to="/"
+            className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 hover:text-[#4f47e6] transition-colors"
+          >
+            <ArrowLeft size={13} /> Back to Home
+          </Link>
+        </div>
 
         {/* Header */}
         <div className="max-w-3xl mb-10 sm:mb-16 scroll-reveal">

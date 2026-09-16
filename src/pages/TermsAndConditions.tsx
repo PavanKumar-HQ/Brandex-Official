@@ -1,4 +1,6 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const terms = [
   "To access and use the Services, you agree to provide true, accurate and complete information to us during and after registration, and you shall be responsible for all acts done through the use of your registered account.",
@@ -21,10 +23,20 @@ export default function TermsAndConditionsPage() {
   useScrollReveal();
 
   return (
-    <section className="py-24 lg:py-32">
+    <section className="pt-24 pb-16 lg:pt-28 lg:pb-20">
       <div className="container mx-auto px-6">
+        {/* Back link */}
+        <div className="mb-6">
+          <Link
+            to="/"
+            className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 hover:text-[#4f47e6] transition-colors"
+          >
+            <ArrowLeft size={13} /> Back to Home
+          </Link>
+        </div>
+
         {/* Header */}
-        <div className="max-w-3xl mb-16 scroll-reveal">
+        <div className="max-w-3xl mb-12 scroll-reveal">
           <p className="text-sm font-medium uppercase tracking-widest text-accent mb-4">Legal</p>
           <h1 className="font-display text-5xl lg:text-6xl font-bold text-foreground mb-6">
             Terms &amp; Conditions

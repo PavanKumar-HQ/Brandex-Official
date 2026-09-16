@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowRight, ArrowLeft, CheckCircle2, Sparkles } from "lucide-react";
+import { X, ArrowRight, ArrowLeft, CheckCircle2, Compass } from "lucide-react";
 
 interface Step {
   targetId: string;
@@ -123,7 +123,7 @@ export function InteractiveSpotlightTour() {
         }}
         className="fixed bottom-6 left-6 z-40 bg-white/95 hover:bg-white text-indigo-600 border border-slate-200 px-4 py-2.5 rounded-full shadow-lg text-xs font-bold flex items-center gap-2 transition-all hover:scale-105 cursor-pointer backdrop-blur-md"
       >
-        <Sparkles className="w-3.5 h-3.5 text-indigo-500 animate-pulse" />
+        <Compass className="w-3.5 h-3.5 text-indigo-500 animate-spin" style={{ animationDuration: '6s' }} />
         <span>Take Product Tour</span>
       </button>
     );

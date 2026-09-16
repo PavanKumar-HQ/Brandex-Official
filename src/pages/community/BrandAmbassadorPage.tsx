@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowLeft,
-  Sparkles,
   Award,
   Users,
   CheckCircle2,
@@ -35,7 +34,7 @@ export default function BrandAmbassadorPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f8fafd] py-12 sm:py-16 selection:bg-[#4f47e6] selection:text-white pt-10">
+    <div className="min-h-screen bg-[#f8fafd] pt-24 pb-16 lg:pt-28 lg:pb-20 selection:bg-[#4f47e6] selection:text-white">
       <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-8 space-y-10">
         
         {/* Navigation & Header */}

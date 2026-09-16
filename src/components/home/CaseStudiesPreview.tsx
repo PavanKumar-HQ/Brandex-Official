@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink, Globe, Sparkles, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
+import { ArrowRight, ExternalLink, Globe, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "@/data/projects";
 import { Button } from "@/components/ui/button";

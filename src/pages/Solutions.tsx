@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
-  UtensilsCrossed, CalendarCheck, BarChart3, Zap, ArrowRight, Search,
+  UtensilsCrossed, CalendarCheck, BarChart3, Zap, ArrowRight, ArrowLeft, Search,
   ShoppingCart, GraduationCap, Building2, Truck, Stethoscope,
   HeadphonesIcon, CreditCard, Megaphone
 } from "lucide-react";
@@ -167,8 +167,18 @@ export default function SolutionsPage() {
         canonical="https://brandex.me/solutions"
       />
 
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-white border-b border-slate-100">
+      <section className="pt-24 pb-12 lg:pt-28 lg:pb-16 bg-white border-b border-slate-100">
         <div className="container mx-auto px-6">
+          {/* Back link */}
+          <div className="mb-6">
+            <Link
+              to="/"
+              className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 hover:text-[#4f47e6] transition-colors"
+            >
+              <ArrowLeft size={13} /> Back to Home
+            </Link>
+          </div>
+
           <div className="max-w-3xl scroll-reveal">
             <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest text-[#4f47e6] uppercase mb-4 shadow-2xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />

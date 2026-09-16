@@ -5,7 +5,6 @@ import {
   ArrowRight,
   ArrowLeft,
   Send,
-  Sparkles,
   Zap,
   Layers,
   Cpu,
