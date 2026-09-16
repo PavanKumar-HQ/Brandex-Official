@@ -1,0 +1,184 @@
+import { Link } from "react-router-dom";
+import { Phone, Mail, MapPin, Clock, ArrowUpRight, ArrowUp } from "lucide-react";
+
+export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <footer className="bg-[#070e1e] text-slate-400 pt-16 pb-12 relative overflow-hidden border-t border-slate-800">
+      <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+        
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-14 border-b border-slate-800/80">
+          
+          {/* Left Column: Brand & Direct Contact Details (5 cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            {/* Brand Logo & Name */}
+            <Link to="/" className="inline-flex items-center gap-3 group">
+              <div className="w-9 h-9 rounded-xl bg-[#4f47e6] flex items-center justify-center p-2 shadow-sm group-hover:scale-105 transition-transform">
+                <img
+                  src="/logo_nobg.png"
+                  alt="Brandex"
+                  className="h-full w-full object-contain filter brightness-0 invert"
+                />
+              </div>
+              <span className="font-display text-2xl font-extrabold tracking-tight text-white">
+                Brandex<span className="text-[#4f47e6]">.</span>
+              </span>
+            </Link>
+
+            <p className="text-sm text-slate-400 leading-relaxed max-w-md font-normal">
+              End-to-end Technology, Digital Transformation, Business Solutions & Infrastructure Company. Built for Business.
+            </p>
+
+            <div className="pt-2 space-y-3.5 text-xs sm:text-sm">
+              <div className="flex items-center gap-3 text-slate-300">
+                <div className="w-8 h-8 rounded-lg bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-[#818cf8] shrink-0">
+                  <Phone size={14} />
+                </div>
+                <a href="tel:+919480944727" className="hover:text-white transition-colors font-medium">
+                  +91 94809 44727 / +91 99015 14757
+                </a>
+              </div>
+
+              <div className="flex items-center gap-3 text-slate-300">
+                <div className="w-8 h-8 rounded-lg bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-[#818cf8] shrink-0">
+                  <Mail size={14} />
+                </div>
+                <a href="mailto:brandexhq@gmail.com" className="hover:text-white transition-colors font-medium">
+                  brandexhq@gmail.com
+                </a>
+              </div>
+
+              <div className="flex items-start gap-3 text-slate-300">
+                <div className="w-8 h-8 rounded-lg bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-[#818cf8] shrink-0 mt-0.5">
+                  <MapPin size={14} />
+                </div>
+                <span className="font-medium text-slate-300 leading-snug">
+                  #121, 13th Main M.C. Layout, Vijaynagar, Bangalore - 560040
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3 text-slate-300">
+                <div className="w-8 h-8 rounded-lg bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-[#818cf8] shrink-0">
+                  <Clock size={14} />
+                </div>
+                <span className="font-medium text-slate-400">
+                  Mon - Fri, 9:00 AM - 6:00 PM IST
+                </span>
+              </div>
+            </div>
+
+            {/* Social Handles */}
+            <div className="flex items-center gap-5 pt-3 text-xs font-semibold text-slate-400">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                Instagram
+              </a>
+              <span className="text-slate-700">&bull;</span>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                Twitter
+              </a>
+              <span className="text-slate-700">&bull;</span>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                LinkedIn
+              </a>
+            </div>
+
+          </div>
+
+          {/* Right Columns (7 cols) */}
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-8">
+            
+            {/* COMPANY */}
+            <div>
+              <h4 className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-white mb-4">
+                Company
+              </h4>
+              <ul className="space-y-2.5 text-xs sm:text-sm">
+                <li><Link to="/about" className="hover:text-white transition-colors font-medium">About</Link></li>
+                <li><Link to="/pavan-kumar" className="hover:text-white transition-colors font-medium">Pavan Kumar (Architect)</Link></li>
+                <li><Link to="/sathvik" className="hover:text-white transition-colors font-medium">Sathvik (Product Design)</Link></li>
+                <li><Link to="/case-studies" className="hover:text-white transition-colors font-medium">Case Studies</Link></li>
+                <li><Link to="/blog" className="hover:text-white transition-colors font-medium">Blog</Link></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors font-medium">Contact</Link></li>
+              </ul>
+            </div>
+
+            {/* SERVICES */}
+            <div>
+              <h4 className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-white mb-4">
+                Services
+              </h4>
+              <ul className="space-y-2.5 text-xs sm:text-sm">
+                <li><Link to="/services" className="hover:text-white transition-colors font-medium">Software Development</Link></li>
+                <li><Link to="/services" className="hover:text-white transition-colors font-medium">Website Engineering</Link></li>
+                <li><Link to="/services" className="hover:text-white transition-colors font-medium">AI & Automation</Link></li>
+                <li><Link to="/services" className="hover:text-white transition-colors font-medium">Cloud Infrastructure</Link></li>
+                <li><Link to="/services" className="hover:text-white transition-colors font-medium">UI / UX Systems</Link></li>
+                <li><Link to="/services" className="hover:text-[#4f47e6] text-[#818cf8] transition-colors font-semibold">All Services →</Link></li>
+              </ul>
+            </div>
+
+            {/* INDUSTRIES */}
+            <div>
+              <h4 className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-white mb-4">
+                Industries
+              </h4>
+              <ul className="space-y-2.5 text-xs sm:text-sm">
+                <li><Link to="/case-studies" className="hover:text-white transition-colors font-medium">Startups & MSMEs</Link></li>
+                <li><Link to="/case-studies" className="hover:text-white transition-colors font-medium">Retail & Restaurants</Link></li>
+                <li><Link to="/case-studies" className="hover:text-white transition-colors font-medium">Healthcare</Link></li>
+                <li><Link to="/case-studies" className="hover:text-white transition-colors font-medium">Education & EdTech</Link></li>
+                <li><Link to="/case-studies" className="hover:text-white transition-colors font-medium">Algorithmic FinTech</Link></li>
+              </ul>
+            </div>
+
+            {/* RESOURCES & ECOSYSTEM */}
+            <div>
+              <h4 className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-white mb-4">
+                Resources
+              </h4>
+              <ul className="space-y-2.5 text-xs sm:text-sm">
+                <li><Link to="/community" className="hover:text-white transition-colors font-medium">Builders Community</Link></li>
+                <li><Link to="/education" className="hover:text-white transition-colors font-medium">Digital Learning Platform</Link></li>
+                <li><Link to="/education/explore" className="hover:text-white transition-colors font-medium">Classes 6–10 Syllabus</Link></li>
+                <li><Link to="/community/events" className="hover:text-white transition-colors font-medium">Live Summits & Sprints</Link></li>
+                <li><Link to="/community/training" className="hover:text-white transition-colors font-medium">Technical Training</Link></li>
+                <li>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors font-medium inline-flex items-center gap-1">
+                    <span>Open Source Repos</span>
+                    <ArrowUpRight size={11} className="opacity-60" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Bottom Bar matching Reference */}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-normal text-slate-400">
+          <div>
+            <p>© 2026 Brandex. All Rights Reserved. Built for Business.</p>
+            <p className="font-mono text-[11px] text-slate-400 mt-1">
+              GSTIN: 29OGNPS8060K1Z5
+            </p>
+          </div>
+
+          <div className="flex items-center gap-6 text-slate-400">
+            <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <span>&bull;</span>
+            <Link to="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
+            <span>&bull;</span>
+            <Link to="/contact-us" className="hover:text-white transition-colors">Merchant Details</Link>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+  );
+}

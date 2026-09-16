@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 25% 99%;
+    --foreground: 235 50% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 235 50% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 235 50% 12%;
+
+    --primary: 243 77% 59%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 50% 96%;
+    --secondary-foreground: 243 77% 40%;
+
+    --muted: 240 20% 96%;
+    --muted-foreground: 240 10% 46%;
+
+    --accent: 243 77% 96%;
+    --accent-foreground: 243 77% 40%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 15% 90%;
+    --input: 240 15% 90%;
+    --ring: 243 77% 59%;
+
+    --radius: 0.85rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#f4f7fc] text-foreground font-sans antialiased selection:bg-[#4f47e6] selection:text-white;
+    overflow-x: hidden;
+  }
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .text-brand {
+    color: #4f47e6;
+  }
+
+  .text-gradient {
+    color: #0f172a;
+  }
+
+  .text-gradient-brand {
+    color: #4f47e6;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* High-Contrast Crisp Liquid Glass Design System - Ultra-Fast 120 FPS Optimized */
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #e2e8f0;
+    box-shadow: 
+      0 4px 16px -2px rgba(15, 23, 42, 0.05),
+      0 1px 3px rgba(15, 23, 42, 0.03),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 1);
+  }
+
+  .liquid-glass-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 
+      0 3px 12px -2px rgba(15, 23, 42, 0.04),
+      0 1px 2px rgba(15, 23, 42, 0.02),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 1);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+  }
+
+  .liquid-glass-card:hover {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 
+      0 8px 24px -4px rgba(15, 23, 42, 0.07),
+      0 2px 6px rgba(15, 23, 42, 0.03),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+  }
+
+  .liquid-glass-pill {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 
+      0 1px 4px rgba(15, 23, 42, 0.03),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 1);
+  }
+
+  .liquid-glass-button {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .liquid-glass-button:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    transform: translateY(-1px);
+  }
+
+  .glass-card {
+    @apply liquid-glass-card;
+  }
+  .glass-pill {
+    @apply liquid-glass-pill;
+  }
+}
+
+/* Minimal Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
