@@ -424,7 +424,7 @@ export default function EarthGlobe() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[380px] sm:h-[440px] lg:h-[480px] xl:h-[520px] flex items-center justify-center select-none"
+      className="relative w-full h-[320px] sm:h-[420px] lg:h-[480px] xl:h-[520px] flex items-center justify-center select-none"
     >
       {/* Ambient Purple / Indigo Halo Backlight */}
       <div className="absolute w-80 h-80 rounded-full bg-[#4f47e6]/25 blur-3xl pointer-events-none" />

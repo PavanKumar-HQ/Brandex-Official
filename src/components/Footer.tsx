@@ -105,7 +105,7 @@ export default function Footer() {
           </div>
 
           {/* Right Columns (7 cols) */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-8">
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-8">
             
             {/* COMPANY */}
             <div>

@@ -108,15 +108,15 @@ export default function Hero() {
             </motion.p>
 
             {/* Action Buttons */}
-            <motion.div variants={item} className="flex flex-wrap items-center gap-3.5 mb-10">
+            <motion.div variants={item} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-10">
               <MagneticWrapper>
                 <Button
                   asChild
                   variant="brand"
                   size="lg"
-                  className="h-12 px-7 text-sm rounded-xl font-bold shadow-[0_4px_16px_rgba(79,71,230,0.3)] hover:shadow-[0_6px_22px_rgba(79,71,230,0.4)]"
+                  className="w-full sm:w-auto h-12 px-7 text-sm rounded-xl font-bold shadow-[0_4px_16px_rgba(79,71,230,0.3)] hover:shadow-[0_6px_22px_rgba(79,71,230,0.4)]"
                 >
-                  <Link to="/contact" className="flex items-center gap-2">
+                  <Link to="/contact" className="flex items-center justify-center gap-2">
                     <span>Start Your Project</span>
                     <ArrowRight size={15} />
                   </Link>
@@ -128,7 +128,7 @@ export default function Hero() {
                   asChild
                   variant="liquidGlass"
                   size="lg"
-                  className="h-12 px-6 text-sm rounded-xl font-bold border border-slate-300"
+                  className="w-full sm:w-auto h-12 px-6 text-sm rounded-xl font-bold border border-slate-300 flex items-center justify-center"
                 >
                   <Link to="/case-studies">Explore Production Systems</Link>
                 </Button>

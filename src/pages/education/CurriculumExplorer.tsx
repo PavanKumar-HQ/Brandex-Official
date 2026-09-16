@@ -65,10 +65,10 @@ export default function ExplorePage() {
             </div>
 
             {/* Quick Category Filter Pills */}
-            <div className="flex items-center gap-2 bg-white p-1.5 rounded-xl border border-slate-200 shadow-2xs shrink-0 overflow-x-auto">
+            <div className="flex items-center gap-2 bg-white p-1.5 rounded-xl border border-slate-200 shadow-2xs shrink-0 overflow-x-auto no-scrollbar w-full sm:w-auto">
               <button
                 onClick={() => setFilterSection("all")}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                   filterSection === "all"
                     ? "bg-indigo-600 text-white shadow-2xs"
                     : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
@@ -79,7 +79,7 @@ export default function ExplorePage() {
 
               <button
                 onClick={() => setFilterSection("middle")}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                   filterSection === "middle"
                     ? "bg-indigo-600 text-white shadow-2xs"
                     : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
@@ -90,7 +90,7 @@ export default function ExplorePage() {
 
               <button
                 onClick={() => setFilterSection("high")}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                   filterSection === "high"
                     ? "bg-indigo-600 text-white shadow-2xs"
                     : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"

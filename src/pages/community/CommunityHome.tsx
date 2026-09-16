@@ -146,7 +146,7 @@ export default function CommunityHome() {
 
         {/* 2. SPECIALIZED TECHNOLOGY CIRCLES */}
         <div className="space-y-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-slate-900">
                 Technology Domain Circles
@@ -156,12 +156,12 @@ export default function CommunityHome() {
               </p>
             </div>
             
-            <div className="flex items-center gap-2 overflow-x-auto">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full sm:w-auto pb-1 sm:pb-0">
               {["All", "AI & ML", "Cybersecurity", "Cloud & DevOps", "Design Systems"].map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                     selectedCategory === cat
                       ? "bg-[#4f47e6] text-white shadow-2xs"
                       : "liquid-glass text-slate-600 hover:text-slate-900"
@@ -221,13 +221,13 @@ export default function CommunityHome() {
 
         {/* 3. QUICK SUB-BRANCH PORTALS */}
         <div className="space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-slate-900">
               Community Hub & Portals
             </h2>
             <Link
               to="/community/search"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50 hover:bg-[#4f47e6] text-[#4f47e6] hover:text-white border border-indigo-100/80 text-xs font-bold transition-all shadow-2xs group"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50 hover:bg-[#4f47e6] text-[#4f47e6] hover:text-white border border-indigo-100/80 text-xs font-bold transition-all shadow-2xs group self-start sm:self-auto"
             >
               <span>Search All Portals</span>
               <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
