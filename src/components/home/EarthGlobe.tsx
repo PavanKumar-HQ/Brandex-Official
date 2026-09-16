@@ -1,6 +1,6 @@
 import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Html } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { Globe2, ShieldCheck, Zap } from "lucide-react";
 
@@ -315,40 +315,21 @@ function HubMarker({
   return (
     <group position={position}>
       {/* Center Beacon Dot */}
-      <mesh onClick={(e) => { e.stopPropagation(); onSelect(); }} className="cursor-pointer">
-        <sphereGeometry args={[hub.isHQ ? 0.045 : 0.03, 16, 16]} />
+      <mesh>
+        <sphereGeometry args={[hub.isHQ ? 0.048 : 0.032, 16, 16]} />
         <meshBasicMaterial color={hub.isHQ ? "#ffffff" : "#c084fc"} />
       </mesh>
 
       {/* Pulsing Outer Ring */}
       <mesh ref={ringRef}>
-        <sphereGeometry args={[hub.isHQ ? 0.075 : 0.05, 16, 16]} />
+        <sphereGeometry args={[hub.isHQ ? 0.08 : 0.055, 16, 16]} />
         <meshBasicMaterial
           color={hub.isHQ ? "#c084fc" : "#818cf8"}
           transparent
-          opacity={hub.isHQ ? 0.5 : 0.3}
+          opacity={hub.isHQ ? 0.6 : 0.35}
           wireframe
         />
       </mesh>
-
-      {/* Interactive Tooltip Card */}
-      {isSelected && (
-        <Html position={[0, hub.isHQ ? 0.14 : 0.1, 0]} center distanceFactor={8} zIndexRange={[100, 0]}>
-          <div className="liquid-glass-card rounded-2xl p-3 shadow-xl border border-purple-400/40 text-left w-48 pointer-events-auto bg-slate-950/90 backdrop-blur-md">
-            <div className="flex items-center gap-1.5 mb-1">
-              <span className={`w-2 h-2 rounded-full ${hub.isHQ ? "bg-[#c084fc] animate-pulse" : "bg-[#818cf8]"}`} />
-              <span className="text-[10px] font-mono uppercase font-bold text-[#c084fc]">
-                {hub.isHQ ? "Brandex Primary Hub" : "Global Edge Node"}
-              </span>
-            </div>
-            <h4 className="text-xs font-bold text-white leading-tight font-display">{hub.name}</h4>
-            <p className="text-[10px] text-slate-300 mt-0.5 leading-snug">{hub.status}</p>
-            <div className="mt-1.5 pt-1.5 border-t border-purple-500/20 text-[9px] font-mono text-emerald-400 flex items-center gap-1">
-              <ShieldCheck size={10} /> Sub-18ms Edge Latency
-            </div>
-          </div>
-        </Html>
-      )}
     </group>
   );
 }

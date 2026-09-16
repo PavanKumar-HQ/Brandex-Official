@@ -25,6 +25,8 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import EducationHome from "./pages/education/EducationHome";
 import CurriculumExplorer from "./pages/education/CurriculumExplorer";
 import ClassroomPlayer from "./pages/education/ClassroomPlayer";
+import EducatorLoginPage from "./pages/education/EducatorLoginPage";
+import EducatorAdminPage from "./pages/education/EducatorAdminPage";
 
 // Community Sub-Portal Pages
 import CommunityHome from "./pages/community/CommunityHome";
@@ -33,9 +35,11 @@ import EventDetailPage from "./pages/community/EventDetailPage";
 import TrainingPage from "./pages/community/TrainingPage";
 import TrainingDetailPage from "./pages/community/TrainingDetailPage";
 import StoriesPage from "./pages/community/StoriesPage";
+import StoryDetailPage from "./pages/community/StoryDetailPage";
 import BrandAmbassadorPage from "./pages/community/BrandAmbassadorPage";
 import CommunityGuidelinesPage from "./pages/community/CommunityGuidelinesPage";
 import WorkWithBrandexPage from "./pages/community/WorkWithBrandexPage";
+import ApplicationStatusPage from "./pages/community/ApplicationStatusPage";
 
 const queryClient = new QueryClient();
 
@@ -76,6 +80,8 @@ function AnimatedRoutes() {
             <Route path="/education/explore" element={<CurriculumExplorer />} />
             <Route path="/education/explore/:classId" element={<CurriculumExplorer />} />
             <Route path="/education/classroom" element={<ClassroomPlayer />} />
+            <Route path="/education/login" element={<EducatorLoginPage />} />
+            <Route path="/education/admin" element={<EducatorAdminPage />} />
             <Route path="/explore" element={<CurriculumExplorer />} />
             <Route path="/explore/:classId" element={<CurriculumExplorer />} />
             <Route path="/classroom" element={<ClassroomPlayer />} />
@@ -87,7 +93,9 @@ function AnimatedRoutes() {
             <Route path="/community/training" element={<TrainingPage />} />
             <Route path="/community/training/:slug" element={<TrainingDetailPage />} />
             <Route path="/community/stories" element={<StoriesPage />} />
+            <Route path="/community/stories/:slug" element={<StoryDetailPage />} />
             <Route path="/community/ambassador" element={<BrandAmbassadorPage />} />
+            <Route path="/community/status" element={<ApplicationStatusPage />} />
             <Route path="/community/guidelines" element={<CommunityGuidelinesPage />} />
             <Route path="/community/work-with-us" element={<WorkWithBrandexPage />} />
             <Route path="/work-with-us" element={<WorkWithBrandexPage />} />
@@ -96,7 +104,9 @@ function AnimatedRoutes() {
             <Route path="/training" element={<TrainingPage />} />
             <Route path="/training/:slug" element={<TrainingDetailPage />} />
             <Route path="/stories" element={<StoriesPage />} />
+            <Route path="/stories/:slug" element={<StoryDetailPage />} />
             <Route path="/ambassador" element={<BrandAmbassadorPage />} />
+            <Route path="/status" element={<ApplicationStatusPage />} />
             
             {/* Founder Direct Slug Routes */}
             <Route path="/pavan-kumar" element={<FounderProfile founderKey="pavan" />} />
