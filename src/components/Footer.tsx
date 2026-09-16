@@ -1,5 +1,18 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Clock, ArrowUpRight, ArrowUp } from "lucide-react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  ArrowUpRight,
+  ArrowUp,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Github,
+  Youtube,
+  MessageSquare,
+} from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -72,34 +85,72 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Social Handles with Authentic Brand Hover Colors */}
-            <div className="flex items-center gap-4 pt-3 text-xs font-semibold">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-[#E4405F] transition-all duration-200 hover:scale-105"
-              >
-                Instagram
-              </a>
-              <span className="text-slate-700">&bull;</span>
-              <a
-                href="https://x.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-white transition-all duration-200 hover:scale-105"
-              >
-                Twitter / X
-              </a>
-              <span className="text-slate-700">&bull;</span>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-[#0A66C2] transition-all duration-200 hover:scale-105"
-              >
-                LinkedIn
-              </a>
+            {/* Social Channels with Authentic Brand Icons & Glow Effects */}
+            <div className="pt-2">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 block mb-2.5">
+                Connect & Follow
+              </span>
+              <div className="flex flex-wrap items-center gap-2.5">
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-9 h-9 rounded-xl bg-slate-850 border border-slate-750/80 text-slate-400 hover:text-white hover:bg-gradient-to-tr hover:from-[#fd5949] hover:via-[#d6249f] hover:to-[#285AEB] hover:border-transparent transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center shadow-2xs group"
+                >
+                  <Instagram size={16} className="transition-transform group-hover:scale-105" />
+                </a>
+
+                <a
+                  href="https://x.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Twitter / X"
+                  className="w-9 h-9 rounded-xl bg-slate-850 border border-slate-750/80 text-slate-400 hover:text-white hover:bg-black hover:border-slate-700 transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center shadow-2xs group"
+                >
+                  <Twitter size={15} className="transition-transform group-hover:scale-105" />
+                </a>
+
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="w-9 h-9 rounded-xl bg-slate-850 border border-slate-750/80 text-slate-400 hover:text-white hover:bg-[#0A66C2] hover:border-[#0A66C2] transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center shadow-2xs group"
+                >
+                  <Linkedin size={15} className="transition-transform group-hover:scale-105" />
+                </a>
+
+                <a
+                  href="https://github.com/PavanKumar-HQ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  className="w-9 h-9 rounded-xl bg-slate-850 border border-slate-750/80 text-slate-400 hover:text-white hover:bg-[#24292e] hover:border-slate-600 transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center shadow-2xs group"
+                >
+                  <Github size={16} className="transition-transform group-hover:scale-105" />
+                </a>
+
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YouTube"
+                  className="w-9 h-9 rounded-xl bg-slate-850 border border-slate-750/80 text-slate-400 hover:text-white hover:bg-[#FF0000] hover:border-[#FF0000] transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center shadow-2xs group"
+                >
+                  <Youtube size={16} className="transition-transform group-hover:scale-105" />
+                </a>
+
+                <a
+                  href="https://discord.gg/6MVYPzBn9g"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Discord Community"
+                  className="w-9 h-9 rounded-xl bg-slate-850 border border-slate-750/80 text-slate-400 hover:text-white hover:bg-[#5865F2] hover:border-[#5865F2] transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center shadow-2xs group"
+                >
+                  <MessageSquare size={15} className="transition-transform group-hover:scale-105" />
+                </a>
+              </div>
             </div>
 
           </div>
