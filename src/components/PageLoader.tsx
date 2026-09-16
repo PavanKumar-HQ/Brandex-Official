@@ -17,7 +17,7 @@ export default function PageLoader() {
   const [telemetryIndex, setTelemetryIndex] = useState(0);
   const [navTransition, setNavTransition] = useState(false);
 
-  // Initial Cinematic Loader
+  // Initial High-End Light Theme Loader
   useEffect(() => {
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
@@ -45,7 +45,7 @@ export default function PageLoader() {
     };
   }, []);
 
-  // Fast Top Navigation Beacon on route change
+  // Top Navigation Beacon on route change
   useEffect(() => {
     if (!initialLoading) {
       setNavTransition(true);
@@ -69,7 +69,7 @@ export default function PageLoader() {
             transition={{ duration: 0.2 }}
           >
             <motion.div
-              className="h-full bg-gradient-to-r from-[#4f47e6] via-[#818cf8] to-[#38bdf8] shadow-[0_0_14px_rgba(79,71,230,0.85)]"
+              className="h-full bg-gradient-to-r from-[#4f47e6] via-[#818cf8] to-[#6366f1] shadow-[0_0_12px_rgba(79,71,230,0.6)]"
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
               transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
@@ -78,83 +78,80 @@ export default function PageLoader() {
         )}
       </AnimatePresence>
 
-      {/* 2. Full Cinematic High-Contrast Initial Loader */}
+      {/* 2. Full Light Theme Screen Loader */}
       <AnimatePresence>
         {initialLoading && (
           <motion.div
-            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#070d1d] text-white select-none overflow-hidden"
+            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#f8fafd] text-slate-900 select-none overflow-hidden"
             initial={{ opacity: 1 }}
             exit={{
               opacity: 0,
-              scale: 1.02,
-              filter: "blur(8px)",
-              transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+              scale: 0.98,
+              filter: "blur(6px)",
+              transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
             }}
           >
-            {/* Ambient Glowing Cosmic Halo */}
-            <div className="absolute w-96 h-96 rounded-full bg-[#4f47e6]/25 blur-[100px] pointer-events-none animate-pulse" />
-            <div className="absolute w-80 h-80 rounded-full bg-[#38bdf8]/15 blur-[90px] pointer-events-none" />
+            {/* Ambient Indigo/Purple Glow Orbs */}
+            <div className="absolute w-[500px] h-[500px] rounded-full bg-[#4f47e6]/10 blur-[120px] pointer-events-none animate-pulse" />
+            <div className="absolute w-[400px] h-[400px] rounded-full bg-[#818cf8]/15 blur-[100px] pointer-events-none" />
 
-            {/* Subtle Matrix Grid */}
-            <div className="absolute inset-0 bg-grid opacity-25 pointer-events-none" />
+            {/* Subtle Grid Canvas */}
+            <div className="absolute inset-0 bg-grid opacity-35 pointer-events-none" />
 
             <div className="flex flex-col items-center gap-7 relative z-10 max-w-sm px-6 text-center">
               
-              {/* Brand Logo with Rotating Orbital Ring */}
+              {/* Brand Logo with Rotating Dashed Ring */}
               <div className="relative flex items-center justify-center">
-                {/* Rotating Cybernetic Orbital Ring */}
+                {/* Rotating Dashed Accent Ring */}
                 <motion.div
-                  className="absolute w-24 h-24 rounded-full border-2 border-dashed border-[#4f47e6]/60 pointer-events-none"
+                  className="absolute w-24 h-24 rounded-full border-2 border-dashed border-[#4f47e6]/40 pointer-events-none"
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
                 />
-                
-                {/* Outer Glow Halo */}
-                <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-[#4f47e6] via-[#818cf8] to-[#38bdf8] opacity-70 blur-md animate-pulse" />
 
-                {/* Central Emblem Container */}
+                {/* Central Emblem Card */}
                 <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
+                  initial={{ scale: 0.85, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative w-20 h-20 rounded-2xl bg-[#0b1329] border border-indigo-400/40 shadow-[0_0_30px_rgba(79,71,230,0.5)] flex items-center justify-center p-4 backdrop-blur-md"
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative w-20 h-20 rounded-3xl bg-white border border-slate-200/90 shadow-[0_12px_40px_rgba(79,71,230,0.2)] flex items-center justify-center p-4.5 backdrop-blur-xl"
                 >
                   <img
                     src="/logo_nobg.png"
                     alt="Brandex"
-                    className="h-full w-full object-contain filter brightness-0 invert drop-shadow-[0_2px_8px_rgba(255,255,255,0.4)]"
+                    className="h-full w-full object-contain drop-shadow-sm"
                   />
                 </motion.div>
               </div>
 
               {/* Brand Typography */}
               <div className="space-y-1">
-                <h1 className="font-display font-extrabold text-2xl tracking-tight text-white flex items-center justify-center gap-1">
+                <h1 className="font-display font-extrabold text-3xl tracking-tight text-slate-900 flex items-center justify-center gap-0.5">
                   <span>Brandex</span>
-                  <span className="text-[#818cf8]">.</span>
+                  <span className="text-[#4f47e6]">.</span>
                 </h1>
-                <p className="text-[11px] font-mono font-bold tracking-[0.2em] text-indigo-300/80 uppercase">
-                  Digital Systems & Infrastructure
+                <p className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#4f47e6] uppercase">
+                  Digital Canvas & Systems
                 </p>
               </div>
 
-              {/* Progress Bar & Percentage */}
+              {/* Progress Bar & Percentage Counter */}
               <div className="w-64 space-y-2.5">
-                <div className="w-full h-2 bg-slate-900/90 rounded-full overflow-hidden p-0.5 border border-indigo-500/30 shadow-inner">
+                <div className="w-full h-2 bg-slate-200/80 rounded-full overflow-hidden p-0.5 border border-slate-200 shadow-inner">
                   <motion.div
-                    className="h-full bg-gradient-to-r from-[#4f47e6] via-[#818cf8] to-[#38bdf8] rounded-full shadow-[0_0_12px_rgba(129,140,248,0.8)]"
+                    className="h-full bg-gradient-to-r from-[#4f47e6] via-[#6366f1] to-[#818cf8] rounded-full shadow-[0_0_10px_rgba(79,71,230,0.5)]"
                     initial={{ width: "0%" }}
                     animate={{ width: `${Math.min(progress, 100)}%` }}
                     transition={{ ease: "easeOut", duration: 0.15 }}
                   />
                 </div>
 
-                <div className="flex items-center justify-between text-[11px] font-mono text-slate-300 font-semibold px-0.5">
-                  <span className="text-indigo-300/90 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <div className="flex items-center justify-between text-[11px] font-mono font-semibold px-0.5">
+                  <span className="text-slate-500 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                     BOOTSTRAPPING
                   </span>
-                  <span className="text-white font-bold tracking-wider">{Math.min(progress, 100)}%</span>
+                  <span className="text-[#4f47e6] font-bold tracking-wider">{Math.min(progress, 100)}%</span>
                 </div>
               </div>
 
@@ -162,10 +159,10 @@ export default function PageLoader() {
               <div className="h-6 flex items-center justify-center">
                 <motion.p
                   key={telemetryIndex}
-                  initial={{ opacity: 0, y: 4 }}
+                  initial={{ opacity: 0, y: 3 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -4 }}
-                  className="text-[10px] font-mono font-medium text-slate-400 tracking-wide truncate max-w-xs"
+                  exit={{ opacity: 0, y: -3 }}
+                  className="text-[11px] font-mono font-bold text-slate-600 tracking-wide truncate max-w-xs"
                 >
                   {TELEMETRY_STEPS[telemetryIndex]}
                 </motion.p>
