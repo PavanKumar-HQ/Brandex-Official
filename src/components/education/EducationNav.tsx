@@ -9,9 +9,7 @@ import {
   Award,
   ChevronLeft,
   ChevronRight,
-  Sparkles,
-  ArrowUpRight,
-  Search
+  Search,
 } from "lucide-react";
 
 const educationLinks = [
@@ -53,50 +51,34 @@ export default function EducationNav() {
   };
 
   return (
-    <div className="w-full bg-white/90 dark:bg-slate-950/90 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 sticky top-16 z-30 shadow-xs transition-all">
-      <div className="w-full max-w-[1720px] mx-auto px-3 sm:px-6 lg:px-10">
-        <div className="flex items-center justify-between gap-3 h-14">
+    <div className="w-full bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200/70 dark:border-slate-800/70 sticky top-16 z-30 shadow-2xs transition-all">
+      <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+        <div className="flex items-center justify-between gap-4 h-12">
           
-          {/* Left Brand Badge */}
-          <div className="flex items-center gap-2 shrink-0">
-            <Link
-              to="/education"
-              className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-gradient-to-r from-blue-50/80 to-indigo-50/80 border border-blue-100/80 hover:border-blue-300 text-[#4f47e6] transition-all shadow-2xs group"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4f47e6]"></span>
-              </span>
-              <span className="text-xs font-bold tracking-tight font-display text-slate-900 group-hover:text-[#4f47e6] transition-colors">
-                Education Hub
-              </span>
-            </Link>
-          </div>
-
-          {/* Center Navigation Track with Glass Pill Links */}
-          <div className="relative flex-1 min-w-0 flex items-center mx-1 sm:mx-3">
+          {/* Center Tabs Navigation Track */}
+          <div className="relative flex-1 min-w-0 flex items-center">
             
             {/* Left Scroll Arrow */}
             {canScrollLeft && (
               <button
                 onClick={() => scroll("left")}
                 aria-label="Scroll left"
-                className="absolute left-0 z-20 w-8 h-8 rounded-full bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-slate-700 shadow-md flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-[#4f47e6] hover:scale-105 transition-all cursor-pointer"
+                className="absolute left-0 z-20 w-7 h-7 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-[#4f47e6] hover:scale-105 transition-all cursor-pointer"
               >
-                <ChevronLeft size={16} />
+                <ChevronLeft size={14} />
               </button>
             )}
 
-            {/* Left Fade Gradient Mask */}
+            {/* Left Fade Gradient */}
             {canScrollLeft && (
-              <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white/90 dark:from-slate-950/90 to-transparent z-10 pointer-events-none" />
+              <div className="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
             )}
 
             {/* Tabs List */}
             <div
               ref={scrollContainerRef}
               onScroll={checkScroll}
-              className="flex items-center gap-1.5 overflow-x-auto py-1.5 no-scrollbar scroll-smooth w-full px-1"
+              className="flex items-center gap-1 overflow-x-auto py-1 no-scrollbar scroll-smooth w-full"
             >
               {educationLinks.map((tab) => {
                 const isActive = pathname === tab.href || (tab.href !== "/education" && pathname.startsWith(tab.href));
@@ -105,22 +87,22 @@ export default function EducationNav() {
                   <Link
                     key={tab.href}
                     to={tab.href}
-                    className={`relative flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 shrink-0 ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all duration-150 shrink-0 ${
                       isActive
-                        ? "bg-[#4f47e6] text-white shadow-sm shadow-[#4f47e6]/25 font-bold"
-                        : "text-slate-600 hover:text-slate-950 hover:bg-slate-100/90"
+                        ? "bg-[#4f47e6] text-white shadow-2xs font-bold"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
                     }`}
                   >
-                    <Icon size={14} className={isActive ? "text-white" : "text-[#4f47e6]"} />
+                    <Icon size={13} className={isActive ? "text-white" : "text-[#4f47e6]"} />
                     <span>{tab.label}</span>
                   </Link>
                 );
               })}
             </div>
 
-            {/* Right Fade Gradient Mask */}
+            {/* Right Fade Gradient */}
             {canScrollRight && (
-              <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white/90 dark:from-slate-950/90 to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-white dark:from-slate-950 to-transparent z-10 pointer-events-none" />
             )}
 
             {/* Right Scroll Arrow */}
@@ -128,32 +110,22 @@ export default function EducationNav() {
               <button
                 onClick={() => scroll("right")}
                 aria-label="Scroll right"
-                className="absolute right-0 z-20 w-8 h-8 rounded-full bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-slate-700 shadow-md flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-[#4f47e6] hover:scale-105 transition-all cursor-pointer"
+                className="absolute right-0 z-20 w-7 h-7 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-[#4f47e6] hover:scale-105 transition-all cursor-pointer"
               >
-                <ChevronRight size={16} />
+                <ChevronRight size={14} />
               </button>
             )}
           </div>
 
-          {/* Right Action: Quick Switcher to Community */}
+          {/* Right Action: Explore Search */}
           <div className="flex items-center gap-2 shrink-0">
             <Link
               to="/education/explore"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 text-slate-700 hover:text-slate-900 text-xs font-bold transition-all border border-slate-200/60 shadow-2xs group"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200/70 text-slate-700 hover:text-slate-900 text-xs font-semibold transition-all border border-slate-200/60"
               title="Explore Syllabus"
             >
-              <Search size={13} className="text-slate-500 group-hover:text-[#4f47e6] transition-colors" />
-              <span className="hidden md:inline">Find Topics</span>
-            </Link>
-
-            <Link
-              to="/community"
-              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs font-bold transition-all shadow-2xs hover:shadow-sm"
-              title="Go to Community Hub"
-            >
-              <Sparkles size={12} />
-              <span>Community</span>
-              <ArrowUpRight size={12} />
+              <Search size={13} className="text-slate-500" />
+              <span className="hidden sm:inline">Explore Syllabus</span>
             </Link>
           </div>
 
