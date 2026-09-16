@@ -586,6 +586,42 @@ export default function EducationHome() {
         </div>
       </section>
 
+      {/* 6. EDUCATOR & ADMIN ACCESS PORTAL */}
+      <section className="py-16 bg-[#0b132b] text-white border-t border-slate-800 w-full">
+        <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-[#818cf8] text-xs font-mono font-bold uppercase tracking-wider mb-2">
+                Educator Access Gateway
+              </div>
+              <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-white">
+                School Faculty & Admin Portals
+              </h3>
+              <p className="text-sm text-slate-400 mt-1 max-w-xl">
+                Log into your licensed teacher smartboard session, manage class roster analytics, or manage syllabus video feeds.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <Link
+                to="/education/login"
+                className="px-6 py-3 rounded-xl bg-[#4f47e6] hover:bg-[#4338ca] text-white font-bold text-xs shadow-md transition-all flex items-center gap-2"
+              >
+                <GraduationCap size={15} />
+                <span>Educator Login</span>
+              </Link>
+              <Link
+                to="/education/admin"
+                className="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700 transition-all flex items-center gap-2"
+              >
+                <ShieldCheck size={15} />
+                <span>Admin Console</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Floating Spotlight Tour Trigger */}
       <InteractiveSpotlightTour />
 

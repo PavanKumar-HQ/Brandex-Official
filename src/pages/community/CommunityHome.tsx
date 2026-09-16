@@ -229,36 +229,107 @@ export default function CommunityHome() {
         </div>
 
         {/* 3. QUICK SUB-BRANCH PORTALS */}
-        <div className="grid sm:grid-cols-3 gap-6 pt-4">
-          <Link
-            to="/community/events"
-            className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
-          >
-            <Calendar size={28} className="text-[#4f47e6] mb-3" />
-            <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Meetups & Sprints</h3>
-            <p className="text-xs text-slate-500 mb-3">Explore in-person Bangalore meetups, hack sprints, and live system teardowns.</p>
-            <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Browse Events &rarr;</span>
-          </Link>
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-slate-900">
+              Community Hub & Portals
+            </h2>
+            <Link to="/community/search" className="text-xs font-bold text-[#4f47e6] hover:underline">
+              Search All Portals →
+            </Link>
+          </div>
 
-          <Link
-            to="/community/training"
-            className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
-          >
-            <GraduationCap size={28} className="text-[#4f47e6] mb-3" />
-            <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Training Bootcamps</h3>
-            <p className="text-xs text-slate-500 mb-3">Hands-on master modules in sub-second web performance, databases & webhook architecture.</p>
-            <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">View Curriculum &rarr;</span>
-          </Link>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Link
+              to="/community/projects"
+              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+            >
+              <Code2 size={26} className="text-[#4f47e6] mb-3" />
+              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Open-Source Projects</h3>
+              <p className="text-xs text-slate-500 mb-3">Explore active community repositories, core architectures, and contribute to production tools.</p>
+              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Browse Projects &rarr;</span>
+            </Link>
 
-          <Link
-            to="/community/ambassador"
-            className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
-          >
-            <Award size={28} className="text-[#4f47e6] mb-3" />
-            <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Brand Ambassador</h3>
-            <p className="text-xs text-slate-500 mb-3">Lead campus chapters, organize local tech circles, and gain exclusive fellowship grants.</p>
-            <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Apply as Ambassador &rarr;</span>
-          </Link>
+            <Link
+              to="/community/events"
+              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+            >
+              <Calendar size={26} className="text-[#4f47e6] mb-3" />
+              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Meetups & Sprints</h3>
+              <p className="text-xs text-slate-500 mb-3">Explore in-person Bangalore meetups, hack sprints, and live system teardowns.</p>
+              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Browse Events &rarr;</span>
+            </Link>
+
+            <Link
+              to="/community/training"
+              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+            >
+              <GraduationCap size={26} className="text-[#4f47e6] mb-3" />
+              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Training Bootcamps</h3>
+              <p className="text-xs text-slate-500 mb-3">Hands-on master modules in sub-second web performance, databases & webhook architecture.</p>
+              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">View Curriculum &rarr;</span>
+            </Link>
+
+            <Link
+              to="/community/careers"
+              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+            >
+              <Zap size={26} className="text-[#4f47e6] mb-3" />
+              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Careers & Roles</h3>
+              <p className="text-xs text-slate-500 mb-3">Apply to engineering, design, and developer relations roles within the Brandex ecosystem.</p>
+              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">View Open Positions &rarr;</span>
+            </Link>
+
+            <Link
+              to="/community/stories"
+              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+            >
+              <MessageSquare size={26} className="text-[#4f47e6] mb-3" />
+              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Builder Stories</h3>
+              <p className="text-xs text-slate-500 mb-3">In-depth case journeys and interviews from engineers building high-scale applications.</p>
+              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Read Stories &rarr;</span>
+            </Link>
+
+            <Link
+              to="/community/status"
+              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+            >
+              <ShieldCheck size={26} className="text-[#4f47e6] mb-3" />
+              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Application Tracker</h3>
+              <p className="text-xs text-slate-500 mb-3">Check your live application status for ambassador, internship, and partner programs.</p>
+              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Check Status &rarr;</span>
+            </Link>
+
+            <Link
+              to="/community/ambassador"
+              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+            >
+              <Award size={26} className="text-[#4f47e6] mb-3" />
+              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Brand Ambassador</h3>
+              <p className="text-xs text-slate-500 mb-3">Lead campus chapters, organize local tech circles, and gain exclusive fellowship grants.</p>
+              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Apply as Ambassador &rarr;</span>
+            </Link>
+
+            <Link
+              to="/media"
+              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+            >
+              <Share2 size={26} className="text-[#4f47e6] mb-3" />
+              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Media Vault & Gallery</h3>
+              <p className="text-xs text-slate-500 mb-3">High-resolution summit captures, brand assets, and event documentation.</p>
+              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">View Media &rarr;</span>
+            </Link>
+
+            <Link
+              to="/community/guidelines"
+              className="liquid-glass-card hover:bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+            >
+              <CheckCircle2 size={26} className="text-[#4f47e6] mb-3" />
+              <h3 className="font-display font-bold text-lg text-slate-900 mb-1">Community Guidelines</h3>
+              <p className="text-xs text-slate-500 mb-3">Our code of conduct, peer collaboration rules, and security guidelines.</p>
+              <span className="text-xs font-bold text-[#4f47e6] flex items-center gap-1">Read Guidelines &rarr;</span>
+            </Link>
+          </div>
         </div>
 
       </div>

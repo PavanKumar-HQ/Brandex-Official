@@ -40,6 +40,11 @@ import BrandAmbassadorPage from "./pages/community/BrandAmbassadorPage";
 import CommunityGuidelinesPage from "./pages/community/CommunityGuidelinesPage";
 import WorkWithBrandexPage from "./pages/community/WorkWithBrandexPage";
 import ApplicationStatusPage from "./pages/community/ApplicationStatusPage";
+import ProjectsPage from "./pages/community/ProjectsPage";
+import CareersPage from "./pages/community/CareersPage";
+import MediaPage from "./pages/community/MediaPage";
+import SearchPage from "./pages/community/SearchPage";
+import BrandexHQPage from "./pages/community/BrandexHQPage";
 
 const queryClient = new QueryClient();
 
@@ -85,6 +90,8 @@ function AnimatedRoutes() {
             <Route path="/explore" element={<CurriculumExplorer />} />
             <Route path="/explore/:classId" element={<CurriculumExplorer />} />
             <Route path="/classroom" element={<ClassroomPlayer />} />
+            <Route path="/login" element={<EducatorLoginPage />} />
+            <Route path="/admin" element={<EducatorAdminPage />} />
 
             {/* Community Sub-Portal Routes */}
             <Route path="/community" element={<CommunityHome />} />
@@ -96,6 +103,11 @@ function AnimatedRoutes() {
             <Route path="/community/stories/:slug" element={<StoryDetailPage />} />
             <Route path="/community/ambassador" element={<BrandAmbassadorPage />} />
             <Route path="/community/status" element={<ApplicationStatusPage />} />
+            <Route path="/community/projects" element={<ProjectsPage />} />
+            <Route path="/community/careers" element={<CareersPage />} />
+            <Route path="/community/media" element={<MediaPage />} />
+            <Route path="/community/search" element={<SearchPage />} />
+            <Route path="/community/brandex" element={<BrandexHQPage />} />
             <Route path="/community/guidelines" element={<CommunityGuidelinesPage />} />
             <Route path="/community/work-with-us" element={<WorkWithBrandexPage />} />
             <Route path="/work-with-us" element={<WorkWithBrandexPage />} />
@@ -107,6 +119,13 @@ function AnimatedRoutes() {
             <Route path="/stories/:slug" element={<StoryDetailPage />} />
             <Route path="/ambassador" element={<BrandAmbassadorPage />} />
             <Route path="/status" element={<ApplicationStatusPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/careers" element={<CareersPage />} />
+            <Route path="/media" element={<MediaPage />} />
+            <Route path="/media/photos" element={<MediaPage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/brandex" element={<BrandexHQPage />} />
+            <Route path="/ecosystem" element={<BrandexHQPage />} />
             
             {/* Founder Direct Slug Routes */}
             <Route path="/pavan-kumar" element={<FounderProfile founderKey="pavan" />} />

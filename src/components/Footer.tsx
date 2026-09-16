@@ -136,23 +136,35 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* RESOURCES & ECOSYSTEM */}
+            {/* RESOURCES & COMMUNITY */}
             <div>
               <h4 className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-white mb-4">
-                Resources
+                Community
               </h4>
               <ul className="space-y-2.5 text-xs sm:text-sm">
-                <li><Link to="/community" className="hover:text-white transition-colors font-medium">Builders Community</Link></li>
-                <li><Link to="/education" className="hover:text-white transition-colors font-medium">Digital Learning Platform</Link></li>
-                <li><Link to="/education/explore" className="hover:text-white transition-colors font-medium">Classes 6–10 Syllabus</Link></li>
-                <li><Link to="/community/events" className="hover:text-white transition-colors font-medium">Live Summits & Sprints</Link></li>
-                <li><Link to="/community/training" className="hover:text-white transition-colors font-medium">Technical Training</Link></li>
-                <li>
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors font-medium inline-flex items-center gap-1">
-                    <span>Open Source Repos</span>
-                    <ArrowUpRight size={11} className="opacity-60" />
-                  </a>
-                </li>
+                <li><Link to="/community" className="hover:text-white transition-colors font-medium">Community Hub</Link></li>
+                <li><Link to="/community/projects" className="hover:text-white transition-colors font-medium">Open Source Projects</Link></li>
+                <li><Link to="/community/events" className="hover:text-white transition-colors font-medium">Events & Sprints</Link></li>
+                <li><Link to="/community/training" className="hover:text-white transition-colors font-medium">Training Programs</Link></li>
+                <li><Link to="/community/stories" className="hover:text-white transition-colors font-medium">Builder Stories</Link></li>
+                <li><Link to="/community/careers" className="hover:text-white transition-colors font-medium">Careers & Roles</Link></li>
+                <li><Link to="/community/status" className="hover:text-white transition-colors font-medium">Application Status</Link></li>
+              </ul>
+            </div>
+
+            {/* EDUCATION & PORTALS */}
+            <div>
+              <h4 className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-white mb-4">
+                Education & Media
+              </h4>
+              <ul className="space-y-2.5 text-xs sm:text-sm">
+                <li><Link to="/education" className="hover:text-white transition-colors font-medium">Digital Learning</Link></li>
+                <li><Link to="/education/explore" className="hover:text-white transition-colors font-medium">Curriculum Explorer</Link></li>
+                <li><Link to="/education/classroom" className="hover:text-white transition-colors font-medium">Classroom Player</Link></li>
+                <li><Link to="/education/login" className="hover:text-white transition-colors font-medium">Educator Portal</Link></li>
+                <li><Link to="/education/admin" className="hover:text-white transition-colors font-medium">Admin Dashboard</Link></li>
+                <li><Link to="/media" className="hover:text-white transition-colors font-medium">Media Vault & Gallery</Link></li>
+                <li><Link to="/search" className="hover:text-white transition-colors font-medium">Global Search</Link></li>
               </ul>
             </div>
 
