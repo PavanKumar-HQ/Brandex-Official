@@ -289,17 +289,17 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
                 </div>
               </div>
 
-              {/* Social Links */}
-              <div className="flex items-center gap-2.5">
+              {/* Social Links with Authentic Brand Colors on Hover */}
+              <div className="flex items-center gap-3">
                 {founder.socials.github && (
                   <a
                     href={founder.socials.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="liquid-glass-pill p-2.5 rounded-xl text-slate-700 hover:text-[#4f47e6] transition-colors"
+                    className="liquid-glass-pill p-3 rounded-2xl text-slate-700 hover:text-white hover:bg-[#181717] hover:border-[#181717] hover:shadow-[0_4px_16px_rgba(24,23,23,0.35)] transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center cursor-pointer"
                     title="GitHub Profile"
                   >
-                    <Github size={16} />
+                    <Github size={17} />
                   </a>
                 )}
                 {founder.socials.linkedin && (
@@ -307,10 +307,10 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
                     href={founder.socials.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="liquid-glass-pill p-2.5 rounded-xl text-slate-700 hover:text-[#4f47e6] transition-colors"
+                    className="liquid-glass-pill p-3 rounded-2xl text-slate-700 hover:text-white hover:bg-[#0A66C2] hover:border-[#0A66C2] hover:shadow-[0_4px_16px_rgba(10,102,194,0.35)] transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center cursor-pointer"
                     title="LinkedIn Profile"
                   >
-                    <Linkedin size={16} />
+                    <Linkedin size={17} />
                   </a>
                 )}
                 {founder.socials.twitter && (
@@ -318,25 +318,25 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
                     href={founder.socials.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="liquid-glass-pill p-2.5 rounded-xl text-slate-700 hover:text-[#4f47e6] transition-colors"
+                    className="liquid-glass-pill p-3 rounded-2xl text-slate-700 hover:text-white hover:bg-[#000000] hover:border-[#000000] hover:shadow-[0_4px_16px_rgba(0,0,0,0.35)] transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center cursor-pointer"
                     title="Twitter / X"
                   >
-                    <Twitter size={16} />
+                    <Twitter size={17} />
                   </a>
                 )}
                 <a
                   href={`mailto:${founder.socials.email}`}
-                  className="liquid-glass-pill p-2.5 rounded-xl text-slate-700 hover:text-[#4f47e6] transition-colors"
-                  title="Direct Email"
+                  className="liquid-glass-pill p-3 rounded-2xl text-slate-700 hover:text-white hover:bg-[#ea4335] hover:border-[#ea4335] hover:shadow-[0_4px_16px_rgba(234,67,53,0.35)] transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center cursor-pointer"
+                  title="Direct Founder Email"
                 >
-                  <Mail size={16} />
+                  <Mail size={17} />
                 </a>
               </div>
             </div>
 
-            {/* Tagline, Bio & Fun Punchline */}
+            {/* Tagline, Bio & Catchy Punchline */}
             <div className="pt-8 grid md:grid-cols-12 gap-8">
-              <div className="md:col-span-8 space-y-4">
+              <div className="md:col-span-8 space-y-5">
                 <p className="text-lg sm:text-xl font-medium text-slate-900 leading-relaxed font-display">
                   "{founder.tagline}"
                 </p>
@@ -346,39 +346,49 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
                   </p>
                 ))}
 
-                {/* Formal-Funky Bold Punchline */}
+                {/* Catchy Formal-Funky Bold Punchline */}
                 <div className="pt-2">
-                  <div className="p-4 rounded-2xl bg-indigo-50/80 border border-indigo-200/80 text-xs sm:text-sm text-slate-900 leading-relaxed">
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#4f47e6] block mb-1">
-                      The Founder TL;DR
-                    </span>
-                    <strong className="font-extrabold text-slate-900">{founder.funPunchline}</strong>
+                  <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-indigo-50/90 via-purple-50/60 to-white border border-indigo-200/90 text-xs sm:text-sm text-slate-900 leading-relaxed shadow-2xs">
+                    <div className="flex items-center gap-1.5 font-mono text-[10px] font-extrabold uppercase tracking-wider text-[#4f47e6] mb-1.5">
+                      <Zap size={13} className="text-[#4f47e6]" />
+                      <span>THE UNFILTERED VIBE</span>
+                    </div>
+                    <strong className="font-extrabold text-slate-900 block text-sm sm:text-base leading-snug">
+                      "{founder.funPunchline}"
+                    </strong>
                   </div>
                 </div>
               </div>
 
-              {/* Quick Tech Stack & Action */}
-              <div className="md:col-span-4 space-y-6">
-                <div className="liquid-glass-card rounded-2xl p-5">
-                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-900 mb-3 flex items-center gap-1.5">
-                    <Terminal size={14} className="text-[#4f47e6]" />
-                    <span>Daily Weapons of Choice</span>
-                  </h3>
-                  <div className="flex flex-wrap gap-1.5">
-                    {founder.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2.5 py-1 rounded-lg bg-white border border-slate-200/90 text-slate-800 text-[11px] font-mono font-medium shadow-2xs"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+              {/* Catchy Real-Time Dispatch Card (Replacing the dry weapon box) */}
+              <div className="md:col-span-4 space-y-4">
+                <div className="liquid-glass-card rounded-3xl p-6 border border-slate-200/90 shadow-2xs space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">
+                      FOUNDER TELEMETRY
+                    </span>
+                    <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-mono font-bold">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      Live in Bangalore
+                    </span>
                   </div>
-                </div>
 
-                <Button asChild variant="brand" size="default" className="w-full">
-                  <Link to="/contact">Book Technical Discussion</Link>
-                </Button>
+                  <div className="space-y-2 text-xs text-slate-600">
+                    <p className="font-medium text-slate-800">
+                      ⚡ <strong>0% Corporate Jargon.</strong> 100% Shipped Production Systems.
+                    </p>
+                    <p className="text-[11px] text-slate-500 leading-relaxed">
+                      Every project is scoped and executed directly with founders.
+                    </p>
+                  </div>
+
+                  <Button asChild variant="brand" size="default" className="w-full rounded-xl font-bold text-xs h-11 shadow-md">
+                    <Link to="/contact" className="flex items-center justify-center gap-2">
+                      <span>Schedule Founder Sync</span>
+                      <ArrowRight size={14} />
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
           </motion.div>

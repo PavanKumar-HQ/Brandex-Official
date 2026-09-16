@@ -150,26 +150,26 @@ export default function TeamSection() {
                         href={member.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-8 h-8 rounded-lg bg-slate-50 hover:bg-[#4f47e6] text-slate-600 hover:text-white flex items-center justify-center transition-all border border-slate-200"
-                        title="GitHub"
+                        className="w-9 h-9 rounded-xl bg-slate-100 hover:bg-[#181717] hover:border-[#181717] text-slate-700 hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-slate-200 shadow-2xs"
+                        title="GitHub Profile"
                       >
-                        <Github size={13} />
+                        <Github size={14} />
                       </a>
                       <a
                         href={member.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-8 h-8 rounded-lg bg-slate-50 hover:bg-[#4f47e6] text-slate-600 hover:text-white flex items-center justify-center transition-all border border-slate-200"
-                        title="LinkedIn"
+                        className="w-9 h-9 rounded-xl bg-slate-100 hover:bg-[#0A66C2] hover:border-[#0A66C2] text-slate-700 hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-slate-200 shadow-2xs"
+                        title="LinkedIn Profile"
                       >
-                        <Linkedin size={13} />
+                        <Linkedin size={14} />
                       </a>
                       <a
                         href={`mailto:${member.email}`}
-                        className="w-8 h-8 rounded-lg bg-slate-50 hover:bg-[#4f47e6] text-slate-600 hover:text-white flex items-center justify-center transition-all border border-slate-200"
+                        className="w-9 h-9 rounded-xl bg-slate-100 hover:bg-[#ea4335] hover:border-[#ea4335] text-slate-700 hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-slate-200 shadow-2xs"
                         title="Direct Email"
                       >
-                        <Mail size={13} />
+                        <Mail size={14} />
                       </a>
                     </div>
 

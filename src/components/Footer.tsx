@@ -72,17 +72,32 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Social Handles */}
-            <div className="flex items-center gap-5 pt-3 text-xs font-semibold text-slate-400">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+            {/* Social Handles with Authentic Brand Hover Colors */}
+            <div className="flex items-center gap-4 pt-3 text-xs font-semibold">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 hover:text-[#E4405F] transition-all duration-200 hover:scale-105"
+              >
                 Instagram
               </a>
               <span className="text-slate-700">&bull;</span>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                Twitter
+              <a
+                href="https://x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 hover:text-white transition-all duration-200 hover:scale-105"
+              >
+                Twitter / X
               </a>
               <span className="text-slate-700">&bull;</span>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 hover:text-[#0A66C2] transition-all duration-200 hover:scale-105"
+              >
                 LinkedIn
               </a>
             </div>
