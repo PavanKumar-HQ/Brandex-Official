@@ -15,15 +15,17 @@ import {
   Share2,
   Zap,
 } from "lucide-react";
-import { getCommunities, getDiscussions, getOpportunities } from "@/data/community/repository";
-import { Community, Discussion, Opportunity } from "@/models/community";
+import { getCommunities, getDiscussions, getOpportunities } from "@/community/repositories/repository";
+import type { Community, Discussion, Opportunity } from "@/community/models/types";
 import { Button } from "@/components/ui/button";
+import { useRegistration } from "@/community/contexts/RegistrationContext";
 
 export default function CommunityHome() {
   const [communities, setCommunities] = useState<Community[]>([]);
   const [discussions, setDiscussions] = useState<Discussion[]>([]);
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const { openModal } = useRegistration();
 
   useEffect(() => {
     async function loadData() {
@@ -123,28 +125,28 @@ export default function CommunityHome() {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#4f47e6] bg-indigo-100/80 px-2.5 py-0.5 rounded-full">
-                  Global Telegram Club
+                  Developer Server
                 </span>
                 <span className="text-xs font-mono font-bold text-[#4f47e6]">
-                  500+ Active Builders
+                  2,850+ Online
                 </span>
               </div>
               <h3 className="font-display font-extrabold text-2xl text-slate-900">
-                Brandex Telegram Community
+                Brandex Discord Server
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Deep architectural teardowns, peer founder feedback circles, and direct access to Bangalore engineering meetups.
+                Live voice channels for buildathons, pair programming rooms, cybersecurity wargame lobbies, and AI research channels.
               </p>
             </div>
 
             <div>
               <a
-                href="https://t.me/brandexcommunity"
+                href="https://discord.gg/6MVYPzBn9g"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#4f47e6] hover:bg-[#4338ca] text-white font-bold text-xs shadow-md transition-all hover:scale-102"
               >
-                <span>Join Telegram Community</span>
+                <span>Enter Discord Server</span>
                 <ExternalLink size={14} />
               </a>
             </div>
@@ -213,15 +215,13 @@ export default function CommunityHome() {
 
                 <div className="pt-5 border-t border-slate-100 mt-4 flex items-center justify-between">
                   <span className="text-[11px] font-mono text-slate-400">Weekly Syncs</span>
-                  <a
-                    href="https://t.me/brandexcommunity"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={() => openModal('community')}
                     className="px-3.5 py-1.5 rounded-xl bg-indigo-50 hover:bg-[#4f47e6] text-[#4f47e6] hover:text-white font-bold text-xs flex items-center gap-1 transition-all"
                   >
                     <span>Join Circle</span>
                     <ArrowRight size={12} />
-                  </a>
+                  </button>
                 </div>
               </div>
             ))}

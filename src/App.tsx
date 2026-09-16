@@ -5,6 +5,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Layout from "@/components/Layout";
+import { RegistrationProvider } from "@/community/contexts/RegistrationContext";
+import { RegistrationModal } from "@/community/components/ui/RegistrationModal";
+import { InstitutionPartnershipModal } from "@/community/components/ui/InstitutionPartnershipModal";
 
 // Main Official Pages
 import Index from "./pages/Index";
@@ -166,9 +169,14 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/*" element={<AnimatedRoutes />} />
-        </Routes>
+        <RegistrationProvider>
+          <Routes>
+            <Route path="/*" element={<AnimatedRoutes />} />
+          </Routes>
+          {/* Global Community Modals — driven by RegistrationContext */}
+          <RegistrationModal />
+          <InstitutionPartnershipModal />
+        </RegistrationProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
