@@ -13,6 +13,17 @@ export default function Layout({ children }: { children: ReactNode }) {
     window.scrollTo(0, 0);
   }, [pathname]);
 
+  const isClassroomMode = pathname.startsWith("/classroom") || pathname.startsWith("/education/classroom");
+
+  if (isClassroomMode) {
+    return (
+      <div className="min-h-screen bg-[#090e1a] text-slate-100 flex flex-col">
+        <SEOHead />
+        <main className="flex-1">{children}</main>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-[#f8fafd]">
       <SEOHead />

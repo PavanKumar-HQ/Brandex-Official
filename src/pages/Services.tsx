@@ -120,8 +120,8 @@ export default function ServicesPage() {
       />
 
       {/* Hero */}
-      <section className="pt-24 pb-16 lg:pt-28 lg:pb-20 bg-white border-b border-slate-100">
-        <div className="container mx-auto px-6">
+      <section className="pt-24 pb-16 lg:pt-28 lg:pb-20 bg-white border-b border-slate-100 w-full">
+        <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
           {/* Back link */}
           <div className="mb-6">
             <Link
@@ -132,15 +132,15 @@ export default function ServicesPage() {
             </Link>
           </div>
 
-          <div className="max-w-3xl scroll-reveal">
-            <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest text-[#4f47e6] uppercase mb-4 shadow-2xs">
+          <div className="max-w-5xl scroll-reveal space-y-4">
+            <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest text-[#4f47e6] uppercase shadow-2xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
               Engineering Services
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight leading-[1.1]">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
               End-to-end digital <span className="text-[#4f47e6]">engineering & scale</span>.
             </h1>
-            <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-normal">
+            <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-normal max-w-3xl">
               From architectural discovery to production deployment and automated pipelines, we execute every layer of your digital platform.
             </p>
           </div>
