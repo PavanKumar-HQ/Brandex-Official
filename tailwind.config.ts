@@ -62,8 +62,11 @@ export default {
           600: "#4f46e5",
           700: "#4338ca",
           800: "#3730a3",
-          900: "#312e81",
-          950: "#0b0f19",
+          900: "#111d36", // Official Brandex Logo Deep Navy
+          950: "#091021",
+          navy: "#111d36",
+          cobalt: "#3a73e4", // Official Logo Accent Blue
+          violet: "#7c5ceb", // Official Logo Accent Violet
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

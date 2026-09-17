@@ -274,17 +274,12 @@ export default function Navbar() {
       <div className="w-full max-w-[1720px] mx-auto flex items-center justify-between px-4 sm:px-8 lg:px-12 xl:px-16 relative">
         
         {/* Brand Logo */}
-        <Link to="/" className="flex items-center gap-2.5 group shrink-0">
-          <div className="w-8 h-8 rounded-xl bg-[#4f47e6] flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition-transform duration-200">
-            <img
-              src="/logo_nobg.png"
-              alt="Brandex Digital"
-              className="h-full w-full object-contain filter brightness-0 invert"
-            />
-          </div>
-          <span className="font-display text-lg font-bold tracking-tight text-slate-900 group-hover:text-[#4f47e6] transition-colors">
-            Brandex<span className="text-[#4f47e6]">.</span>
-          </span>
+        <Link to="/" className="flex items-center gap-2 group shrink-0 select-none">
+          <img
+            src="/brandex-logo.webp"
+            alt="Brandex"
+            className="h-7 sm:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+          />
         </Link>
 
         {/* Desktop Navigation Pill Bar */}

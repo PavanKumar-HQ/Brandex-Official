@@ -57,8 +57,30 @@
     color: #4f47e6;
   }
 
+  .text-logo-navy {
+    color: #111d36;
+  }
+
+  .bg-logo-navy {
+    background-color: #111d36;
+  }
+
+  .text-logo-gradient {
+    background: linear-gradient(135deg, #3a73e4 0%, #7c5ceb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-logo-gradient {
+    background: linear-gradient(135deg, #3a73e4 0%, #7c5ceb 100%);
+  }
+
+  .border-logo-gradient {
+    border-image: linear-gradient(135deg, #3a73e4, #7c5ceb) 1;
+  }
+
   .text-gradient {
-    color: #0f172a;
+    color: #111d36;
   }
 
   .text-gradient-brand {

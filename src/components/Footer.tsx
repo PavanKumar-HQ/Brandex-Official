@@ -31,16 +31,11 @@ export default function Footer() {
             
             {/* Brand Logo & Name */}
             <Link to="/" className="inline-flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-xl bg-[#4f47e6] flex items-center justify-center p-2 shadow-sm group-hover:scale-105 transition-transform">
-                <img
-                  src="/logo_nobg.png"
-                  alt="Brandex"
-                  className="h-full w-full object-contain filter brightness-0 invert"
-                />
-              </div>
-              <span className="font-display text-2xl font-extrabold tracking-tight text-white">
-                Brandex<span className="text-[#4f47e6]">.</span>
-              </span>
+              <img
+                src="/brandex-logo.webp"
+                alt="Brandex"
+                className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105 filter brightness-0 invert"
+              />
             </Link>
 
             <p className="text-sm text-slate-400 leading-relaxed max-w-md font-normal">
