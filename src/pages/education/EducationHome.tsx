@@ -253,7 +253,7 @@ export default function ProductLandingPage() {
               >
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.12]">
                   Digital learning <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600">
+                  <span className="text-[#4338ca]">
                     built for schools.
                   </span>
                 </h1>

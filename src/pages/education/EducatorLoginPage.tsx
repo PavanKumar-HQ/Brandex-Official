@@ -60,7 +60,7 @@ function LoginForm() {
             <div className="space-y-3 pt-4">
               <h1 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight leading-tight">
                 Classroom Access <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-600">
+                <span className="text-[#4338ca]">
                   Portal.
                 </span>
               </h1>

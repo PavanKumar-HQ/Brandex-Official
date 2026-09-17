@@ -640,7 +640,7 @@ export const RegistrationModal: React.FC = () => {
           {/* Minimal 2px Progress Bar directly under header */}
           <div className="w-full h-1 bg-slate-100 dark:bg-slate-800 shrink-0">
             <div
-              className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 transition-all duration-300"
+              className="h-full bg-[#4338ca] transition-all duration-300"
               style={{ width: `${(step / 4) * 100}%` }}
             />
           </div>

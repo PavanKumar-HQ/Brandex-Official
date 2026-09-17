@@ -144,7 +144,7 @@ export const EventRegistrationModal: React.FC<EventRegistrationModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Accent Line */}
-        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 rounded-t-3xl" />
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#4338ca] rounded-t-3xl" />
 
         {/* Header */}
         <div className="flex items-start justify-between border-b border-slate-100 dark:border-slate-800 pb-4 pt-1">

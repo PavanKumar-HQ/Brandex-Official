@@ -45,13 +45,13 @@ const TypewriterText: React.FC<{ words: string[] }> = ({ words }) => {
   const longestWord = words.reduce((a, b) => (a.length > b.length ? a : b), '');
 
   return (
-    <span className="inline-flex items-center relative text-indigo-600 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700">
+    <span className="inline-flex items-center relative text-[#4338ca]">
       {/* Hidden text to reserve space */}
       <span className="invisible">{longestWord}</span>
       {/* Actual typing text */}
-      <span className="absolute left-0 top-0 bottom-0 flex items-center bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700">
+      <span className="absolute left-0 top-0 bottom-0 flex items-center text-[#4338ca]">
         <span>{words[index].substring(0, subIndex)}</span>
-        <span className="animate-pulse ml-1 w-2 h-[0.8em] bg-purple-600 inline-block rounded-sm" />
+        <span className="animate-pulse ml-1 w-2 h-[0.8em] bg-[#4338ca] inline-block rounded-sm" />
       </span>
     </span>
   );

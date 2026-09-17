@@ -91,7 +91,7 @@ export function GuidedTourModal({ isOpen, onClose }: GuidedTourModalProps) {
         className="w-full max-w-lg bg-white rounded-3xl border border-slate-200/90 shadow-2xl overflow-hidden relative"
       >
         {/* Top Header with Mascot Avatar */}
-        <div className="bg-gradient-to-br from-indigo-50/80 via-purple-50/50 to-white p-6 pb-4 border-b border-slate-100 flex items-start justify-between">
+        <div className="bg-indigo-50/40 p-6 pb-4 border-b border-slate-100 flex items-start justify-between">
           <div className="flex items-center gap-3.5">
             <div className="w-14 h-14 rounded-2xl overflow-hidden bg-white border border-indigo-100 shadow-sm flex items-center justify-center shrink-0">
               <img

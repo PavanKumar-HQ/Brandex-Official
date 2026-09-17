@@ -406,7 +406,7 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
 
                 {/* Catchy Formal-Funky Bold Punchline */}
                 <div className="pt-2">
-                  <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-indigo-50/90 via-purple-50/60 to-white border border-indigo-200/90 text-xs sm:text-sm text-slate-900 leading-relaxed shadow-2xs">
+                  <div className="p-4 sm:p-5 rounded-2xl bg-indigo-50/50 border border-indigo-200/90 text-xs sm:text-sm text-slate-900 leading-relaxed shadow-2xs">
                     <div className="flex items-center gap-1.5 font-mono text-[10px] font-extrabold uppercase tracking-wider text-[#4f47e6] mb-1.5">
                       <Zap size={13} className="text-[#4f47e6]" />
                       <span>THE UNFILTERED VIBE</span>

@@ -179,103 +179,8 @@ export default function ContactPage() {
         <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12">
           <div className="grid lg:grid-cols-12 gap-8 items-start">
             
-            {/* Left Column: Direct Leadership Telemetry & Contact Info */}
-            <div className="lg:col-span-5 space-y-4">
-              
-              {/* Leadership Response Card */}
-              <div className="liquid-glass rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-xs space-y-4">
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#4f47e6]">
-                      Direct Dispatch
-                    </span>
-                    <span className="liquid-glass-pill px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      <span>Response: &lt; 24 Hours</span>
-                    </span>
-                  </div>
-                  <h3 className="font-display font-extrabold text-lg text-slate-900">
-                    Direct Access to Technical Leadership
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed font-normal mt-0.5">
-                    Every message goes directly to our founding engineers for technical evaluation and timeline estimation.
-                  </p>
-                </div>
-
-                {/* Direct Channels */}
-                <div className="space-y-3 text-xs sm:text-sm text-slate-700 pt-2 border-t border-slate-200/70">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-[#4f47e6] shrink-0">
-                      <Phone size={14} />
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-mono text-slate-400 font-bold uppercase">Phone & WhatsApp</div>
-                      <a href="tel:+919901514757" className="font-bold text-slate-900 hover:text-[#4f47e6] transition-colors">
-                        +91 99015 14757
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-[#4f47e6] shrink-0">
-                      <Mail size={14} />
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-mono text-slate-400 font-bold uppercase">Official Mail</div>
-                      <a href="mailto:brandexhq@gmail.com" className="font-bold text-slate-900 hover:text-[#4f47e6] transition-colors">
-                        brandexhq@gmail.com
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-[#4f47e6] shrink-0">
-                      <MapPin size={14} />
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-mono text-slate-400 font-bold uppercase">Headquarters</div>
-                      <span className="font-semibold text-slate-900 text-xs">
-                        #121, 13th Main M.C. Layout, Vijaynagar, Bangalore - 560040
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 1-Tap WhatsApp Fast Action */}
-                <div className="pt-2">
-                  <Button
-                    type="button"
-                    onClick={openDirectWhatsApp}
-                    variant="liquidGlass"
-                    size="default"
-                    className="w-full justify-center rounded-xl font-bold gap-2 text-xs text-emerald-700 hover:text-emerald-800 border-emerald-200 bg-emerald-50/60 hover:bg-emerald-50 h-10"
-                  >
-                    <MessageSquare size={14} className="text-emerald-600" />
-                    <span>Instant WhatsApp Chat</span>
-                  </Button>
-                </div>
-              </div>
-
-              {/* Engineering Guarantees */}
-              <div className="liquid-glass-card rounded-2xl p-4 border border-slate-200 space-y-2 text-xs text-slate-700 font-semibold">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck size={14} className="text-[#4f47e6] shrink-0" />
-                  <span>100% Client Source Code Ownership</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock size={14} className="text-[#4f47e6] shrink-0" />
-                  <span>Sub-Second TTFB & Performance Guarantee</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 size={14} className="text-[#4f47e6] shrink-0" />
-                  <span>Strict NDA & Non-Disclosure Assurance</span>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Right Column: Clean Scoping Form */}
-            <div className="lg:col-span-7">
+            {/* Inquiry Form Column: At top on mobile (order-1), right side on desktop (lg:order-2) */}
+            <div className="lg:col-span-7 order-1 lg:order-2">
               <div className="liquid-glass-card rounded-3xl p-6 sm:p-8 border border-slate-300/90 shadow-sm relative overflow-hidden">
                 
                 {submitted ? (
@@ -459,6 +364,129 @@ export default function ContactPage() {
                 )}
 
               </div>
+            </div>
+
+            {/* Direct Leadership Telemetry & Merchant Details Column: order-2 on mobile, lg:order-1 on desktop */}
+            <div className="lg:col-span-5 space-y-4 order-2 lg:order-1">
+              
+              {/* Leadership Response Card */}
+              <div className="liquid-glass rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-xs space-y-4">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#4f47e6]">
+                      Direct Dispatch
+                    </span>
+                    <span className="liquid-glass-pill px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span>Response: &lt; 24 Hours</span>
+                    </span>
+                  </div>
+                  <h3 className="font-display font-extrabold text-lg text-slate-900">
+                    Direct Access to Technical Leadership
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed font-normal mt-0.5">
+                    Every message goes directly to our founding engineers for technical evaluation and timeline estimation.
+                  </p>
+                </div>
+
+                {/* Direct Channels */}
+                <div className="space-y-3.5 text-xs sm:text-sm text-slate-700 pt-3 border-t border-slate-200/70">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-indigo-50/80 border border-indigo-100 flex items-center justify-center text-[#4f47e6] shrink-0 mt-0.5">
+                      <Phone size={14} />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-mono text-slate-400 font-bold uppercase">Direct Phone & WhatsApp</div>
+                      <div className="space-y-0.5 mt-0.5">
+                        <a href="tel:+919480944727" className="block font-bold text-slate-900 hover:text-[#4f47e6] transition-colors">
+                          +91 94809 44727
+                        </a>
+                        <a href="tel:+919901514757" className="block font-medium text-slate-700 hover:text-[#4f47e6] transition-colors">
+                          +91 99015 14757
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-indigo-50/80 border border-indigo-100 flex items-center justify-center text-[#4f47e6] shrink-0">
+                      <Mail size={14} />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-mono text-slate-400 font-bold uppercase">Official Inquiries Mail</div>
+                      <a href="mailto:brandexhq@gmail.com" className="font-bold text-slate-900 hover:text-[#4f47e6] transition-colors">
+                        brandexhq@gmail.com
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-indigo-50/80 border border-indigo-100 flex items-center justify-center text-[#4f47e6] shrink-0 mt-0.5">
+                      <MapPin size={14} />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-mono text-slate-400 font-bold uppercase">Headquarters & Operational Office</div>
+                      <p className="font-semibold text-slate-900 text-xs leading-relaxed mt-0.5">
+                        #121, 13th Main M.C. Layout, Vijaynagar, Bangalore, Karnataka &ndash; 560040
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 pt-1 border-t border-slate-100">
+                    <div className="w-8 h-8 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-600 shrink-0">
+                      <Clock size={14} />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-mono text-slate-400 font-bold uppercase">Business Hours</div>
+                      <span className="font-medium text-slate-800 text-xs">
+                        Mon &ndash; Fri, 9:00 AM &ndash; 6:00 PM IST
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-600 space-y-1">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-slate-400 font-bold">GSTIN:</span>
+                      <span className="font-mono font-bold text-slate-800">29OGNPS8060K1Z5</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-slate-400 font-bold">Entity:</span>
+                      <span className="font-semibold text-slate-800">Brandex Digital</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 1-Tap WhatsApp Fast Action */}
+                <div className="pt-2">
+                  <Button
+                    type="button"
+                    onClick={openDirectWhatsApp}
+                    variant="liquidGlass"
+                    size="default"
+                    className="w-full justify-center rounded-xl font-bold gap-2 text-xs text-emerald-700 hover:text-emerald-800 border-emerald-200 bg-emerald-50/60 hover:bg-emerald-50 h-10"
+                  >
+                    <MessageSquare size={14} className="text-emerald-600" />
+                    <span>Instant WhatsApp Chat</span>
+                  </Button>
+                </div>
+              </div>
+
+              {/* Engineering Guarantees */}
+              <div className="liquid-glass-card rounded-2xl p-4 border border-slate-200 space-y-2 text-xs text-slate-700 font-semibold">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck size={14} className="text-[#4f47e6] shrink-0" />
+                  <span>100% Client Source Code Ownership</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock size={14} className="text-[#4f47e6] shrink-0" />
+                  <span>Sub-Second TTFB & Performance Guarantee</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={14} className="text-[#4f47e6] shrink-0" />
+                  <span>Strict NDA & Non-Disclosure Assurance</span>
+                </div>
+              </div>
+
             </div>
 
           </div>

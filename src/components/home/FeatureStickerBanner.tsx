@@ -20,9 +20,8 @@ const STICKERS = [
     title: "Sub-18ms TTFB",
     subtitle: "Global Low-Latency Routing",
     icon: Zap,
-    badgeColor: "bg-indigo-600 text-white",
-    cardBg: "bg-white border-indigo-200/90 shadow-[0_8px_24px_rgba(79,71,230,0.12)]",
-    tilt: "-rotate-1",
+    badgeColor: "bg-[#0f1e37] text-white",
+    cardBg: "bg-white border-slate-200/90 shadow-2xs",
     link: "/services",
   },
   {
@@ -31,9 +30,8 @@ const STICKERS = [
     title: "Classroom Smartboard",
     subtitle: "KSEEB Syllabus 6–10 Video LMS",
     icon: GraduationCap,
-    badgeColor: "bg-purple-600 text-white",
-    cardBg: "bg-white border-purple-200/90 shadow-[0_8px_24px_rgba(147,51,234,0.12)]",
-    tilt: "rotate-2",
+    badgeColor: "bg-[#4338ca] text-white",
+    cardBg: "bg-white border-slate-200/90 shadow-2xs",
     link: "/education",
   },
   {
@@ -42,9 +40,8 @@ const STICKERS = [
     title: "100% Client Code IP",
     subtitle: "Zero SaaS Vendor Lock-In",
     icon: ShieldCheck,
-    badgeColor: "bg-emerald-600 text-white",
-    cardBg: "bg-white border-emerald-200/90 shadow-[0_8px_24px_rgba(16,185,129,0.12)]",
-    tilt: "-rotate-2",
+    badgeColor: "bg-[#0f1e37] text-white",
+    cardBg: "bg-white border-slate-200/90 shadow-2xs",
     link: "/case-studies",
   },
   {
@@ -53,9 +50,8 @@ const STICKERS = [
     title: "Bangalore Tech Circles",
     subtitle: "Live Sprints & Hackathons",
     icon: Users,
-    badgeColor: "bg-blue-600 text-white",
-    cardBg: "bg-white border-blue-200/90 shadow-[0_8px_24px_rgba(37,99,235,0.12)]",
-    tilt: "rotate-1",
+    badgeColor: "bg-[#4338ca] text-white",
+    cardBg: "bg-white border-slate-200/90 shadow-2xs",
     link: "/community",
   },
   {
@@ -64,9 +60,8 @@ const STICKERS = [
     title: "GPU WebGL Simulation",
     subtitle: "Procedural Earth & GIS Data",
     icon: Globe2,
-    badgeColor: "bg-cyan-600 text-white",
-    cardBg: "bg-white border-cyan-200/90 shadow-[0_8px_24px_rgba(6,182,212,0.12)]",
-    tilt: "-rotate-1",
+    badgeColor: "bg-[#0f1e37] text-white",
+    cardBg: "bg-white border-slate-200/90 shadow-2xs",
     link: "/solutions",
   },
   {
@@ -75,9 +70,8 @@ const STICKERS = [
     title: "Automated Pipelines",
     subtitle: "40+ Hours Saved Per Week",
     icon: Cpu,
-    badgeColor: "bg-amber-600 text-white",
-    cardBg: "bg-white border-amber-200/90 shadow-[0_8px_24px_rgba(217,119,6,0.12)]",
-    tilt: "rotate-2",
+    badgeColor: "bg-[#4338ca] text-white",
+    cardBg: "bg-white border-slate-200/90 shadow-2xs",
     link: "/contact",
   },
 ];
@@ -130,7 +124,7 @@ export default function FeatureStickerBanner() {
               <Link
                 key={idx}
                 to={item.link}
-                className={`group/sticker p-4 sm:p-5 rounded-2xl border ${item.cardBg} ${item.tilt} hover:rotate-0 hover:scale-105 transition-all duration-250 flex items-center gap-3.5 shrink-0 cursor-pointer hover:shadow-lg`}
+                className={`group/sticker p-4 sm:p-5 rounded-2xl border ${item.cardBg} hover:scale-[1.02] hover:border-indigo-300 transition-all duration-200 flex items-center gap-3.5 shrink-0 cursor-pointer hover:shadow-md`}
               >
                 <div className={`w-11 h-11 rounded-xl ${item.badgeColor} flex items-center justify-center shadow-xs shrink-0 transition-transform group-hover/sticker:scale-110`}>
                   <Icon size={20} />
