@@ -10,7 +10,6 @@ import { z } from "zod";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
-import { dispatchLeadToCRM } from "@/services/crmService";
 
 const scopeOptions = [
   { id: "webapp", label: "Custom Web Application", icon: Server },
@@ -63,32 +62,7 @@ export default function ContactPage() {
 
     setSubmitting(true);
     try {
-      // 1. Dispatch lead directly to Brandex CRM API pipeline
-      dispatchLeadToCRM({
-        name,
-        contact,
-        service: selectedService,
-        description,
-        source: "Website Project Scoping Intake",
-      }).catch((e) => console.warn("CRM dispatch notice:", e));
-
-      // 2. Store in local browser storage
-      try {
-        const existingLeads = JSON.parse(localStorage.getItem("brandex_crm_leads") || "[]");
-        existingLeads.unshift({
-          name,
-          contact,
-          service: selectedService,
-          description,
-          timestamp: new Date().toISOString(),
-          status: "NEW_INQUIRY",
-        });
-        localStorage.setItem("brandex_crm_leads", JSON.stringify(existingLeads));
-      } catch (e) {
-        console.warn("CRM local storage sync notice:", e);
-      }
-
-      // 3. Web3Forms email notification fallback
+      // 1. Direct Web3Forms Intake & Notification
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
