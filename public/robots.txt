@@ -1,16 +1,57 @@
+# Brandex Official robots.txt
+# Built for Maximum Search Engine & AI / LLM Discovery
+
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /api/private
 
-# Specifically allow AI crawlers
+# Google Search & Media Crawlers
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Googlebot-News
+User-agent: Googlebot-Video
+User-agent: Mediapartners-Google
+User-agent: AdsBot-Google
+Allow: /
+
+# Bing, Yahoo, DuckDuckGo & Apple
+User-agent: Bingbot
+User-agent: Slurp
+User-agent: DuckDuckBot
+User-agent: Applebot
+User-agent: Yandex
+Allow: /
+
+# OpenAI / ChatGPT Crawlers
 User-agent: GPTBot
-Allow: /
 User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
 Allow: /
-User-agent: Google-Extended
-Allow: /
+
+# Anthropic / Claude Crawlers
+User-agent: ClaudeBot
+User-agent: Claude-Web
 User-agent: anthropic-ai
 Allow: /
 
+# Perplexity AI Crawler
+User-agent: PerplexityBot
+Allow: /
+
+# Google Gemini / Extended AI Crawler
+User-agent: Google-Extended
+Allow: /
+
+# Cohere, Common Crawl & Other AI Indexes
+User-agent: cohere-ai
+User-agent: CCBot
+User-agent: Bytespider
+User-agent: Diffbot
+User-agent: FacebookBot
+User-agent: Twitterbot
+Allow: /
+
+# Canonical Sitemaps & LLM Context References
+Sitemap: https://brandex.me/sitemap.xml
 Sitemap: https://brandex.dev/sitemap.xml
-# AI instruction file
-Sitemap: https://brandex.dev/llms.txt

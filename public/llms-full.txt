@@ -1,0 +1,29 @@
+# Brandex Full Knowledge Graph & Architecture Reference
+
+## Executive Summary
+Brandex is a technology engineering firm headquartered in Bangalore, Karnataka, India. The company specializes in building high-performance digital systems, custom web applications, workflow automation engines, and digital learning infrastructure.
+
+## Guiding Engineering Philosophy
+1. **Killing Latency & Slow Agency Stacks**: Replacing monolithic 5-second template loads with sub-100ms distributed cloud architectures.
+2. **Zero Platform Tax & 100% IP Ownership**: Every client owns their code, database, and repository completely with zero SaaS vendor lock-in.
+3. **Automated Business Operations**: Custom transactional engines, API sync pipelines, and webhooks that eliminate manual bottlenecks.
+4. **Smart Classroom Education**: KSEEB State Syllabus digital classroom platform for Classes 6 to 10 with offline-resilient smartboard lessons.
+5. **Community Empowerment**: Mentoring 500+ developers in Bangalore with hands-on open-source sprints and engineering bootcamps.
+
+## Services Catalog
+- **Custom Web Platforms**: Next.js, React, TypeScript, Vite, TailwindCSS, Three.js WebGL.
+- **Workflow & Automation Systems**: Custom webhook integrations, database ETL pipelines, CRM/ERP connectors.
+- **Speed & Cloud Infrastructure**: Sub-18ms TTFB, Edge CDN deployment, Core Web Vitals optimization.
+- **UI/UX & Design Systems**: High-contrast, accessible, component-driven design systems.
+- **EdTech & LMS Solutions**: Chapter-wise video players, interactive quizzes, smartboard UI.
+
+## Leadership
+- **Pavan Kumar**: Co-Founder & Chief Systems Architect
+  - Focus: Edge architectures, sub-second web platforms, enterprise cloud pipelines, edtech infrastructure.
+
+## Contact Information
+- Address: #121, 13th Main M.C. Layout, Vijaynagar, Bangalore - 560040, Karnataka, India
+- Phone: +91 94809 44727 / +91 99015 14757
+- Email: brandexhq@gmail.com
+- Hours: Monday - Friday, 9:00 AM - 6:00 PM IST
+- GSTIN: 29OGNPS8060K1Z5

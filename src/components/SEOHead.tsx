@@ -84,68 +84,114 @@ const pageMeta: Record<string, { title: string; description: string; keywords?: 
   },
 };
 
-export default function SEOHead() {
+interface SEOHeadProps {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  keywords?: string;
+  image?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  author?: string;
+}
+
+export default function SEOHead({
+  title: propTitle,
+  description: propDesc,
+  canonicalUrl: propCanonical,
+  keywords: propKeywords,
+  image: propImage = "https://brandex.me/main_logo.png",
+  type = "website",
+}: SEOHeadProps = {}) {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Determine meta: check exact match or fallback for dynamic routes
-    let meta = pageMeta[pathname];
-    if (!meta) {
-      if (pathname.startsWith("/blog/")) {
-        meta = {
-          title: "Blog Article – Brandex | Engineering & Design",
-          description: "Read in-depth insights on software development and scalable architecture from Brandex.",
-        };
-      } else if (pathname.startsWith("/case-studies/")) {
-        meta = {
-          title: "Case Study – Brandex | Impact & Results",
-          description: "Discover our in-depth case study showcasing technical architecture and business growth results.",
-        };
-      } else {
-        meta = pageMeta["/"];
-      }
-    }
+    // Determine meta: check passed props first, then exact pathname match, then fallback
+    const staticMeta = pageMeta[pathname];
+    const title = propTitle || staticMeta?.title || (
+      pathname.startsWith("/blog/")
+        ? "Blog Article – Brandex | Technical Architecture"
+        : pathname.startsWith("/case-studies/")
+        ? "Case Study – Brandex | Impact & Results"
+        : pageMeta["/"].title
+    );
 
-    // Title
-    document.title = meta.title;
+    const description = propDesc || staticMeta?.description || (
+      pathname.startsWith("/blog/")
+        ? "Read in-depth technical insights on software development, edge architectures, and scalable cloud systems from Brandex engineers."
+        : pathname.startsWith("/case-studies/")
+        ? "Discover our in-depth case study showcasing technical architecture and business growth results."
+        : pageMeta["/"].description
+    );
+
+    const keywords = propKeywords || staticMeta?.keywords || "Brandex, software engineering, Bangalore, web development, cloud architectures, AI automation";
+
+    // Dynamic Title
+    document.title = title;
 
     // Canonical link
-    const canonicalUrl = `https://brandex.dev${pathname === "/" ? "" : pathname}`;
+    const canonicalUrl = propCanonical 
+      ? (propCanonical.startsWith("http") ? propCanonical : `https://brandex.me${propCanonical}`)
+      : `https://brandex.me${pathname === "/" ? "" : pathname}`;
+
     let canonicalTag = document.querySelector('link[rel="canonical"]');
-    if (canonicalTag) {
-      canonicalTag.setAttribute("href", canonicalUrl);
+    if (!canonicalTag) {
+      canonicalTag = document.createElement("link");
+      canonicalTag.setAttribute("rel", "canonical");
+      document.head.appendChild(canonicalTag);
     }
+    canonicalTag.setAttribute("href", canonicalUrl);
 
     // Meta Description
-    const descTag = document.querySelector('meta[name="description"]');
-    if (descTag) descTag.setAttribute("content", meta.description);
+    let descTag = document.querySelector('meta[name="description"]');
+    if (!descTag) {
+      descTag = document.createElement("meta");
+      descTag.setAttribute("name", "description");
+      document.head.appendChild(descTag);
+    }
+    descTag.setAttribute("content", description);
 
     // Meta Keywords
-    if (meta.keywords) {
-      let keywordsTag = document.querySelector('meta[name="keywords"]');
-      if (keywordsTag) keywordsTag.setAttribute("content", meta.keywords);
+    let keywordsTag = document.querySelector('meta[name="keywords"]');
+    if (!keywordsTag) {
+      keywordsTag = document.createElement("meta");
+      keywordsTag.setAttribute("name", "keywords");
+      document.head.appendChild(keywordsTag);
     }
+    keywordsTag.setAttribute("content", keywords);
 
     // OpenGraph Tags
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute("content", meta.title);
+    const setMeta = (property: string, content: string) => {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("property", property);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", content);
+    };
 
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute("content", meta.description);
+    const setTwitter = (name: string, content: string) => {
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("name", name);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", content);
+    };
 
-    const ogUrl = document.querySelector('meta[property="og:url"]');
-    if (ogUrl) ogUrl.setAttribute("content", canonicalUrl);
+    setMeta("og:title", title);
+    setMeta("og:description", description);
+    setMeta("og:url", canonicalUrl);
+    setMeta("og:type", type);
+    setMeta("og:image", propImage);
 
-    // Twitter Tags
-    const twTitle = document.querySelector('meta[name="twitter:title"]');
-    if (twTitle) twTitle.setAttribute("content", meta.title);
-
-    const twDesc = document.querySelector('meta[name="twitter:description"]');
-    if (twDesc) twDesc.setAttribute("content", meta.description);
-
-    const twUrl = document.querySelector('meta[name="twitter:url"]');
-    if (twUrl) twUrl.setAttribute("content", canonicalUrl);
-  }, [pathname]);
+    setTwitter("twitter:title", title);
+    setTwitter("twitter:description", description);
+    setTwitter("twitter:url", canonicalUrl);
+    setTwitter("twitter:image", propImage);
+  }, [pathname, propTitle, propDesc, propCanonical, propKeywords, propImage, type]);
 
   return null;
 }
