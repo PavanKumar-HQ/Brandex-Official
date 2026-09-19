@@ -198,18 +198,18 @@ export const EducationPage: React.FC = () => {
                 {pw.linkTo ? (
                   <NavLink
                     to={pw.linkTo}
-                    className="btn-primary w-full sm:w-auto justify-center text-center inline-flex items-center gap-2"
+                    className="btn-primary inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-xs sm:text-sm bg-[#0f1e37] text-white hover:bg-[#4f47e6] hover:text-white shadow-md hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:scale-95 group w-full sm:w-auto"
                   >
                     <span>{pw.ctaText}</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </NavLink>
                 ) : (
                   <button
                     onClick={pw.action}
-                    className="btn-primary w-full sm:w-auto justify-center text-center inline-flex items-center gap-2"
+                    className="btn-primary inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-xs sm:text-sm bg-[#0f1e37] text-white hover:bg-[#4f47e6] hover:text-white shadow-md hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:scale-95 group w-full sm:w-auto cursor-pointer"
                   >
                     <span>{pw.ctaText}</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </button>
                 )}
               </div>

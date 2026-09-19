@@ -116,7 +116,7 @@ export default function ServicesPage() {
       <SEOHead
         title="Web Engineering, Automation & Custom Software Services | Brandex"
         description="Explore Brandex engineering services: bespoke web development, business automation, custom SaaS applications, and SEO infrastructure."
-        canonical="https://brandex.me/services"
+        canonical="https://brandex-official.vercel.app/services"
       />
 
       {/* Hero */}

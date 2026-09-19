@@ -100,7 +100,7 @@ export default function SEOHead({
   description: propDesc,
   canonicalUrl: propCanonical,
   keywords: propKeywords,
-  image: propImage = "https://brandex.me/main_logo.png",
+  image: propImage = "https://brandex-official.vercel.app/main_logo.png",
   type = "website",
 }: SEOHeadProps = {}) {
   const { pathname } = useLocation();
@@ -131,8 +131,8 @@ export default function SEOHead({
 
     // Canonical link
     const canonicalUrl = propCanonical 
-      ? (propCanonical.startsWith("http") ? propCanonical : `https://brandex.me${propCanonical}`)
-      : `https://brandex.me${pathname === "/" ? "" : pathname}`;
+      ? (propCanonical.startsWith("http") ? propCanonical : `https://brandex-official.vercel.app${propCanonical}`)
+      : `https://brandex-official.vercel.app${pathname === "/" ? "" : pathname}`;
 
     let canonicalTag = document.querySelector('link[rel="canonical"]');
     if (!canonicalTag) {

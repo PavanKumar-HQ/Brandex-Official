@@ -292,6 +292,7 @@ export default function Navbar() {
                 key={item.label}
                 className="relative"
                 onMouseEnter={() => handleMouseEnter(item.hasDropdown)}
+                onMouseLeave={handleMouseLeave}
               >
                 <Link
                   to={item.href}
@@ -319,6 +320,163 @@ export default function Navbar() {
                     />
                   )}
                 </Link>
+
+                {/* =========================================================
+                    DESKTOP FLYOUT MEGA-DROPDOWN: COMMUNITY
+                   ========================================================= */}
+                {item.hasDropdown === "community" && (
+                  <AnimatePresence>
+                    {isDropdownOpen && (
+                      <div
+                        className="hidden lg:block absolute top-full left-1/2 -translate-x-1/2 pt-2.5 z-50 pointer-events-auto"
+                        onMouseEnter={() => handleMouseEnter("community")}
+                        onMouseLeave={handleMouseLeave}
+                      >
+                        <motion.div
+                          initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                          transition={{ duration: 0.18, ease: "easeOut" }}
+                          className="w-[720px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl rounded-3xl border border-slate-200/90 dark:border-slate-800/90 shadow-2xl p-6 overflow-hidden"
+                        >
+                          <div className="grid grid-cols-2 gap-6">
+                            {communityDropdownSections.map((section, idx) => (
+                              <div key={idx} className="space-y-2">
+                                <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 px-2 pb-1 border-b border-slate-100 dark:border-slate-800">
+                                  {section.title}
+                                </div>
+                                <div className="space-y-1">
+                                  {section.items.map((subItem) => {
+                                    const Icon = subItem.icon;
+                                    const isSubActive = pathname === subItem.href;
+                                    return (
+                                      <Link
+                                        key={subItem.title}
+                                        to={subItem.href}
+                                        onClick={() => setActiveDropdown(null)}
+                                        className={`flex items-start gap-3 p-2.5 rounded-2xl transition-all group ${
+                                          isSubActive
+                                            ? "bg-indigo-50/90 text-[#4f47e6]"
+                                            : "hover:bg-slate-50 dark:hover:bg-slate-800/60"
+                                        }`}
+                                      >
+                                        <div className="w-8 h-8 rounded-xl bg-indigo-50 text-[#4f47e6] group-hover:bg-[#4f47e6] group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs mt-0.5">
+                                          <Icon size={15} />
+                                        </div>
+                                        <div className="min-w-0">
+                                          <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-[#4f47e6] transition-colors leading-tight">
+                                            {subItem.title}
+                                          </div>
+                                          <div className="text-[11px] text-slate-500 font-normal truncate mt-0.5">
+                                            {subItem.desc}
+                                          </div>
+                                        </div>
+                                      </Link>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Dropdown Footer Action */}
+                          <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                            <span className="text-[11px] text-slate-500 font-medium">
+                              Builders &amp; Founders Club • 1,400+ Active Members
+                            </span>
+                            <Link
+                              to="/community/search"
+                              onClick={() => setActiveDropdown(null)}
+                              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-indigo-50 text-[#4f47e6] hover:bg-[#4f47e6] hover:text-white text-xs font-bold transition-all shadow-2xs"
+                            >
+                              <Search size={12} />
+                              <span>Search Community</span>
+                              <ArrowRight size={12} />
+                            </Link>
+                          </div>
+                        </motion.div>
+                      </div>
+                    )}
+                  </AnimatePresence>
+                )}
+
+                {/* =========================================================
+                    DESKTOP FLYOUT MEGA-DROPDOWN: EDUCATION
+                   ========================================================= */}
+                {item.hasDropdown === "education" && (
+                  <AnimatePresence>
+                    {isDropdownOpen && (
+                      <div
+                        className="hidden lg:block absolute top-full left-1/2 -translate-x-1/2 pt-2.5 z-50 pointer-events-auto"
+                        onMouseEnter={() => handleMouseEnter("education")}
+                        onMouseLeave={handleMouseLeave}
+                      >
+                        <motion.div
+                          initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                          transition={{ duration: 0.18, ease: "easeOut" }}
+                          className="w-[680px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl rounded-3xl border border-slate-200/90 dark:border-slate-800/90 shadow-2xl p-6 overflow-hidden"
+                        >
+                          <div className="grid grid-cols-2 gap-6">
+                            {educationDropdownSections.map((section, idx) => (
+                              <div key={idx} className="space-y-2">
+                                <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 px-2 pb-1 border-b border-slate-100 dark:border-slate-800">
+                                  {section.title}
+                                </div>
+                                <div className="space-y-1">
+                                  {section.items.map((subItem) => {
+                                    const Icon = subItem.icon;
+                                    const isSubActive = pathname === subItem.href;
+                                    return (
+                                      <Link
+                                        key={subItem.title}
+                                        to={subItem.href}
+                                        onClick={() => setActiveDropdown(null)}
+                                        className={`flex items-start gap-3 p-2.5 rounded-2xl transition-all group ${
+                                          isSubActive
+                                            ? "bg-blue-50/90 text-blue-600"
+                                            : "hover:bg-slate-50 dark:hover:bg-slate-800/60"
+                                        }`}
+                                      >
+                                        <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs mt-0.5">
+                                          <Icon size={15} />
+                                        </div>
+                                        <div className="min-w-0">
+                                          <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors leading-tight">
+                                            {subItem.title}
+                                          </div>
+                                          <div className="text-[11px] text-slate-500 font-normal truncate mt-0.5">
+                                            {subItem.desc}
+                                          </div>
+                                        </div>
+                                      </Link>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Dropdown Footer Action */}
+                          <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                            <span className="text-[11px] text-slate-500 font-medium">
+                              Karnataka State Syllabus Class 6–10 Digital Labs
+                            </span>
+                            <Link
+                              to="/education/explore"
+                              onClick={() => setActiveDropdown(null)}
+                              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white text-xs font-bold transition-all shadow-2xs"
+                            >
+                              <span>Explore All Subjects</span>
+                              <ArrowRight size={12} />
+                            </Link>
+                          </div>
+                        </motion.div>
+                      </div>
+                    )}
+                  </AnimatePresence>
+                )}
               </div>
             );
           })}
@@ -349,152 +507,6 @@ export default function Navbar() {
           </button>
         </div>
       </div>
-
-      {/* =========================================================
-          DESKTOP FLYOUT MEGA-DROPDOWN: COMMUNITY
-         ========================================================= */}
-      <AnimatePresence>
-        {activeDropdown === "community" && (
-          <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 6, scale: 0.98 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-            onMouseEnter={() => handleMouseEnter("community")}
-            onMouseLeave={handleMouseLeave}
-            className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[720px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl rounded-3xl border border-slate-200/90 dark:border-slate-800/90 shadow-2xl p-6 z-50 overflow-hidden"
-          >
-            <div className="grid grid-cols-2 gap-6">
-              {communityDropdownSections.map((section, idx) => (
-                <div key={idx} className="space-y-2">
-                  <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 px-2 pb-1 border-b border-slate-100 dark:border-slate-800">
-                    {section.title}
-                  </div>
-                  <div className="space-y-1">
-                    {section.items.map((subItem) => {
-                      const Icon = subItem.icon;
-                      const isSubActive = pathname === subItem.href;
-                      return (
-                        <Link
-                          key={subItem.title}
-                          to={subItem.href}
-                          onClick={() => setActiveDropdown(null)}
-                          className={`flex items-start gap-3 p-2.5 rounded-2xl transition-all group ${
-                            isSubActive
-                              ? "bg-indigo-50/90 text-[#4f47e6]"
-                              : "hover:bg-slate-50 dark:hover:bg-slate-800/60"
-                          }`}
-                        >
-                          <div className="w-8 h-8 rounded-xl bg-indigo-50 text-[#4f47e6] group-hover:bg-[#4f47e6] group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs mt-0.5">
-                            <Icon size={15} />
-                          </div>
-                          <div className="min-w-0">
-                            <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-[#4f47e6] transition-colors leading-tight">
-                              {subItem.title}
-                            </div>
-                            <div className="text-[11px] text-slate-500 font-normal truncate mt-0.5">
-                              {subItem.desc}
-                            </div>
-                          </div>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Dropdown Footer Action */}
-            <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-              <span className="text-[11px] text-slate-500 font-medium">
-                Builders & Founders Club • 1,400+ Active Members
-              </span>
-              <Link
-                to="/community/search"
-                onClick={() => setActiveDropdown(null)}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-indigo-50 text-[#4f47e6] hover:bg-[#4f47e6] hover:text-white text-xs font-bold transition-all shadow-2xs"
-              >
-                <Search size={12} />
-                <span>Search Community</span>
-                <ArrowRight size={12} />
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* =========================================================
-          DESKTOP FLYOUT MEGA-DROPDOWN: EDUCATION
-         ========================================================= */}
-      <AnimatePresence>
-        {activeDropdown === "education" && (
-          <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 6, scale: 0.98 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-            onMouseEnter={() => handleMouseEnter("education")}
-            onMouseLeave={handleMouseLeave}
-            className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[680px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl rounded-3xl border border-slate-200/90 dark:border-slate-800/90 shadow-2xl p-6 z-50 overflow-hidden"
-          >
-            <div className="grid grid-cols-2 gap-6">
-              {educationDropdownSections.map((section, idx) => (
-                <div key={idx} className="space-y-2">
-                  <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 px-2 pb-1 border-b border-slate-100 dark:border-slate-800">
-                    {section.title}
-                  </div>
-                  <div className="space-y-1">
-                    {section.items.map((subItem) => {
-                      const Icon = subItem.icon;
-                      const isSubActive = pathname === subItem.href;
-                      return (
-                        <Link
-                          key={subItem.title}
-                          to={subItem.href}
-                          onClick={() => setActiveDropdown(null)}
-                          className={`flex items-start gap-3 p-2.5 rounded-2xl transition-all group ${
-                            isSubActive
-                              ? "bg-blue-50/90 text-blue-600"
-                              : "hover:bg-slate-50 dark:hover:bg-slate-800/60"
-                          }`}
-                        >
-                          <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs mt-0.5">
-                            <Icon size={15} />
-                          </div>
-                          <div className="min-w-0">
-                            <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors leading-tight">
-                              {subItem.title}
-                            </div>
-                            <div className="text-[11px] text-slate-500 font-normal truncate mt-0.5">
-                              {subItem.desc}
-                            </div>
-                          </div>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Dropdown Footer Action */}
-            <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-              <span className="text-[11px] text-slate-500 font-medium">
-                Karnataka State Board Mapped Curriculum
-              </span>
-              <Link
-                to="/education/explore"
-                onClick={() => setActiveDropdown(null)}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white text-xs font-bold transition-all shadow-2xs"
-              >
-                <BookOpen size={12} />
-                <span>Explore Full Syllabus</span>
-                <ArrowRight size={12} />
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* =========================================================
           MOBILE DRAWER NAVIGATION

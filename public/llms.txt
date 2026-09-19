@@ -21,14 +21,14 @@ Brandex designs, develops, and deploys high-performance web applications, cloud 
 - **GSTIN**: 29OGNPS8060K1Z5
 - **Phone**: +91 94809 44727 / +91 99015 14757
 - **Email**: brandexhq@gmail.com
-- **Website**: https://brandex.me / https://brandex.dev
+- **Website**: https://brandex-official.vercel.app
 
 ## Key URLs
-- Home: https://brandex.me/
-- Services: https://brandex.me/services
-- Case Studies: https://brandex.me/case-studies
-- Education Portal: https://brandex.me/education
-- Community Hub: https://brandex.me/community
-- Technical Blog: https://brandex.me/blog
-- Contact & Scoping: https://brandex.me/contact
-- Founder Profile (Pavan Kumar): https://brandex.me/founders/pavan
+- Home: https://brandex-official.vercel.app/
+- Services: https://brandex-official.vercel.app/services
+- Case Studies: https://brandex-official.vercel.app/case-studies
+- Education Portal: https://brandex-official.vercel.app/education
+- Community Hub: https://brandex-official.vercel.app/community
+- Technical Blog: https://brandex-official.vercel.app/blog
+- Contact & Scoping: https://brandex-official.vercel.app/contact
+- Founder Profile (Pavan Kumar): https://brandex-official.vercel.app/founders/pavan

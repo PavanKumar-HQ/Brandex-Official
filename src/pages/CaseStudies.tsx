@@ -17,7 +17,7 @@ export default function CaseStudiesPage() {
       <SEOHead
         title="Case Studies & Client Deployments | Brandex"
         description="Explore production case studies, custom architectures, and measurable ROI delivered by Brandex for modern enterprises."
-        canonical="https://brandex.me/case-studies"
+        canonical="https://brandex-official.vercel.app/case-studies"
       />
 
       <section className="pt-24 pb-16 lg:pt-28 lg:pb-20 bg-white border-b border-slate-100">

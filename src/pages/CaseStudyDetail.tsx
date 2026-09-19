@@ -28,7 +28,7 @@ export default function CaseStudyDetail() {
       <SEOHead
         title={`${project.title} Case Study | Brandex`}
         description={project.description}
-        canonical={`https://brandex.me/case-studies/${project.id}`}
+        canonical={`https://brandex-official.vercel.app/case-studies/${project.id}`}
       />
 
       <article className="min-h-screen bg-white">

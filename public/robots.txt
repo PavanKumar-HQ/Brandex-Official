@@ -53,5 +53,5 @@ User-agent: Twitterbot
 Allow: /
 
 # Canonical Sitemaps & LLM Context References
+Sitemap: https://brandex-official.vercel.app/sitemap.xml
 Sitemap: https://brandex.me/sitemap.xml
-Sitemap: https://brandex.dev/sitemap.xml

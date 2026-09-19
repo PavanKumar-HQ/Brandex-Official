@@ -262,7 +262,7 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
       <SEOHead
         title={`${founder.name} — ${founder.role} | Brandex`}
         description={`${founder.name} is ${founder.role} at Brandex. ${founder.tagline}`}
-        canonical={`https://brandex.me/${founder.id}`}
+        canonical={`https://brandex-official.vercel.app/${founder.id}`}
       />
 
       <section className="pt-24 pb-14 lg:pt-28 lg:pb-20 bg-[#f8fafd] relative overflow-hidden border-b border-slate-200/80">

@@ -27,3 +27,14 @@ Brandex is a technology engineering firm headquartered in Bangalore, Karnataka, 
 - Email: brandexhq@gmail.com
 - Hours: Monday - Friday, 9:00 AM - 6:00 PM IST
 - GSTIN: 29OGNPS8060K1Z5
+- Production Website: https://brandex-official.vercel.app
+
+## Knowledge Index & Core Endpoints
+- Home: https://brandex-official.vercel.app/
+- Services Catalog: https://brandex-official.vercel.app/services
+- Client Case Studies: https://brandex-official.vercel.app/case-studies
+- Education Curriculum (KSEEB): https://brandex-official.vercel.app/education
+- Community Guild: https://brandex-official.vercel.app/community
+- Engineering Insights: https://brandex-official.vercel.app/blog
+- Direct Diagnostic Contact: https://brandex-official.vercel.app/contact
+- Founder Profile (Pavan Kumar): https://brandex-official.vercel.app/founders/pavan
