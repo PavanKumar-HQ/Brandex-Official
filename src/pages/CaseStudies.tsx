@@ -48,12 +48,12 @@ export default function CaseStudiesPage() {
           </div>
 
           {/* Filter Pills */}
-          <div className="flex flex-wrap gap-2 mb-12 scroll-reveal">
+          <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2 scroll-reveal no-scrollbar">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+                className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
                   filter === cat
                     ? "bg-[#4f47e6] text-white shadow-2xs"
                     : "liquid-glass-pill text-slate-700 hover:text-slate-950 hover:bg-white"
@@ -65,14 +65,17 @@ export default function CaseStudiesPage() {
           </div>
 
           {/* Liquid Glass Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
             {filtered.map((project) => {
               return (
                 <div
                   key={project.title}
-                  className="group liquid-glass-card hover:bg-white/95 rounded-3xl overflow-hidden transition-all duration-300 flex flex-col hover:-translate-y-1.5"
+                  className="group liquid-glass-card hover:bg-white/95 rounded-3xl overflow-hidden transition-all duration-300 flex flex-col hover:-translate-y-1.5 border border-slate-200/90 shadow-2xs"
                 >
-                  <div className="aspect-[16/10] bg-slate-50 relative overflow-hidden">
+                  <Link
+                    to={`/case-studies/${project.id}`}
+                    className="aspect-[16/10] bg-slate-50 relative overflow-hidden block"
+                  >
                     {project.url ? (
                       <div className="absolute inset-0 w-full h-full relative group-hover:scale-105 transition-transform duration-500 ease-out">
                         {/* Browser Chrome Overlay */}
@@ -90,45 +93,76 @@ export default function CaseStudiesPage() {
                       </div>
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-mono text-xs">
-                        Preview Loading...
+                        Production Architecture
                       </div>
                     )}
 
-                    <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-xs flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 text-center z-20">
+                    {/* Desktop Hover Overlay (desktop only) */}
+                    <div className="hidden md:flex absolute inset-0 bg-slate-950/90 backdrop-blur-xs flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 text-center z-20">
                       <span className="text-white font-display text-2xl font-bold mb-2">{project.result}</span>
-                      <span className="text-slate-300 text-xs mb-4">{project.challenge}</span>
-                      {project.url && (
-                        <a href={project.url} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[#4f47e6] text-white rounded-full text-xs font-semibold flex items-center gap-1.5 hover:bg-[#4338ca] transition-colors shadow-sm">
-                          <span>Visit Live Site</span>
-                          <ExternalLink size={13} />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="p-6 flex flex-col flex-1 justify-between">
-                    <div>
-                      <span className="liquid-glass-pill text-[10px] font-mono font-bold text-[#4f47e6] uppercase tracking-wider px-2.5 py-0.5 rounded-md">
-                        {project.category}
+                      <span className="text-slate-300 text-xs mb-4 line-clamp-2">{project.challenge}</span>
+                      <span className="px-4 py-2 bg-[#4f47e6] text-white rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-sm">
+                        <span>Read Case Study</span>
+                        <ArrowRight size={13} />
                       </span>
-                      <div className="flex justify-between items-start mt-3 mb-2">
-                        <h3 className="font-display font-bold text-lg text-slate-900 group-hover:text-[#4f47e6] transition-colors">
-                          {project.title}
-                        </h3>
-                        <Link to={`/case-studies/${project.id}`} className="text-[#4f47e6] hover:underline flex items-center gap-1 text-xs font-semibold shrink-0" title="View Deep Dive">
-                          <span>Deep Dive</span>
-                          <Link2 size={12} />
+                    </div>
+                  </Link>
+
+                  <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-2.5">
+                        <span className="liquid-glass-pill text-[10px] font-mono font-bold text-[#4f47e6] uppercase tracking-wider px-2.5 py-0.5 rounded-md">
+                          {project.category}
+                        </span>
+                        <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2.5 py-0.5 rounded-full">
+                          {project.result}
+                        </span>
+                      </div>
+
+                      <div className="flex justify-between items-start mb-2">
+                        <Link to={`/case-studies/${project.id}`}>
+                          <h3 className="font-display font-bold text-lg text-slate-900 group-hover:text-[#4f47e6] transition-colors leading-snug">
+                            {project.title}
+                          </h3>
                         </Link>
                       </div>
-                      <p className="text-xs sm:text-sm text-slate-600 mb-4 font-normal leading-relaxed">{project.description}</p>
+
+                      <p className="text-xs sm:text-sm text-slate-600 mb-4 font-normal leading-relaxed line-clamp-2 sm:line-clamp-3">
+                        {project.description}
+                      </p>
                     </div>
 
-                    <div className="flex flex-wrap gap-1.5 pt-3 border-t border-slate-200/60">
-                      {project.tech.map((t) => (
-                        <span key={t} className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-700 font-medium">
-                          {t}
-                        </span>
-                      ))}
+                    <div>
+                      <div className="flex flex-wrap gap-1.5 pt-3 border-t border-slate-200/60 mb-4">
+                        {project.tech.map((t) => (
+                          <span key={t} className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-700 font-medium">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Explicit, high-touch mobile & desktop actions */}
+                      <div className="flex items-center gap-2 pt-2 border-t border-slate-100">
+                        <Link
+                          to={`/case-studies/${project.id}`}
+                          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-[#4f47e6] text-white text-xs font-bold transition-all shadow-xs hover:-translate-y-0.5 active:scale-95 text-center"
+                        >
+                          <span>View Case Study</span>
+                          <ArrowRight size={13} />
+                        </Link>
+                        {project.url && (
+                          <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-3 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-[#4f47e6] text-xs font-bold transition-colors border border-slate-200/80"
+                            title="Visit Live Platform"
+                            aria-label={`Visit live website for ${project.title}`}
+                          >
+                            <ExternalLink size={14} />
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

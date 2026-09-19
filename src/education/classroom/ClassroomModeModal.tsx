@@ -61,21 +61,19 @@ export function ClassroomModeModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#070B14] text-white flex flex-col overflow-hidden select-none">
+    <div className="fixed inset-0 z-[100] bg-[#070B14] text-white flex flex-col overflow-hidden select-none">
       
       {/* Top Presentation Header */}
-      <div className="h-14 px-4 sm:px-6 bg-[#0B1120] border-b border-slate-800/80 flex items-center justify-between shrink-0">
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-indigo-500/20 text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider border border-indigo-500/30">
-            <Tv className="w-3.5 h-3.5" /> Classroom Mode
+      <div className="h-14 px-3 sm:px-6 bg-[#0B1120] border-b border-slate-800/80 flex items-center justify-between shrink-0 gap-2">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-indigo-500/20 text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider border border-indigo-500/30 shrink-0">
+            <Tv className="w-3.5 h-3.5" /> <span className="hidden xs:inline">Classroom</span> Mode
           </div>
           <div className="h-4 w-px bg-slate-800 hidden sm:block" />
-          <div className="text-xs sm:text-sm text-slate-300 font-medium truncate max-w-xl">
-            <span className="text-slate-400">{classLevel.name}</span>
-            <span className="mx-1.5 text-slate-600">/</span>
+          <div className="text-xs sm:text-sm text-slate-300 font-medium truncate max-w-[140px] sm:max-w-md lg:max-w-xl">
+            <span className="text-slate-400 hidden md:inline">{classLevel.name} / </span>
             <span className="text-indigo-400 font-semibold">{subject.name}</span>
-            <span className="mx-1.5 text-slate-600">/</span>
-            <span className="text-slate-200">Ch {chapter.chapterNumber}: {chapter.title}</span>
+            <span className="text-slate-400 hidden sm:inline"> / Ch {chapter.chapterNumber}</span>
           </div>
         </div>
 

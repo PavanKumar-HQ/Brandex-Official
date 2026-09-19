@@ -94,8 +94,9 @@ export function BrandexYouTubePlayer({
     }
   };
 
-  // Safe valid embed source
-  const embedSrc = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=${hasStarted ? 1 : 0}&playsinline=1&rel=0&modestbranding=1${originUrl ? `&origin=${encodeURIComponent(originUrl)}` : ""}`;
+  // Safe valid embed source (fallback to working science/education video if placeholder passed)
+  const activeVideoId = (!videoId || videoId === "1aFw5r_pS1g" || videoId === "placeholder") ? "b2KeIId2Dk4" : videoId;
+  const embedSrc = `https://www.youtube.com/embed/${activeVideoId}?enablejsapi=1&autoplay=${hasStarted ? 1 : 0}&playsinline=1&rel=0&modestbranding=1${originUrl ? `&origin=${encodeURIComponent(originUrl)}` : ""}`;
 
   return (
     <div

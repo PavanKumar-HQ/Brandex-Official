@@ -143,9 +143,9 @@ export default function SubjectChaptersPage() {
                           </div>
 
                           {/* Action Button */}
-                          <div className="flex items-center gap-2 self-end lg:self-center shrink-0">
+                          <div className="flex items-center gap-2 w-full lg:w-auto justify-end shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-slate-100">
                             <Link to={`/education/lesson/${lesson.slug}`}
-                              className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-xs hover:shadow-indigo-600/20 whitespace-nowrap"
+                              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-xs hover:shadow-indigo-600/20 whitespace-nowrap text-center"
                             >
                               <span>Watch Lesson</span>
                               <ArrowRight className="w-3.5 h-3.5" />

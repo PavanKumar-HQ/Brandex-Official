@@ -1,57 +1,75 @@
 # Brandex Official robots.txt
-# Built for Maximum Search Engine & AI / LLM Discovery
+# Built for Comprehensive Search Engine & AI / LLM Discovery
+# Production Domain: https://brandex-official.vercel.app
 
 User-agent: *
 Allow: /
+Allow: /blog/
+Allow: /case-studies/
+Allow: /services
+Allow: /solutions
+Allow: /education
+Allow: /community
+Allow: /about
+Allow: /contact
+Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /admin
 Disallow: /api/private
 
-# Google Search & Media Crawlers
+# Google Web, Extended & Media Crawlers
 User-agent: Googlebot
 User-agent: Googlebot-Image
 User-agent: Googlebot-News
 User-agent: Googlebot-Video
 User-agent: Mediapartners-Google
 User-agent: AdsBot-Google
+User-agent: Google-Extended
 Allow: /
 
-# Bing, Yahoo, DuckDuckGo & Apple
+# Microsoft Bing, Yahoo, DuckDuckGo & Yandex
 User-agent: Bingbot
+User-agent: msnbot
 User-agent: Slurp
 User-agent: DuckDuckBot
-User-agent: Applebot
 User-agent: Yandex
 Allow: /
 
-# OpenAI / ChatGPT Crawlers
+# Apple Search & Siri Intelligence
+User-agent: Applebot
+User-agent: Applebot-Extended
+Allow: /
+
+# OpenAI — ChatGPT & SearchGPT
 User-agent: GPTBot
 User-agent: ChatGPT-User
 User-agent: OAI-SearchBot
 Allow: /
 
-# Anthropic / Claude Crawlers
+# Anthropic — Claude
 User-agent: ClaudeBot
 User-agent: Claude-Web
 User-agent: anthropic-ai
 Allow: /
 
-# Perplexity AI Crawler
+# Perplexity AI
 User-agent: PerplexityBot
 Allow: /
 
-# Google Gemini / Extended AI Crawler
-User-agent: Google-Extended
+# Meta & Facebook Crawlers
+User-agent: FacebookBot
+User-agent: Meta-ExternalAgent
 Allow: /
 
-# Cohere, Common Crawl & Other AI Indexes
+# Amazon, Twitter & Cohere AI Agents
+User-agent: Amazonbot
+User-agent: Twitterbot
 User-agent: cohere-ai
 User-agent: CCBot
 User-agent: Bytespider
 User-agent: Diffbot
-User-agent: FacebookBot
-User-agent: Twitterbot
 Allow: /
 
-# Canonical Sitemaps & LLM Context References
+# Canonical Sitemaps
 Sitemap: https://brandex-official.vercel.app/sitemap.xml
 Sitemap: https://brandex.me/sitemap.xml

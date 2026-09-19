@@ -23,12 +23,72 @@ export default function CaseStudyDetail() {
     );
   }
 
+  const caseStudySchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": `https://brandex-official.vercel.app/case-studies/${project.id}#article`,
+        "headline": `${project.title} — Production Case Study`,
+        "description": project.description,
+        "image": "https://brandex-official.vercel.app/main_logo.png",
+        "author": {
+          "@type": "Organization",
+          "name": "Brandex Engineering Team",
+          "url": "https://brandex-official.vercel.app"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Brandex",
+          "url": "https://brandex-official.vercel.app",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://brandex-official.vercel.app/main_logo.png"
+          }
+        },
+        "mainEntityOfPage": `https://brandex-official.vercel.app/case-studies/${project.id}`,
+        "about": {
+          "@type": "Thing",
+          "name": project.category
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `https://brandex-official.vercel.app/case-studies/${project.id}#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://brandex-official.vercel.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Case Studies",
+            "item": "https://brandex-official.vercel.app/case-studies"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": project.title,
+            "item": `https://brandex-official.vercel.app/case-studies/${project.id}`
+          }
+        ]
+      }
+    ]
+  };
+
   return (
     <>
       <SEOHead
         title={`${project.title} Case Study | Brandex`}
         description={project.description}
         canonical={`https://brandex-official.vercel.app/case-studies/${project.id}`}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }}
       />
 
       <article className="min-h-screen bg-white">
