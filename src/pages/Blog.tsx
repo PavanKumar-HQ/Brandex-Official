@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { Skeleton } from "@/components/ui/skeleton";
 import { blogPosts as localBlogPosts } from "@/data/blogPosts";
 import SEOHead from "@/components/SEOHead";
+import { SITE_CONFIG, getCanonicalUrl } from "@/config/site";
 
 const categories = ["All", "Engineering", "Design", "Business"];
 
@@ -39,7 +40,7 @@ export default function Blog() {
       category: p.category,
       created_at: p.date,
       read_time: p.readTime,
-      slug: p.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+      slug: p.id,
       content: p.content.join("\n\n"),
       author: p.author,
     }));
@@ -66,24 +67,24 @@ export default function Blog() {
   const blogListSchema = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "@id": "https://brandex-official.vercel.app/blog#blog",
-    "name": "Brandex Engineering Insights & Architecture Notes",
+    "@id": `${SITE_CONFIG.url}/blog#blog`,
+    "name": `${SITE_CONFIG.name} Engineering Insights & Architecture Notes`,
     "description": "Technical essays and engineering breakdowns on sub-second web architecture, design systems, and workflow automation.",
-    "url": "https://brandex-official.vercel.app/blog",
+    "url": `${SITE_CONFIG.url}/blog`,
     "publisher": {
       "@type": "Organization",
-      "name": "Brandex",
-      "url": "https://brandex-official.vercel.app",
+      "name": SITE_CONFIG.name,
+      "url": SITE_CONFIG.url,
       "logo": {
         "@type": "ImageObject",
-        "url": "https://brandex-official.vercel.app/main_logo.png"
+        "url": `${SITE_CONFIG.url}/main_logo.png`
       }
     },
     "blogPost": posts.slice(0, 10).map((p) => ({
       "@type": "BlogPosting",
       "headline": p.title,
       "description": p.excerpt,
-      "url": `https://brandex-official.vercel.app/blog/${p.slug}`,
+      "url": getCanonicalUrl(`/blog/${p.id}`),
       "datePublished": p.created_at,
       "author": {
         "@type": "Person",
@@ -98,10 +99,7 @@ export default function Blog() {
         title="Technical Engineering & Architecture Blog (50+ Articles) | Brandex"
         description="Comprehensive technical breakdowns on sub-second web architecture, conversion UX design, PostgreSQL scaling, and webhook automation by Sathvik Nagesh and Pavan Kumar S."
         canonicalUrl="/blog"
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListSchema) }}
+        schema={blogListSchema}
       />
 
       {/* Hero Header - Left-Aligned, Tight Spacing */}

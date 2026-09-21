@@ -77,7 +77,7 @@ export default function LessonPage() {
             <span className="mx-1 sm:mx-1.5 text-slate-600">/</span>
             <span className="text-indigo-400 font-semibold">{subject.name}</span>
             <span className="mx-1 sm:mx-1.5 text-slate-600">/</span>
-            <span className="text-slate-200">Ch {chapter.chapterNumber}: {chapter.title}</span>
+            <span className="text-slate-200">Ch {chapter.chapterNumber}: {chapter.title.replace(/^Chapter\s*\d+\s*:\s*/i, "")}</span>
           </div>
         </div>
 
@@ -145,7 +145,7 @@ export default function LessonPage() {
                   Chapter Lessons ({allChapterLessons.length})
                 </h3>
                 <p className="text-xs font-bold text-white mt-0.5 truncate max-w-xs">
-                  Ch {chapter.chapterNumber}: {chapter.title}
+                  Ch {chapter.chapterNumber}: {chapter.title.replace(/^Chapter\s*\d+\s*:\s*/i, "")}
                 </p>
               </div>
             </div>

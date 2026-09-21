@@ -26,13 +26,13 @@ export default function BlogPreview() {
           <div className="max-w-2xl">
             <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest text-[#4f47e6] uppercase mb-2.5 shadow-2xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-              Technical Editorial
+              Articles & Guides
             </div>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
-              Engineering Insights & <span className="text-[#4f47e6]">Architecture Notes</span>
+              Helpful Articles & <span className="text-[#4f47e6]">Tech Guides</span>
             </h2>
             <p className="text-slate-600 text-xs sm:text-sm font-normal mt-1.5">
-              Deep dives into web architecture, sub-second performance engineering, and automated business workflows.
+              Practical tips on web design, automation, and growing your business online.
             </p>
           </div>
 

@@ -27,13 +27,13 @@ export default function CaseStudiesPreview() {
           >
             <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-widest text-[#4f47e6] uppercase mb-2.5 shadow-2xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-              Production Case Studies
+              Our Work
             </div>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-              Real Systems, <span className="text-[#4f47e6]">Measurable Scale</span>
+              Real Results for <span className="text-[#4f47e6]">Real Businesses</span>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base font-normal mt-1.5">
-              Explore bespoke digital architectures engineered and deployed by Brandex.
+              Explore websites, software, and platforms we've built for our clients.
             </p>
           </motion.div>
 

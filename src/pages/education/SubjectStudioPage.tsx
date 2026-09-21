@@ -10,13 +10,10 @@ import { QuizRunnerModal } from "@/education/quiz/QuizRunnerModal";
 export default function SubjectStudioPage() {
   const params = useParams();
   
-  const classData = CURRICULUM_DATA.find((c) => c.id === params.classId);
-  if (!classData) return <div className="p-12 text-center text-slate-500">Class not found.</div>;
-  
-  const subjectData = classData.subjects.find((s) => s.slug === params.subjectSlug);
-  if (!subjectData) return <div className="p-12 text-center text-slate-500">Subject not found.</div>;
+  const classData = CURRICULUM_DATA.find((c) => c.id === params.classId || c.slug === params.classId);
+  const subjectData = classData?.subjects.find((s) => s.slug === params.subjectSlug);
 
-  const defaultChapter = subjectData.chapters[0];
+  const defaultChapter = subjectData?.chapters[0];
   const defaultLesson = defaultChapter?.topics[0]?.lessons[0];
 
   const [activeLesson, setActiveLesson] = useState<Lesson | null>(defaultLesson || null);
@@ -28,6 +25,7 @@ export default function SubjectStudioPage() {
 
   // Flatten all lessons in current subject for next/prev navigation
   const allSubjectLessons = useMemo(() => {
+    if (!subjectData) return [];
     const list: Array<{ lesson: Lesson; chapter: Chapter }> = [];
     subjectData.chapters.forEach((ch) => {
       ch.topics.forEach((top) => {
@@ -38,6 +36,9 @@ export default function SubjectStudioPage() {
     });
     return list;
   }, [subjectData]);
+
+  if (!classData) return <div className="p-12 text-center text-slate-500">Class not found.</div>;
+  if (!subjectData) return <div className="p-12 text-center text-slate-500">Subject not found.</div>;
 
   const currentIndex = allSubjectLessons.findIndex((item) => item.lesson.id === activeLesson?.id);
   const prevItem = currentIndex > 0 ? allSubjectLessons[currentIndex - 1] : null;

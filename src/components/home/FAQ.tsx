@@ -64,7 +64,7 @@ export default function FAQ() {
           >
             <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest text-[#4f47e6] uppercase mb-4 shadow-2xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-              Direct Answers
+              Got Questions?
             </div>
             
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight leading-[1.15]">
@@ -72,7 +72,7 @@ export default function FAQ() {
             </h2>
             
             <p className="text-slate-600 text-base sm:text-lg font-normal mb-8 leading-relaxed">
-              Direct answers regarding our engineering standards, sprint timelines, API integrations, and complete code ownership.
+              Clear answers about how we work, project timelines, pricing, and full code ownership.
             </p>
 
             {/* Direct Support Hub Card */}
@@ -82,16 +82,16 @@ export default function FAQ() {
                   <MessageSquare size={18} />
                 </div>
                 <div>
-                  <h3 className="font-display font-bold text-base text-slate-900">Have a custom question?</h3>
-                  <p className="text-xs text-slate-500">Talk directly with our lead architects</p>
+                  <h3 className="font-display font-bold text-base text-slate-900">Have another question?</h3>
+                  <p className="text-xs text-slate-500">Speak directly with our team</p>
                 </div>
               </div>
               <p className="text-xs text-slate-600 mb-5 leading-relaxed">
-                Whether you need technical advice on your current stack or want a custom feasibility diagnostic, we're here to help.
+                Whether you want to discuss a new idea or need advice on your existing website, we're happy to help.
               </p>
               <Button asChild variant="brand" size="sm" className="w-full rounded-xl h-10 font-bold text-xs shadow-xs">
                 <Link to="/contact" className="flex items-center justify-center gap-2">
-                  <span>Contact Engineering Team</span>
+                  <span>Chat With Us</span>
                   <ArrowRight size={13} />
                 </Link>
               </Button>

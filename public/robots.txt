@@ -1,75 +1,57 @@
 # Brandex Official robots.txt
 # Built for Comprehensive Search Engine & AI / LLM Discovery
-# Production Domain: https://brandex-official.vercel.app
+# Canonical Domain: https://brandex-official.vercel.app
 
 User-agent: *
 Allow: /
-Allow: /blog/
-Allow: /case-studies/
 Allow: /services
-Allow: /solutions
+Allow: /services/
+Allow: /case-studies
+Allow: /case-studies/
+Allow: /blog
+Allow: /blog/
 Allow: /education
+Allow: /education/
 Allow: /community
+Allow: /community/
 Allow: /about
 Allow: /contact
 Allow: /llms.txt
 Allow: /llms-full.txt
+Disallow: /education/admin
+Disallow: /education/login
 Disallow: /admin
 Disallow: /api/private
 
-# Google Web, Extended & Media Crawlers
+# Conventional Search Crawlers
 User-agent: Googlebot
 User-agent: Googlebot-Image
 User-agent: Googlebot-News
 User-agent: Googlebot-Video
-User-agent: Mediapartners-Google
-User-agent: AdsBot-Google
-User-agent: Google-Extended
-Allow: /
-
-# Microsoft Bing, Yahoo, DuckDuckGo & Yandex
 User-agent: Bingbot
 User-agent: msnbot
 User-agent: Slurp
 User-agent: DuckDuckBot
 User-agent: Yandex
-Allow: /
-
-# Apple Search & Siri Intelligence
 User-agent: Applebot
-User-agent: Applebot-Extended
 Allow: /
 
-# OpenAI — ChatGPT & SearchGPT
-User-agent: GPTBot
-User-agent: ChatGPT-User
+# AI Search Discovery & Retrieval Agents
 User-agent: OAI-SearchBot
-Allow: /
-
-# Anthropic — Claude
+User-agent: ChatGPT-User
+User-agent: GPTBot
 User-agent: ClaudeBot
 User-agent: Claude-Web
 User-agent: anthropic-ai
-Allow: /
-
-# Perplexity AI
 User-agent: PerplexityBot
-Allow: /
-
-# Meta & Facebook Crawlers
+User-agent: Google-Extended
+User-agent: Applebot-Extended
 User-agent: FacebookBot
 User-agent: Meta-ExternalAgent
-Allow: /
-
-# Amazon, Twitter & Cohere AI Agents
 User-agent: Amazonbot
 User-agent: Twitterbot
 User-agent: cohere-ai
-User-agent: CCBot
-User-agent: Bytespider
-User-agent: Diffbot
 Allow: /
 
-# Canonical Sitemaps
+# Canonical Sitemap Reference
 Sitemap: https://brandex-official.vercel.app/sitemap.xml
-Sitemap: https://brandex.me/sitemap.xml

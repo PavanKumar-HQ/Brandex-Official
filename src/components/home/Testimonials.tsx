@@ -107,13 +107,13 @@ export default function Testimonials() {
         >
           <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest text-[#4f47e6] uppercase mb-3 shadow-2xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-            Verified Client Outcomes
+            Client Reviews
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-3 tracking-tight">
-            Trusted by Modern <span className="text-[#4f47e6]">Founders & Operators</span>
+            Loved by <span className="text-[#4f47e6]">Growing Businesses</span>
           </h2>
           <p className="text-slate-600 text-base sm:text-lg font-normal">
-            Direct feedback from leadership teams running mission-critical software built by Brandex.
+            Here is what founders and business owners say about working with us.
           </p>
         </motion.div>
 

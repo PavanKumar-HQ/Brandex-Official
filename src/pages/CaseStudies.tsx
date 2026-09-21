@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Link2, ExternalLink, ArrowLeft } from "lucide-react";
+import { Link2, ExternalLink, ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { projects } from "@/data/projects";
 import SEOHead from "@/components/SEOHead";
@@ -15,9 +15,9 @@ export default function CaseStudiesPage() {
   return (
     <>
       <SEOHead
-        title="Case Studies & Client Deployments | Brandex"
-        description="Explore production case studies, custom architectures, and measurable ROI delivered by Brandex for modern enterprises."
-        canonical="https://brandex-official.vercel.app/case-studies"
+        title="Production Case Studies & Client Architecture | Brandex"
+        description="Explore production case studies, custom architectures, and measurable results delivered by Brandex for real businesses."
+        canonicalUrl="/case-studies"
       />
 
       <section className="pt-24 pb-16 lg:pt-28 lg:pb-20 bg-white border-b border-slate-100">

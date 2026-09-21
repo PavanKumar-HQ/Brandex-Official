@@ -110,7 +110,7 @@ export default function ContactPage() {
       `Contact: ${contact || "Direct WhatsApp"}\n` +
       `Service: ${selectedService}\n` +
       `Requirement: ${description || "Looking for technical consultation"}\n\n` +
-      `Sent via brandex.me Direct Intake`;
+      `Sent via Brandex Direct Intake`;
 
     window.open(`https://wa.me/919901514757?text=${encodeURIComponent(briefText)}`, "_blank");
   };

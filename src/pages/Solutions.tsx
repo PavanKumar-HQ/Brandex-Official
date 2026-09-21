@@ -162,9 +162,9 @@ export default function SolutionsPage() {
   return (
     <>
       <SEOHead
-        title="Turnkey Solutions & Business Blueprints | Brandex"
+        title="Industry Solutions & Business Systems | Brandex"
         description="Explore proven digital blueprints and automated workflows engineered for restaurants, clinics, logistics, and service enterprises."
-        canonical="https://brandex-official.vercel.app/solutions"
+        canonicalUrl="/solutions"
       />
 
       <section className="pt-24 pb-12 lg:pt-28 lg:pb-16 bg-white border-b border-slate-100">

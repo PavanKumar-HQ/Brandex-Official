@@ -5,52 +5,52 @@ import { Link } from "react-router-dom";
 
 const plans = [
   {
-    name: "Foundation Sprint",
-    tagline: "High-performance marketing website & brand architecture",
+    name: "Starter Website",
+    tagline: "Fast, modern website built to showcase your business",
     price: "Custom Scope",
     period: "Fixed Deliverables",
     popular: false,
     features: [
-      "Bespoke React / Next.js Architecture",
-      "Mobile-First Responsive UX System",
-      "Complete Technical SEO & Schema Graph",
-      "Sub-Second Core Web Vitals (98+)",
-      "CMS / Content Management Integration",
-      "30-Day Post-Launch Hypercare",
+      "Custom React & Next.js Design",
+      "Mobile-Optimized & Fast Loading",
+      "Complete Search Engine Setup (SEO)",
+      "Instant Page Speeds (98+ Score)",
+      "Easy Content Management System",
+      "30-Day Free Post-Launch Support",
     ],
-    cta: "Book Diagnostic",
+    cta: "Get Started",
   },
   {
-    name: "Growth Engine",
-    tagline: "Custom web applications & automated business workflows",
+    name: "Web App & Automation",
+    tagline: "Custom web app with automated workflows & portals",
     price: "Tailored Sprint",
-    period: "Full Pipeline Build",
+    period: "Full Project Build",
     popular: true,
     features: [
-      "Everything in Foundation Sprint",
+      "Everything in Starter Website",
       "Custom Client Portals & Dashboards",
-      "End-to-End Webhook Automation (CRM, SMS, Email)",
-      "Payment Gateway & Subscription Engine",
-      "Real-Time Database & Analytics Pipeline",
-      "90-Day Architecture & Growth Support",
+      "Automated Email, SMS & Lead Alerts",
+      "Payment & Subscription Integration",
+      "Secure Database & User Accounts",
+      "90-Day Ongoing Technical Support",
     ],
-    cta: "Scale Your Business",
+    cta: "Build My Project",
   },
   {
-    name: "Enterprise Ecosystem",
-    tagline: "Complex full-stack software & proprietary automated systems",
-    price: "Dedicated Squad",
+    name: "Custom Enterprise",
+    tagline: "Dedicated development for complex systems and teams",
+    price: "Dedicated Team",
     period: "Continuous Retainer",
     popular: false,
     features: [
-      "Full-Stack Bespoke SaaS / Web Application",
-      "Complex Multi-Tenant Architecture",
-      "Dedicated Engineering & Design Squad",
-      "Custom Workflow Automations & Integrations",
-      "24/7 SLA & Direct Leadership Access",
-      "Continuous Iteration & DevOps Pipeline",
+      "Full-Stack Custom SaaS Platform",
+      "Multi-Tenant & Role-Based Access",
+      "Dedicated Designers & Developers",
+      "Custom Third-Party System Integrations",
+      "Priority 24/7 Response Times",
+      "Continuous Updates & Improvements",
     ],
-    cta: "Consult Leadership",
+    cta: "Contact Us",
   },
 ];
 
@@ -69,13 +69,13 @@ export default function PricingPreview() {
         >
           <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest text-[#4f47e6] uppercase mb-4 shadow-2xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-            Investment & Packages
+            Pricing & Plans
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-3 tracking-tight">
-            Transparent Engineering <span className="text-[#4f47e6]">Sprint Packages</span>
+            Simple, Transparent <span className="text-[#4f47e6]">Plans</span>
           </h2>
           <p className="text-slate-600 text-base sm:text-lg font-normal">
-            Zero hidden costs. 100% code ownership. Built around your precise operational deliverables.
+            Zero hidden costs. You own 100% of your source code and designs. Built for your exact needs.
           </p>
         </motion.div>
 

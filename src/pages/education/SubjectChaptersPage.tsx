@@ -61,7 +61,7 @@ export default function SubjectChaptersPage() {
                   </span>
                   <div>
                     <h2 className="text-lg font-extrabold text-[#0F172A] tracking-tight">
-                      Chapter {index + 1}: {chapter.title}
+                      Chapter {index + 1}: {chapter.title.replace(/^Chapter\s*\d+\s*:\s*/i, "")}
                     </h2>
                     <p className="text-xs text-slate-500 font-medium mt-0.5">
                       {chapter.description}
@@ -87,51 +87,63 @@ export default function SubjectChaptersPage() {
                       </h3>
                     </div>
                     
-                    <div className="space-y-2.5">
+                    <div className="space-y-3.5">
                       {topic.lessons.map((lesson) => (
                         <div
                           key={lesson.id}
-                          className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-4.5 rounded-xl bg-white border border-slate-200/90 hover:border-indigo-300 hover:shadow-xs transition-all duration-200 group"
+                          className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/90 hover:border-indigo-400 hover:shadow-md transition-all duration-200 group"
                         >
-                          {/* Left Thumbnail & Info */}
-                          <div className="flex items-start gap-4 min-w-0 flex-1">
-                            <div className="relative w-28 h-18 sm:w-32 sm:h-20 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/80 shadow-2xs">
+                          <div className="flex flex-col sm:flex-row items-start gap-4">
+                            {/* Left Thumbnail */}
+                            <div className="relative w-full sm:w-36 md:w-44 aspect-video rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/80 shadow-2xs">
                               <img
                                 src={`https://img.youtube.com/vi/${lesson.youtubeId}/maxresdefault.jpg`}
                                 alt={lesson.title}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                               />
-                              <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                                <PlayCircle className="w-7 h-7 text-white drop-shadow" />
+                              <div className="absolute inset-0 bg-black/25 flex items-center justify-center">
+                                <PlayCircle className="w-8 h-8 text-white drop-shadow" />
                               </div>
-                              <span className="absolute bottom-1 right-1 px-1.5 py-0.5 bg-black/80 text-[9px] font-mono font-bold text-white rounded">
+                              <span className="absolute bottom-1.5 right-1.5 px-2 py-0.5 bg-black/80 text-[10px] font-mono font-bold text-white rounded-md">
                                 {lesson.duration}
                               </span>
                             </div>
 
-                            <div className="min-w-0 space-y-1 flex-1">
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <span className="text-base font-bold text-[#0F172A] group-hover:text-indigo-600 transition-colors leading-tight">
-                                  {lesson.title}
-                                </span>
-                                <span className="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md font-mono border border-indigo-100">
-                                  HD Video
-                                </span>
+                            {/* Middle & Right Content */}
+                            <div className="min-w-0 flex-1 space-y-2.5 w-full">
+                              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                <div className="flex items-center gap-2 flex-wrap">
+                                  <span className="text-base sm:text-lg font-bold text-[#0F172A] group-hover:text-indigo-600 transition-colors leading-snug">
+                                    {lesson.title}
+                                  </span>
+                                  <span className="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md font-mono border border-indigo-100 shrink-0">
+                                    HD Video
+                                  </span>
+                                </div>
+
+                                {/* Desktop / Tablet Button */}
+                                <Link
+                                  to={`/education/lesson/${lesson.slug}`}
+                                  className="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-xs hover:shadow-indigo-600/25 shrink-0"
+                                >
+                                  <span>Watch Lesson</span>
+                                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                                </Link>
                               </div>
 
                               <p className="text-xs text-slate-500 font-normal leading-relaxed">
                                 {lesson.description}
                               </p>
 
-                              {/* Topics Covered */}
+                              {/* Topics Covered Grid (Spans full available width cleanly) */}
                               {lesson.learningObjectives?.length > 0 && (
-                                <div className="pt-2 space-y-1.5">
-                                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 block">
-                                    Topics Covered in this Lesson:
+                                <div className="pt-2 border-t border-slate-100 space-y-1.5">
+                                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 block">
+                                    Topics Covered:
                                   </span>
-                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                     {lesson.learningObjectives.map((obj, i) => (
-                                      <div key={i} className="flex items-start gap-1.5 text-xs text-slate-700 bg-slate-50/80 p-2 rounded-lg border border-slate-200/70 font-medium">
+                                      <div key={i} className="flex items-start gap-1.5 text-xs text-slate-700 bg-slate-50/90 p-2 rounded-lg border border-slate-200/70 font-medium">
                                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
                                         <span className="leading-snug">{obj}</span>
                                       </div>
@@ -139,17 +151,18 @@ export default function SubjectChaptersPage() {
                                   </div>
                                 </div>
                               )}
-                            </div>
-                          </div>
 
-                          {/* Action Button */}
-                          <div className="flex items-center gap-2 w-full lg:w-auto justify-end shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-slate-100">
-                            <Link to={`/education/lesson/${lesson.slug}`}
-                              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-xs hover:shadow-indigo-600/20 whitespace-nowrap text-center"
-                            >
-                              <span>Watch Lesson</span>
-                              <ArrowRight className="w-3.5 h-3.5" />
-                            </Link>
+                              {/* Mobile Only Button */}
+                              <div className="pt-2 sm:hidden w-full">
+                                <Link
+                                  to={`/education/lesson/${lesson.slug}`}
+                                  className="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-xs text-center"
+                                >
+                                  <span>Watch Lesson</span>
+                                  <ArrowRight className="w-3.5 h-3.5" />
+                                </Link>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       ))}

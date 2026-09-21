@@ -34,8 +34,8 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Home", href: "/", sectionId: "hero" },
-  { label: "Services", href: "/services", sectionId: "services" },
-  { label: "Case Studies", href: "/case-studies", sectionId: "case-studies" },
+  { label: "Services", href: "/services" },
+  { label: "Case Studies", href: "/case-studies" },
   { label: "Community", href: "/community", hasDropdown: "community" },
   { label: "Education", href: "/education", hasDropdown: "education" },
   { label: "Pricing", href: "/#pricing", sectionId: "pricing" },
@@ -249,12 +249,12 @@ export default function Navbar() {
   };
 
   const isItemActive = (item: NavItem) => {
+    if (item.href === "/services" && pathname.startsWith("/services")) return true;
+    if (item.href === "/case-studies" && pathname.startsWith("/case-studies")) return true;
     if (item.href === "/community" && pathname.startsWith("/community")) return true;
     if (item.href === "/education" && pathname.startsWith("/education")) return true;
     if (pathname === "/" && item.sectionId) {
       if (item.sectionId === "hero" && (activeSection === "hero" || activeSection === "features" || activeSection === "clients")) return true;
-      if (item.sectionId === "services" && activeSection === "services") return true;
-      if (item.sectionId === "case-studies" && activeSection === "case-studies") return true;
       if (item.sectionId === "pricing" && (activeSection === "pricing" || activeSection === "testimonials" || activeSection === "faq")) return true;
       if (item.sectionId === "contact" && activeSection === "contact") return true;
       return false;
@@ -328,7 +328,7 @@ export default function Navbar() {
                   <AnimatePresence>
                     {isDropdownOpen && (
                       <div
-                        className="hidden lg:block absolute top-full left-1/2 -translate-x-1/2 pt-2.5 z-50 pointer-events-auto"
+                        className="hidden lg:block absolute top-full right-[-80px] xl:left-1/2 xl:-translate-x-1/2 pt-2.5 z-50 pointer-events-auto"
                         onMouseEnter={() => handleMouseEnter("community")}
                         onMouseLeave={handleMouseLeave}
                       >
@@ -337,7 +337,7 @@ export default function Navbar() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 6, scale: 0.98 }}
                           transition={{ duration: 0.18, ease: "easeOut" }}
-                          className="w-[720px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl rounded-3xl border border-slate-200/90 dark:border-slate-800/90 shadow-2xl p-6 overflow-hidden"
+                          className="w-[680px] max-w-[calc(100vw-32px)] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl rounded-3xl border border-slate-200/90 dark:border-slate-800/90 shadow-2xl p-6 overflow-hidden"
                         >
                           <div className="grid grid-cols-2 gap-6">
                             {communityDropdownSections.map((section, idx) => (

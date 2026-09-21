@@ -1,6 +1,6 @@
-
 import { Link, useParams } from 'react-router-dom';
 import { CURRICULUM_DATA } from "@/education/lib/curriculum-data";
+import SEOHead from "@/components/SEOHead";
 import {
   ArrowLeft,
   ArrowRight,
@@ -15,9 +15,16 @@ import {
 
 export default function ClassDetailPage() {
   const params = useParams<{ classId: string }>();
-  const currentClass = CURRICULUM_DATA.find((c) => c.slug === params.classId);
+  const currentClass = CURRICULUM_DATA.find(
+    (c) => c.slug === params.classId || c.grade === params.classId || c.id === params.classId
+  );
 
-  if (!currentClass) return <div className="p-12 text-center text-slate-500">Class not found.</div>;
+  if (!currentClass) return (
+    <div className="p-12 text-center text-slate-500">
+      <SEOHead title="Class Not Found – Brandex EDU" noindex={true} />
+      Class not found.
+    </div>
+  );
 
   const getSubjectConfig = (slug: string) => {
     switch (slug) {
@@ -63,8 +70,14 @@ export default function ClassDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFC] py-16 selection:bg-indigo-500 selection:text-white">
-      <div className="w-full px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto space-y-12">
+    <>
+      <SEOHead
+        title={`${currentClass.name} Curriculum & Video Lessons (KSEEB) | Brandex EDU`}
+        description={`${currentClass.description}. Chapter-wise Karnataka State Board video lessons, formative quizzes, and learning objectives.`}
+        canonicalUrl={`/education/explore/${currentClass.slug}`}
+      />
+      <div className="min-h-screen bg-[#FAFAFC] py-16 selection:bg-indigo-500 selection:text-white">
+        <div className="w-full px-6 sm:px-10 lg:px-16 max-w-[1600px] mx-auto space-y-12">
         
         {/* Navigation & Header */}
         <div className="border-b border-[#E2E8F0] pb-8 space-y-4">
@@ -93,7 +106,7 @@ export default function ClassDetailPage() {
         </div>
 
         {/* 4 Subjects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
           {currentClass.subjects.map((subject) => {
             const config = getSubjectConfig(subject.slug);
             const totalLessons = subject.chapters.reduce(
@@ -105,7 +118,7 @@ export default function ClassDetailPage() {
               <Link 
                 key={subject.slug}
                 to={`/education/explore/${currentClass.slug}/${subject.slug}`}
-                className={`group bg-white p-7 rounded-2xl border border-slate-200/90 ${config.glowBorder} hover:shadow-lg transition-all duration-200 hover:-translate-y-1 flex flex-col justify-between h-[340px] shadow-xs relative overflow-hidden`}
+                className={`group bg-white p-6 rounded-2xl border border-slate-200/90 ${config.glowBorder} hover:shadow-lg transition-all duration-200 hover:-translate-y-1 flex flex-col justify-between min-h-[350px] shadow-xs relative overflow-hidden`}
               >
                 {/* Top Subtle Accent Bar */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-slate-200 to-transparent group-hover:via-indigo-500 transition-colors" />
@@ -113,7 +126,7 @@ export default function ClassDetailPage() {
                 <div>
                   {/* Icon & Subject Tag */}
                   <div className="flex items-center justify-between mb-5">
-                    <div className={`w-14 h-14 rounded-xl ${config.accentBg} border flex items-center justify-center transition-all duration-200 shadow-2xs group-hover:scale-105`}>
+                    <div className={`w-13 h-13 rounded-2xl ${config.accentBg} border flex items-center justify-center transition-all duration-200 shadow-2xs group-hover:scale-105`}>
                       {config.icon}
                     </div>
 
@@ -135,23 +148,23 @@ export default function ClassDetailPage() {
                   </p>
                 </div>
 
-                {/* Bottom Footer Info & Action Button */}
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2.5">
-                  <div className="flex items-center gap-1.5 text-xs font-mono font-semibold text-slate-500 whitespace-nowrap">
-                    <span className="inline-flex items-center gap-1 shrink-0">
-                      <Layers className="w-3.5 h-3.5 text-slate-400" />
-                      <span>{subject.chapters.length} Ch</span>
+                {/* Bottom Footer Info & Action Button (Stacking layout ensures zero overflow) */}
+                <div className="pt-4 border-t border-slate-100 flex flex-col gap-3">
+                  <div className="flex items-center justify-between text-xs font-mono font-semibold text-slate-500">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Layers className="w-3.5 h-3.5 text-indigo-500" />
+                      <span>{subject.chapters.length} Chapters</span>
                     </span>
                     <span className="text-slate-300">•</span>
-                    <span className="inline-flex items-center gap-1 shrink-0">
-                      <Video className="w-3.5 h-3.5 text-slate-400" />
+                    <span className="inline-flex items-center gap-1.5">
+                      <Video className="w-3.5 h-3.5 text-indigo-500" />
                       <span>{totalLessons} Videos</span>
                     </span>
                   </div>
 
-                  <div className="px-3 py-1.5 rounded-lg bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-2xs whitespace-nowrap shrink-0">
+                  <div className="w-full py-2.5 px-4 rounded-xl bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-2xs group-hover:shadow-indigo-500/25">
                     <span>View Syllabus</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform shrink-0" />
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform shrink-0" />
                   </div>
                 </div>
               </Link>
@@ -161,5 +174,6 @@ export default function ClassDetailPage() {
 
       </div>
     </div>
+    </>
   );
 }

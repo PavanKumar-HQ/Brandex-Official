@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSEO } from '@/community/hooks/useSEO';
 import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
 import { getOrCreateIdentity, addContributorPoints } from '@/community/utils/identity';
@@ -16,7 +17,9 @@ import {
   Loader2,
   Award,
   Layers,
-  ArrowRight
+  ArrowRight,
+  Eye,
+  Globe
 } from 'lucide-react';
 
 import { SkeletonCard } from '@/community/components/ui/Skeleton';
@@ -26,6 +29,8 @@ interface Project {
   title: string;
   description: string;
   repoUrl: string;
+  previewUrl?: string;
+  previewLabel?: string;
   techStack: string[];
   starsCount: number;
   openIssuesCount: number;
@@ -35,10 +40,25 @@ interface Project {
 
 const FALLBACK_PROJECTS: Project[] = [
   {
+    id: 'brandex-web',
+    title: 'Brandex Web Core & Edge Platform',
+    description: 'Next-generation web application architecture featuring sub-second edge routing, dynamic sitemaps, and optimized digital experience systems.',
+    repoUrl: 'https://github.com/brandex-official/brandex-official',
+    previewUrl: '/',
+    previewLabel: 'View Live Site',
+    techStack: ['React 18', 'TypeScript', 'Tailwind CSS', 'Vite'],
+    starsCount: 684,
+    openIssuesCount: 4,
+    hasGoodFirstIssues: true,
+    category: 'editorial'
+  },
+  {
     id: 'geniusphere',
     title: 'Geniusphere Agent Engine',
     description: 'Autonomous multi-agent orchestration runtime with deterministic tool-calling, hybrid RAG, and offline token management.',
     repoUrl: 'https://github.com/brandex-community/geniusphere',
+    previewUrl: '/community/training',
+    previewLabel: 'Preview Workshop',
     techStack: ['TypeScript', 'Node.js', 'Vector Search', 'LangGraph'],
     starsCount: 342,
     openIssuesCount: 14,
@@ -46,10 +66,25 @@ const FALLBACK_PROJECTS: Project[] = [
     category: 'ai'
   },
   {
+    id: 'curriculum-engine',
+    title: 'Karnataka State Syllabus Curriculum Engine',
+    description: 'High-performance interactive video curriculum catalog and smartboard presentation mode for Classes 6 to 10.',
+    repoUrl: 'https://github.com/brandex-official/education-portal',
+    previewUrl: '/education/explore',
+    previewLabel: 'Explore Curriculum',
+    techStack: ['React', 'TypeScript', 'YouTube Iframe API', 'PWA'],
+    starsCount: 428,
+    openIssuesCount: 5,
+    hasGoodFirstIssues: true,
+    category: 'systems'
+  },
+  {
     id: 'swiss-ui',
     title: 'Swiss Editorial Design System',
     description: 'High-contrast minimalist component library adhering to Swiss grid typography, micro-interactions, and accessible tokens.',
     repoUrl: 'https://github.com/brandex-community/swiss-ui',
+    previewUrl: '/services',
+    previewLabel: 'View Design in Action',
     techStack: ['React 19', 'Astro 5', 'Tailwind CSS', 'TypeScript'],
     starsCount: 512,
     openIssuesCount: 8,
@@ -61,11 +96,26 @@ const FALLBACK_PROJECTS: Project[] = [
     title: 'Autonomous Code Audit Sandbox',
     description: 'Containerized AST-level vulnerability scanner designed for Go, Rust, and Node.js microservices with automated patch generation.',
     repoUrl: 'https://github.com/brandex-community/code-audit-agent',
+    previewUrl: '/solutions',
+    previewLabel: 'View Solutions',
     techStack: ['Go 1.22', 'Rust', 'Docker Sandboxes', 'OWASP Rules'],
     starsCount: 289,
     openIssuesCount: 6,
     hasGoodFirstIssues: false,
     category: 'systems'
+  },
+  {
+    id: 'community-mesh',
+    title: 'Brandex Community Contributor Mesh',
+    description: 'Decentralized contributor leaderboard, cryptographic PR verifier, and event coordination infrastructure.',
+    repoUrl: 'https://github.com/brandex-community/community-mesh',
+    previewUrl: '/community',
+    previewLabel: 'Visit Community',
+    techStack: ['TypeScript', 'Tailwind CSS', 'Web Crypto API'],
+    starsCount: 395,
+    openIssuesCount: 9,
+    hasGoodFirstIssues: true,
+    category: 'all'
   }
 ];
 
@@ -321,25 +371,55 @@ export const ProjectsPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                  {project.hasGoodFirstIssues ? (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60">
-                      <Tag className="w-3 h-3" />
-                      <span>Good First Issues</span>
-                    </span>
-                  ) : (
-                    <span className="text-[11px] font-mono text-slate-400">Standard Backlog</span>
-                  )}
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-3">
+                  <div className="flex items-center justify-between gap-2">
+                    {project.hasGoodFirstIssues ? (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60 shrink-0 whitespace-nowrap">
+                        <Tag className="w-3 h-3 shrink-0" />
+                        <span>Good First Issues</span>
+                      </span>
+                    ) : (
+                      <span className="text-[11px] font-mono text-slate-400 dark:text-slate-500">Standard Backlog</span>
+                    )}
 
-                  <div className="flex items-center gap-2">
+                    <span className="text-[11px] font-mono text-slate-400">
+                      {project.openIssuesCount} issues
+                    </span>
+                  </div>
+
+                  <div className={`grid gap-2 w-full ${project.previewUrl ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                    {project.previewUrl && (
+                      project.previewUrl.startsWith('http') ? (
+                        <a
+                          href={project.previewUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition-all shadow-xs active:scale-98 text-center"
+                        >
+                          <Eye className="w-3.5 h-3.5 shrink-0" />
+                          <span className="truncate">{project.previewLabel || 'Live Preview'}</span>
+                        </a>
+                      ) : (
+                        <Link
+                          to={project.previewUrl}
+                          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition-all shadow-xs active:scale-98 text-center"
+                        >
+                          <Eye className="w-3.5 h-3.5 shrink-0" />
+                          <span className="truncate">{project.previewLabel || 'Live Preview'}</span>
+                        </Link>
+                      )
+                    )}
+
                     <a
                       href={project.repoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-indigo-50 dark:bg-indigo-950/50 hover:bg-indigo-600 hover:text-white text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-bold rounded-xl transition-all shadow-2xs active:scale-98"
+                      className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 text-xs font-bold rounded-xl transition-all shadow-2xs active:scale-98 text-center"
+                      title="View GitHub Repository"
                     >
-                      <span>Inspect</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
+                      <Code2 className="w-3.5 h-3.5 shrink-0" />
+                      <span>GitHub</span>
+                      <ExternalLink className="w-3 h-3 text-slate-400 shrink-0" />
                     </a>
                   </div>
                 </div>

@@ -1,31 +1,29 @@
 # Brandex — Technical Profile & Knowledge Graph
 > Digital Systems & Infrastructure Engineering Company based in Bangalore, India.
-> Official Website: https://brandex-official.vercel.app
+> Official Canonical Origin: https://brandex-official.vercel.app
 
-Brandex designs, develops, and deploys high-performance web applications, cloud infrastructure, smart classroom LMS portals, and automated business workflows.
+Brandex designs, develops, and deploys high-performance web applications, custom CRM/ERP software, AI automation pipelines, mobile apps, and cloud infrastructure.
 
 ## Core Engineering Capabilities
-- **Bespoke Web Platform Engineering**: Sub-second page loads, custom React/TypeScript architectures, edge CDN routing, zero vendor lock-in, and 100% client source code IP.
-- **Enterprise Automation & Cloud Architecture**: Event-driven pipelines, automated webhook integrations, PostgreSQL database scaling, and distributed business systems.
-- **Brandex Education Platform**: State Syllabus (KSEEB Classes 6 to 10) digital classroom LMS, smartboard video lessons, and real-time formative quizzes.
-- **Brandex Builder Community**: 1,400+ Bangalore software engineers and students collaborating on open-source repositories, developer sprints, and technical bootcamps.
+- **Custom CRM & ERP Systems**: Tailored sales pipelines, automated GST billing, multi-role RBAC, and zero per-seat licensing fees. (URL: https://brandex-official.vercel.app/services/custom-crm-erp)
+- **AI Agents & Workflow Automation**: 24/7 autonomous WhatsApp bots, webhook pipelines, automated OCR document parsing, and failover queues. (URL: https://brandex-official.vercel.app/services/ai-workflow-automation)
+- **Mobile & Cross-Platform Apps**: High-performance iOS & Android applications with offline-first SQLite caching, background sync, and push notifications. (URL: https://brandex-official.vercel.app/services/mobile-app-development)
+- **Web Platforms & SaaS Products**: High-speed Next.js / React platforms, interactive student & client portals, and recurring billing. (URL: https://brandex-official.vercel.app/services/web-engineering)
+- **Cloud Infrastructure, DevOps & Security**: AWS/GCP/Cloudflare edge architectures, automated CI/CD pipelines, multi-region daily backups, and DDoS protection. (URL: https://brandex-official.vercel.app/services/cloud-devops-infrastructure)
+- **Custom APIs & Data Pipelines**: High-throughput microservices, legacy ERP software bridges, and Redis caching for sub-50ms responses. (URL: https://brandex-official.vercel.app/services/api-database-systems)
 
-## Production Case Studies & Impact Metrics
-- **Amrutam 1980 (Heritage Retail & QSR)**: +340% mobile order growth, sub-100ms multi-location checkout, real-time inventory reconciliation. URL: https://brandex-official.vercel.app/case-studies/amrutam-1980
-- **Algorithmic FinTech Trading Terminal**: Under 18ms latency globally, WebSockets real-time price feeds, TimescaleDB microservice architecture. URL: https://brandex-official.vercel.app/case-studies/fintech-trading-terminal
-- **Retail Multi-Outlet Inventory Sync Engine**: 40+ hours saved weekly by automating manual cross-warehouse reconciliation via webhook queues. URL: https://brandex-official.vercel.app/case-studies/retail-inventory-automation
-- **Geniusphere School Initiative**: Foundation digital labs deployed to over 180+ secondary school students across Karnataka State syllabus. URL: https://brandex-official.vercel.app/education
+## Production Case Studies & Verified Results
+- **Vignan Public School**: Educational institution platform with comprehensive information architecture. URL: https://brandex-official.vercel.app/case-studies/vignan-public-school
+- **Vignan Tutorials**: Interactive student tutorial platform with dynamic content. URL: https://brandex-official.vercel.app/case-studies/vignan-tutorials
+- **Srushti Publications**: High-throughput E-commerce platform for regional literature featuring Razorpay checkout and automated invoicing. URL: https://brandex-official.vercel.app/case-studies/srushti-publications
+- **GeniuSphere**: Interactive 3D WebGL Learning Management System with granular student progress tracking. URL: https://brandex-official.vercel.app/case-studies/geniusphere
+- **PropQuant.ai**: High-precision automated algorithmic trading platform integrated with MT5 execution engines. URL: https://brandex-official.vercel.app/case-studies/propquant-ai
 
-## Published Technical Editorials & Engineering Guides
-- **Sub-Second Web Architecture (2026 Guide)**: Analysis of Time To First Byte (TTFB), edge CDN rendering, React hydration optimization, and killing template bloat. URL: https://brandex-official.vercel.app/blog/sub-second-web-architecture-2026
-- **Eliminating the 30% Platform Tax Through Client IP Ownership**: How bespoke architecture eliminates recurring SaaS subscription fees. URL: https://brandex-official.vercel.app/blog/zero-platform-tax-client-ip
-- **Automating 40 Hours of Manual Operations Weekly**: Technical deep-dive into event-driven webhook pipelines, idempotent retries, and data synchronization. URL: https://brandex-official.vercel.app/blog/automating-40-hours-business-workflows
-
-## Technical Standards & SLAs
+## Technical Standards & Guarantees
 - **Global Time To First Byte (TTFB)**: Under 18ms on edge CDN
 - **Lighthouse Core Web Vitals**: 95+ Performance, Accessibility, Best Practices, SEO
 - **Code Ownership**: 100% Client Source Code & Architecture IP transferred on delivery
-- **Stack**: TypeScript, React, Next.js, Vite, TailwindCSS, PostgreSQL, Supabase, Cloudflare Workers, Three.js
+- **Stack**: TypeScript, React, Next.js, Vite, TailwindCSS, PostgreSQL, Supabase, Cloudflare Workers, Python, React Native
 
 ## Leadership
 - **Pavan Kumar S**: Co-Founder & Chief Systems Architect (https://brandex-official.vercel.app/pavan-kumar)
@@ -34,18 +32,16 @@ Brandex designs, develops, and deploys high-performance web applications, cloud 
 ## Headquarters & Contact
 - **Entity**: Brandex Digital Systems & Infrastructure
 - **Address**: #121, 13th Main M.C. Layout, Vijaynagar, Bangalore - 560040, Karnataka, India
-- **GSTIN**: 29OGNPS8060K1Z5
 - **Phone**: +91 94809 44727 / +91 99015 14757
 - **Email**: brandexhq@gmail.com
-- **Website**: https://brandex-official.vercel.app
+- **GSTIN**: 29OGNPS8060K1Z5
+- **Canonical Website**: https://brandex-official.vercel.app
 
-## Canonical Sitemap & Navigation Endpoints
+## Core Navigation Endpoints
 - Homepage: https://brandex-official.vercel.app/
 - Services Catalog: https://brandex-official.vercel.app/services
 - Production Case Studies: https://brandex-official.vercel.app/case-studies
-- Engineering Pricing: https://brandex-official.vercel.app/#pricing
-- Technical Editorial Blog: https://brandex-official.vercel.app/blog
+- Engineering Blog: https://brandex-official.vercel.app/blog
 - Digital Education Portal: https://brandex-official.vercel.app/education
-- Curriculum Explorer: https://brandex-official.vercel.app/education/explore
 - Developer Community Hub: https://brandex-official.vercel.app/community
 - Diagnostic Inquiry & Contact: https://brandex-official.vercel.app/contact

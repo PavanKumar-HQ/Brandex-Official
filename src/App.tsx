@@ -12,6 +12,7 @@ import { InstitutionPartnershipModal } from "@/community/components/ui/Instituti
 // Main Official Pages
 import Index from "./pages/Index";
 import Services from "./pages/Services";
+import ServiceDetail from "./pages/ServiceDetail";
 import Solutions from "./pages/Solutions";
 import CaseStudies from "./pages/CaseStudies";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
@@ -81,6 +82,7 @@ function AnimatedRoutes() {
             {/* Main Corporate Routes */}
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/:slug" element={<ServiceDetail />} />
             <Route path="/solutions" element={<Solutions />} />
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
@@ -90,12 +92,15 @@ function AnimatedRoutes() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             
             {/* Education Sub-Portal Routes */}
             <Route path="/education" element={<EducationHome />} />
             <Route path="/education/explore" element={<CurriculumExplorer />} />
             <Route path="/education/explore/:classId" element={<ClassDetailPage />} />
             <Route path="/education/explore/:classId/:subjectSlug" element={<SubjectChaptersPage />} />
+            <Route path="/education/class/:classId" element={<ClassDetailPage />} />
+            <Route path="/education/class/:classId/:subjectSlug" element={<SubjectChaptersPage />} />
             <Route path="/education/classroom" element={<ClassroomPlayer />} />
             <Route path="/education/studio/:classId/:subjectSlug" element={<SubjectStudioPage />} />
             <Route path="/education/lesson/:slug" element={<LessonPage />} />
@@ -154,8 +159,10 @@ function AnimatedRoutes() {
             {/* Founder Direct Slug Routes */}
             <Route path="/pavan-kumar" element={<FounderProfile founderKey="pavan" />} />
             <Route path="/pavan" element={<FounderProfile founderKey="pavan" />} />
+            <Route path="/founders/pavan" element={<FounderProfile founderKey="pavan" />} />
             <Route path="/sathvik" element={<FounderProfile founderKey="sathvik" />} />
             <Route path="/sathvik-shetty" element={<FounderProfile founderKey="sathvik" />} />
+            <Route path="/founders/sathvik" element={<FounderProfile founderKey="sathvik" />} />
 
             {/* 404 Catch-all */}
             <Route path="*" element={<NotFound />} />

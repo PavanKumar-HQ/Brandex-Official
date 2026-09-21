@@ -43,23 +43,23 @@ import { extractYouTubeId, getYouTubeThumbnailUrl } from '@/community/utils/yout
 
 // In-Memory Storage Layer
 let institutionStore: Institution = { ...mockInstitution };
-let statisticStore: Statistic[] = [...mockStatistics];
-let communityStore: Community[] = [...mockCommunities];
-let eventStore: Event[] = [...mockEvents];
-let photoStore: Photo[] = [...mockPhotos];
-let opportunityStore: Opportunity[] = [...mockOpportunities];
-let enquiryStore: Enquiry[] = [...mockEnquiries];
-let videoStore: YouTubeVideo[] = [...mockVideos];
-let achievementStore: Achievement[] = [...mockAchievements];
-let storyStore: Story[] = [...mockStories];
-let announcementStore: Announcement[] = [...mockAnnouncements];
-let trainingStore: TrainingProgram[] = [...mockTrainingPrograms];
-let discussionStore: Discussion[] = [...mockDiscussions];
-let workshopStore: Workshop[] = [...mockWorkshops];
-let resourceStore: Resource[] = [...mockResources];
-let memberStore: Member[] = [...mockMembers];
-let registrationStore: EventRegistration[] = [];
-let auditLogStore: AuditLog[] = [];
+const statisticStore: Statistic[] = [...mockStatistics];
+const communityStore: Community[] = [...mockCommunities];
+const eventStore: Event[] = [...mockEvents];
+const photoStore: Photo[] = [...mockPhotos];
+const opportunityStore: Opportunity[] = [...mockOpportunities];
+const enquiryStore: Enquiry[] = [...mockEnquiries];
+const videoStore: YouTubeVideo[] = [...mockVideos];
+const achievementStore: Achievement[] = [...mockAchievements];
+const storyStore: Story[] = [...mockStories];
+const announcementStore: Announcement[] = [...mockAnnouncements];
+const trainingStore: TrainingProgram[] = [...mockTrainingPrograms];
+const discussionStore: Discussion[] = [...mockDiscussions];
+const workshopStore: Workshop[] = [...mockWorkshops];
+const resourceStore: Resource[] = [...mockResources];
+const memberStore: Member[] = [...mockMembers];
+const registrationStore: EventRegistration[] = [];
+const auditLogStore: AuditLog[] = [];
 
 // Audit Helper
 export async function logAuditAction(

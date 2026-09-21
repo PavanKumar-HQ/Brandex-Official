@@ -5,8 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generate-seo-assets.js",
     "build": "vite build",
     "build:dev": "vite build --mode development",
+    "seo:generate": "node scripts/generate-seo-assets.js",
+    "seo:indexnow": "node scripts/notify-indexnow.js",
+    "test:seo": "node scripts/audit-seo.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",

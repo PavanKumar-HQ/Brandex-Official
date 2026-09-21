@@ -130,7 +130,7 @@ export default function Hero() {
                   size="lg"
                   className="w-full sm:w-auto h-12 px-6 text-sm rounded-xl font-bold border border-slate-300 flex items-center justify-center"
                 >
-                  <Link to="/case-studies">Explore Production Systems</Link>
+                  <Link to="/case-studies">View Our Work</Link>
                 </Button>
               </MagneticWrapper>
             </motion.div>

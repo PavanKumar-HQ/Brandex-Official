@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { X, Maximize2, Minimize2, ChevronLeft, ChevronRight, HelpCircle, BookOpen, Layers, Tv } from "lucide-react";
 import { Lesson, Chapter, Subject, ClassLevel } from "@/education/lib/curriculum-data";
 import { BrandexYouTubePlayer } from "../learning/BrandexYouTubePlayer";
@@ -38,6 +39,17 @@ export function ClassroomModeModal({
   const allChapterLessons = chapter.topics.flatMap((t) => t.lessons);
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return;
       if (e.key === "Escape" && !isQuizOpen) {
@@ -60,8 +72,8 @@ export function ClassroomModeModal({
 
   if (!isOpen) return null;
 
-  return (
-    <div className="fixed inset-0 z-[100] bg-[#070B14] text-white flex flex-col overflow-hidden select-none">
+  return createPortal(
+    <div className="fixed inset-0 z-[99999] bg-[#070B14] text-white flex flex-col overflow-hidden select-none">
       
       {/* Top Presentation Header */}
       <div className="h-14 px-3 sm:px-6 bg-[#0B1120] border-b border-slate-800/80 flex items-center justify-between shrink-0 gap-2">
@@ -142,7 +154,7 @@ export function ClassroomModeModal({
                   Chapter Lessons ({allChapterLessons.length})
                 </h3>
                 <p className="text-xs font-bold text-white mt-0.5 truncate max-w-xs">
-                  Ch {chapter.chapterNumber}: {chapter.title}
+                  Ch {chapter.chapterNumber}: {chapter.title.replace(/^Chapter\s*\d+\s*:\s*/i, "")}
                 </p>
               </div>
             </div>
@@ -228,6 +240,7 @@ export function ClassroomModeModal({
           onClose={() => setIsQuizOpen(false)}
         />
       )}
-    </div>
+    </div>,
+    document.body
   );
 }

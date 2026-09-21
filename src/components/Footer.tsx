@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SITE_CONFIG } from "@/config/site";
 import {
   Phone,
   Mail,
@@ -47,8 +48,8 @@ export default function Footer() {
                 <div className="w-8 h-8 rounded-lg bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-[#818cf8] shrink-0">
                   <Phone size={14} />
                 </div>
-                <a href="tel:+919480944727" className="hover:text-white transition-colors font-medium">
-                  +91 94809 44727 / +91 99015 14757
+                <a href={`tel:${SITE_CONFIG.contact.phone.replace(/[^0-9+]/g, "")}`} className="hover:text-white transition-colors font-medium">
+                  {SITE_CONFIG.contact.phone} / {SITE_CONFIG.contact.altPhone}
                 </a>
               </div>
 
@@ -56,8 +57,8 @@ export default function Footer() {
                 <div className="w-8 h-8 rounded-lg bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-[#818cf8] shrink-0">
                   <Mail size={14} />
                 </div>
-                <a href="mailto:brandexhq@gmail.com" className="hover:text-white transition-colors font-medium">
-                  brandexhq@gmail.com
+                <a href={`mailto:${SITE_CONFIG.contact.email}`} className="hover:text-white transition-colors font-medium">
+                  {SITE_CONFIG.contact.email}
                 </a>
               </div>
 
@@ -66,7 +67,7 @@ export default function Footer() {
                   <MapPin size={14} />
                 </div>
                 <span className="font-medium text-slate-300 leading-snug">
-                  #121, 13th Main M.C. Layout, Vijaynagar, Bangalore - 560040
+                  {SITE_CONFIG.address.street}, {SITE_CONFIG.address.city} - {SITE_CONFIG.address.postalCode}
                 </span>
               </div>
 
@@ -87,7 +88,7 @@ export default function Footer() {
               </span>
               <div className="flex flex-wrap items-center gap-2.5">
                 <a
-                  href="https://instagram.com"
+                  href={SITE_CONFIG.social.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -97,7 +98,7 @@ export default function Footer() {
                 </a>
 
                 <a
-                  href="https://x.com"
+                  href={SITE_CONFIG.social.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Twitter / X"
@@ -107,7 +108,7 @@ export default function Footer() {
                 </a>
 
                 <a
-                  href="https://linkedin.com"
+                  href={SITE_CONFIG.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
@@ -117,7 +118,7 @@ export default function Footer() {
                 </a>
 
                 <a
-                  href="https://github.com/PavanKumar-HQ"
+                  href={SITE_CONFIG.social.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
@@ -127,17 +128,7 @@ export default function Footer() {
                 </a>
 
                 <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="YouTube"
-                  className="w-9 h-9 rounded-xl bg-slate-850 border border-slate-750/80 text-slate-400 hover:text-white hover:bg-[#FF0000] hover:border-[#FF0000] transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center shadow-2xs group"
-                >
-                  <Youtube size={16} className="transition-transform group-hover:scale-105" />
-                </a>
-
-                <a
-                  href="https://discord.gg/6MVYPzBn9g"
+                  href={SITE_CONFIG.social.discord}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Discord Community"
@@ -174,11 +165,11 @@ export default function Footer() {
                 Services
               </h4>
               <ul className="space-y-2.5 text-xs sm:text-sm">
-                <li><Link to="/services" className="hover:text-white transition-colors font-medium">Software Development</Link></li>
-                <li><Link to="/services" className="hover:text-white transition-colors font-medium">Website Engineering</Link></li>
-                <li><Link to="/services" className="hover:text-white transition-colors font-medium">AI & Automation</Link></li>
-                <li><Link to="/services" className="hover:text-white transition-colors font-medium">Cloud Infrastructure</Link></li>
-                <li><Link to="/services" className="hover:text-white transition-colors font-medium">UI / UX Systems</Link></li>
+                <li><Link to="/services/web-engineering" className="hover:text-white transition-colors font-medium">Web Engineering</Link></li>
+                <li><Link to="/services/business-automation" className="hover:text-white transition-colors font-medium">Business Automation</Link></li>
+                <li><Link to="/services/custom-applications" className="hover:text-white transition-colors font-medium">Custom Applications</Link></li>
+                <li><Link to="/services/conversion-ux" className="hover:text-white transition-colors font-medium">Conversion UX</Link></li>
+                <li><Link to="/services/seo-search-infrastructure" className="hover:text-white transition-colors font-medium">Technical SEO</Link></li>
                 <li><Link to="/services" className="hover:text-[#4f47e6] text-[#818cf8] transition-colors font-semibold">All Services →</Link></li>
               </ul>
             </div>

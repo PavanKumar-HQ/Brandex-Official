@@ -9,6 +9,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { blogPosts as localBlogPosts } from "@/data/blogPosts";
 import SEOHead from "@/components/SEOHead";
+import { SITE_CONFIG, getCanonicalUrl } from "@/config/site";
 
 interface BlogPostData {
   id: string;
@@ -45,7 +46,7 @@ export default function BlogPost() {
         category: foundPost.category,
         created_at: foundPost.date,
         read_time: foundPost.readTime,
-        slug: foundPost.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+        slug: foundPost.id,
         content: foundPost.content.join("\n\n"),
         author: foundPost.author,
       });
@@ -60,7 +61,7 @@ export default function BlogPost() {
           category: p.category,
           created_at: p.date,
           read_time: p.readTime,
-          slug: p.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+          slug: p.id,
           content: p.content.join("\n\n"),
           author: p.author,
         }));
@@ -87,6 +88,7 @@ export default function BlogPost() {
   if (!post) {
     return (
       <section className="py-28 bg-[#f8fafd]">
+        <SEOHead title="Article Not Found | Brandex Engineering" noindex={true} />
         <div className="container mx-auto px-6 text-center max-w-lg">
           <div className="liquid-glass rounded-3xl p-8 border border-slate-200">
             <h1 className="font-display text-2xl font-bold text-slate-900 mb-2">
@@ -111,63 +113,63 @@ export default function BlogPost() {
     "@graph": [
       {
         "@type": "BlogPosting",
-        "@id": `https://brandex-official.vercel.app/blog/${post.slug}#article`,
+        "@id": `${getCanonicalUrl(`/blog/${post.id}`)}#article`,
         "isPartOf": {
           "@type": "Blog",
-          "@id": "https://brandex-official.vercel.app/blog#blog",
-          "name": "Brandex Engineering Blog",
+          "@id": `${SITE_CONFIG.url}/blog#blog`,
+          "name": `${SITE_CONFIG.name} Engineering Blog`,
           "publisher": {
             "@type": "Organization",
-            "@id": "https://brandex-official.vercel.app/#organization",
-            "name": "Brandex",
-            "url": "https://brandex-official.vercel.app"
+            "@id": `${SITE_CONFIG.url}/#organization`,
+            "name": SITE_CONFIG.name,
+            "url": SITE_CONFIG.url
           }
         },
         "headline": post.title,
         "description": post.excerpt,
-        "mainEntityOfPage": `https://brandex-official.vercel.app/blog/${post.slug}`,
+        "mainEntityOfPage": getCanonicalUrl(`/blog/${post.id}`),
         "datePublished": post.created_at,
         "dateModified": post.created_at,
         "articleSection": post.category,
         "inLanguage": "en-US",
-        "image": "https://brandex-official.vercel.app/main_logo.png",
+        "image": `${SITE_CONFIG.url}/main_logo.png`,
         "author": {
           "@type": "Person",
           "name": post.author,
-          "url": `https://brandex-official.vercel.app${authorSlug}`,
+          "url": `${SITE_CONFIG.url}${authorSlug}`,
           "jobTitle": post.author.includes("Pavan") ? "Chief Systems Architect" : "Head of Product Design"
         },
         "publisher": {
           "@type": "Organization",
-          "name": "Brandex",
-          "url": "https://brandex-official.vercel.app",
+          "name": SITE_CONFIG.name,
+          "url": SITE_CONFIG.url,
           "logo": {
             "@type": "ImageObject",
-            "url": "https://brandex-official.vercel.app/main_logo.png"
+            "url": `${SITE_CONFIG.url}/main_logo.png`
           }
         }
       },
       {
         "@type": "BreadcrumbList",
-        "@id": `https://brandex-official.vercel.app/blog/${post.slug}#breadcrumb`,
+        "@id": `${getCanonicalUrl(`/blog/${post.id}`)}#breadcrumb`,
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://brandex-official.vercel.app/"
+            "item": `${SITE_CONFIG.url}/`
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Engineering Blog",
-            "item": "https://brandex-official.vercel.app/blog"
+            "item": `${SITE_CONFIG.url}/blog`
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": post.title,
-            "item": `https://brandex-official.vercel.app/blog/${post.slug}`
+            "item": getCanonicalUrl(`/blog/${post.id}`)
           }
         ]
       }
@@ -179,11 +181,9 @@ export default function BlogPost() {
       <SEOHead
         title={`${post.title} | Brandex Engineering`}
         description={post.excerpt}
-        canonicalUrl={`/blog/${post.slug}`}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        canonicalUrl={`/blog/${post.id}`}
+        type="article"
+        schema={articleSchema}
       />
 
       {/* Hero Header - Left-aligned, Tight Spacing */}

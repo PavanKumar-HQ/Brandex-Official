@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { ArrowLeft, ExternalLink, CheckCircle2, ArrowRight } from "lucide-react";
 import { projects } from "@/data/projects";
 import SEOHead from "@/components/SEOHead";
+import { SITE_CONFIG, getCanonicalUrl } from "@/config/site";
 
 export default function CaseStudyDetail() {
   const { id } = useParams();
@@ -15,6 +16,7 @@ export default function CaseStudyDetail() {
   if (!project) {
     return (
       <div className="min-h-screen flex items-center justify-center text-center bg-white">
+        <SEOHead title="Project Not Found | Brandex" noindex={true} />
         <div className="liquid-glass-card rounded-3xl p-10 max-w-md mx-auto">
           <h2 className="text-2xl font-bold mb-3 text-slate-900">Project Not Found</h2>
           <Link to="/case-studies" className="text-[#4f47e6] font-semibold hover:underline">Return to Case Studies</Link>
@@ -28,25 +30,25 @@ export default function CaseStudyDetail() {
     "@graph": [
       {
         "@type": "TechArticle",
-        "@id": `https://brandex-official.vercel.app/case-studies/${project.id}#article`,
+        "@id": `${getCanonicalUrl(`/case-studies/${project.id}`)}#article`,
         "headline": `${project.title} — Production Case Study`,
         "description": project.description,
-        "image": "https://brandex-official.vercel.app/main_logo.png",
+        "image": `${SITE_CONFIG.url}/main_logo.png`,
         "author": {
           "@type": "Organization",
-          "name": "Brandex Engineering Team",
-          "url": "https://brandex-official.vercel.app"
+          "name": `${SITE_CONFIG.name} Engineering Team`,
+          "url": SITE_CONFIG.url
         },
         "publisher": {
           "@type": "Organization",
-          "name": "Brandex",
-          "url": "https://brandex-official.vercel.app",
+          "name": SITE_CONFIG.name,
+          "url": SITE_CONFIG.url,
           "logo": {
             "@type": "ImageObject",
-            "url": "https://brandex-official.vercel.app/main_logo.png"
+            "url": `${SITE_CONFIG.url}/main_logo.png`
           }
         },
-        "mainEntityOfPage": `https://brandex-official.vercel.app/case-studies/${project.id}`,
+        "mainEntityOfPage": getCanonicalUrl(`/case-studies/${project.id}`),
         "about": {
           "@type": "Thing",
           "name": project.category
@@ -54,25 +56,25 @@ export default function CaseStudyDetail() {
       },
       {
         "@type": "BreadcrumbList",
-        "@id": `https://brandex-official.vercel.app/case-studies/${project.id}#breadcrumb`,
+        "@id": `${getCanonicalUrl(`/case-studies/${project.id}`)}#breadcrumb`,
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://brandex-official.vercel.app/"
+            "item": `${SITE_CONFIG.url}/`
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Case Studies",
-            "item": "https://brandex-official.vercel.app/case-studies"
+            "item": `${SITE_CONFIG.url}/case-studies`
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": project.title,
-            "item": `https://brandex-official.vercel.app/case-studies/${project.id}`
+            "item": getCanonicalUrl(`/case-studies/${project.id}`)
           }
         ]
       }
@@ -82,13 +84,10 @@ export default function CaseStudyDetail() {
   return (
     <>
       <SEOHead
-        title={`${project.title} Case Study | Brandex`}
+        title={`${project.title} Case Study | Brandex Digital Systems`}
         description={project.description}
-        canonical={`https://brandex-official.vercel.app/case-studies/${project.id}`}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }}
+        canonicalUrl={`/case-studies/${project.id}`}
+        schema={caseStudySchema}
       />
 
       <article className="min-h-screen bg-white">

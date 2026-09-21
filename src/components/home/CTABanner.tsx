@@ -17,17 +17,17 @@ export default function CTABanner() {
           {/* Badge */}
           <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[#4f47e6] text-xs font-mono font-semibold tracking-widest uppercase mb-6 shadow-2xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-            <span>Scale Your Operations</span>
+            <span>Get in Touch</span>
           </div>
 
           {/* Heading */}
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 mb-5 leading-[1.08] tracking-tight max-w-4xl mx-auto">
-            Let's engineer a system that <span className="text-[#4f47e6]">drives real growth</span>.
+            Ready to build something <span className="text-[#4f47e6]">great together</span>?
           </h2>
 
           {/* Subtext */}
           <p className="text-base sm:text-lg text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed font-normal">
-            Turn manual bottlenecks into automated revenue. Share your project goals with our founding engineers today.
+            Tell us about your project or idea. We will help you plan, design, and launch it fast.
           </p>
 
           {/* Liquid Glass Action Hub Card across full width */}
@@ -35,10 +35,10 @@ export default function CTABanner() {
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 text-left">
               <div className="max-w-xl">
                 <h3 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 mb-1.5">
-                  Start an Architectural Discovery Call
+                  Schedule a Free Consultation
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 font-normal">
-                  Direct conversation with our technical leadership team. Response guaranteed within 24 hours.
+                  Speak directly with our team. We guarantee a reply within 24 hours.
                 </p>
               </div>
 
@@ -50,7 +50,7 @@ export default function CTABanner() {
                   className="w-full sm:w-auto h-12 px-7 text-xs sm:text-sm rounded-xl font-bold shadow-[0_4px_16px_rgba(79,71,230,0.3)]"
                 >
                   <Link to="/contact" className="flex items-center justify-center gap-2">
-                    <span>Submit Project Details</span>
+                    <span>Contact Us</span>
                     <ArrowRight size={15} />
                   </Link>
                 </Button>

@@ -6,46 +6,46 @@ import { RollingNumber } from "@/components/ui/RollingNumber";
 const capabilities = [
   {
     icon: Code2,
-    title: "High-Availability Architecture",
-    desc: "Enterprise SLA uptime, resilient cloud infrastructure, and custom modular engineering with zero template bloat.",
+    title: "Always Online & Reliable",
+    desc: "Dependable cloud hosting and clean, maintainable code with zero bloated templates.",
     numericValue: 99.9,
     prefix: "",
     suffix: "%",
     decimals: 1,
-    statLabel: "Target SLA Uptime",
+    statLabel: "Guaranteed Uptime",
     iconBg: "bg-white text-[#4f47e6] border-slate-200/80 shadow-2xs",
   },
   {
     icon: Zap,
-    title: "Sub-Second Latency",
-    desc: "Instant interaction speeds, edge CDN distribution, and optimized asset pipelines.",
+    title: "Lightning Fast Speed",
+    desc: "Instant page loads and responsive navigation so your visitors never wait.",
     numericValue: 0.8,
     prefix: "<",
     suffix: "s",
     decimals: 1,
-    statLabel: "First Contentful Paint",
+    statLabel: "Average Load Time",
     iconBg: "bg-white text-[#4f47e6] border-slate-200/80 shadow-2xs",
   },
   {
     icon: Palette,
-    title: "Tailored UI / UX",
-    desc: "Every viewport and interaction is custom crafted to elevate your brand perception and trust.",
+    title: "Custom Modern Design",
+    desc: "Every page is crafted to match your brand and make a great first impression.",
     numericValue: 100,
     prefix: "",
     suffix: "%",
     decimals: 0,
-    statLabel: "Bespoke Design",
+    statLabel: "Custom Crafted",
     iconBg: "bg-white text-[#4f47e6] border-slate-200/80 shadow-2xs",
   },
   {
     icon: BarChart3,
-    title: "Conversion Engineering",
-    desc: "Engineered around funnel psychology, frictionless CTA pathways, and automated lead capture.",
+    title: "Built to Convert",
+    desc: "Clear layouts and calls-to-action that turn everyday website visitors into paying clients.",
     numericValue: 3.4,
     prefix: "",
     suffix: "x",
     decimals: 1,
-    statLabel: "Average Conversion Lift",
+    statLabel: "More Inquiries & Sales",
     iconBg: "bg-white text-[#4f47e6] border-slate-200/80 shadow-2xs",
   },
 ];
@@ -65,13 +65,13 @@ export default function FeatureShowcase() {
         >
           <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest text-[#4f47e6] uppercase mb-4 shadow-2xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-            Engineering Standards
+            Why Work With Us
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4 leading-[1.15] tracking-tight">
-            Engineering excellence, <span className="text-[#4f47e6]">delivered without compromise.</span>
+            Built with care, <span className="text-[#4f47e6]">designed to grow your business.</span>
           </h2>
           <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
-            We don't build disposable agency templates. We engineer mission-critical digital products that convert, automate, and scale.
+            No cookie-cutter templates. We build fast, reliable websites and apps that help you stand out and win more customers.
           </p>
         </motion.div>
 

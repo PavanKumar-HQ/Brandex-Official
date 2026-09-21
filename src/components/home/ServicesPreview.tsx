@@ -7,31 +7,31 @@ import TiltCard from "./TiltCard";
 const services = [
   {
     icon: Globe,
-    title: "Web Engineering",
-    description: "Ultra-fast, high-converting web applications and digital platforms built with modern React & Next.js.",
-    details: "Zero-bloat architecture, 99+ Core Web Vitals, and tailored CMS or custom headless backends.",
-    tag: "Core Capability",
+    title: "Websites & Web Apps",
+    description: "Fast, modern websites and web applications built to look sharp and work flawlessly on mobile and desktop.",
+    details: "Clean design, fast loading, and easy content management so you can update text and images anytime.",
+    tag: "Web Design & Dev",
   },
   {
     icon: Workflow,
-    title: "Business Automation",
-    description: "Streamline operations, CRM syncs, customer notifications, and multi-app data pipelines.",
-    details: "Eliminate manual repetitive spreadsheets and let automated webhook triggers scale your work.",
-    tag: "Scale & Efficiency",
+    title: "Workflow Automation",
+    description: "Connect your favorite tools, automate customer follow-ups, and get rid of repetitive manual tasks.",
+    details: "Automate leads, customer notifications, and data updates so you save hours every single week.",
+    tag: "Save Time & Effort",
   },
   {
     icon: AppWindow,
-    title: "Custom Applications",
-    description: "Bespoke SaaS products, customer portals, internal management systems, and proprietary tools.",
-    details: "Engineered specifically to solve your unique bottlenecks with high security and reliability.",
-    tag: "Enterprise Systems",
+    title: "Custom Software & Portals",
+    description: "Tailored client dashboards, internal company portals, and specialized software built for how you work.",
+    details: "Built to match your unique workflow with secure logins, role management, and clean user experience.",
+    tag: "Tailored Tools",
   },
   {
     icon: Share2,
-    title: "Growth & Brand Strategy",
-    description: "High-impact visual identity, conversion-funnel optimization, and omnichannel digital positioning.",
-    details: "Transform cold visitors into high-LTV brand advocates with strategic UX design.",
-    tag: "Market Authority",
+    title: "Brand & Digital Design",
+    description: "Memorable logos, clear messaging, and engaging user experiences that build instant trust.",
+    details: "Stand out from competitors with clean, premium design that turns visitors into repeat clients.",
+    tag: "Brand Identity",
   },
 ];
 
@@ -50,13 +50,13 @@ export default function ServicesPreview() {
         >
           <div className="liquid-glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold tracking-widest text-[#4f47e6] uppercase mb-4 shadow-2xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#4f47e6] animate-pulse" />
-            Services & Capabilities
+            What We Do
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-3 leading-[1.15] tracking-tight">
-            Comprehensive Digital <span className="text-[#4f47e6]">Engineering</span>
+            Everything you need to <span className="text-[#4f47e6]">grow online</span>
           </h2>
           <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
-            From architecture to automated scale, we execute every layer of your digital transformation.
+            From custom websites and web apps to workflow automation, we build software that works for you.
           </p>
         </motion.div>
 

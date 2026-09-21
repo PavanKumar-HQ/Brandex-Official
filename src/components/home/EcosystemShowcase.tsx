@@ -41,9 +41,9 @@ const pillars = [
     title: "Public Developer Tooling & Repos",
     description: "We contribute production-grade developer libraries, Vite/React performance boilerplates, and Liquid Glass design tokens back to the global software engineering community.",
     stats: "100% Free & MIT Licensed",
-    actionText: "Browse GitHub Repos",
-    href: "https://github.com",
-    isExternal: true,
+    actionText: "Browse Repositories",
+    href: "/community/projects",
+    isExternal: false,
     image: "/ecosystem/opensource.jpg",
     highlights: ["Liquid Glass UI Tokens", "Edge API Scaffolds", "Automated Intake Hooks"],
   },
@@ -70,7 +70,7 @@ export default function EcosystemShowcase() {
             Community, Education & <span className="text-[#4f47e6]">Open Source</span>
           </h2>
           <p className="text-slate-600 text-sm sm:text-base font-normal mt-2 leading-relaxed">
-            We empower the next generation of builders through our open ecosystem initiatives, classroom learning platforms, and developer tools.
+            Beyond client work, we support students, developers, and founders with free learning resources and open-source software.
           </p>
         </motion.div>
 
