@@ -1,0 +1,417 @@
+/**
+ * Brandex Static HTML Prerenderer (SSG Generator for Vite)
+ * 
+ * Generates standalone static HTML files for every indexable route
+ * in dist/<route>/index.html.
+ * 
+ * Solves:
+ * 1. 404 errors on SPA direct route access on Vercel
+ * 2. Crawlability for search engines and AI bots that do not execute client JS
+ * 3. Exact route-specific OpenGraph & Twitter preview cards on social platforms
+ * 4. Sub-second initial HTML render (FCP / TTFB)
+ */
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const rootDir = path.resolve(__dirname, '..');
+const distDir = path.resolve(rootDir, 'dist');
+
+const CANONICAL_ORIGIN = 'https://brandex-official.vercel.app';
+
+if (!fs.existsSync(distDir)) {
+  console.error('[Prerender] Error: dist/ directory not found. Run vite build first.');
+  process.exit(1);
+}
+
+const masterTemplatePath = path.resolve(distDir, 'index.html');
+const masterHtml = fs.readFileSync(masterTemplatePath, 'utf-8');
+
+// Helper to extract objects from TS data files
+function extractObjects(filePath) {
+  const content = fs.readFileSync(filePath, 'utf-8');
+  const items = [];
+  const idMatches = [...content.matchAll(/\bid:\s*["']([^"']+)["']/g)];
+  const titleMatches = [...content.matchAll(/\btitle:\s*["']([^"']+)["']/g)];
+  const descMatches = [...content.matchAll(/\b(?:description|excerpt):\s*["']([^"']+)["']/g)];
+
+  for (let i = 0; i < idMatches.length; i++) {
+    const id = idMatches[i]?.[1];
+    if (!id || id.startsWith('chap-') || id.startsWith('top-') || id.startsWith('les-')) continue;
+    items.push({
+      id,
+      title: titleMatches[i]?.[1] || id,
+      description: descMatches[i]?.[1] || 'Brandex technical architecture and engineering case study.',
+    });
+  }
+  return items;
+}
+
+const servicesData = [
+  {
+    id: 'custom-crm-erp',
+    title: 'Custom CRM & ERP Software Systems – Brandex Digital',
+    h1: 'Custom CRM & ERP Software Systems',
+    description: 'Replace recurring per-seat SaaS costs with bespoke CRM and ERP systems engineered for your business workflows. Zero licensing tax, full data ownership.',
+    deliverables: ['Custom sales pipeline & lead staging', 'Automated GST invoicing engine', 'Multi-tier RBAC & audit logging', 'Direct WhatsApp & SMS customer sync', '100% full source code ownership'],
+    category: 'Enterprise Software',
+  },
+  {
+    id: 'ai-workflow-automation',
+    title: 'AI Agents & Autonomous Workflow Automation – Brandex Digital',
+    h1: 'AI Agents & Autonomous Workflow Automation',
+    description: 'Custom AI agents, WhatsApp bots, and automated webhook pipelines that eliminate repetitive operational bottlenecks 24/7.',
+    deliverables: ['24/7 WhatsApp customer booking bot', 'OCR document parsing & CRM sync', 'Automated multi-app webhook queues', 'Dead-letter retry & error alerts', 'Real-time telemetry & latency tracking'],
+    category: 'AI Automation',
+  },
+  {
+    id: 'mobile-app-development',
+    title: 'High-Performance Mobile App Development (iOS & Android) – Brandex Digital',
+    h1: 'High-Performance Mobile App Development (iOS & Android)',
+    description: 'Offline-first, native-performance iOS and Android applications built with React Native. Real-time sync, push notifications, and store deployment.',
+    deliverables: ['Cross-platform React Native iOS & Android', 'Offline-first SQLite local caching', 'Background sync engine with retry logic', 'Native biometrics authentication', 'App Store & Google Play submission'],
+    category: 'Mobile Engineering',
+  },
+  {
+    id: 'web-engineering',
+    title: 'Bespoke Web Platforms & SaaS Engineering – Brandex Digital',
+    h1: 'Bespoke Web Platforms & SaaS Engineering',
+    description: 'Sub-second React & Next.js web applications, client portals, and SaaS platforms engineered for high throughput and search discoverability.',
+    deliverables: ['Sub-second Next.js / React edge rendering', 'Liquid Glass responsive design system', 'Role-based student & client portals', 'Automated recurring billing (Razorpay/Stripe)', 'Lighthouse 95+ Core Web Vitals'],
+    category: 'Web Platforms',
+  },
+  {
+    id: 'cloud-devops-infrastructure',
+    title: 'Cloud Infrastructure, DevOps & Edge Deployment – Brandex Digital',
+    h1: 'Cloud Infrastructure, DevOps & Edge Deployment',
+    description: 'Automated CI/CD pipelines, container orchestration, edge CDN caching, and automated multi-region backup systems with 99.9% uptime SLAs.',
+    deliverables: ['Terraform / Pulumi Infrastructure-as-Code', 'Automated GitHub Actions CI/CD pipelines', 'Cloudflare Enterprise edge caching & DDoS', 'Daily automated multi-region snapshots', 'Zero-downtime rolling deployments'],
+    category: 'Cloud & DevOps',
+  },
+  {
+    id: 'api-database-systems',
+    title: 'Custom APIs, Microservices & Database Architecture – Brandex Digital',
+    h1: 'Custom APIs, Microservices & Database Architecture',
+    description: 'High-throughput REST and GraphQL APIs, PostgreSQL optimization, Redis caching layers, and legacy system integrations built for sub-50ms latency.',
+    deliverables: ['Sub-50ms REST and GraphQL API microservices', 'PostgreSQL schema design & query indexing', 'Redis distributed caching & session store', 'Legacy software & ERP bridge adapters', 'Interactive OpenAPI / Swagger documentation'],
+    category: 'Backend & Data',
+  },
+];
+
+const projectsData = [
+  {
+    id: 'vignan-public-school',
+    title: 'Vignan Public School Platform Case Study | Brandex',
+    h1: 'Vignan Public School Platform Case Study',
+    description: 'Bespoke educational institution platform with comprehensive information architecture, parent inquiry workflows, and sub-second load times.',
+  },
+  {
+    id: 'vignan-tutorials',
+    title: 'Vignan Tutorials Student Portal Case Study | Brandex',
+    h1: 'Vignan Tutorials Student Portal Case Study',
+    description: 'Interactive tutorial platform featuring dynamic lesson delivery, study materials distribution, and automated student enrollment tracking.',
+  },
+  {
+    id: 'srushti-publications',
+    title: 'Srushti Publications E-Commerce Case Study | Brandex',
+    h1: 'Srushti Publications E-Commerce Case Study',
+    description: 'High-throughput literature e-commerce platform with automated GST invoicing, Razorpay checkout, and warehouse fulfillment integration.',
+  },
+  {
+    id: 'geniusphere',
+    title: 'GeniuSphere 3D WebGL LMS Case Study | Brandex',
+    h1: 'GeniuSphere 3D WebGL LMS Case Study',
+    description: 'Interactive 3D WebGL educational platform with granular student assessment metrics, gamified learning paths, and real-time telemetry.',
+  },
+  {
+    id: 'propquant-ai',
+    title: 'PropQuant.ai Algorithmic Trading Platform Case Study | Brandex',
+    h1: 'PropQuant.ai Algorithmic Trading Platform Case Study',
+    description: 'High-precision automated trading execution platform integrated with MT5 broker APIs, backtesting pipelines, and real-time risk analytics.',
+  },
+];
+
+const staticPages = [
+  {
+    route: 'services',
+    title: 'Services – Brandex | Software Development, AI & Cloud Infrastructure',
+    h1: 'Enterprise Software Engineering & Digital Infrastructure',
+    description: 'End-to-end bespoke digital services: sub-second web applications, AI automation engines, and cloud microservices designed for scale.',
+    contentHtml: `
+      <h2>Core Engineering Capabilities</h2>
+      <ul>
+        <li><a href="/services/custom-crm-erp">Custom CRM & ERP Software Systems</a></li>
+        <li><a href="/services/ai-workflow-automation">AI Agents & Autonomous Workflow Automation</a></li>
+        <li><a href="/services/mobile-app-development">High-Performance Mobile App Development</a></li>
+        <li><a href="/services/web-engineering">Bespoke Web Platforms & SaaS Engineering</a></li>
+        <li><a href="/services/cloud-devops-infrastructure">Cloud Infrastructure, DevOps & Edge Deployment</a></li>
+        <li><a href="/services/api-database-systems">Custom APIs, Microservices & Database Architecture</a></li>
+      </ul>
+    `,
+  },
+  {
+    route: 'case-studies',
+    title: 'Case Studies – Brandex | Real Projects, Real Results',
+    h1: 'Production Case Studies & Architectural Impact',
+    description: 'Explore how Brandex drove +340% order growth, sub-18ms latency, and 40+ hours saved weekly through digital transformation.',
+    contentHtml: `
+      <h2>Verified Deployments</h2>
+      <ul>
+        <li><a href="/case-studies/vignan-public-school">Vignan Public School Platform</a></li>
+        <li><a href="/case-studies/vignan-tutorials">Vignan Tutorials Student Portal</a></li>
+        <li><a href="/case-studies/srushti-publications">Srushti Publications E-Commerce</a></li>
+        <li><a href="/case-studies/geniusphere">GeniuSphere 3D WebGL LMS</a></li>
+        <li><a href="/case-studies/propquant-ai">PropQuant.ai Algorithmic Trading Platform</a></li>
+      </ul>
+    `,
+  },
+  {
+    route: 'solutions',
+    title: 'Solutions – Brandex | Industry-Specific Digital Systems',
+    h1: 'Engineered Solutions For Specific Operational Bottlenecks',
+    description: 'Tailored digital systems for restaurants, healthcare, finance, logistics, and retail. Built to solve real operational bottlenecks.',
+  },
+  {
+    route: 'pricing',
+    title: 'Engineering Sprints & Investment Packages – Brandex',
+    h1: 'Engineering Sprints & Investment Packages',
+    description: 'Transparent engineering sprint packages. Zero hidden costs, 100% client code ownership, fixed deliverables, and sub-second SLAs.',
+  },
+  {
+    route: 'about',
+    title: 'About – Brandex | The Team Behind Your Digital Growth',
+    h1: 'Engineering Systems Built For Real Scale',
+    description: 'Meet the engineering and design leaders at Brandex. Engineering bespoke digital infrastructure for ambitious businesses.',
+  },
+  {
+    route: 'blog',
+    title: 'Blog – Brandex | Insights on Engineering, Design & Scale',
+    h1: 'Engineering Blog & Technical Architecture',
+    description: 'Deep-dives on software architecture, sub-second web performance, and automated systems straight from the Brandex team.',
+  },
+  {
+    route: 'contact',
+    title: 'Start Your Project – Brandex | Bespoke Digital Engineering',
+    h1: 'Schedule a Technical Architecture Diagnostic',
+    description: 'Schedule a diagnostic with Brandex founders. Discuss your custom software, website architecture, or workflow automation project.',
+  },
+  {
+    route: 'contact-us',
+    title: 'Contact Us – Brandex | Merchant & Support Information',
+    h1: 'Contact Us — Official Merchant Channels',
+    description: 'Official merchant and support channels for Brandex Digital Infrastructure. Vijaynagar, Bangalore.',
+  },
+  {
+    route: 'pavan-kumar',
+    title: 'Pavan Kumar — Co-Founder & Chief Systems Architect | Brandex',
+    h1: 'Pavan Kumar — Co-Founder & Chief Systems Architect',
+    description: 'Engineering sub-second web platforms, enterprise cloud pipelines, and bespoke software systems. Bangalore, India.',
+  },
+  {
+    route: 'sathvik',
+    title: 'Sathvik Nagesh — Co-Founder & Head of Product Design | Brandex',
+    h1: 'Sathvik Nagesh — Co-Founder & Head of Product Design',
+    description: 'Bridging human-centered interaction design with high-performance digital engineering and the Liquid Glass design system.',
+  },
+  {
+    route: 'education',
+    title: 'Brandex Digital Education | Smart Classroom Curriculum (KSEEB)',
+    h1: 'Brandex Digital Education — Smart Classroom Curriculum',
+    description: 'Curriculum-mapped video lessons and interactive formative assessments for Karnataka State Board Classes 6 to 10 with distraction-free smartboard player.',
+  },
+  {
+    route: 'community',
+    title: 'Brandex Community | 500+ Software Builders & Founders Guild',
+    h1: 'Brandex Builder Guild & Open-Source Community',
+    description: 'Connect with 500+ software engineers, product architects, and startup founders in Bangalore. Live meetups, peer reviews, and open-source sprints.',
+  },
+  {
+    route: 'privacy-policy',
+    title: 'Privacy Policy – Brandex Digital',
+    h1: 'Privacy Policy',
+    description: 'Official Privacy Policy regarding user data protection, encryption standards, and digital telemetry.',
+  },
+  {
+    route: 'terms-and-conditions',
+    title: 'Terms & Conditions – Brandex Digital',
+    h1: 'Terms & Conditions',
+    description: 'Read the Terms and Conditions governing use of Brandex website, software development services, and IP ownership policies.',
+  },
+];
+
+// Blog posts
+const blogPostsPath = path.resolve(rootDir, 'src/data/blogPosts.ts');
+const blogPostsData = extractObjects(blogPostsPath);
+
+let prerenderCount = 0;
+
+function renderPage(routePath, title, description, h1, extraBodyHtml = '', customSchema = null) {
+  const cleanRoute = routePath.replace(/^\/+/, '').replace(/\/+$/, '');
+  const pageCanonical = `${CANONICAL_ORIGIN}/${cleanRoute}`;
+
+  let html = masterHtml;
+
+  // Replace Title
+  html = html.replace(/<title>[^<]*<\/title>/i, `<title>${title}</title>`);
+
+  // Replace Canonical
+  html = html.replace(/<link\s+rel="canonical"[^>]*>/i, `<link rel="canonical" href="${pageCanonical}" />`);
+
+  // Replace Description
+  html = html.replace(/<meta\s+name="description"[^>]*>/i, `<meta name="description" content="${description}" />`);
+
+  // Replace OpenGraph & Twitter
+  html = html.replace(/<meta\s+property="og:title"[^>]*>/i, `<meta property="og:title" content="${title}" />`);
+  html = html.replace(/<meta\s+property="og:description"[^>]*>/i, `<meta property="og:description" content="${description}" />`);
+  html = html.replace(/<meta\s+property="og:url"[^>]*>/i, `<meta property="og:url" content="${pageCanonical}" />`);
+  html = html.replace(/<meta\s+name="twitter:title"[^>]*>/i, `<meta name="twitter:title" content="${title}" />`);
+  html = html.replace(/<meta\s+name="twitter:description"[^>]*>/i, `<meta name="twitter:description" content="${description}" />`);
+  html = html.replace(/<meta\s+name="twitter:url"[^>]*>/i, `<meta name="twitter:url" content="${pageCanonical}" />`);
+
+  // Build semantic crawlable static content inside root container
+  const initialContent = `
+    <div id="prerendered-content" style="opacity:1">
+      <header style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+        <nav aria-label="Breadcrumb" style="font-size: 0.85rem; margin-bottom: 1rem;">
+          <a href="/">Home</a> / <span aria-current="page">${h1}</span>
+        </nav>
+        <h1 style="font-size: 2.25rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem;">${h1}</h1>
+        <p style="font-size: 1.125rem; color: #475569; max-width: 800px; line-height: 1.6;">${description}</p>
+      </header>
+      <main style="padding: 0 2rem 4rem; max-width: 1200px; margin: 0 auto;">
+        ${extraBodyHtml}
+      </main>
+    </div>
+  `.trim();
+
+  // Inject initial content inside <div id="root">
+  html = html.replace('<div id="root"></div>', `<div id="root">${initialContent}</div>`);
+
+  // Inject route-specific Schema if provided
+  if (customSchema) {
+    const schemaScript = `\n    <script type="application/ld+json" data-prerender-schema="true">\n    ${JSON.stringify(customSchema, null, 2)}\n    </script>\n  </head>`;
+    html = html.replace('</head>', schemaScript);
+  }
+
+  // Create destination folder and write index.html
+  const targetDir = path.resolve(distDir, cleanRoute);
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, { recursive: true });
+  }
+  fs.writeFileSync(path.resolve(targetDir, 'index.html'), html, 'utf-8');
+  prerenderCount++;
+}
+
+console.log('[Prerender] Generating static HTML for indexable routes...');
+
+// 1. Render Static Pages
+staticPages.forEach(p => {
+  renderPage(p.route, p.title, p.description, p.h1, p.contentHtml || '');
+});
+
+// 2. Render 6 Service Pages
+servicesData.forEach(s => {
+  const serviceHtml = `
+    <section>
+      <h2>What Brandex Provides</h2>
+      <ul>
+        ${s.deliverables.map(d => `<li>${d}</li>`).join('\n')}
+      </ul>
+      <p><strong>Primary Business Outcome:</strong> 100% Client Code Ownership, sub-second performance, zero recurring platform tax.</p>
+      <p><a href="/contact">Schedule a Technical Architecture Diagnostic</a></p>
+    </section>
+  `;
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${CANONICAL_ORIGIN}/services/${s.id}#service`,
+    "name": s.h1,
+    "serviceType": s.category,
+    "description": s.description,
+    "provider": {
+      "@type": "Organization",
+      "@id": `${CANONICAL_ORIGIN}/#organization`,
+      "name": "Brandex",
+      "url": CANONICAL_ORIGIN,
+      "telephone": "+91-94809-44727",
+      "email": "brandexhq@gmail.com"
+    },
+    "areaServed": "India",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": `${s.h1} Deliverables`,
+      "itemListElement": s.deliverables.map((item, index) => ({
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": item
+        },
+        "position": index + 1
+      }))
+    }
+  };
+
+  renderPage(`services/${s.id}`, s.title, s.description, s.h1, serviceHtml, serviceSchema);
+});
+
+// 3. Render 5 Case Studies
+projectsData.forEach(p => {
+  const caseStudyHtml = `
+    <section>
+      <h2>Production Deployment Summary</h2>
+      <p>${p.description}</p>
+      <p><a href="/case-studies">Explore all Brandex Case Studies</a></p>
+    </section>
+  `;
+
+  const caseStudySchema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "@id": `${CANONICAL_ORIGIN}/case-studies/${p.id}#article`,
+    "headline": p.h1,
+    "description": p.description,
+    "author": {
+      "@type": "Organization",
+      "name": "Brandex Engineering Team",
+      "url": CANONICAL_ORIGIN
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Brandex",
+      "url": CANONICAL_ORIGIN
+    }
+  };
+
+  renderPage(`case-studies/${p.id}`, p.title, p.description, p.h1, caseStudyHtml, caseStudySchema);
+});
+
+// 4. Render 50 Blog Posts
+blogPostsData.forEach(b => {
+  const blogHtml = `
+    <article>
+      <h2>Article Overview</h2>
+      <p>${b.description}</p>
+      <p><a href="/blog">Back to Brandex Engineering Blog</a></p>
+    </article>
+  `;
+
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${CANONICAL_ORIGIN}/blog/${b.id}#article`,
+    "headline": b.title,
+    "description": b.description,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Brandex",
+      "url": CANONICAL_ORIGIN
+    }
+  };
+
+  renderPage(`blog/${b.id}`, `${b.title} | Brandex Engineering`, b.description, b.title, blogHtml, blogSchema);
+});
+
+console.log(`[Prerender] Successfully generated ${prerenderCount} standalone static HTML pages in dist/!`);
