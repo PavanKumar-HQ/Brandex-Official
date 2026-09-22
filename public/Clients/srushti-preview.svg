@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="50%" stop-color="#14112c" />
+      <stop offset="100%" stop-color="#070a14" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4f47e6" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.08)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0.02)" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background with subtle grid -->
+  <rect width="800" height="450" fill="url(#bg)" />
+  <g opacity="0.06" stroke="#ffffff" stroke-width="1">
+    <path d="M0 50h800M0 100h800M0 150h800M0 200h800M0 250h800M0 300h800M0 350h800M0 400h800" />
+    <path d="M50 0v450M100 0v450M150 0v450M200 0v450M250 0v450M300 0v450M350 0v450M400 0v450M450 0v450M500 0v450M550 0v450M600 0v450M650 0v450M700 0v450M750 0v450" />
+  </g>
+
+  <!-- Ambient Glow -->
+  <circle cx="680" cy="120" r="160" fill="#4f47e6" opacity="0.18" filter="blur(60px)" />
+  <circle cx="160" cy="360" r="140" fill="#7c3aed" opacity="0.14" filter="blur(60px)" />
+
+  <!-- Browser Chrome Top -->
+  <rect x="24" y="24" width="752" height="402" rx="16" fill="#111827" stroke="rgba(255,255,255,0.12)" stroke-width="1" />
+  <path d="M24 64h752" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+  <circle cx="44" cy="44" r="5" fill="#f43f5e" />
+  <circle cx="60" cy="44" r="5" fill="#fbbf24" />
+  <circle cx="76" cy="44" r="5" fill="#10b981" />
+
+  <!-- URL Bar -->
+  <rect x="100" y="34" width="380" height="20" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+  <text x="114" y="48" fill="#94a3b8" font-family="-apple-system, system-ui, sans-serif" font-size="10" font-weight="500">https://srushtipublications.com — Regional Bookstore &amp; GST Engine</text>
+
+  <!-- Navigation Bar Inside Browser -->
+  <text x="44" y="96" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="800">Srushti Publications</text>
+  <text x="210" y="95" fill="#a78bfa" font-family="-apple-system, system-ui, sans-serif" font-size="11" font-weight="600">ವ್ಯಾಪಕ ಸಾಹಿತ್ಯ ಸಂಗ್ರಹ</text>
+  
+  <rect x="580" y="80" width="80" height="24" rx="8" fill="url(#accent)" />
+  <text x="596" y="96" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="10" font-weight="700">Cart (3)</text>
+  
+  <rect x="670" y="80" width="86" height="24" rx="8" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
+  <text x="684" y="96" fill="#cbd5e1" font-family="-apple-system, system-ui, sans-serif" font-size="10" font-weight="600">GST Invoice</text>
+
+  <!-- Hero Banner inside Mockup -->
+  <rect x="44" y="116" width="712" height="96" rx="12" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+  <text x="64" y="148" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="18" font-weight="800">High-Throughput Literature Storefront</text>
+  <text x="64" y="172" fill="#94a3b8" font-family="-apple-system, system-ui, sans-serif" font-size="12" font-weight="400">Automated Razorpay checkout, zero monthly platform fees, and instant Shiprocket fulfillment.</text>
+
+  <!-- Feature Pills -->
+  <rect x="64" y="184" width="130" height="18" rx="4" fill="rgba(79,71,230,0.3)" />
+  <text x="72" y="196" fill="#c7d2fe" font-family="-apple-system, system-ui, sans-serif" font-size="9" font-weight="700">✓ 10,000+ Invoices Generated</text>
+  
+  <rect x="204" y="184" width="115" height="18" rx="4" fill="rgba(16,185,129,0.2)" />
+  <text x="212" y="196" fill="#a7f3d0" font-family="-apple-system, system-ui, sans-serif" font-size="9" font-weight="700">✓ 100% Code Ownership</text>
+
+  <!-- Book Cards Grid Inside Mockup -->
+  <!-- Book 1 -->
+  <rect x="44" y="226" width="166" height="176" rx="10" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+  <rect x="56" y="238" width="142" height="90" rx="6" fill="#1e1b4b" />
+  <text x="72" y="278" fill="#c7d2fe" font-family="-apple-system, system-ui, sans-serif" font-size="11" font-weight="700">ಕುವೆಂಪು ಸಮಗ್ರ ಸಾಹಿತ್ಯ</text>
+  <text x="72" y="296" fill="#818cf8" font-family="-apple-system, system-ui, sans-serif" font-size="9">ಸಂಪುಟ ೧ &amp; ೨</text>
+  <text x="56" y="348" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="12" font-weight="700">₹450</text>
+  <rect x="130" y="336" width="68" height="20" rx="6" fill="#4f47e6" />
+  <text x="140" y="350" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="9" font-weight="700">Buy Now</text>
+  <text x="56" y="380" fill="#10b981" font-family="-apple-system, system-ui, sans-serif" font-size="9" font-weight="600">✓ Instant GST Invoice</text>
+
+  <!-- Book 2 -->
+  <rect x="226" y="226" width="166" height="176" rx="10" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+  <rect x="238" y="238" width="142" height="90" rx="6" fill="#2e1065" />
+  <text x="254" y="278" fill="#f5d0fe" font-family="-apple-system, system-ui, sans-serif" font-size="11" font-weight="700">ಕಾರಂತರ ಕಾದಂಬರಿಗಳು</text>
+  <text x="254" y="296" fill="#c084fc" font-family="-apple-system, system-ui, sans-serif" font-size="9">ವಿಶೇಷ ಮುದ್ರಣ</text>
+  <text x="238" y="348" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="12" font-weight="700">₹380</text>
+  <rect x="312" y="336" width="68" height="20" rx="6" fill="#4f47e6" />
+  <text x="322" y="350" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="9" font-weight="700">Buy Now</text>
+  <text x="238" y="380" fill="#10b981" font-family="-apple-system, system-ui, sans-serif" font-size="9" font-weight="600">✓ Shiprocket Dispatch</text>
+
+  <!-- Book 3 -->
+  <rect x="408" y="226" width="166" height="176" rx="10" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+  <rect x="420" y="238" width="142" height="90" rx="6" fill="#0f172a" />
+  <text x="436" y="278" fill="#93c5fd" font-family="-apple-system, system-ui, sans-serif" font-size="11" font-weight="700">ಬೇಂದ್ರೆ ಕಾವ್ಯಧಾರೆ</text>
+  <text x="436" y="296" fill="#60a5fa" font-family="-apple-system, system-ui, sans-serif" font-size="9">ಕಾವ್ಯ ಸಂಗ್ರಹ</text>
+  <text x="420" y="348" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="12" font-weight="700">₹290</text>
+  <rect x="494" y="336" width="68" height="20" rx="6" fill="#4f47e6" />
+  <text x="504" y="350" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="9" font-weight="700">Buy Now</text>
+  <text x="420" y="380" fill="#10b981" font-family="-apple-system, system-ui, sans-serif" font-size="9" font-weight="600">✓ Razorpay Verified</text>
+
+  <!-- Live Metrics Sidebar Inside Mockup -->
+  <rect x="590" y="226" width="166" height="176" rx="10" fill="url(#cardGrad)" stroke="rgba(79,71,230,0.3)" stroke-width="1" />
+  <text x="606" y="250" fill="#818cf8" font-family="-apple-system, system-ui, sans-serif" font-size="11" font-weight="800">PERFORMANCE SLA</text>
+  <text x="606" y="274" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="20" font-weight="900">+340%</text>
+  <text x="606" y="290" fill="#94a3b8" font-family="-apple-system, system-ui, sans-serif" font-size="10">Monthly Order Lift</text>
+  
+  <text x="606" y="324" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="20" font-weight="900">₹0</text>
+  <text x="606" y="340" fill="#94a3b8" font-family="-apple-system, system-ui, sans-serif" font-size="10">Recurring Platform Cut</text>
+
+  <rect x="606" y="360" width="134" height="24" rx="6" fill="#10b981" />
+  <text x="618" y="376" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="10" font-weight="700">● 99.9% Uptime Verified</text>
+</svg>

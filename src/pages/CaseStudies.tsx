@@ -76,7 +76,7 @@ export default function CaseStudiesPage() {
                     to={`/case-studies/${project.id}`}
                     className="aspect-[16/10] bg-slate-50 relative overflow-hidden block"
                   >
-                    {project.url ? (
+                    {project.previewImage || project.url ? (
                       <div className="absolute inset-0 w-full h-full relative group-hover:scale-105 transition-transform duration-500 ease-out">
                         {/* Browser Chrome Overlay */}
                         <div className="absolute top-0 left-0 right-0 h-7 bg-white/95 border-b border-slate-200/60 flex items-center px-3 gap-1.5 z-10">
@@ -85,10 +85,16 @@ export default function CaseStudiesPage() {
                           <div className="w-2 h-2 rounded-full bg-slate-200" />
                         </div>
                         <img
-                          src={`https://s.wordpress.com/mshots/v1/${encodeURIComponent(project.url)}?w=800`}
+                          src={project.previewImage || (project.url ? `https://s.wordpress.com/mshots/v1/${encodeURIComponent(project.url)}?w=800` : project.logo)}
                           alt={`Preview of ${project.title}`}
                           className="w-full h-full object-cover object-top pt-7"
                           loading="lazy"
+                          onError={(e) => {
+                            if (project.logo) {
+                              (e.target as HTMLImageElement).src = project.logo;
+                              (e.target as HTMLImageElement).className = "w-full h-full object-contain p-10 bg-slate-900 pt-7";
+                            }
+                          }}
                         />
                       </div>
                     ) : (

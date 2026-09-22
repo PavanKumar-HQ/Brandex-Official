@@ -462,7 +462,11 @@ const aliasRoutes = [
   { route: 'sathvik-shetty', parent: `${CANONICAL_ORIGIN}/sathvik`, title: 'Sathvik Nagesh — Product Design | Brandex' },
   { route: 'events', parent: `${CANONICAL_ORIGIN}/community/events`, title: 'Engineering Meetups & Hackathons | Brandex' },
   { route: 'projects', parent: `${CANONICAL_ORIGIN}/community/projects`, title: 'Open Source Projects & Architecture Labs | Brandex' },
-  { route: 'training', parent: `${CANONICAL_ORIGIN}/community/training`, title: 'Technical Sprints & Apprenticeships | Brandex' }
+  { route: 'training', parent: `${CANONICAL_ORIGIN}/community/training`, title: 'Technical Sprints & Apprenticeships | Brandex' },
+  { route: 'case-studies/srushti', parent: `${CANONICAL_ORIGIN}/case-studies/srushti-publications`, title: 'Srushti Publications E-Commerce Case Study | Brandex' },
+  { route: 'srushti-publications', parent: `${CANONICAL_ORIGIN}/case-studies/srushti-publications`, title: 'Srushti Publications E-Commerce Case Study | Brandex' },
+  { route: 'srushti', parent: `${CANONICAL_ORIGIN}/case-studies/srushti-publications`, title: 'Srushti Publications E-Commerce Case Study | Brandex' },
+  { route: 'projects/srushti-publications', parent: `${CANONICAL_ORIGIN}/case-studies/srushti-publications`, title: 'Srushti Publications E-Commerce Case Study | Brandex' }
 ];
 
 aliasRoutes.forEach(a => {

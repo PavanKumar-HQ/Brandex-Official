@@ -12,6 +12,16 @@ export interface ProjectData {
   duration?: string;
   services?: string[];
   features?: string[];
+  previewImage?: string;
+  metrics?: { label: string; value: string }[];
+  gallery?: string[];
+  liveUrl?: string;
+  subtitle?: string;
+  client?: string;
+  industry?: string;
+  year?: string;
+  deliverables?: string[];
+  tags?: string[];
 }
 
 export const projects: ProjectData[] = [
@@ -23,7 +33,9 @@ export const projects: ProjectData[] = [
     tech: ["Next.js", "React", "Tailwind CSS"],
     result: "Digital Presence",
     challenge: "Needed a digital front door that reflects their academic excellence and engages parents effectively.",
+    mockup: "dashboard",
     logo: "/Clients/vignan-public-school.webp",
+    previewImage: "/Clients/vignan-public-school-preview.svg",
     liveUrl: "https://www.vignanschool.com",
     url: "https://www.vignanschool.com",
     metrics: [
@@ -50,7 +62,9 @@ export const projects: ProjectData[] = [
     ],
     tags: ["React", "LMS", "Sub-Second Latency", "WhatsApp API", "Zero-Tax"],
     description: "Built a lightning-fast learning portal enabling students to access course materials, live class updates, and past papers with sub-second page loads across Karnataka.",
+    mockup: "learning",
     logo: "/Clients/vignan-tutorials.webp",
+    previewImage: "/Clients/vignan-tutorials-preview.svg",
     liveUrl: "https://www.vignantutorials.in",
     url: "https://www.vignantutorials.in",
     metrics: [
@@ -77,9 +91,11 @@ export const projects: ProjectData[] = [
     ],
     tags: ["E-Commerce", "Razorpay", "GST Engine", "Shiprocket", "High-Throughput"],
     description: "Engineered a high-throughput bookstore e-commerce platform that replaced a buggy third-party SaaS, automating GST compliance and shipping dispatch with zero monthly platform cuts.",
+    mockup: "ordering",
     logo: "/Clients/srushti-publications.webp",
-    liveUrl: "https://www.srushtipublications.com",
-    url: "https://www.srushtipublications.com",
+    previewImage: "/Clients/srushti-preview.svg",
+    liveUrl: "https://srushtipublications.com",
+    url: "https://srushtipublications.com",
     metrics: [
       { label: "Monthly Orders", value: "2,200+" },
       { label: "Cart Abandonment Drop", value: "-45%" },
@@ -104,7 +120,9 @@ export const projects: ProjectData[] = [
     ],
     tags: ["WebGL", "Three.js", "EdTech", "3D Interactive", "KSEEB Curriculum"],
     description: "Designed and developed an immersive 3D interactive educational platform mapping Karnataka Board science curriculum into interactive WebGL laboratory simulations.",
+    mockup: "learning",
     logo: "/Clients/geniusphere.webp",
+    previewImage: "/geniusphere-banner.webp",
     liveUrl: "https://www.geniusphere.tech",
     url: "https://www.geniusphere.tech",
     metrics: [
@@ -131,7 +149,9 @@ export const projects: ProjectData[] = [
     ],
     tags: ["FinTech", "Python", "FastAPI", "WebSockets", "Low-Latency"],
     description: "Architected a low-latency algorithmic trading platform with real-time risk guards, automated trade journaling, and direct broker API execution pipelines.",
+    mockup: "dashboard",
     logo: "/Clients/propquant-ai.webp",
+    previewImage: "/Clients/propquant-ai-preview.svg",
     liveUrl: "https://www.propquant.ai",
     url: "https://www.propquant.ai",
     services: ["Algorithmic Trading System", "API Integration", "Web Dashboard"],

@@ -5,9 +5,22 @@ import { projects } from "@/data/projects";
 import SEOHead from "@/components/SEOHead";
 import { SITE_CONFIG, getCanonicalUrl } from "@/config/site";
 
-export default function CaseStudyDetail() {
-  const { id } = useParams();
-  const project = projects.find((p) => p.id === id);
+interface CaseStudyDetailProps {
+  forcedId?: string;
+}
+
+export default function CaseStudyDetail({ forcedId }: CaseStudyDetailProps = {}) {
+  const { id: paramId } = useParams();
+  const rawId = (forcedId || paramId || "").toLowerCase();
+  const project = projects.find(
+    (p) =>
+      p.id === rawId ||
+      (rawId === "srushti" && p.id === "srushti-publications") ||
+      (rawId === "srushti-publications" && p.id === "srushti-publications") ||
+      p.id.replace("-publications", "") === rawId ||
+      p.id.replace("-public-school", "") === rawId ||
+      p.id.replace("-tutorials", "") === rawId
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -124,6 +137,28 @@ export default function CaseStudyDetail() {
             </div>
           </div>
         </header>
+
+        {/* Platform Live Preview Showcase */}
+        {project.previewImage && (
+          <section className="py-8 bg-slate-50 border-b border-slate-200/80">
+            <div className="container mx-auto px-6 max-w-5xl">
+              <div className="rounded-2xl overflow-hidden border border-slate-300 shadow-md bg-[#090e17] aspect-[16/9] relative group">
+                <img
+                  src={project.previewImage}
+                  alt={`${project.title} live interface preview`}
+                  className="w-full h-full object-cover object-top"
+                  loading="eager"
+                  onError={(e) => {
+                    if (project.logo) {
+                      (e.target as HTMLImageElement).src = project.logo;
+                      (e.target as HTMLImageElement).className = "w-full h-full object-contain p-16";
+                    }
+                  }}
+                />
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Overview Grid */}
         <section className="py-12 border-b border-slate-100 bg-white">

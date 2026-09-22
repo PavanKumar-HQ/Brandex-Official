@@ -86,6 +86,10 @@ function AnimatedRoutes() {
             <Route path="/solutions" element={<Solutions />} />
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
+            <Route path="/case-studies/srushti" element={<CaseStudyDetail forcedId="srushti-publications" />} />
+            <Route path="/srushti-publications" element={<CaseStudyDetail forcedId="srushti-publications" />} />
+            <Route path="/srushti" element={<CaseStudyDetail forcedId="srushti-publications" />} />
+            <Route path="/projects/srushti-publications" element={<CaseStudyDetail forcedId="srushti-publications" />} />
             <Route path="/about" element={<About />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPostPage />} />

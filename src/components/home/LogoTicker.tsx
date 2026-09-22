@@ -23,7 +23,7 @@ const clients = [
   {
     name: "Srushti Publications",
     category: "Full-Stack Book E-Commerce",
-    url: "https://www.srushtipublications.com",
+    url: "https://srushtipublications.com",
     logo: "/Clients/srushti-publications.webp",
     metric: "+340% Order Lift",
     deliverable: "Automated Storefront & Invoicing Engine",

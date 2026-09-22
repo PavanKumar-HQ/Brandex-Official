@@ -167,12 +167,18 @@ export default function CaseStudiesPreview() {
 
                     {/* Live Screenshot Viewport */}
                     <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100">
-                      {active.url ? (
+                      {active.previewImage || active.url ? (
                         <img
-                          src={`https://s.wordpress.com/mshots/v1/${encodeURIComponent(active.url)}?w=900`}
+                          src={active.previewImage || (active.url ? `https://s.wordpress.com/mshots/v1/${encodeURIComponent(active.url)}?w=900` : active.logo)}
                           alt={`Preview of ${active.title}`}
                           className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-102"
                           loading="lazy"
+                          onError={(e) => {
+                            if (active.logo) {
+                              (e.target as HTMLImageElement).src = active.logo;
+                              (e.target as HTMLImageElement).className = "w-full h-full object-contain p-12 bg-slate-900";
+                            }
+                          }}
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-slate-700 font-sans text-xs font-semibold">
