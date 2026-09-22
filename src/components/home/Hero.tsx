@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { MagneticWrapper } from "@/components/ui/MagneticWrapper";
-import EarthGlobe from "@/components/home/EarthGlobe";
+
+const EarthGlobe = lazy(() => import("@/components/home/EarthGlobe"));
 
 const TYPED_PHRASES = [
   "Engineering Digital Systems",
@@ -163,7 +164,14 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="w-full relative flex items-center justify-center"
             >
-              <EarthGlobe />
+              <Suspense fallback={
+                <div className="w-full h-[380px] sm:h-[460px] rounded-3xl bg-slate-900/40 border border-slate-800/80 flex flex-col items-center justify-center gap-3">
+                  <div className="w-8 h-8 rounded-full border-2 border-indigo-500/30 border-t-indigo-500 animate-spin" />
+                  <span className="text-xs font-mono text-slate-400">Loading Global Infrastructure...</span>
+                </div>
+              }>
+                <EarthGlobe />
+              </Suspense>
             </motion.div>
           </div>
 

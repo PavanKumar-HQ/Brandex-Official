@@ -132,13 +132,13 @@ export default function FeatureStickerBanner() {
 
                 <div className="space-y-0.5">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[9px] font-mono font-extrabold uppercase tracking-wider text-slate-400">
+                    <span className="text-[9px] font-mono font-extrabold uppercase tracking-wider text-indigo-700">
                       {item.tag}
                     </span>
                   </div>
-                  <h4 className="font-display font-bold text-sm text-slate-900 leading-tight group-hover/sticker:text-[#4f47e6] transition-colors">
+                  <h3 className="font-display font-bold text-sm text-slate-900 leading-tight group-hover/sticker:text-[#4f47e6] transition-colors">
                     {item.title}
-                  </h4>
+                  </h3>
                   <p className="text-[11px] text-slate-500 font-normal leading-tight">
                     {item.subtitle}
                   </p>

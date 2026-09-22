@@ -1,0 +1,31 @@
+{
+  "$schema": "https://agenticresourcediscovery.org/spec/v1/schema.json",
+  "name": "Brandex Digital Systems",
+  "description": "Digital Systems & Infrastructure Engineering Company based in Bangalore, India.",
+  "url": "https://brandex-official.vercel.app",
+  "version": "1.0.0",
+  "provider": {
+    "name": "Brandex Digital",
+    "url": "https://brandex-official.vercel.app"
+  },
+  "resources": [
+    {
+      "name": "LLM Technical Context",
+      "type": "documentation",
+      "url": "https://brandex-official.vercel.app/llms.txt",
+      "format": "text/markdown"
+    },
+    {
+      "name": "LLM Full Architecture Context",
+      "type": "documentation",
+      "url": "https://brandex-official.vercel.app/llms-full.txt",
+      "format": "text/markdown"
+    },
+    {
+      "name": "Sitemap",
+      "type": "sitemap",
+      "url": "https://brandex-official.vercel.app/sitemap.xml",
+      "format": "application/xml"
+    }
+  ]
+}

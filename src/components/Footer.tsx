@@ -35,6 +35,8 @@ export default function Footer() {
               <img
                 src="/brandex-logo.webp"
                 alt="Brandex"
+                width="144"
+                height="36"
                 className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105 filter brightness-0 invert"
               />
             </Link>
@@ -83,7 +85,7 @@ export default function Footer() {
 
             {/* Social Channels with Authentic Brand Icons & Glow Effects */}
             <div className="pt-2">
-              <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 block mb-2.5">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-300 block mb-2.5">
                 Connect & Follow
               </span>
               <div className="flex flex-wrap items-center gap-2.5">

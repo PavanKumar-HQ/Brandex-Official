@@ -278,6 +278,8 @@ export default function Navbar() {
           <img
             src="/brandex-logo.webp"
             alt="Brandex"
+            width="128"
+            height="32"
             className="h-7 sm:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
           />
         </Link>

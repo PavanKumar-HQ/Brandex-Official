@@ -92,7 +92,11 @@ export default function BlogPreview() {
                     size="sm"
                     className="h-8 px-3.5 rounded-xl bg-[#4f47e6] hover:bg-[#4338ca] text-white text-xs font-bold shadow-[0_2px_8px_rgba(79,71,230,0.25)] transition-all hover:scale-102"
                   >
-                    <Link to={`/blog/${slug}`} className="flex items-center gap-1.5">
+                    <Link
+                      to={`/blog/${slug}`}
+                      className="flex items-center gap-1.5"
+                      aria-label={`Read article: ${post.title}`}
+                    >
                       <span>Read Article</span>
                       <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
                     </Link>

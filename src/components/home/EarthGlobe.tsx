@@ -333,16 +333,6 @@ function RealisticEarthScene({
         const trueGIS = createPurpleEarthCanvasTexture(geojson);
         cachedTextures = trueGIS;
         setTextures(trueGIS);
-
-        // Progressively upgrade to ultra-high 50m resolution in background
-        fetch("/world-land-50m.json")
-          .then((r) => r.json())
-          .then((hiRes) => {
-            const ultraGIS = createPurpleEarthCanvasTexture(hiRes);
-            cachedTextures = ultraGIS;
-            setTextures(ultraGIS);
-          })
-          .catch(() => {});
       })
       .catch((err) => console.error("Error loading world map data:", err));
   }, []);

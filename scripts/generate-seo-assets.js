@@ -190,46 +190,46 @@ const llmsTxt = `# Brandex — Technical Profile & Knowledge Graph
 Brandex designs, develops, and deploys high-performance web applications, custom CRM/ERP software, AI automation pipelines, mobile apps, and cloud infrastructure.
 
 ## Core Engineering Capabilities
-- **Custom CRM & ERP Systems**: Tailored sales pipelines, automated GST billing, multi-role RBAC, and zero per-seat licensing fees. (URL: ${SITE_URL}/services/custom-crm-erp)
-- **AI Agents & Workflow Automation**: 24/7 autonomous WhatsApp bots, webhook pipelines, automated OCR document parsing, and failover queues. (URL: ${SITE_URL}/services/ai-workflow-automation)
-- **Mobile & Cross-Platform Apps**: High-performance iOS & Android applications with offline-first SQLite caching, background sync, and push notifications. (URL: ${SITE_URL}/services/mobile-app-development)
-- **Web Platforms & SaaS Products**: High-speed Next.js / React platforms, interactive student & client portals, and recurring billing. (URL: ${SITE_URL}/services/web-engineering)
-- **Cloud Infrastructure, DevOps & Security**: AWS/GCP/Cloudflare edge architectures, automated CI/CD pipelines, multi-region daily backups, and DDoS protection. (URL: ${SITE_URL}/services/cloud-devops-infrastructure)
-- **Custom APIs & Data Pipelines**: High-throughput microservices, legacy ERP software bridges, and Redis caching for sub-50ms responses. (URL: ${SITE_URL}/services/api-database-systems)
+- [Custom CRM & ERP Systems](${SITE_URL}/services/custom-crm-erp): Tailored sales pipelines, automated GST billing, multi-role RBAC, and zero per-seat licensing fees.
+- [AI Agents & Workflow Automation](${SITE_URL}/services/ai-workflow-automation): 24/7 autonomous WhatsApp bots, webhook pipelines, automated OCR document parsing, and failover queues.
+- [Mobile & Cross-Platform Apps](${SITE_URL}/services/mobile-app-development): High-performance iOS & Android applications with offline-first SQLite caching, background sync, and push notifications.
+- [Web Platforms & SaaS Products](${SITE_URL}/services/web-engineering): High-speed Next.js / React platforms, interactive student & client portals, and recurring billing.
+- [Cloud Infrastructure, DevOps & Security](${SITE_URL}/services/cloud-devops-infrastructure): AWS/GCP/Cloudflare edge architectures, automated CI/CD pipelines, multi-region daily backups, and DDoS protection.
+- [Custom APIs & Data Pipelines](${SITE_URL}/services/api-database-systems): High-throughput microservices, legacy ERP software bridges, and Redis caching for sub-50ms responses.
 
 ## Production Case Studies & Verified Results
-- **Vignan Public School**: Educational institution platform with comprehensive information architecture. URL: ${SITE_URL}/case-studies/vignan-public-school
-- **Vignan Tutorials**: Interactive student tutorial platform with dynamic content. URL: ${SITE_URL}/case-studies/vignan-tutorials
-- **Srushti Publications**: High-throughput E-commerce platform for regional literature featuring Razorpay checkout and automated invoicing. URL: ${SITE_URL}/case-studies/srushti-publications
-- **GeniuSphere**: Interactive 3D WebGL Learning Management System with granular student progress tracking. URL: ${SITE_URL}/case-studies/geniusphere
-- **PropQuant.ai**: High-precision automated algorithmic trading platform integrated with MT5 execution engines. URL: ${SITE_URL}/case-studies/propquant-ai
+- [Vignan Public School Platform](${SITE_URL}/case-studies/vignan-public-school): Educational institution platform with comprehensive information architecture.
+- [Vignan Tutorials Student Portal](${SITE_URL}/case-studies/vignan-tutorials): Interactive student tutorial platform with dynamic content.
+- [Srushti Publications E-Commerce](${SITE_URL}/case-studies/srushti-publications): High-throughput regional literature bookstore with automated GST invoicing.
+- [GeniuSphere 3D WebGL LMS](${SITE_URL}/case-studies/geniusphere): Interactive 3D WebGL learning management system with granular student progress tracking.
+- [PropQuant.ai Algorithmic Platform](${SITE_URL}/case-studies/propquant-ai): High-precision automated algorithmic trading platform integrated with MT5 execution engines.
 
 ## Technical Standards & Guarantees
-- **Global Time To First Byte (TTFB)**: Under 18ms on edge CDN
-- **Lighthouse Core Web Vitals**: 95+ Performance, Accessibility, Best Practices, SEO
-- **Code Ownership**: 100% Client Source Code & Architecture IP transferred on delivery
-- **Stack**: TypeScript, React, Next.js, Vite, TailwindCSS, PostgreSQL, Supabase, Cloudflare Workers, Python, React Native
+- Global Time To First Byte (TTFB): Under 18ms on edge CDN
+- Lighthouse Core Web Vitals: 95+ Performance, Accessibility, Best Practices, SEO
+- Code Ownership: 100% Client Source Code & Architecture IP transferred on delivery
+- Stack: TypeScript, React, Next.js, Vite, TailwindCSS, PostgreSQL, Supabase, Cloudflare Workers, Python, React Native
 
 ## Leadership
-- **Pavan Kumar S**: Co-Founder & Chief Systems Architect (${SITE_URL}/pavan-kumar)
-- **Sathvik Nagesh**: Co-Founder & Head of Product Design (${SITE_URL}/sathvik)
+- [Pavan Kumar S](${SITE_URL}/pavan-kumar): Co-Founder & Chief Systems Architect
+- [Sathvik Nagesh](${SITE_URL}/sathvik): Co-Founder & Head of Product Design
 
 ## Headquarters & Contact
-- **Entity**: Brandex Digital Systems & Infrastructure
-- **Address**: #121, 13th Main M.C. Layout, Vijaynagar, Bangalore - 560040, Karnataka, India
-- **Phone**: +91 94809 44727 / +91 99015 14757
-- **Email**: brandexhq@gmail.com
-- **GSTIN**: 29OGNPS8060K1Z5
-- **Canonical Website**: ${SITE_URL}
+- Entity: Brandex Digital Systems & Infrastructure
+- Address: #121, 13th Main M.C. Layout, Vijaynagar, Bangalore - 560040, Karnataka, India
+- Phone: +91 94809 44727 / +91 99015 14757
+- Email: brandexhq@gmail.com
+- GSTIN: 29OGNPS8060K1Z5
+- Website: [Brandex Official](${SITE_URL}/)
 
-## Core Navigation Endpoints
-- Homepage: ${SITE_URL}/
-- Services Catalog: ${SITE_URL}/services
-- Production Case Studies: ${SITE_URL}/case-studies
-- Engineering Blog: ${SITE_URL}/blog
-- Digital Education Portal: ${SITE_URL}/education
-- Developer Community Hub: ${SITE_URL}/community
-- Diagnostic Inquiry & Contact: ${SITE_URL}/contact
+## Primary Navigation Endpoints
+- [Homepage](${SITE_URL}/): Main corporate overview and technical diagnostic entry.
+- [Services Catalog](${SITE_URL}/services): Complete directory of Brandex software development and cloud capabilities.
+- [Production Case Studies](${SITE_URL}/case-studies): Verified enterprise software deployments and ROI metrics.
+- [Engineering Blog](${SITE_URL}/blog): Deep-dives into sub-second web architecture and automation patterns.
+- [Digital Education](${SITE_URL}/education): Smart classroom curriculum portal for Karnataka State Board.
+- [Developer Community](${SITE_URL}/community): 500+ builder guild and open-source project directory.
+- [Contact & Diagnostics](${SITE_URL}/contact): Schedule a direct technical diagnostic with the founders.
 `;
 
 fs.writeFileSync(path.resolve(publicDir, 'llms.txt'), llmsTxt.trim() + '\n', 'utf-8');
