@@ -432,8 +432,9 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
                   </div>
 
                   <div className="space-y-2 text-xs text-slate-600">
-                    <p className="font-medium text-slate-800">
-                      ⚡ <strong>0% Corporate Jargon.</strong> 100% Shipped Production Systems.
+                    <p className="font-medium text-slate-800 flex items-center gap-1.5">
+                      <Zap size={13} className="text-[#4f47e6] shrink-0" />
+                      <span><strong>0% Corporate Jargon.</strong> 100% Shipped Production Systems.</span>
                     </p>
                     <p className="text-[11px] text-slate-500 leading-relaxed">
                       Every project is scoped and executed directly with founders.
@@ -522,8 +523,9 @@ export default function FounderProfile({ founderKey }: { founderKey?: string }) 
                       {proj.description}
                     </p>
                   </div>
-                  <div className="pt-3 border-t border-slate-100 text-xs font-mono text-[#4f47e6] font-semibold">
-                    ⚡ {proj.impact}
+                  <div className="pt-3 border-t border-slate-100 text-xs font-mono text-[#4f47e6] font-semibold flex items-center gap-1.5">
+                    <Zap size={12} className="text-[#4f47e6] shrink-0" />
+                    <span>{proj.impact}</span>
                   </div>
                 </div>
               ))}

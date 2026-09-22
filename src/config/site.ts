@@ -30,7 +30,6 @@ export const SITE_CONFIG = {
   },
   contact: {
     phone: "+91 94809 44727",
-    altPhone: "+91 99015 14757",
     email: "brandexhq@gmail.com",
     gstin: "29OGNPS8060K1Z5",
     areaServed: ["IN", "US", "GB", "AE", "Worldwide"],

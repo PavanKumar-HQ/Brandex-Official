@@ -103,7 +103,7 @@ export const AppAuthModal: React.FC<AppAuthModalProps> = ({
           if (data.available) {
             setHandleStatus({
               available: true,
-              message: `✓ @${trimmed} is available`
+              message: `@${trimmed} is available`
             });
           } else {
             setHandleStatus({
@@ -291,7 +291,7 @@ export const AppAuthModal: React.FC<AppAuthModalProps> = ({
                   Avatar Archetype: <strong className="text-slate-700 dark:text-slate-200 font-semibold">{getAvatarPreset(createdIdentity.avatarSeed).name}</strong>
                 </span>
                 <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 block mt-1">
-                  ★ +150 Welcome Points Credited
+                  +150 Welcome Points Credited
                 </span>
               </div>
             </div>

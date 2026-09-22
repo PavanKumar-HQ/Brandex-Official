@@ -7,7 +7,7 @@ export function FloatingWhatsApp() {
 
   const handleClick = () => {
     const message = encodeURIComponent("Hi Brandex Team, I'd like to discuss an engineering project / systems architecture.");
-    window.open(`https://wa.me/919901514757?text=${message}`, "_blank");
+    window.open(`https://wa.me/919480944727?text=${message}`, "_blank");
   };
 
   return (

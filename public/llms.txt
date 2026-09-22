@@ -32,7 +32,7 @@ Brandex designs, develops, and deploys high-performance web applications, custom
 ## Headquarters & Contact
 - Entity: Brandex Digital Systems & Infrastructure
 - Address: #121, 13th Main M.C. Layout, Vijaynagar, Bangalore - 560040, Karnataka, India
-- Phone: +91 94809 44727 / +91 99015 14757
+- Phone: +91 94809 44727
 - Email: brandexhq@gmail.com
 - GSTIN: 29OGNPS8060K1Z5
 - Website: [Brandex Official](https://brandex-official.vercel.app/)

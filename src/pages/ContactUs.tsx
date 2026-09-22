@@ -35,11 +35,6 @@ const merchantDetails = [
             +91 94809 44727
           </a>
         </div>
-        <div>
-          <a href="tel:+919901514757" className="text-slate-700 hover:text-[#4f47e6] transition-colors font-medium text-sm sm:text-base">
-            +91 99015 14757
-          </a>
-        </div>
       </div>
     ),
   },

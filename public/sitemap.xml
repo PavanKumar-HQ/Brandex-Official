@@ -207,13 +207,25 @@
     <priority>0.75</priority>
   </url>
   <url>
+    <loc>https://brandex-official.vercel.app/blog/ai-search-agentic-retrieval-engineering</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://brandex-official.vercel.app/blog/sub-second-web-performance</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/conversion-rate-optimization-ux</loc>
+    <loc>https://brandex-official.vercel.app/blog/edge-computing-serverless-state</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://brandex-official.vercel.app/blog/webgl-threejs-zero-latency-visuals</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -225,283 +237,271 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/design-tokens-liquid-glass</loc>
+    <loc>https://brandex-official.vercel.app/blog/react-19-server-actions-architecture</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/postgresql-connection-pooling</loc>
+    <loc>https://brandex-official.vercel.app/blog/real-time-websockets-low-latency</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/b2b-saas-pricing-page-ux</loc>
+    <loc>https://brandex-official.vercel.app/blog/micro-frontends-vs-modular-monoliths</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/real-time-3d-webgl-threejs</loc>
+    <loc>https://brandex-official.vercel.app/blog/enterprise-zero-trust-authentication</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/ecommerce-checkout-optimization-razorpay</loc>
+    <loc>https://brandex-official.vercel.app/blog/cloud-native-database-optimization</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/algorithmic-trading-bot-architecture</loc>
+    <loc>https://brandex-official.vercel.app/blog/modern-css-container-queries-fluid-design</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/educational-portal-architecture-vignan</loc>
+    <loc>https://brandex-official.vercel.app/blog/browser-caching-service-workers-pwa</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/nextjs-15-app-router-migration</loc>
+    <loc>https://brandex-official.vercel.app/blog/static-site-generation-at-scale</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/saas-mvp-to-scale-roadmap</loc>
+    <loc>https://brandex-official.vercel.app/blog/smart-classroom-kiosk-webgl-schools</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/seo-technical-architecture-schema</loc>
+    <loc>https://brandex-official.vercel.app/blog/lms-architecture-zero-platform-tax</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/design-system-consistency-tokens</loc>
+    <loc>https://brandex-official.vercel.app/blog/institutional-website-architecture-schools</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/multi-tenant-rbac-security</loc>
+    <loc>https://brandex-official.vercel.app/blog/gamified-formative-assessment-engines</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/redis-distributed-caching-patterns</loc>
+    <loc>https://brandex-official.vercel.app/blog/accessible-edtech-wcag-compliance</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/full-stack-typescript-type-safety</loc>
+    <loc>https://brandex-official.vercel.app/blog/pdf-lecture-notes-cloud-pipeline</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/dark-mode-light-mode-contrast</loc>
+    <loc>https://brandex-official.vercel.app/blog/parent-teacher-communication-automation</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/automated-business-crm-sync</loc>
+    <loc>https://brandex-official.vercel.app/blog/interactive-periodic-table-webgl</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/future-of-web-applications-2026</loc>
+    <loc>https://brandex-official.vercel.app/blog/student-data-privacy-ferpa-compliance</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/microservice-event-mesh-patterns</loc>
+    <loc>https://brandex-official.vercel.app/blog/multilingual-regional-curriculum-platforms</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/pwa-offline-first-storage</loc>
+    <loc>https://brandex-official.vercel.app/blog/exam-concurrency-load-balancing-schools</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/micro-interactions-framer-motion</loc>
+    <loc>https://brandex-official.vercel.app/blog/micro-credentials-digital-certificates-blockchain</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/api-rate-limiting-token-bucket</loc>
+    <loc>https://brandex-official.vercel.app/blog/curriculum-analytics-learning-outcomes</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/saas-churn-reduction-funnels</loc>
+    <loc>https://brandex-official.vercel.app/blog/building-open-source-design-systems</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/docker-containerization-best-practices</loc>
+    <loc>https://brandex-official.vercel.app/blog/open-source-database-migrations-reliability</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/typography-hierarchy-web-systems</loc>
+    <loc>https://brandex-official.vercel.app/blog/headless-commerce-open-source-stack</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/serverless-database-cold-starts</loc>
+    <loc>https://brandex-official.vercel.app/blog/contributing-to-linux-kernel-and-oss</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/customer-retention-automation</loc>
+    <loc>https://brandex-official.vercel.app/blog/self-hosting-cloud-alternatives-open-source</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/graphql-vs-rest-vs-trpc</loc>
+    <loc>https://brandex-official.vercel.app/blog/open-source-license-compliance-enterprise</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/landing-page-wireframing-playbook</loc>
+    <loc>https://brandex-official.vercel.app/blog/maintaining-open-source-libraries-burnout</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/kubernetes-horizontal-pod-autoscaling</loc>
+    <loc>https://brandex-official.vercel.app/blog/rust-tooling-in-frontend-ecosystems</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/enterprise-contract-management-ux</loc>
+    <loc>https://brandex-official.vercel.app/blog/open-source-ai-models-local-inference</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/cloudflare-workers-edge-computing</loc>
+    <loc>https://brandex-official.vercel.app/blog/monorepo-tooling-turborepo-pnpm</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/accessible-color-palettes-wcag</loc>
+    <loc>https://brandex-official.vercel.app/blog/open-source-security-vulnerability-management</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/database-sharding-horizontal-scaling</loc>
+    <loc>https://brandex-official.vercel.app/blog/headless-cms-open-source-payload</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/b2b-customer-discovery-interviews</loc>
+    <loc>https://brandex-official.vercel.app/blog/building-developer-communities-bangalore</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/react-memo-virtualization-performance</loc>
+    <loc>https://brandex-official.vercel.app/blog/mentoring-early-career-engineers</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/brand-identity-engineering-studios</loc>
+    <loc>https://brandex-official.vercel.app/blog/hackathon-playbook-production-ready-apps</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/security-auditing-owasp-top-10</loc>
+    <loc>https://brandex-official.vercel.app/blog/collaborative-design-reviews-product-velocity</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/software-pricing-models-value-based</loc>
+    <loc>https://brandex-official.vercel.app/blog/peer-code-reviews-high-trust-culture</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/graphql-schema-stitching-federation</loc>
+    <loc>https://brandex-official.vercel.app/blog/democratizing-tech-education-tier-2-cities</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/interactive-form-design-completion-rates</loc>
+    <loc>https://brandex-official.vercel.app/blog/managing-remote-engineering-teams</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/zero-trust-cloud-network-architecture</loc>
+    <loc>https://brandex-official.vercel.app/blog/organizing-unconferences-and-teardowns</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/client-onboarding-automation-systems</loc>
+    <loc>https://brandex-official.vercel.app/blog/open-source-community-moderation</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/web-vitals-inp-optimization-react</loc>
+    <loc>https://brandex-official.vercel.app/blog/building-hardware-maker-spaces</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/mobile-first-responsive-canvas-layouts</loc>
+    <loc>https://brandex-official.vercel.app/blog/student-internship-fair-transparency</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brandex-official.vercel.app/blog/headless-cms-content-modeling-nextjs</loc>
-    <lastmod>2026-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://brandex-official.vercel.app/blog/saas-expansion-revenue-strategies</loc>
-    <lastmod>2026-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://brandex-official.vercel.app/blog/building-the-brandex-ecosystem</loc>
+    <loc>https://brandex-official.vercel.app/blog/giving-back-free-web-infrastructure-nonprofits</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

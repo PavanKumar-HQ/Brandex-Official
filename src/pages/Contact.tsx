@@ -112,7 +112,7 @@ export default function ContactPage() {
       `Requirement: ${description || "Looking for technical consultation"}\n\n` +
       `Sent via Brandex Direct Intake`;
 
-    window.open(`https://wa.me/919901514757?text=${encodeURIComponent(briefText)}`, "_blank");
+    window.open(`https://wa.me/919480944727?text=${encodeURIComponent(briefText)}`, "_blank");
   };
 
   return (
@@ -382,12 +382,9 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="text-[10px] font-mono text-slate-400 font-bold uppercase">Direct Phone & WhatsApp</div>
-                      <div className="space-y-0.5 mt-0.5">
+                      <div className="mt-0.5">
                         <a href="tel:+919480944727" className="block font-bold text-slate-900 hover:text-[#4f47e6] transition-colors">
                           +91 94809 44727
-                        </a>
-                        <a href="tel:+919901514757" className="block font-medium text-slate-700 hover:text-[#4f47e6] transition-colors">
-                          +91 99015 14757
                         </a>
                       </div>
                     </div>

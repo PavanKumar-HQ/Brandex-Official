@@ -1413,7 +1413,10 @@ export const RegistrationModal: React.FC = () => {
                                 }}
                                 className="text-[11px] text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 hover:text-indigo-600 dark:hover:text-indigo-400 border border-slate-200 dark:border-slate-700 px-2.5 py-1 rounded-lg transition-colors text-left"
                               >
-                                💡 {idea}
+                                <span className="inline-flex items-center gap-1.5">
+                                  <Lightbulb size={12} className="text-amber-500 shrink-0" />
+                                  <span>{idea}</span>
+                                </span>
                               </button>
                             ))}
                           </div>

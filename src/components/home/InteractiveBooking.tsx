@@ -11,7 +11,8 @@ import {
   Calendar,
   MessageSquare,
   ShieldCheck,
-  Clock
+  Clock,
+  Check
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -74,7 +75,7 @@ export default function InteractiveBooking() {
       `Name: ${formData.name || "Founder"}\n` +
       `Details: ${formData.notes || "Ready to discuss scope"}`
     );
-    window.open(`https://wa.me/919901514757?text=${text}`, "_blank");
+    window.open(`https://wa.me/919480944727?text=${text}`, "_blank");
   };
 
   return (
@@ -126,7 +127,7 @@ export default function InteractiveBooking() {
                           : "bg-slate-100 text-slate-500 border border-slate-200"
                       }`}
                     >
-                      {step > s ? "✓" : s}
+                      {step > s ? <Check size={13} className="stroke-[3]" /> : s}
                     </div>
                     <span className={`hidden sm:inline font-semibold ${step === s ? "text-slate-900" : "text-slate-500"}`}>
                       {s === 1 ? "Architecture" : s === 2 ? "Timeline" : "Contact"}

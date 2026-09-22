@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function WhatsAppWidget() {
   const [hovered, setHovered] = useState(false);
-  const phone = "919901514757";
+  const phone = "919480944727";
   const message = encodeURIComponent("Hi Brandex Team! I'd like to discuss an engineering project.");
   const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
 

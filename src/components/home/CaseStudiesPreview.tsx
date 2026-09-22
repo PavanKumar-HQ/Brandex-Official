@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink, Globe, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,6 +8,16 @@ import { Button } from "@/components/ui/button";
 export default function CaseStudiesPreview() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const active = projects[selectedIndex] || projects[0];
+
+  // Pre-cache all project previews in browser memory so switching is instant with 0 delay
+  useEffect(() => {
+    projects.forEach((p) => {
+      if (p.previewImage) {
+        const img = new Image();
+        img.src = p.previewImage;
+      }
+    });
+  }, []);
 
   return (
     <section className="py-14 lg:py-18 relative overflow-hidden bg-[#f8fafd] border-b border-slate-200/80" id="case-studies">
@@ -171,8 +181,11 @@ export default function CaseStudiesPreview() {
                         <img
                           src={active.previewImage || active.logo || ""}
                           alt={`Preview of ${active.title}`}
+                          width={1280}
+                          height={720}
                           className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-102"
-                          loading="lazy"
+                          loading="eager"
+                          decoding="async"
                           onError={(e) => {
                             if (active.logo) {
                               (e.target as HTMLImageElement).src = active.logo;

@@ -71,10 +71,7 @@ function TypewriterHeadline() {
   );
 }
 
-import GlobeVisual from "@/components/home/GlobeVisual";
-
 export default function Hero() {
-  const [loadInteractive3D, setLoadInteractive3D] = useState(false);
 
   return (
     <section className="relative flex items-center justify-center overflow-hidden pt-24 pb-12 lg:pt-28 lg:pb-16 bg-[#f8fafd] border-b border-slate-200/60 w-full">
@@ -172,15 +169,17 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.94 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full relative flex items-center justify-center"
+              className="w-full relative flex items-center justify-center min-h-[340px] sm:min-h-[420px] lg:min-h-[500px]"
             >
-              {loadInteractive3D ? (
-                <Suspense fallback={<GlobeVisual onActivate={() => setLoadInteractive3D(true)} />}>
-                  <EarthGlobe />
-                </Suspense>
-              ) : (
-                <GlobeVisual onActivate={() => setLoadInteractive3D(true)} />
-              )}
+              <Suspense
+                fallback={
+                  <div className="w-full h-[320px] sm:h-[420px] lg:h-[480px] xl:h-[520px] flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full border-2 border-indigo-200 border-t-indigo-600 animate-spin" />
+                  </div>
+                }
+              >
+                <EarthGlobe />
+              </Suspense>
             </motion.div>
           </div>
 

@@ -11,7 +11,7 @@ import { blogPosts as localBlogPosts } from "@/data/blogPosts";
 import SEOHead from "@/components/SEOHead";
 import { SITE_CONFIG, getCanonicalUrl } from "@/config/site";
 
-const categories = ["All", "Engineering", "Design", "Business"];
+const categories = ["All", "Top Tech Updates", "Education", "Open Source", "Community"];
 
 interface BlogPost {
   id: string;

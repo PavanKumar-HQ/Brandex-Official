@@ -82,15 +82,12 @@ function createPurpleEarthCanvasTexture(geojson?: any): { earthMap: THREE.Canvas
       targetCtx.closePath();
 
       if (!isBump) {
-        // Luminous Coastal Glow
-        targetCtx.shadowColor = "#818cf8";
-        targetCtx.shadowBlur = 10;
+        // Luminous Coastal Landmass & Border
         targetCtx.fillStyle = "#3c2182";
         targetCtx.fill();
 
         // Sharp Boundary Outline
-        targetCtx.shadowBlur = 0;
-        targetCtx.strokeStyle = "#6366f1";
+        targetCtx.strokeStyle = "#818cf8";
         targetCtx.lineWidth = 1.2;
         targetCtx.stroke();
       } else {

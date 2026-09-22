@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Code2, Terminal, CheckCircle2, ShieldCheck, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Code2, Terminal, CheckCircle2, ShieldCheck, Github, Linkedin, Mail, Zap } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface TeamMember {
@@ -137,9 +137,9 @@ export default function TeamSection() {
                       </div>
                     </div>
 
-                    {/* Formal Funky Fun Statement in Bold */}
-                    <div className="p-3.5 rounded-2xl bg-indigo-50/70 border border-indigo-200/70 text-xs text-slate-900 leading-relaxed">
-                      ⚡ <strong className="font-extrabold text-slate-900">{member.punchline}</strong>
+                    <div className="p-3.5 rounded-2xl bg-indigo-50/70 border border-indigo-200/70 text-xs text-slate-900 leading-relaxed flex items-center gap-1.5">
+                      <Zap size={13} className="text-[#4f47e6] shrink-0" />
+                      <strong className="font-extrabold text-slate-900">{member.punchline}</strong>
                     </div>
                   </div>
 

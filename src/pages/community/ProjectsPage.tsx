@@ -19,7 +19,8 @@ import {
   Layers,
   ArrowRight,
   Eye,
-  Globe
+  Globe,
+  X
 } from 'lucide-react';
 
 import { SkeletonCard } from '@/community/components/ui/Skeleton';
@@ -442,8 +443,9 @@ export const ProjectsPage: React.FC = () => {
                 <button
                   onClick={() => setPrClaimOpen(false)}
                   className="p-1 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+                  aria-label="Close modal"
                 >
-                  ✕
+                  <X size={16} />
                 </button>
               </div>
 
