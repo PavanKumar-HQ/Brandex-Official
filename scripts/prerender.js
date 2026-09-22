@@ -19,7 +19,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.resolve(rootDir, 'dist');
 
-const CANONICAL_ORIGIN = 'https://brandex-official.vercel.app';
+const CANONICAL_ORIGIN = (process.env.VITE_SITE_URL || 'https://brandex-official.vercel.app').replace(/\/+$/, '');
 
 if (!fs.existsSync(distDir)) {
   console.error('[Prerender] Error: dist/ directory not found. Run vite build first.');
@@ -247,9 +247,9 @@ const blogPostsData = extractObjects(blogPostsPath);
 
 let prerenderCount = 0;
 
-function renderPage(routePath, title, description, h1, extraBodyHtml = '', customSchema = null) {
+function renderPage(routePath, title, description, h1, extraBodyHtml = '', customSchema = null, explicitCanonical = null) {
   const cleanRoute = routePath.replace(/^\/+/, '').replace(/\/+$/, '');
-  const pageCanonical = cleanRoute ? `${CANONICAL_ORIGIN}/${cleanRoute}` : `${CANONICAL_ORIGIN}/`;
+  const pageCanonical = explicitCanonical || (cleanRoute ? `${CANONICAL_ORIGIN}/${cleanRoute}` : `${CANONICAL_ORIGIN}/`);
 
   let html = masterHtml;
 
@@ -452,5 +452,54 @@ blogPostsData.forEach(b => {
 
   renderPage(`blog/${b.id}`, `${b.title} | Brandex Engineering`, b.description, b.title, blogHtml, blogSchema);
 });
+
+// 5. Render Convenience Alias Routes (pointing canonical to primary parent route)
+const aliasRoutes = [
+  { route: 'contact-us', parent: `${CANONICAL_ORIGIN}/contact`, title: 'Contact Brandex | Direct Founder Diagnostic' },
+  { route: 'privacy', parent: `${CANONICAL_ORIGIN}/privacy-policy`, title: 'Privacy Policy | Brandex' },
+  { route: 'terms', parent: `${CANONICAL_ORIGIN}/terms-and-conditions`, title: 'Terms & Conditions | Brandex' },
+  { route: 'pavan', parent: `${CANONICAL_ORIGIN}/pavan-kumar`, title: 'Pavan Kumar — Systems Architect | Brandex' },
+  { route: 'sathvik-shetty', parent: `${CANONICAL_ORIGIN}/sathvik`, title: 'Sathvik Nagesh — Product Design | Brandex' },
+  { route: 'events', parent: `${CANONICAL_ORIGIN}/community/events`, title: 'Engineering Meetups & Hackathons | Brandex' },
+  { route: 'projects', parent: `${CANONICAL_ORIGIN}/community/projects`, title: 'Open Source Projects & Architecture Labs | Brandex' },
+  { route: 'training', parent: `${CANONICAL_ORIGIN}/community/training`, title: 'Technical Sprints & Apprenticeships | Brandex' }
+];
+
+aliasRoutes.forEach(a => {
+  renderPage(
+    a.route,
+    a.title,
+    'Official Brandex digital infrastructure, engineering services, and architecture labs.',
+    a.title,
+    `<p>Redirecting to <a href="${a.parent}">${a.parent}</a>...</p>`,
+    null,
+    a.parent
+  );
+});
+
+// 6. Render Branded 404 Recovery Page (dist/404.html)
+const notFoundHtml = `
+  <section style="padding: 5rem 1.5rem; max-width: 800px; margin: 0 auto; text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+    <div style="font-size: 5.5rem; font-weight: 900; color: #4f47e6; line-height: 1; margin-bottom: 1rem; letter-spacing: -0.04em;">404</div>
+    <h1 style="font-size: 2.25rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem;">Page Not Found</h1>
+    <p style="font-size: 1.125rem; color: #475569; max-width: 540px; margin: 0 auto 2.5rem; line-height: 1.6;">
+      The requested URL does not exist or has been relocated. Explore our core engineering services, case studies, or return home.
+    </p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="/" style="display: inline-block; padding: 0.85rem 1.75rem; border-radius: 0.75rem; background: #4f47e6; color: #ffffff; font-weight: 700; text-decoration: none; font-size: 0.875rem;">Return to Homepage</a>
+      <a href="/services" style="display: inline-block; padding: 0.85rem 1.75rem; border-radius: 0.75rem; background: #ffffff; color: #0f172a; font-weight: 700; text-decoration: none; border: 1px solid #cbd5e1; font-size: 0.875rem;">Core Services</a>
+      <a href="/case-studies" style="display: inline-block; padding: 0.85rem 1.75rem; border-radius: 0.75rem; background: #ffffff; color: #0f172a; font-weight: 700; text-decoration: none; border: 1px solid #cbd5e1; font-size: 0.875rem;">Case Studies</a>
+      <a href="/contact" style="display: inline-block; padding: 0.85rem 1.75rem; border-radius: 0.75rem; background: #ffffff; color: #0f172a; font-weight: 700; text-decoration: none; border: 1px solid #cbd5e1; font-size: 0.875rem;">Contact Founders</a>
+    </div>
+  </section>
+`;
+
+let notFoundPageHtml = masterHtml;
+notFoundPageHtml = notFoundPageHtml.replace(/<title>[^<]*<\/title>/i, `<title>404 Page Not Found – Brandex Digital</title>`);
+notFoundPageHtml = notFoundPageHtml.replace(/<meta\s+name="description"[^>]*>/i, `<meta name="description" content="The requested page could not be found. Return to Brandex software engineering and cloud infrastructure." />`);
+notFoundPageHtml = notFoundPageHtml.replace(/<link\s+rel="canonical"[^>]*>/i, `<meta name="robots" content="noindex, nofollow" />`);
+notFoundPageHtml = notFoundPageHtml.replace('<div id="root"></div>', `<div id="root">${notFoundHtml}</div>`);
+fs.writeFileSync(path.resolve(distDir, '404.html'), notFoundPageHtml, 'utf-8');
+console.log('[Prerender] Successfully generated dist/404.html (branded recovery with noindex)!');
 
 console.log(`[Prerender] Successfully generated ${prerenderCount} standalone static HTML pages in dist/!`);

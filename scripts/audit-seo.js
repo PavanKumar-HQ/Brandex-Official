@@ -285,6 +285,50 @@ titleMatches.forEach(t => {
 check('Zero duplicate page titles in static pageMeta', duplicateTitles.length === 0, `Duplicates: ${duplicateTitles.join('; ')}`);
 
 // ----------------------------------------------------
+// 9. Machine-Readable SEO Targets Dataset (seo-targets.json)
+// ----------------------------------------------------
+console.log('\n\x1b[1m[9/10] Auditing Machine-Readable SEO Targets (seo-targets.json)\x1b[0m');
+const seoTargetsPath = path.resolve(publicDir, 'seo-targets.json');
+check('seo-targets.json exists in public directory', fs.existsSync(seoTargetsPath));
+
+let parsedTargets = null;
+try {
+  parsedTargets = JSON.parse(fs.readFileSync(seoTargetsPath, 'utf-8'));
+  check('seo-targets.json parses as valid JSON', Boolean(parsedTargets));
+} catch (e) {
+  check('seo-targets.json parses as valid JSON', false, e.message);
+}
+
+if (parsedTargets && Array.isArray(parsedTargets.targets)) {
+  check('seo-targets.json contains at least 15 prioritized targets', parsedTargets.targets.length >= 15, `Found: ${parsedTargets.targets.length}`);
+  
+  const allTargetsHaveRequiredFields = parsedTargets.targets.every(t => 
+    t.query && t.intent && t.targetUrl && t.priority && t.status
+  );
+  check('All SEO targets contain required fields (query, intent, targetUrl, priority, status)', allTargetsHaveRequiredFields);
+
+  const allTargetUrlsCanonical = parsedTargets.targets.every(t => 
+    t.targetUrl.startsWith(CANONICAL_ORIGIN)
+  );
+  check('All target URLs in seo-targets.json use canonical origin', allTargetUrlsCanonical);
+}
+
+// ----------------------------------------------------
+// 10. Prerendered 404 Recovery & Alias Validation
+// ----------------------------------------------------
+console.log('\n\x1b[1m[10/10] Auditing Prerendered 404 Recovery & Alias Canonical Architecture\x1b[0m');
+const notFoundDistPath = path.resolve(rootDir, 'dist/404.html');
+if (fs.existsSync(notFoundDistPath)) {
+  const notFoundHtml = fs.readFileSync(notFoundDistPath, 'utf-8');
+  check('dist/404.html exists', true);
+  check('dist/404.html includes noindex robots directive', notFoundHtml.includes('content="noindex'));
+  check('dist/404.html includes recovery links to Home and Services', notFoundHtml.includes('href="/"') && notFoundHtml.includes('href="/services"'));
+} else {
+  warn('dist/404.html does not exist yet (run npm run build first)');
+}
+
+
+// ----------------------------------------------------
 // Summary Report
 // ----------------------------------------------------
 console.log('\n======================================================');
