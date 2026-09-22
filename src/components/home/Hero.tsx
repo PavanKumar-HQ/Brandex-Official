@@ -77,19 +77,28 @@ export default function Hero() {
   const [loadInteractive3D, setLoadInteractive3D] = useState(false);
 
   useEffect(() => {
-    // Defer heavy 3D WebGL bundle until after FCP/LCP are registered and main thread is idle
-    if (typeof window !== "undefined") {
-      if ("requestIdleCallback" in window) {
-        const id = (window as any).requestIdleCallback(
-          () => setLoadInteractive3D(true),
-          { timeout: 2400 }
-        );
-        return () => (window as any).cancelIdleCallback(id);
-      } else {
-        const timer = setTimeout(() => setLoadInteractive3D(true), 1200);
-        return () => clearTimeout(timer);
-      }
+    if (typeof window === "undefined") return;
+
+    // On mobile devices, keep lightweight zero-CPU GlobeVisual by default to protect battery and eliminate 13.6s TBT.
+    // Interactive 3D WebGL hydrates immediately when the user taps/clicks the globe.
+    if (window.innerWidth < 1024) {
+      return;
     }
+
+    // On desktop, lazily load interactive 3D WebGL upon user interaction (mousemove/scroll)
+    const activate3D = () => {
+      setLoadInteractive3D(true);
+      window.removeEventListener("mousemove", activate3D);
+      window.removeEventListener("scroll", activate3D);
+    };
+
+    window.addEventListener("mousemove", activate3D, { passive: true, once: true });
+    window.addEventListener("scroll", activate3D, { passive: true, once: true });
+
+    return () => {
+      window.removeEventListener("mousemove", activate3D);
+      window.removeEventListener("scroll", activate3D);
+    };
   }, []);
 
   return (

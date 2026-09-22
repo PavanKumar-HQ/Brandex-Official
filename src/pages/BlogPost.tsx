@@ -241,8 +241,58 @@ export default function BlogPost() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
           >
-            <div className="prose prose-slate prose-base sm:prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-[#4f47e6] prose-p:text-slate-700 prose-p:leading-relaxed">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <div className="max-w-none">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  h2: ({ node, ...props }) => (
+                    <div className="mt-12 mb-5 pt-7 border-t border-slate-200/90 first:mt-6 first:pt-0 first:border-t-0">
+                      <h2
+                        className="font-display text-xl sm:text-2xl font-black text-slate-950 tracking-tight flex items-baseline gap-2.5 leading-snug"
+                        {...props}
+                      />
+                    </div>
+                  ),
+                  h3: ({ node, ...props }) => (
+                    <h3
+                      className="font-display text-lg sm:text-xl font-extrabold text-slate-900 mt-8 mb-3.5 tracking-tight"
+                      {...props}
+                    />
+                  ),
+                  p: ({ node, ...props }) => (
+                    <p
+                      className="text-base sm:text-lg text-slate-700 leading-relaxed sm:leading-loose mb-7 font-normal"
+                      {...props}
+                    />
+                  ),
+                  ul: ({ node, ...props }) => (
+                    <ul className="space-y-3 mb-7 pl-6 list-disc text-slate-700 text-base sm:text-lg marker:text-[#4f47e6]" {...props} />
+                  ),
+                  ol: ({ node, ...props }) => (
+                    <ol className="space-y-3 mb-7 pl-6 list-decimal text-slate-700 text-base sm:text-lg marker:font-bold marker:text-[#4f47e6]" {...props} />
+                  ),
+                  li: ({ node, ...props }) => (
+                    <li className="leading-relaxed pl-1" {...props} />
+                  ),
+                  blockquote: ({ node, ...props }) => (
+                    <blockquote
+                      className="my-9 pl-6 pr-5 py-5 border-l-4 border-[#4f47e6] bg-slate-50/90 rounded-r-2xl text-slate-800 font-medium italic text-base sm:text-lg shadow-xs"
+                      {...props}
+                    />
+                  ),
+                  code: ({ node, className, children, ...props }) => (
+                    <code
+                      className="bg-slate-100 text-[#4f47e6] font-mono text-xs sm:text-sm px-2 py-0.5 rounded-md font-semibold border border-slate-200/60"
+                      {...props}
+                    >
+                      {children}
+                    </code>
+                  ),
+                  strong: ({ node, ...props }) => (
+                    <strong className="font-bold text-slate-950" {...props} />
+                  ),
+                }}
+              >
                 {post.content}
               </ReactMarkdown>
             </div>
