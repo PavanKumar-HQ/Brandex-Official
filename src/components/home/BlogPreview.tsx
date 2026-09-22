@@ -68,7 +68,7 @@ export default function BlogPreview() {
                       <Tag size={10} className="mr-1" />
                       {post.category}
                     </Badge>
-                    <span className="text-[11px] text-slate-500 font-medium flex items-center gap-1">
+                    <span className="text-[11px] text-slate-600 font-semibold flex items-center gap-1">
                       <Clock size={11} /> {post.readTime}
                     </span>
                   </div>
