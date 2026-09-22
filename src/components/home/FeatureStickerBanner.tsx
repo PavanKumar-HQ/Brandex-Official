@@ -106,18 +106,7 @@ export default function FeatureStickerBanner() {
         <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
 
-        <motion.div
-          className="flex gap-4 sm:gap-6 w-max py-2"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 32,
-              ease: "linear",
-            },
-          }}
-        >
+        <div className="css-marquee-left gap-4 sm:gap-6 py-2">
           {[...STICKERS, ...STICKERS, ...STICKERS].map((item, idx) => {
             const Icon = item.icon;
             return (
@@ -136,9 +125,9 @@ export default function FeatureStickerBanner() {
                       {item.tag}
                     </span>
                   </div>
-                  <h3 className="font-display font-bold text-sm text-slate-900 leading-tight group-hover/sticker:text-[#4f47e6] transition-colors">
+                  <span className="font-display font-bold text-sm text-slate-900 leading-tight group-hover/sticker:text-[#4f47e6] transition-colors block">
                     {item.title}
-                  </h3>
+                  </span>
                   <p className="text-[11px] text-slate-500 font-normal leading-tight">
                     {item.subtitle}
                   </p>
@@ -150,7 +139,7 @@ export default function FeatureStickerBanner() {
               </Link>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

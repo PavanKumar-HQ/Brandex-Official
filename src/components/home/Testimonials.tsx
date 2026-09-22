@@ -124,11 +124,7 @@ export default function Testimonials() {
         <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-36 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-36 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-        <motion.div
-          className="flex gap-5 items-stretch w-max px-4 group-hover:[animation-play-state:paused]"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 36, ease: "linear" } }}
-        >
+        <div className="css-marquee-left gap-5 items-stretch px-4">
           {row1Doubled.map((t, i) => {
             const initials = t.name.split(" ").map((n) => n[0]).join("").slice(0, 2);
             return (
@@ -165,7 +161,7 @@ export default function Testimonials() {
               </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
 
       {/* Row 2: Rightward Infinite Marquee */}
@@ -173,11 +169,7 @@ export default function Testimonials() {
         <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-36 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-36 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-        <motion.div
-          className="flex gap-5 items-stretch w-max px-4 group-hover:[animation-play-state:paused]"
-          animate={{ x: ["-50%", "0%"] }}
-          transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 38, ease: "linear" } }}
-        >
+        <div className="css-marquee-right gap-5 items-stretch px-4">
           {row2Doubled.map((t, i) => {
             const initials = t.name.split(" ").map((n) => n[0]).join("").slice(0, 2);
             return (
@@ -214,7 +206,7 @@ export default function Testimonials() {
               </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
 
     </section>

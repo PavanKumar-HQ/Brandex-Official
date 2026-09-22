@@ -152,11 +152,7 @@ export default function LogoTicker() {
         <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-48 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-48 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-        <motion.div
-          className="flex gap-4 items-center w-max px-4"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 32, ease: "linear" } }}
-        >
+        <div className="css-marquee-left gap-4 items-center px-4">
           {doubled.map((client, i) => (
             <a
               key={`${client.name}-marquee-${i}`}
@@ -182,7 +178,7 @@ export default function LogoTicker() {
               <span className="text-[11px] font-sans font-medium text-slate-500">&bull; {client.category}</span>
             </a>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

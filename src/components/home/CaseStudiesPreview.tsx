@@ -60,10 +60,18 @@ export default function CaseStudiesPreview() {
                 }`}
               >
                 {p.logo && (
-                  <img src={p.logo} alt={p.title} className="w-4 h-4 object-contain rounded shrink-0" />
+                  <img
+                    src={p.logo}
+                    alt={p.title}
+                    width={16}
+                    height={16}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-4 h-4 object-contain rounded shrink-0"
+                  />
                 )}
                 <span>{p.title}</span>
-                <span className={`text-[10px] px-1.5 py-0.5 rounded-md font-semibold ${isSelected ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600"}`}>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-md font-bold ${isSelected ? "bg-white text-[#4f47e6]" : "bg-slate-100 text-slate-700"}`}>
                   {p.result}
                 </span>
               </button>
@@ -92,7 +100,15 @@ export default function CaseStudiesPreview() {
                     <div className="flex items-center gap-2.5">
                       {p.logo && (
                         <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 p-0.5 flex items-center justify-center overflow-hidden shrink-0">
-                          <img src={p.logo} alt={p.title} className="h-full w-full object-contain" />
+                          <img
+                            src={p.logo}
+                            alt={p.title}
+                            width={28}
+                            height={28}
+                            loading="lazy"
+                            decoding="async"
+                            className="h-full w-full object-contain"
+                          />
                         </div>
                       )}
                       <span className="text-xs font-sans font-extrabold uppercase tracking-wider text-[#4f47e6]">
