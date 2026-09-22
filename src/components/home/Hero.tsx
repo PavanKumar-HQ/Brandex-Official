@@ -78,30 +78,30 @@ export default function Hero() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    let idleId: number;
     let timerId: NodeJS.Timeout;
 
-    const enable3D = () => setCanMount3D(true);
+    const enable3D = () => {
+      setCanMount3D(true);
+      cleanup();
+    };
 
-    if ("requestIdleCallback" in window) {
-      idleId = (window as any).requestIdleCallback(enable3D, { timeout: 2500 });
-    } else {
-      timerId = setTimeout(enable3D, 1200);
-    }
-
-    window.addEventListener("scroll", enable3D, { once: true, passive: true });
-    window.addEventListener("touchstart", enable3D, { once: true, passive: true });
-    window.addEventListener("pointerdown", enable3D, { once: true, passive: true });
-
-    return () => {
-      if (idleId && "cancelIdleCallback" in window) {
-        (window as any).cancelIdleCallback(idleId);
-      }
+    const cleanup = () => {
       if (timerId) clearTimeout(timerId);
       window.removeEventListener("scroll", enable3D);
       window.removeEventListener("touchstart", enable3D);
       window.removeEventListener("pointerdown", enable3D);
+      window.removeEventListener("mousemove", enable3D);
     };
+
+    window.addEventListener("scroll", enable3D, { once: true, passive: true });
+    window.addEventListener("touchstart", enable3D, { once: true, passive: true });
+    window.addEventListener("pointerdown", enable3D, { once: true, passive: true });
+    window.addEventListener("mousemove", enable3D, { once: true, passive: true });
+
+    // Fallback for desktop/mobile users who don't touch/move mouse immediately
+    timerId = setTimeout(enable3D, 6500);
+
+    return cleanup;
   }, []);
 
   return (

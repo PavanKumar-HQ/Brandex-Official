@@ -9,54 +9,56 @@ import { RegistrationProvider } from "@/community/contexts/RegistrationContext";
 import { RegistrationModal } from "@/community/components/ui/RegistrationModal";
 import { InstitutionPartnershipModal } from "@/community/components/ui/InstitutionPartnershipModal";
 
-// Main Official Pages
+import { lazy, Suspense } from "react";
+
+// Main Official Pages (Index is statically imported for instant zero-delay home render)
 import Index from "./pages/Index";
-import Services from "./pages/Services";
-import ServiceDetail from "./pages/ServiceDetail";
-import Solutions from "./pages/Solutions";
-import CaseStudies from "./pages/CaseStudies";
-import CaseStudyDetail from "./pages/CaseStudyDetail";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Blog from "./pages/Blog";
-import BlogPostPage from "./pages/BlogPost";
-import FounderProfile from "./pages/FounderProfile";
-import NotFound from "./pages/NotFound";
-import ContactUs from "./pages/ContactUs";
-import TermsAndConditions from "./pages/TermsAndConditions";
+const Services = lazy(() => import("./pages/Services"));
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const Solutions = lazy(() => import("./pages/Solutions"));
+const CaseStudies = lazy(() => import("./pages/CaseStudies"));
+const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPostPage = lazy(() => import("./pages/BlogPost"));
+const FounderProfile = lazy(() => import("./pages/FounderProfile"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const ContactUs = lazy(() => import("./pages/ContactUs"));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
 
 // Education Sub-Portal Pages
-import EducationHome from "./pages/education/EducationHome";
-import CurriculumExplorer from "./pages/education/CurriculumExplorer";
-import ClassDetailPage from "./pages/education/ClassDetailPage";
-import SubjectChaptersPage from "./pages/education/SubjectChaptersPage";
-import ClassroomPlayer from "./pages/education/ClassroomPlayer";
-import EducatorLoginPage from "./pages/education/EducatorLoginPage";
-import EducatorAdminPage from "./pages/education/EducatorAdminPage";
-import SubjectStudioPage from "./pages/education/SubjectStudioPage";
-import LessonPage from "./pages/education/LessonPage";
+const EducationHome = lazy(() => import("./pages/education/EducationHome"));
+const CurriculumExplorer = lazy(() => import("./pages/education/CurriculumExplorer"));
+const ClassDetailPage = lazy(() => import("./pages/education/ClassDetailPage"));
+const SubjectChaptersPage = lazy(() => import("./pages/education/SubjectChaptersPage"));
+const ClassroomPlayer = lazy(() => import("./pages/education/ClassroomPlayer"));
+const EducatorLoginPage = lazy(() => import("./pages/education/EducatorLoginPage"));
+const EducatorAdminPage = lazy(() => import("./pages/education/EducatorAdminPage"));
+const SubjectStudioPage = lazy(() => import("./pages/education/SubjectStudioPage"));
+const LessonPage = lazy(() => import("./pages/education/LessonPage"));
 
 // Community Sub-Portal Pages
-import CommunityHome from "./pages/community/CommunityHome";
-import CommunityPage from "./pages/community/CommunityPage";
-import EventsPage from "./pages/community/EventsPage";
-import EventDetailPage from "./pages/community/EventDetailPage";
-import TrainingPage from "./pages/community/TrainingPage";
-import TrainingDetailPage from "./pages/community/TrainingDetailPage";
-import StoriesPage from "./pages/community/StoriesPage";
-import StoryDetailPage from "./pages/community/StoryDetailPage";
-import BrandAmbassadorPage from "./pages/community/BrandAmbassadorPage";
-import CommunityGuidelinesPage from "./pages/community/CommunityGuidelinesPage";
-import WorkWithBrandexPage from "./pages/community/WorkWithBrandexPage";
-import ApplicationStatusPage from "./pages/community/ApplicationStatusPage";
-import ProjectsPage from "./pages/community/ProjectsPage";
-import CareersPage from "./pages/community/CareersPage";
-import MediaPage from "./pages/community/MediaPage";
-import SearchPage from "./pages/community/SearchPage";
-import BrandexHQPage from "./pages/community/BrandexHQPage";
-import PrivacyPolicyPage from "./pages/community/PrivacyPolicyPage";
-import TermsPage from "./pages/community/TermsPage";
-import CommunityEducationPage from "./pages/community/EducationPage";
+const CommunityHome = lazy(() => import("./pages/community/CommunityHome"));
+const CommunityPage = lazy(() => import("./pages/community/CommunityPage"));
+const EventsPage = lazy(() => import("./pages/community/EventsPage"));
+const EventDetailPage = lazy(() => import("./pages/community/EventDetailPage"));
+const TrainingPage = lazy(() => import("./pages/community/TrainingPage"));
+const TrainingDetailPage = lazy(() => import("./pages/community/TrainingDetailPage"));
+const StoriesPage = lazy(() => import("./pages/community/StoriesPage"));
+const StoryDetailPage = lazy(() => import("./pages/community/StoryDetailPage"));
+const BrandAmbassadorPage = lazy(() => import("./pages/community/BrandAmbassadorPage"));
+const CommunityGuidelinesPage = lazy(() => import("./pages/community/CommunityGuidelinesPage"));
+const WorkWithBrandexPage = lazy(() => import("./pages/community/WorkWithBrandexPage"));
+const ApplicationStatusPage = lazy(() => import("./pages/community/ApplicationStatusPage"));
+const ProjectsPage = lazy(() => import("./pages/community/ProjectsPage"));
+const CareersPage = lazy(() => import("./pages/community/CareersPage"));
+const MediaPage = lazy(() => import("./pages/community/MediaPage"));
+const SearchPage = lazy(() => import("./pages/community/SearchPage"));
+const BrandexHQPage = lazy(() => import("./pages/community/BrandexHQPage"));
+const PrivacyPolicyPage = lazy(() => import("./pages/community/PrivacyPolicyPage"));
+const TermsPage = lazy(() => import("./pages/community/TermsPage"));
+const CommunityEducationPage = lazy(() => import("./pages/community/EducationPage"));
 
 const queryClient = new QueryClient();
 
@@ -78,7 +80,8 @@ function AnimatedRoutes() {
           animate="animate"
           exit="exit"
         >
-          <Routes location={location}>
+          <Suspense fallback={<div className="min-h-screen bg-[#f8fafd]" />}>
+            <Routes location={location}>
             {/* Main Corporate Routes */}
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
@@ -175,6 +178,7 @@ function AnimatedRoutes() {
             {/* 404 Catch-all */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
         </motion.div>
       </AnimatePresence>
     </Layout>

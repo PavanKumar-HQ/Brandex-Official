@@ -19,16 +19,17 @@ export default defineConfig(({ mode }) => ({
     dedupe: ["react", "react-dom"],
   },
   build: {
-    modulePreload: {
-      resolveDependencies: (_filename, deps) => {
-        return deps.filter((dep) => !dep.includes("three"));
-      },
-    },
+    modulePreload: false,
+    polyfillModulePreload: false,
+
     rollupOptions: {
       output: {
         manualChunks(id) {
+          if (id.includes("vite/preload-helper") || id.includes("\0vite")) {
+            return "vendor";
+          }
           if (id.includes("node_modules")) {
-            if (id.includes("three") || id.includes("@react-three")) {
+            if (id.includes("three") || id.includes("@react-three") || id.includes("three-mesh-bvh") || id.includes("three-stdlib")) {
               return "three-bundle";
             }
             if (id.includes("framer-motion")) {
@@ -38,10 +39,10 @@ export default defineConfig(({ mode }) => ({
               return "icons";
             }
             if (
-              id.includes("react") ||
-              id.includes("react-dom") ||
-              id.includes("react-router") ||
-              id.includes("scheduler") ||
+              id.includes("/react/") ||
+              id.includes("/react-dom/") ||
+              id.includes("/react-router") ||
+              id.includes("/scheduler/") ||
               id.includes("@radix-ui")
             ) {
               return "vendor";
@@ -52,3 +53,4 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
+

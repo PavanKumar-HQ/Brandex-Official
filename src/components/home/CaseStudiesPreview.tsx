@@ -9,27 +9,13 @@ export default function CaseStudiesPreview() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const active = projects[selectedIndex] || projects[0];
 
-  // Pre-cache other project previews only during idle time after initial page is fully interactive
-  useEffect(() => {
-    const preload = () => {
-      projects.forEach((p) => {
-        if (p.previewImage) {
-          const img = new Image();
-          img.src = p.previewImage;
-        }
-      });
-    };
-
-    if (typeof window !== "undefined") {
-      if ("requestIdleCallback" in window) {
-        const id = (window as any).requestIdleCallback(preload, { timeout: 5000 });
-        return () => (window as any).cancelIdleCallback(id);
-      } else {
-        const timer = setTimeout(preload, 4000);
-        return () => clearTimeout(timer);
-      }
+  const prefetchPreview = (idx: number) => {
+    const p = projects[idx];
+    if (p?.previewImage) {
+      const img = new Image();
+      img.src = p.previewImage;
     }
-  }, []);
+  };
 
 
   return (
@@ -76,6 +62,7 @@ export default function CaseStudiesPreview() {
               <button
                 key={p.id}
                 onClick={() => setSelectedIndex(idx)}
+                onMouseEnter={() => prefetchPreview(idx)}
                 className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold shrink-0 transition-all ${
                   isSelected
                     ? "bg-[#4f47e6] text-white shadow-md shadow-indigo-500/20 ring-2 ring-[#4f47e6]/30"
@@ -84,7 +71,7 @@ export default function CaseStudiesPreview() {
               >
                 {p.logo && (
                   <img
-                    src={p.logo}
+                    src={p.logo.replace('.webp', '-64.webp')}
                     alt=""
                     aria-hidden="true"
                     width={16}
@@ -114,6 +101,7 @@ export default function CaseStudiesPreview() {
                 <div
                   key={p.id}
                   onClick={() => setSelectedIndex(idx)}
+                  onMouseEnter={() => prefetchPreview(idx)}
                   className={`p-4 sm:p-5 rounded-2xl cursor-pointer transition-all duration-200 border ${
                     isSelected
                       ? "bg-white border-[#4f47e6] shadow-md ring-2 ring-[#4f47e6]/20"
@@ -125,7 +113,7 @@ export default function CaseStudiesPreview() {
                       {p.logo && (
                         <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 p-0.5 flex items-center justify-center overflow-hidden shrink-0">
                           <img
-                            src={p.logo}
+                            src={p.logo.replace('.webp', '-64.webp')}
                             alt=""
                             aria-hidden="true"
                             width={28}
@@ -192,10 +180,16 @@ export default function CaseStudiesPreview() {
                     <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100">
                       {active.previewImage || active.logo ? (
                         <img
-                          src={active.previewImage || active.logo || ""}
+                          src={active.previewImage ? active.previewImage.replace('.webp', '-640.webp') : (active.logo || "")}
+                          srcSet={
+                            active.previewImage
+                              ? `${active.previewImage.replace('.webp', '-640.webp')} 640w, ${active.previewImage} 1280w`
+                              : undefined
+                          }
+                          sizes="(max-width: 768px) 100vw, 680px"
                           alt={`Preview of ${active.title}`}
-                          width={1280}
-                          height={720}
+                          width={640}
+                          height={360}
                           className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-102"
                           loading="lazy"
                           decoding="async"

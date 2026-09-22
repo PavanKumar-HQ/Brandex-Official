@@ -277,6 +277,7 @@ export default function Navbar() {
         <Link to="/" className="flex items-center gap-2 group shrink-0 select-none">
           <img
             src="/brandex-logo.webp"
+            srcSet="/brandex-logo-128.webp 1x, /brandex-logo.webp 2x"
             alt="Brandex"
             width="128"
             height="32"

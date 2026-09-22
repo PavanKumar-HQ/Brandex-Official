@@ -101,7 +101,8 @@ export default function LogoTicker() {
                 <div className="flex items-center justify-between gap-2 mb-4">
                   <div className="w-14 h-14 rounded-xl bg-white p-2 flex items-center justify-center overflow-hidden border border-slate-200 shadow-2xs group-hover:scale-105 transition-transform shrink-0">
                     <img
-                      src={client.logo}
+                      src={client.logo.replace('.webp', '-64.webp')}
+                      srcSet={`${client.logo.replace('.webp', '-64.webp')} 1x, ${client.logo} 2x`}
                       alt={`${client.name} logo`}
                       width={56}
                       height={56}
@@ -163,7 +164,7 @@ export default function LogoTicker() {
             >
               <div className="w-7 h-7 rounded-lg bg-white p-1 flex items-center justify-center overflow-hidden border border-slate-200 shrink-0">
                 <img
-                  src={client.logo}
+                  src={client.logo.replace('.webp', '-64.webp')}
                   alt={`${client.name} logo`}
                   width={28}
                   height={28}
