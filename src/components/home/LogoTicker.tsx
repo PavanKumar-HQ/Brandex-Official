@@ -6,7 +6,7 @@ const clients = [
     name: "Vignan Public School",
     category: "Education & Campus Portal",
     url: "https://www.vignanschool.com",
-    logo: "/Clients/Vigan Public School.png",
+    logo: "/Clients/vignan-public-school.webp",
     metric: "10k+ Monthly Active",
     deliverable: "Institutional Campus Web Platform",
     tag: "Education",
@@ -15,7 +15,7 @@ const clients = [
     name: "Vignan Tutorials",
     category: "Learning Management System",
     url: "https://www.vignantutorials.in",
-    logo: "/Clients/Vignan Tutorials.png",
+    logo: "/Clients/vignan-tutorials.webp",
     metric: "Sub-Second Latency",
     deliverable: "High-Speed Student Learning Portal",
     tag: "EdTech",
@@ -24,7 +24,7 @@ const clients = [
     name: "Srushti Publications",
     category: "Full-Stack Book E-Commerce",
     url: "https://www.srushtipublications.com",
-    logo: "/Clients/Srushti Logo-2 (1).jpg",
+    logo: "/Clients/srushti-publications.webp",
     metric: "+340% Order Lift",
     deliverable: "Automated Storefront & Invoicing Engine",
     tag: "E-Commerce",
@@ -33,7 +33,7 @@ const clients = [
     name: "GeniuSphere",
     category: "Interactive 3D WebGL Labs",
     url: "https://www.geniusphere.tech",
-    logo: "/Clients/Geniusphere.jpg",
+    logo: "/Clients/geniusphere.webp",
     metric: "Real-Time 3D Simulation",
     deliverable: "Interactive 3D Digital Simulation System",
     tag: "Interactive 3D",
@@ -42,7 +42,7 @@ const clients = [
     name: "PropQuant.ai",
     category: "Automated Algorithmic Platform",
     url: "https://www.propquant.ai",
-    logo: "/Clients/PropQuant.ai_logo.png",
+    logo: "/Clients/propquant-ai.webp",
     metric: "Zero Latency Execution",
     deliverable: "Automated Financial Execution Engine",
     tag: "FinTech AI",
@@ -103,8 +103,11 @@ export default function LogoTicker() {
                     <img
                       src={client.logo}
                       alt={`${client.name} logo`}
+                      width={56}
+                      height={56}
                       className="h-full w-full object-contain"
                       loading="lazy"
+                      decoding="async"
                     />
                   </div>
 
@@ -163,7 +166,15 @@ export default function LogoTicker() {
               className="liquid-glass-pill flex items-center gap-3 px-4 py-2 rounded-xl shrink-0 group/pill hover:bg-white transition-all cursor-pointer border border-slate-200 shadow-2xs"
             >
               <div className="w-7 h-7 rounded-lg bg-white p-1 flex items-center justify-center overflow-hidden border border-slate-200 shrink-0">
-                <img src={client.logo} alt={client.name} className="h-full w-full object-contain" />
+                <img
+                  src={client.logo}
+                  alt={`${client.name} logo`}
+                  width={28}
+                  height={28}
+                  className="h-full w-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <span className="font-display text-xs font-bold text-slate-800 group-hover/pill:text-[#4f47e6] whitespace-nowrap">
                 {client.name}

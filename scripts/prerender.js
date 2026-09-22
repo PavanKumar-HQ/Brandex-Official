@@ -249,7 +249,7 @@ let prerenderCount = 0;
 
 function renderPage(routePath, title, description, h1, extraBodyHtml = '', customSchema = null) {
   const cleanRoute = routePath.replace(/^\/+/, '').replace(/\/+$/, '');
-  const pageCanonical = `${CANONICAL_ORIGIN}/${cleanRoute}`;
+  const pageCanonical = cleanRoute ? `${CANONICAL_ORIGIN}/${cleanRoute}` : `${CANONICAL_ORIGIN}/`;
 
   let html = masterHtml;
 
@@ -271,7 +271,11 @@ function renderPage(routePath, title, description, h1, extraBodyHtml = '', custo
   html = html.replace(/<meta\s+name="twitter:url"[^>]*>/i, `<meta name="twitter:url" content="${pageCanonical}" />`);
 
   // Build semantic crawlable static content inside root container
-  const initialContent = `
+  let initialContent = '';
+  if (cleanRoute === '') {
+    initialContent = extraBodyHtml.trim();
+  } else {
+    initialContent = `
     <div id="prerendered-content" style="opacity:1">
       <header style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
         <nav aria-label="Breadcrumb" style="font-size: 0.85rem; margin-bottom: 1rem;">
@@ -284,7 +288,8 @@ function renderPage(routePath, title, description, h1, extraBodyHtml = '', custo
         ${extraBodyHtml}
       </main>
     </div>
-  `.trim();
+    `.trim();
+  }
 
   // Inject initial content inside <div id="root">
   html = html.replace('<div id="root"></div>', `<div id="root">${initialContent}</div>`);
@@ -296,15 +301,49 @@ function renderPage(routePath, title, description, h1, extraBodyHtml = '', custo
   }
 
   // Create destination folder and write index.html
-  const targetDir = path.resolve(distDir, cleanRoute);
+  const targetFile = cleanRoute ? path.resolve(distDir, cleanRoute, 'index.html') : path.resolve(distDir, 'index.html');
+  const targetDir = path.dirname(targetFile);
   if (!fs.existsSync(targetDir)) {
     fs.mkdirSync(targetDir, { recursive: true });
   }
-  fs.writeFileSync(path.resolve(targetDir, 'index.html'), html, 'utf-8');
+  fs.writeFileSync(targetFile, html, 'utf-8');
   prerenderCount++;
 }
 
 console.log('[Prerender] Generating static HTML for indexable routes...');
+
+// 0. Render Homepage / into dist/index.html
+const homeHeroHtml = `
+  <section style="padding: 3.5rem 1.5rem; max-width: 1200px; margin: 0 auto; text-align: center;">
+    <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(79,71,230,0.08); border: 1px solid rgba(79,71,230,0.2); color: #4f47e6; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: 0.06em;">
+      Bespoke Digital Systems &amp; Cloud Architecture
+    </div>
+    <h1 style="font-size: clamp(2.2rem, 5vw, 3.75rem); font-weight: 900; color: #0f172a; line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 1.5rem;">
+      Engineering Digital Systems<br />
+      <span style="color: #4f47e6;">Built For Real Scale.</span>
+    </h1>
+    <p style="font-size: 1.15rem; color: #475569; max-width: 680px; margin: 0 auto 2.5rem; line-height: 1.6;">
+      We design and engineer bespoke web applications, high-throughput cloud software, and automated workflows tailored to how your business actually works.
+    </p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem;">
+      <a href="/contact" style="display: inline-block; padding: 0.85rem 1.75rem; border-radius: 0.75rem; background: #4f47e6; color: #ffffff; font-weight: 700; text-decoration: none; font-size: 0.875rem;">Start Your Project</a>
+      <a href="/case-studies" style="display: inline-block; padding: 0.85rem 1.75rem; border-radius: 0.75rem; background: #ffffff; color: #0f172a; font-weight: 700; text-decoration: none; border: 1px solid #cbd5e1; font-size: 0.875rem;">View Our Work</a>
+    </div>
+    <div style="display: flex; gap: 1.75rem; justify-content: center; flex-wrap: wrap; font-size: 0.8125rem; font-weight: 600; color: #334155; border-top: 1px solid #e2e8f0; padding-top: 1.5rem;">
+      <span>✓ 100% Client Code Ownership</span>
+      <span>✓ Zero Recurring Platform Tax</span>
+      <span>✓ 2–4 Week Turnaround</span>
+    </div>
+  </section>
+`;
+
+renderPage(
+  '',
+  'Brandex | Next-Gen Digital Solutions for Ambitious Brands',
+  'Brandex engineers digital systems built for real scale. Custom web applications, enterprise cloud architecture, automated workflows, and digital learning infrastructure in Bangalore, India.',
+  'Engineering Digital Systems Built For Real Scale',
+  homeHeroHtml
+);
 
 // 1. Render Static Pages
 staticPages.forEach(p => {

@@ -31,8 +31,8 @@ let cachedTextures: { earthMap: THREE.CanvasTexture; bumpMap: THREE.CanvasTextur
 
 // High-definition Procedural Purple Earth Texture Generator using True GIS Natural Earth GeoJSON
 function createPurpleEarthCanvasTexture(geojson?: any): { earthMap: THREE.CanvasTexture; bumpMap: THREE.CanvasTexture } {
-  const width = 2048;
-  const height = 1024;
+  const width = 1024;
+  const height = 512;
 
   const canvas = document.createElement("canvas");
   canvas.width = width;

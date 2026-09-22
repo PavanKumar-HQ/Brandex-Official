@@ -19,6 +19,11 @@ export default defineConfig(({ mode }) => ({
     dedupe: ["react", "react-dom"],
   },
   build: {
+    modulePreload: {
+      resolveDependencies: (_filename, deps) => {
+        return deps.filter((dep) => !dep.includes("three"));
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks: {
