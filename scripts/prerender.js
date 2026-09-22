@@ -33,9 +33,9 @@ const masterHtml = fs.readFileSync(masterTemplatePath, 'utf-8');
 function extractObjects(filePath) {
   const content = fs.readFileSync(filePath, 'utf-8');
   const items = [];
-  const idMatches = [...content.matchAll(/\bid:\s*["']([^"']+)["']/g)];
-  const titleMatches = [...content.matchAll(/\btitle:\s*["']([^"']+)["']/g)];
-  const descMatches = [...content.matchAll(/\b(?:description|excerpt):\s*["']([^"']+)["']/g)];
+  const idMatches = [...content.matchAll(/(?:\bid\b|"id")\s*:\s*["']([^"']+)["']/g)];
+  const titleMatches = [...content.matchAll(/(?:\btitle\b|"title")\s*:\s*["']([^"']+)["']/g)];
+  const descMatches = [...content.matchAll(/(?:\bdescription\b|"description"|\bexcerpt\b|"excerpt")\s*:\s*["']([^"']+)["']/g)];
 
   for (let i = 0; i < idMatches.length; i++) {
     const id = idMatches[i]?.[1];

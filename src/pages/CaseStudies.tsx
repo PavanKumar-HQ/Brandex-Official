@@ -85,7 +85,7 @@ export default function CaseStudiesPage() {
                           <div className="w-2 h-2 rounded-full bg-slate-200" />
                         </div>
                         <img
-                          src={project.previewImage || (project.url ? `https://s.wordpress.com/mshots/v1/${encodeURIComponent(project.url)}?w=800` : project.logo)}
+                          src={project.previewImage || project.logo || ""}
                           alt={`Preview of ${project.title}`}
                           className="w-full h-full object-cover object-top pt-7"
                           loading="lazy"

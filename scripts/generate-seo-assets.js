@@ -30,7 +30,7 @@ console.log(`[SEO Generator] Using canonical site origin: ${SITE_URL}`);
 // Helper to extract IDs from TypeScript files
 function extractObjectIds(filePath) {
   const content = fs.readFileSync(filePath, 'utf-8');
-  const matches = [...content.matchAll(/\bid:\s*["']([^"']+)["']/g)];
+  const matches = [...content.matchAll(/(?:\bid\b|"id")\s*:\s*["']([^"']+)["']/g)];
   return matches.map(m => m[1]).filter(id => id && !id.startsWith('chap-') && !id.startsWith('top-') && !id.startsWith('les-'));
 }
 
