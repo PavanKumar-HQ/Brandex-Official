@@ -90,7 +90,7 @@ export const Footer: React.FC = () => {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={s.label}
-                  className={`w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-slate-800/80 border border-slate-700/50 text-slate-400 flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${s.hoverClass}`}
+                  className={`w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-slate-800/90 border border-slate-700 text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${s.hoverClass}`}
                 >
                   <s.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                 </a>
