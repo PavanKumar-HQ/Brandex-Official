@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 import { MagneticWrapper } from "@/components/ui/MagneticWrapper";
-import GlobeVisual from "@/components/home/GlobeVisual";
 
 const EarthGlobe = lazy(() => import("@/components/home/EarthGlobe"));
 
@@ -73,37 +72,6 @@ function TypewriterHeadline() {
 }
 
 export default function Hero() {
-  const [canMount3D, setCanMount3D] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    let timerId: NodeJS.Timeout;
-
-    const enable3D = () => {
-      setCanMount3D(true);
-      cleanup();
-    };
-
-    const cleanup = () => {
-      if (timerId) clearTimeout(timerId);
-      window.removeEventListener("scroll", enable3D);
-      window.removeEventListener("touchstart", enable3D);
-      window.removeEventListener("pointerdown", enable3D);
-      window.removeEventListener("mousemove", enable3D);
-    };
-
-    window.addEventListener("scroll", enable3D, { once: true, passive: true });
-    window.addEventListener("touchstart", enable3D, { once: true, passive: true });
-    window.addEventListener("pointerdown", enable3D, { once: true, passive: true });
-    window.addEventListener("mousemove", enable3D, { once: true, passive: true });
-
-    // Fallback for desktop/mobile users who don't touch/move mouse immediately
-    timerId = setTimeout(enable3D, 6500);
-
-    return cleanup;
-  }, []);
-
   return (
     <section className="relative flex items-center justify-center overflow-hidden pt-24 pb-12 lg:pt-28 lg:pb-16 bg-[#f8fafd] border-b border-slate-200/60 w-full">
       {/* Background Grid across entire width */}
@@ -183,13 +151,16 @@ export default function Hero() {
           {/* Right Column: Embedded Interactive 3D Earth on Mobile & Desktop */}
           <div className="lg:col-span-6 relative flex flex-col items-center justify-center w-full">
             <div className="w-full relative flex items-center justify-center min-h-[340px] sm:min-h-[420px] lg:min-h-[500px]">
-              {canMount3D ? (
-                <Suspense fallback={<GlobeVisual />}>
-                  <EarthGlobe />
-                </Suspense>
-              ) : (
-                <GlobeVisual />
-              )}
+              <Suspense
+                fallback={
+                  <div className="w-full h-[320px] sm:h-[400px] lg:h-[480px] rounded-3xl bg-slate-900/40 border border-slate-800/80 flex flex-col items-center justify-center gap-3">
+                    <div className="w-8 h-8 rounded-full border-2 border-indigo-500/30 border-t-indigo-500 animate-spin" />
+                    <span className="text-xs font-mono text-slate-400">Loading Global Infrastructure...</span>
+                  </div>
+                }
+              >
+                <EarthGlobe />
+              </Suspense>
             </div>
           </div>
 
