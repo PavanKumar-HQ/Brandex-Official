@@ -25,6 +25,7 @@ export const projects: ProjectData[] = [
     challenge: "Needed a digital front door that reflects their academic excellence and engages parents effectively.",
     logo: "/Clients/vignan-public-school.webp",
     liveUrl: "https://www.vignanschool.com",
+    url: "https://www.vignanschool.com",
     metrics: [
       { label: "Monthly Active Users", value: "10,000+" },
       { label: "Admission Inquiries", value: "+180%" },
@@ -51,6 +52,7 @@ export const projects: ProjectData[] = [
     description: "Built a lightning-fast learning portal enabling students to access course materials, live class updates, and past papers with sub-second page loads across Karnataka.",
     logo: "/Clients/vignan-tutorials.webp",
     liveUrl: "https://www.vignantutorials.in",
+    url: "https://www.vignantutorials.in",
     metrics: [
       { label: "Concurrent Students", value: "3,500+" },
       { label: "Query Response Time", value: "42ms" },
@@ -77,6 +79,7 @@ export const projects: ProjectData[] = [
     description: "Engineered a high-throughput bookstore e-commerce platform that replaced a buggy third-party SaaS, automating GST compliance and shipping dispatch with zero monthly platform cuts.",
     logo: "/Clients/srushti-publications.webp",
     liveUrl: "https://www.srushtipublications.com",
+    url: "https://www.srushtipublications.com",
     metrics: [
       { label: "Monthly Orders", value: "2,200+" },
       { label: "Cart Abandonment Drop", value: "-45%" },
@@ -103,6 +106,7 @@ export const projects: ProjectData[] = [
     description: "Designed and developed an immersive 3D interactive educational platform mapping Karnataka Board science curriculum into interactive WebGL laboratory simulations.",
     logo: "/Clients/geniusphere.webp",
     liveUrl: "https://www.geniusphere.tech",
+    url: "https://www.geniusphere.tech",
     metrics: [
       { label: "Classrooms Deployed", value: "50+" },
       { label: "Active Student Sessions", value: "25,000+" },
@@ -128,6 +132,8 @@ export const projects: ProjectData[] = [
     tags: ["FinTech", "Python", "FastAPI", "WebSockets", "Low-Latency"],
     description: "Architected a low-latency algorithmic trading platform with real-time risk guards, automated trade journaling, and direct broker API execution pipelines.",
     logo: "/Clients/propquant-ai.webp",
+    liveUrl: "https://www.propquant.ai",
+    url: "https://www.propquant.ai",
     services: ["Algorithmic Trading System", "API Integration", "Web Dashboard"],
     features: ["Real-time execution", "Emotion-free scaling", "MT5 direct sync"],
   },

@@ -61,20 +61,20 @@ import CommunityEducationPage from "./pages/community/EducationPage";
 const queryClient = new QueryClient();
 
 const pageVariants = {
-  initial: { opacity: 0, y: 12 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" as const } },
-  exit: { opacity: 0, y: -8, transition: { duration: 0.2, ease: "easeIn" as const } },
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.18, ease: "easeOut" as const } },
+  exit: { opacity: 0, transition: { duration: 0.12, ease: "easeIn" as const } },
 };
 
 function AnimatedRoutes() {
   const location = useLocation();
   return (
     <Layout>
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={location.pathname}
           variants={pageVariants}
-          initial="initial"
+          initial={false}
           animate="animate"
           exit="exit"
         >

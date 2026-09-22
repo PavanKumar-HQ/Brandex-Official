@@ -62,7 +62,8 @@ export default function CaseStudiesPreview() {
                 {p.logo && (
                   <img
                     src={p.logo}
-                    alt={p.title}
+                    alt=""
+                    aria-hidden="true"
                     width={16}
                     height={16}
                     loading="lazy"
@@ -102,7 +103,8 @@ export default function CaseStudiesPreview() {
                         <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 p-0.5 flex items-center justify-center overflow-hidden shrink-0">
                           <img
                             src={p.logo}
-                            alt={p.title}
+                            alt=""
+                            aria-hidden="true"
                             width={28}
                             height={28}
                             loading="lazy"
@@ -127,7 +129,7 @@ export default function CaseStudiesPreview() {
                     {p.title}
                   </h3>
 
-                  <p className="text-xs text-slate-600 line-clamp-2 mt-1 font-normal leading-relaxed">
+                  <p className="text-xs text-slate-500 font-normal line-clamp-2 mt-1">
                     {p.description}
                   </p>
                 </div>
@@ -135,16 +137,16 @@ export default function CaseStudiesPreview() {
             })}
           </div>
 
-          {/* Right Column: Dynamic Live Preview Frame & Architectural Breakdown */}
-          <div className="w-full lg:col-span-7">
+          {/* Right Column: Dynamic Project Master Showcase Panel */}
+          <div className="lg:col-span-7">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.3 }}
-                className="liquid-glass rounded-3xl p-5 sm:p-8 flex flex-col justify-between h-full shadow-sm border border-slate-300"
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
+                className="bg-white rounded-3xl p-5 sm:p-7 border border-slate-200 shadow-sm flex flex-col justify-between h-full"
               >
                 <div>
                   {/* Browser Chrome Top Bar */}
@@ -164,7 +166,7 @@ export default function CaseStudiesPreview() {
                     </div>
 
                     {/* Live Screenshot Viewport */}
-                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-50">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100">
                       {active.url ? (
                         <img
                           src={`https://s.wordpress.com/mshots/v1/${encodeURIComponent(active.url)}?w=900`}
@@ -173,7 +175,7 @@ export default function CaseStudiesPreview() {
                           loading="lazy"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-slate-400 font-sans text-xs">
+                        <div className="w-full h-full flex items-center justify-center text-slate-700 font-sans text-xs font-semibold">
                           Interactive Production System
                         </div>
                       )}
