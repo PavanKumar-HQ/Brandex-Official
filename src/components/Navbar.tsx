@@ -536,22 +536,20 @@ export default function Navbar() {
                   const isExpanded = mobileExpanded === "community";
                   return (
                     <div key={item.label} className="rounded-xl overflow-hidden border border-slate-200/70 bg-white/60">
-                      <div className="flex items-center justify-between p-3">
-                        <Link
-                          to="/community"
-                          onClick={() => setOpen(false)}
-                          className="font-bold text-sm text-slate-900 flex items-center gap-2"
-                        >
+                      <button
+                        type="button"
+                        onClick={() => setMobileExpanded(isExpanded ? null : "community")}
+                        className="w-full flex items-center justify-between p-3 text-left transition-colors hover:bg-slate-50/80 active:bg-slate-100/80"
+                        aria-expanded={isExpanded}
+                      >
+                        <div className="font-bold text-sm text-slate-900 flex items-center gap-2">
                           <Users size={16} className="text-[#4f47e6]" />
                           <span>Community Hub</span>
-                        </Link>
-                        <button
-                          onClick={() => setMobileExpanded(isExpanded ? null : "community")}
-                          className="p-1 text-slate-500 hover:text-slate-900"
-                        >
-                          <ChevronDown size={16} className={`transition-transform ${isExpanded ? "rotate-180" : ""}`} />
-                        </button>
-                      </div>
+                        </div>
+                        <div className="p-1 text-slate-500">
+                          <ChevronDown size={16} className={`transition-transform duration-200 ${isExpanded ? "rotate-180 text-[#4f47e6]" : ""}`} />
+                        </div>
+                      </button>
 
                       {isExpanded && (
                         <div className="p-2 pt-0 space-y-1 bg-slate-50/50 border-t border-slate-100">
@@ -560,7 +558,7 @@ export default function Navbar() {
                               key={sub.title}
                               to={sub.href}
                               onClick={() => setOpen(false)}
-                              className="flex items-center justify-between p-2 rounded-lg text-xs font-semibold text-slate-700 hover:text-[#4f47e6] hover:bg-white"
+                              className="flex items-center justify-between p-2.5 rounded-lg text-xs font-semibold text-slate-700 hover:text-[#4f47e6] hover:bg-white active:bg-indigo-50/50"
                             >
                               <span>{sub.title}</span>
                               <ArrowRight size={12} className="opacity-40" />
@@ -576,22 +574,20 @@ export default function Navbar() {
                   const isExpanded = mobileExpanded === "education";
                   return (
                     <div key={item.label} className="rounded-xl overflow-hidden border border-slate-200/70 bg-white/60">
-                      <div className="flex items-center justify-between p-3">
-                        <Link
-                          to="/education"
-                          onClick={() => setOpen(false)}
-                          className="font-bold text-sm text-slate-900 flex items-center gap-2"
-                        >
+                      <button
+                        type="button"
+                        onClick={() => setMobileExpanded(isExpanded ? null : "education")}
+                        className="w-full flex items-center justify-between p-3 text-left transition-colors hover:bg-slate-50/80 active:bg-slate-100/80"
+                        aria-expanded={isExpanded}
+                      >
+                        <div className="font-bold text-sm text-slate-900 flex items-center gap-2">
                           <GraduationCap size={16} className="text-blue-600" />
                           <span>Education Hub</span>
-                        </Link>
-                        <button
-                          onClick={() => setMobileExpanded(isExpanded ? null : "education")}
-                          className="p-1 text-slate-500 hover:text-slate-900"
-                        >
-                          <ChevronDown size={16} className={`transition-transform ${isExpanded ? "rotate-180" : ""}`} />
-                        </button>
-                      </div>
+                        </div>
+                        <div className="p-1 text-slate-500">
+                          <ChevronDown size={16} className={`transition-transform duration-200 ${isExpanded ? "rotate-180 text-blue-600" : ""}`} />
+                        </div>
+                      </button>
 
                       {isExpanded && (
                         <div className="p-2 pt-0 space-y-1 bg-slate-50/50 border-t border-slate-100">
@@ -600,7 +596,7 @@ export default function Navbar() {
                               key={sub.title}
                               to={sub.href}
                               onClick={() => setOpen(false)}
-                              className="flex items-center justify-between p-2 rounded-lg text-xs font-semibold text-slate-700 hover:text-blue-600 hover:bg-white"
+                              className="flex items-center justify-between p-2.5 rounded-lg text-xs font-semibold text-slate-700 hover:text-blue-600 hover:bg-white active:bg-blue-50/50"
                             >
                               <span>{sub.title}</span>
                               <ArrowRight size={12} className="opacity-40" />
