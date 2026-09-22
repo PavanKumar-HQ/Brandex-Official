@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 import { Search, X, BookOpen, Layers, PlayCircle, HelpCircle, ArrowRight, CornerDownLeft } from "lucide-react";
 import { searchCurriculum } from "@/lib/search-curriculum";
 
@@ -11,7 +11,7 @@ interface SearchModalProps {
 export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const router = useRouter();
+  const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const results = searchCurriculum(query);
@@ -50,7 +50,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   const navigateTo = (path: string) => {
     onClose();
-    router.push(path);
+    navigate(path);
   };
 
   if (!isOpen) return null;

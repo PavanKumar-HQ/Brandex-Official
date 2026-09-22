@@ -1,5 +1,5 @@
-import { useState } from "react";
-
+import { useState, Suspense } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAuth } from "@/education/lib/auth-context";
 import { BrandexLogo } from "@/education/lib/BrandexLogo";

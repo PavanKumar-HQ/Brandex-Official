@@ -185,7 +185,7 @@ export default function CommunityHome() {
                       {circle.category}
                     </span>
                     <span className="text-xs font-mono font-bold text-slate-500">
-                      {circle.membersCount} Members
+                      {circle.memberCount || 0} Members
                     </span>
                   </div>
 
@@ -199,7 +199,7 @@ export default function CommunityHome() {
                   <div className="space-y-1.5 pt-3 border-t border-slate-100 text-xs text-slate-600">
                     <div className="flex items-center gap-2">
                       <Code2 size={13} className="text-[#4f47e6]" />
-                      <span>{circle.activeProjectCount} Active Repos & Builds</span>
+                      <span>{circle.activeTopicsCount || 12} Active Repos & Builds</span>
                     </div>
                   </div>
                 </div>
