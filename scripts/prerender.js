@@ -417,8 +417,14 @@ function renderPage(routePath, title, description, h1, extraBodyHtml = '', custo
     `.trim();
   }
 
-  // Inject initial content inside <div id="root">
-  html = html.replace('<div id="root"></div>', `<div id="root">${initialContent}</div>`);
+  // For crawlers/bots without JavaScript, inject rich semantic crawlable content in <noscript>
+  // This keeps <div id="root"></div> completely empty for React, eliminating any UI glitch or flash of different content!
+  if (initialContent) {
+    html = html.replace(
+      '<div id="root"></div>',
+      `<div id="root"></div>\n    <noscript id="seo-prerender">\n      ${initialContent}\n    </noscript>`
+    );
+  }
 
   // Inject route-specific Schema if provided
   if (customSchema) {

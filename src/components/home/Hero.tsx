@@ -27,7 +27,7 @@ const item: Variants = {
 
 function TypewriterHeadline() {
   const [phraseIndex, setPhraseIndex] = useState(0);
-  const [text, setText] = useState("");
+  const [text, setText] = useState(TYPED_PHRASES[0]);
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
