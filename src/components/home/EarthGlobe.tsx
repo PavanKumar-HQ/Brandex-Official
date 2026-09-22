@@ -116,19 +116,21 @@ function createPurpleEarthCanvasTexture(geojson?: any): { earthMap: THREE.Canvas
     });
   }
 
-  // High-Tech Dotted Matrix Rasterization over True Landmasses
-  ctx.fillStyle = "rgba(192, 132, 252, 0.55)";
-  const dotSpacing = 8;
-  const imgData = bCtx.getImageData(0, 0, width, height);
-  for (let dy = 0; dy < height; dy += dotSpacing) {
-    for (let dx = 0; dx < width; dx += dotSpacing) {
-      const idx = (dy * width + dx) * 4;
-      if (imgData.data[idx] > 50) {
-        ctx.beginPath();
-        ctx.arc(dx, dy, 1.25, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
+  // High-Tech Dotted Matrix Rasterization over True Landmasses (GPU accelerated pattern)
+  const dotCanvas = document.createElement("canvas");
+  dotCanvas.width = 8;
+  dotCanvas.height = 8;
+  const dCtx = dotCanvas.getContext("2d")!;
+  dCtx.fillStyle = "rgba(192, 132, 252, 0.55)";
+  dCtx.beginPath();
+  dCtx.arc(4, 4, 1.2, 0, Math.PI * 2);
+  dCtx.fill();
+  const pattern = ctx.createPattern(dotCanvas, "repeat");
+  if (pattern) {
+    ctx.save();
+    ctx.fillStyle = pattern;
+    ctx.fillRect(0, 0, width, height);
+    ctx.restore();
   }
 
   // Subtle Global Coordinate Matrix Lines (Latitude & Longitude)
@@ -423,11 +425,12 @@ export default function EarthGlobe() {
       {isInView && (
         <Canvas
           camera={{ position: [0, 0.3, 5.2], fov: 46 }}
-          dpr={[1, 1.5]}
+          dpr={typeof window !== "undefined" && window.innerWidth < 768 ? 1 : [1, 1.5]}
+          frameloop={isInView ? "always" : "never"}
           gl={{
-            antialias: true,
+            antialias: typeof window !== "undefined" && window.innerWidth >= 768,
             alpha: true,
-            powerPreference: "high-performance",
+            powerPreference: typeof window !== "undefined" && window.innerWidth < 768 ? "low-power" : "high-performance",
           }}
           className="cursor-grab active:cursor-grabbing"
         >

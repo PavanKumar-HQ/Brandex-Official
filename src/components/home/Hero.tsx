@@ -71,7 +71,26 @@ function TypewriterHeadline() {
   );
 }
 
+import GlobeVisual from "@/components/home/GlobeVisual";
+
 export default function Hero() {
+  const [loadInteractive3D, setLoadInteractive3D] = useState(false);
+
+  useEffect(() => {
+    // Defer heavy 3D WebGL bundle until after FCP/LCP are registered and main thread is idle
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        const id = (window as any).requestIdleCallback(
+          () => setLoadInteractive3D(true),
+          { timeout: 2400 }
+        );
+        return () => (window as any).cancelIdleCallback(id);
+      } else {
+        const timer = setTimeout(() => setLoadInteractive3D(true), 1200);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, []);
 
   return (
     <section className="relative flex items-center justify-center overflow-hidden pt-24 pb-12 lg:pt-28 lg:pb-16 bg-[#f8fafd] border-b border-slate-200/60 w-full">
@@ -85,7 +104,7 @@ export default function Hero() {
           <motion.div
             className="lg:col-span-6 text-left"
             variants={container}
-            initial="hidden"
+            initial={false}
             animate="show"
           >
             {/* Liquid Glass Pill Badge */}
@@ -168,17 +187,16 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, scale: 0.94 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
               className="w-full relative flex items-center justify-center"
             >
-              <Suspense fallback={
-                <div className="w-full h-[320px] sm:h-[400px] lg:h-[480px] rounded-3xl bg-slate-900/40 border border-slate-800/80 flex flex-col items-center justify-center gap-3">
-                  <div className="w-8 h-8 rounded-full border-2 border-indigo-500/30 border-t-indigo-500 animate-spin" />
-                  <span className="text-xs font-mono text-slate-400">Loading Global Infrastructure...</span>
-                </div>
-              }>
-                <EarthGlobe />
-              </Suspense>
+              {loadInteractive3D ? (
+                <Suspense fallback={<GlobeVisual onActivate={() => setLoadInteractive3D(true)} />}>
+                  <EarthGlobe />
+                </Suspense>
+              ) : (
+                <GlobeVisual onActivate={() => setLoadInteractive3D(true)} />
+              )}
             </motion.div>
           </div>
 
