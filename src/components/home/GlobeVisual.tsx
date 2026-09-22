@@ -107,17 +107,25 @@ export default function GlobeVisual({ onActivate, interactiveReady }: GlobeVisua
       </div>
 
       {/* Floating Status & Interactive Indicator Pill */}
-      <div className="absolute bottom-2 sm:bottom-4 px-4 py-2 rounded-2xl bg-slate-900/85 backdrop-blur-md border border-indigo-500/30 text-white flex items-center gap-2.5 shadow-xl transition-transform duration-300 group-hover:scale-105">
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onActivate?.();
+        }}
+        className="absolute bottom-2 sm:bottom-4 px-4 py-2 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-indigo-500/40 text-white flex items-center gap-2.5 shadow-xl transition-all duration-300 hover:scale-105 hover:border-indigo-400 cursor-pointer active:scale-95"
+        aria-label="Open interactive 3D WebGL globe view"
+      >
         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
         <span className="text-xs font-mono font-bold tracking-wide text-slate-100">
-          Bangalore HQ <span className="text-slate-400 font-normal">• Global Edge Nodes</span>
+          Bangalore HQ <span className="text-slate-400 font-normal hidden sm:inline">• Global Edge Nodes</span>
         </span>
         <div className="h-3 w-[1px] bg-slate-700 mx-0.5" />
         <span className="text-[11px] font-sans font-semibold text-indigo-300 flex items-center gap-1">
           <Zap size={11} className="text-indigo-400" />
-          <span>Interactive 3D</span>
+          <span>Tap for 3D View</span>
         </span>
-      </div>
+      </button>
     </div>
   );
 }

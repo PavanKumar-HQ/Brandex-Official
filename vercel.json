@@ -65,6 +65,33 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/services/custom-applications",
+      "destination": "/services/custom-crm-erp",
+      "permanent": true
+    },
+    {
+      "source": "/services/business-automation",
+      "destination": "/services/ai-workflow-automation",
+      "permanent": true
+    },
+    {
+      "source": "/services/conversion-ux",
+      "destination": "/services/web-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/services/seo-search-infrastructure",
+      "destination": "/services/web-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/srushti-publication",
+      "destination": "/case-studies/srushti-publications",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/:path*",

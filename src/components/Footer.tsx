@@ -168,10 +168,11 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2.5 text-xs sm:text-sm">
                 <li><Link to="/services/web-engineering" className="hover:text-white transition-colors font-medium">Web Engineering</Link></li>
-                <li><Link to="/services/business-automation" className="hover:text-white transition-colors font-medium">Business Automation</Link></li>
-                <li><Link to="/services/custom-applications" className="hover:text-white transition-colors font-medium">Custom Applications</Link></li>
-                <li><Link to="/services/conversion-ux" className="hover:text-white transition-colors font-medium">Conversion UX</Link></li>
-                <li><Link to="/services/seo-search-infrastructure" className="hover:text-white transition-colors font-medium">Technical SEO</Link></li>
+                <li><Link to="/services/custom-crm-erp" className="hover:text-white transition-colors font-medium">Custom CRM & ERP</Link></li>
+                <li><Link to="/services/ai-workflow-automation" className="hover:text-white transition-colors font-medium">AI & Automation</Link></li>
+                <li><Link to="/services/mobile-app-development" className="hover:text-white transition-colors font-medium">Mobile Applications</Link></li>
+                <li><Link to="/services/cloud-devops-infrastructure" className="hover:text-white transition-colors font-medium">Cloud & DevOps</Link></li>
+                <li><Link to="/services/api-database-systems" className="hover:text-white transition-colors font-medium">API & Databases</Link></li>
                 <li><Link to="/services" className="hover:text-[#4f47e6] text-[#818cf8] transition-colors font-semibold">All Services →</Link></li>
               </ul>
             </div>

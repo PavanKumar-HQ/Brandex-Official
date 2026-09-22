@@ -76,31 +76,6 @@ import GlobeVisual from "@/components/home/GlobeVisual";
 export default function Hero() {
   const [loadInteractive3D, setLoadInteractive3D] = useState(false);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    // On mobile devices, keep lightweight zero-CPU GlobeVisual by default to protect battery and eliminate 13.6s TBT.
-    // Interactive 3D WebGL hydrates immediately when the user taps/clicks the globe.
-    if (window.innerWidth < 1024) {
-      return;
-    }
-
-    // On desktop, lazily load interactive 3D WebGL upon user interaction (mousemove/scroll)
-    const activate3D = () => {
-      setLoadInteractive3D(true);
-      window.removeEventListener("mousemove", activate3D);
-      window.removeEventListener("scroll", activate3D);
-    };
-
-    window.addEventListener("mousemove", activate3D, { passive: true, once: true });
-    window.addEventListener("scroll", activate3D, { passive: true, once: true });
-
-    return () => {
-      window.removeEventListener("mousemove", activate3D);
-      window.removeEventListener("scroll", activate3D);
-    };
-  }, []);
-
   return (
     <section className="relative flex items-center justify-center overflow-hidden pt-24 pb-12 lg:pt-28 lg:pb-16 bg-[#f8fafd] border-b border-slate-200/60 w-full">
       {/* Background Grid across entire width */}
