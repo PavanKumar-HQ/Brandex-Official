@@ -67,7 +67,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!api/|assets/|Clients/|ecosystem/|.*\\..*).*)",
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ]

@@ -239,6 +239,132 @@ const staticPages = [
     h1: 'Terms & Conditions',
     description: 'Read the Terms and Conditions governing use of Brandex website, software development services, and IP ownership policies.',
   },
+  {
+    route: 'education/explore',
+    title: 'KSEEB Curriculum Explorer – Brandex Digital Education',
+    h1: 'Karnataka State Board Digital Curriculum Explorer',
+    description: 'Explore Karnataka State Board (KSEEB) interactive lessons for Mathematics, Science, and Social Science across Classes 6 to 10.',
+  },
+  {
+    route: 'education/classroom',
+    title: 'Smartboard Classroom Player – Brandex Digital Education',
+    h1: 'Distraction-Free Smartboard Classroom Player',
+    description: 'Interactive classroom player engineered for touch smartboards in schools across Karnataka.',
+  },
+  {
+    route: 'education/login',
+    title: 'Educator Portal Login – Brandex Digital Education',
+    h1: 'Educator & Institutional Login Portal',
+    description: 'Secure educator portal login for Karnataka State Board curriculum materials and lesson sequencing.',
+  },
+  {
+    route: 'education/admin',
+    title: 'Institutional Administration – Brandex Digital Education',
+    h1: 'School & Institutional Curriculum Administration',
+    description: 'Institutional metrics, classroom deployment status, and teacher licensing administration.',
+  },
+  {
+    route: 'community/events',
+    title: 'Tech Meetups, Hackathons & Architecture Sprints – Brandex Community',
+    h1: 'Bangalore Tech Meetups & Architecture Sprints',
+    description: 'Join hands-on software engineering workshops, architectural breakdowns, and hackathons hosted in Bangalore.',
+  },
+  {
+    route: 'community/training',
+    title: 'Engineering Apprenticeships & Production Sprints – Brandex Community',
+    h1: 'Production Engineering Apprenticeships & Sprints',
+    description: 'Intensive engineering cohorts covering distributed systems, React performance optimization, and cloud DevOps.',
+  },
+  {
+    route: 'community/stories',
+    title: 'Engineer Case Studies & Member Stories – Brandex Community',
+    h1: 'Engineer Stories & Architecture Retrospectives',
+    description: 'Read first-hand accounts of software engineering milestones, migrations, and open-source contributions.',
+  },
+  {
+    route: 'community/ambassador',
+    title: 'Campus Ambassador Guild – Brandex Community',
+    h1: 'Brandex Campus Ambassador Guild',
+    description: 'Represent Brandex software architecture and engineering excellence at your university campus.',
+  },
+  {
+    route: 'community/status',
+    title: 'Application Status Tracker – Brandex Community',
+    h1: 'Application & Apprenticeship Status Tracker',
+    description: 'Check the real-time review status of your engineering cohort or builder guild application.',
+  },
+  {
+    route: 'community/projects',
+    title: 'Open Source Labs & Architecture Projects – Brandex Community',
+    h1: 'Open Source Engineering & Architecture Labs',
+    description: 'Explore open-source libraries, UI kits, and micro-benchmarks developed by the Brandex engineering collective.',
+  },
+  {
+    route: 'community/careers',
+    title: 'Engineering & Design Careers – Brandex Digital',
+    h1: 'Join the Brandex Engineering Team',
+    description: 'Explore open full-stack engineering, cloud architecture, and product design roles at Brandex in Bangalore.',
+  },
+  {
+    route: 'community/media',
+    title: 'Media Press Kit & Event Gallery – Brandex Community',
+    h1: 'Media Press Kit & Architecture Event Gallery',
+    description: 'Official Brandex brand assets, logos, engineering summit photographs, and press contact details.',
+  },
+  {
+    route: 'community/search',
+    title: 'Ecosystem Search Engine – Brandex Community',
+    h1: 'Search Across the Brandex Ecosystem',
+    description: 'Instant search across events, engineering articles, community cohorts, and open source projects.',
+  },
+  {
+    route: 'community/brandex',
+    title: 'Brandex HQ & Ecosystem Architecture – Brandex Community',
+    h1: 'Brandex HQ & Ecosystem Architecture Overview',
+    description: 'Complete overview of Brandex digital infrastructure, business automation, and developer community platforms.',
+  },
+  {
+    route: 'community/guidelines',
+    title: 'Community Code of Conduct – Brandex Community',
+    h1: 'Community Guidelines & Code of Conduct',
+    description: 'Standards of respect, technical rigor, and collaborative ethics across all Brandex spaces.',
+  },
+  {
+    route: 'community/work-with-us',
+    title: 'Collaborate & Work With Us – Brandex Community',
+    h1: 'Collaborate With Brandex Engineering',
+    description: 'Partner with Brandex on custom software development, institutional curriculum deployment, or hackathons.',
+  },
+  {
+    route: 'community/overview',
+    title: 'Community Overview – Brandex Builder Guild',
+    h1: 'Brandex Community & Builder Guild Overview',
+    description: 'Overview of the 500+ builder ecosystem in Bangalore, Karnataka.',
+  },
+  {
+    route: 'community/privacy',
+    title: 'Community Privacy Policy – Brandex Digital',
+    h1: 'Community Privacy Policy',
+    description: 'Privacy standards and member data protection across the Brandex community platform.',
+  },
+  {
+    route: 'community/terms',
+    title: 'Community Terms of Service – Brandex Digital',
+    h1: 'Community Terms of Service',
+    description: 'Terms governing participation in the Brandex builder guild, events, and apprenticeships.',
+  },
+  {
+    route: 'community/college-partnership',
+    title: 'College & Institutional Partnerships – Brandex Community',
+    h1: 'Higher Education & Engineering College Partnerships',
+    description: 'Curriculum integration, hackathons, and campus innovation labs for engineering institutions across India.',
+  },
+  {
+    route: 'community/education-pathways',
+    title: 'Technical Education Pathways – Brandex Community',
+    h1: 'Technical Education & Engineering Career Pathways',
+    description: 'Structured roadmaps from foundational web development to distributed systems engineering.',
+  },
 ];
 
 // Blog posts
@@ -307,6 +433,16 @@ function renderPage(routePath, title, description, h1, extraBodyHtml = '', custo
     fs.mkdirSync(targetDir, { recursive: true });
   }
   fs.writeFileSync(targetFile, html, 'utf-8');
+
+  // ALSO generate cleanRoute.html (e.g. dist/community/events.html) for instantaneous Vercel cleanUrls resolution
+  if (cleanRoute) {
+    const directHtmlFile = path.resolve(distDir, `${cleanRoute}.html`);
+    const directHtmlDir = path.dirname(directHtmlFile);
+    if (!fs.existsSync(directHtmlDir)) {
+      fs.mkdirSync(directHtmlDir, { recursive: true });
+    }
+    fs.writeFileSync(directHtmlFile, html, 'utf-8');
+  }
   prerenderCount++;
 }
 
@@ -345,7 +481,7 @@ renderPage(
   homeHeroHtml
 );
 
-// 1. Render Static Pages
+// 1. Render Core Static Pages
 staticPages.forEach(p => {
   renderPage(p.route, p.title, p.description, p.h1, p.contentHtml || '');
 });
@@ -354,12 +490,11 @@ staticPages.forEach(p => {
 servicesData.forEach(s => {
   const serviceHtml = `
     <section>
-      <h2>What Brandex Provides</h2>
+      <h2>Architecture &amp; Deliverables</h2>
       <ul>
-        ${s.deliverables.map(d => `<li>${d}</li>`).join('\n')}
+        ${s.deliverables.map(d => `<li>${d}</li>`).join('')}
       </ul>
-      <p><strong>Primary Business Outcome:</strong> 100% Client Code Ownership, sub-second performance, zero recurring platform tax.</p>
-      <p><a href="/contact">Schedule a Technical Architecture Diagnostic</a></p>
+      <p><a href="/contact">Schedule a Technical Architecture Diagnostic for ${s.h1}</a></p>
     </section>
   `;
 
@@ -372,24 +507,8 @@ servicesData.forEach(s => {
     "description": s.description,
     "provider": {
       "@type": "Organization",
-      "@id": `${CANONICAL_ORIGIN}/#organization`,
       "name": "Brandex",
-      "url": CANONICAL_ORIGIN,
-      "telephone": "+91-94809-44727",
-      "email": "brandexhq@gmail.com"
-    },
-    "areaServed": "India",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": `${s.h1} Deliverables`,
-      "itemListElement": s.deliverables.map((item, index) => ({
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": item
-        },
-        "position": index + 1
-      }))
+      "url": CANONICAL_ORIGIN
     }
   };
 
@@ -460,13 +579,33 @@ const aliasRoutes = [
   { route: 'terms', parent: `${CANONICAL_ORIGIN}/terms-and-conditions`, title: 'Terms & Conditions | Brandex' },
   { route: 'pavan', parent: `${CANONICAL_ORIGIN}/pavan-kumar`, title: 'Pavan Kumar — Systems Architect | Brandex' },
   { route: 'sathvik-shetty', parent: `${CANONICAL_ORIGIN}/sathvik`, title: 'Sathvik Nagesh — Product Design | Brandex' },
+  { route: 'founders/pavan', parent: `${CANONICAL_ORIGIN}/pavan-kumar`, title: 'Pavan Kumar — Systems Architect | Brandex' },
+  { route: 'founders/sathvik', parent: `${CANONICAL_ORIGIN}/sathvik`, title: 'Sathvik Nagesh — Product Design | Brandex' },
   { route: 'events', parent: `${CANONICAL_ORIGIN}/community/events`, title: 'Engineering Meetups & Hackathons | Brandex' },
   { route: 'projects', parent: `${CANONICAL_ORIGIN}/community/projects`, title: 'Open Source Projects & Architecture Labs | Brandex' },
   { route: 'training', parent: `${CANONICAL_ORIGIN}/community/training`, title: 'Technical Sprints & Apprenticeships | Brandex' },
+  { route: 'stories', parent: `${CANONICAL_ORIGIN}/community/stories`, title: 'Member Stories & Engineering Case Studies | Brandex' },
+  { route: 'ambassador', parent: `${CANONICAL_ORIGIN}/community/ambassador`, title: 'Brand Ambassador Guild | Brandex' },
+  { route: 'status', parent: `${CANONICAL_ORIGIN}/community/status`, title: 'Application Status Tracker | Brandex' },
+  { route: 'careers', parent: `${CANONICAL_ORIGIN}/community/careers`, title: 'Engineering & Design Careers | Brandex' },
+  { route: 'media', parent: `${CANONICAL_ORIGIN}/community/media`, title: 'Media & Press Kit | Brandex' },
+  { route: 'media/photos', parent: `${CANONICAL_ORIGIN}/community/media`, title: 'Media Gallery | Brandex' },
+  { route: 'search', parent: `${CANONICAL_ORIGIN}/community/search`, title: 'Ecosystem Search | Brandex' },
+  { route: 'brandex', parent: `${CANONICAL_ORIGIN}/community/brandex`, title: 'Brandex Ecosystem Overview | Brandex' },
+  { route: 'ecosystem', parent: `${CANONICAL_ORIGIN}/community/brandex`, title: 'Brandex Ecosystem Overview | Brandex' },
+  { route: 'work-with-us', parent: `${CANONICAL_ORIGIN}/community/work-with-us`, title: 'Work With Us | Brandex' },
+  { route: 'explore', parent: `${CANONICAL_ORIGIN}/education/explore`, title: 'Curriculum Explorer | Brandex' },
+  { route: 'classroom', parent: `${CANONICAL_ORIGIN}/education/classroom`, title: 'Classroom Player | Brandex' },
+  { route: 'login', parent: `${CANONICAL_ORIGIN}/education/login`, title: 'Educator Login | Brandex' },
+  { route: 'admin', parent: `${CANONICAL_ORIGIN}/education/admin`, title: 'Educator Admin | Brandex' },
   { route: 'case-studies/srushti', parent: `${CANONICAL_ORIGIN}/case-studies/srushti-publications`, title: 'Srushti Publications E-Commerce Case Study | Brandex' },
   { route: 'srushti-publications', parent: `${CANONICAL_ORIGIN}/case-studies/srushti-publications`, title: 'Srushti Publications E-Commerce Case Study | Brandex' },
   { route: 'srushti', parent: `${CANONICAL_ORIGIN}/case-studies/srushti-publications`, title: 'Srushti Publications E-Commerce Case Study | Brandex' },
-  { route: 'projects/srushti-publications', parent: `${CANONICAL_ORIGIN}/case-studies/srushti-publications`, title: 'Srushti Publications E-Commerce Case Study | Brandex' }
+  { route: 'projects/srushti-publications', parent: `${CANONICAL_ORIGIN}/case-studies/srushti-publications`, title: 'Srushti Publications E-Commerce Case Study | Brandex' },
+  { route: 'vignan-public-school', parent: `${CANONICAL_ORIGIN}/case-studies/vignan-public-school`, title: 'Vignan Public School Platform Case Study | Brandex' },
+  { route: 'vignan-tutorials', parent: `${CANONICAL_ORIGIN}/case-studies/vignan-tutorials`, title: 'Vignan Tutorials Student Portal Case Study | Brandex' },
+  { route: 'propquant-ai', parent: `${CANONICAL_ORIGIN}/case-studies/propquant-ai`, title: 'PropQuant.ai Algorithmic Trading Platform Case Study | Brandex' },
+  { route: 'geniusphere', parent: `${CANONICAL_ORIGIN}/case-studies/geniusphere`, title: 'GeniuSphere 3D WebGL LMS Case Study | Brandex' },
 ];
 
 aliasRoutes.forEach(a => {
@@ -503,6 +642,8 @@ notFoundPageHtml = notFoundPageHtml.replace(/<title>[^<]*<\/title>/i, `<title>40
 notFoundPageHtml = notFoundPageHtml.replace(/<meta\s+name="description"[^>]*>/i, `<meta name="description" content="The requested page could not be found. Return to Brandex software engineering and cloud infrastructure." />`);
 notFoundPageHtml = notFoundPageHtml.replace(/<link\s+rel="canonical"[^>]*>/i, `<meta name="robots" content="noindex, nofollow" />`);
 notFoundPageHtml = notFoundPageHtml.replace('<div id="root"></div>', `<div id="root">${notFoundHtml}</div>`);
+// Strip SPA script bundle from static 404.html to avoid unnecessary hydration on true 404s
+notFoundPageHtml = notFoundPageHtml.replace(/<script\s+type="module"[^>]*src="\/assets\/[^"]+"[^>]*><\/script>/gi, '');
 fs.writeFileSync(path.resolve(distDir, '404.html'), notFoundPageHtml, 'utf-8');
 console.log('[Prerender] Successfully generated dist/404.html (branded recovery with noindex)!');
 
