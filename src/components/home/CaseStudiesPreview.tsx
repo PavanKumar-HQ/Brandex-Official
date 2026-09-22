@@ -9,15 +9,28 @@ export default function CaseStudiesPreview() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const active = projects[selectedIndex] || projects[0];
 
-  // Pre-cache all project previews in browser memory so switching is instant with 0 delay
+  // Pre-cache other project previews only during idle time after initial page is fully interactive
   useEffect(() => {
-    projects.forEach((p) => {
-      if (p.previewImage) {
-        const img = new Image();
-        img.src = p.previewImage;
+    const preload = () => {
+      projects.forEach((p) => {
+        if (p.previewImage) {
+          const img = new Image();
+          img.src = p.previewImage;
+        }
+      });
+    };
+
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        const id = (window as any).requestIdleCallback(preload, { timeout: 5000 });
+        return () => (window as any).cancelIdleCallback(id);
+      } else {
+        const timer = setTimeout(preload, 4000);
+        return () => clearTimeout(timer);
       }
-    });
+    }
   }, []);
+
 
   return (
     <section className="py-14 lg:py-18 relative overflow-hidden bg-[#f8fafd] border-b border-slate-200/80" id="case-studies">
@@ -184,7 +197,7 @@ export default function CaseStudiesPreview() {
                           width={1280}
                           height={720}
                           className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-102"
-                          loading="eager"
+                          loading="lazy"
                           decoding="async"
                           onError={(e) => {
                             if (active.logo) {

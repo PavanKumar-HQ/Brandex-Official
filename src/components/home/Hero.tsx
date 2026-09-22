@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 import { MagneticWrapper } from "@/components/ui/MagneticWrapper";
+import GlobeVisual from "@/components/home/GlobeVisual";
 
 const EarthGlobe = lazy(() => import("@/components/home/EarthGlobe"));
 
@@ -17,12 +18,12 @@ const TYPED_PHRASES = [
 
 const container: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+  show: { transition: { staggerChildren: 0.05 } },
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 20, scale: 0.98 },
-  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+  hidden: { opacity: 1, y: 0 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
 };
 
 function TypewriterHeadline() {
@@ -72,6 +73,36 @@ function TypewriterHeadline() {
 }
 
 export default function Hero() {
+  const [canMount3D, setCanMount3D] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    let idleId: number;
+    let timerId: NodeJS.Timeout;
+
+    const enable3D = () => setCanMount3D(true);
+
+    if ("requestIdleCallback" in window) {
+      idleId = (window as any).requestIdleCallback(enable3D, { timeout: 2500 });
+    } else {
+      timerId = setTimeout(enable3D, 1200);
+    }
+
+    window.addEventListener("scroll", enable3D, { once: true, passive: true });
+    window.addEventListener("touchstart", enable3D, { once: true, passive: true });
+    window.addEventListener("pointerdown", enable3D, { once: true, passive: true });
+
+    return () => {
+      if (idleId && "cancelIdleCallback" in window) {
+        (window as any).cancelIdleCallback(idleId);
+      }
+      if (timerId) clearTimeout(timerId);
+      window.removeEventListener("scroll", enable3D);
+      window.removeEventListener("touchstart", enable3D);
+      window.removeEventListener("pointerdown", enable3D);
+    };
+  }, []);
 
   return (
     <section className="relative flex items-center justify-center overflow-hidden pt-24 pb-12 lg:pt-28 lg:pb-16 bg-[#f8fafd] border-b border-slate-200/60 w-full">
@@ -82,41 +113,30 @@ export default function Hero() {
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left Column: Headline with Rock-Solid Continuous Typewriter & Action Buttons */}
-          <motion.div
-            className="lg:col-span-6 text-left"
-            variants={container}
-            initial={false}
-            animate="show"
-          >
+          <div className="lg:col-span-6 text-left">
             {/* Liquid Glass Pill Badge */}
-            <motion.div variants={item} className="inline-block mb-5">
+            <div className="inline-block mb-5">
               <div className="liquid-glass-pill inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-slate-800 text-xs font-mono font-semibold tracking-wider uppercase shadow-2xs">
                 <span className="w-2 h-2 rounded-full bg-[#4f47e6] animate-pulse" />
                 <span className="text-[#4f47e6] font-bold">Brandex</span>
                 <span className="text-slate-300">/</span>
                 <span className="text-slate-600">Digital Solutions & Systems</span>
               </div>
-            </motion.div>
+            </div>
 
             {/* Zero-Layout-Shift Headline with Original Font Size */}
-            <motion.h1
-              variants={item}
-              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[4.15rem] font-extrabold tracking-tight text-slate-900 leading-[1.08] mb-6"
-            >
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[4.15rem] font-extrabold tracking-tight text-slate-900 leading-[1.08] mb-6">
               <TypewriterHeadline />
               <span className="block text-[#4f47e6]">Built For Real Scale.</span>
-            </motion.h1>
+            </h1>
 
             {/* Subtext */}
-            <motion.p
-              variants={item}
-              className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed mb-9 max-w-2xl font-normal"
-            >
+            <p className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed mb-9 max-w-2xl font-normal opacity-100">
               We design and engineer bespoke web applications, high-throughput cloud software, and automated workflows tailored to how your business actually works.
-            </motion.p>
+            </p>
 
             {/* Action Buttons */}
-            <motion.div variants={item} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-10">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-10">
               <MagneticWrapper>
                 <Button
                   asChild
@@ -141,13 +161,10 @@ export default function Hero() {
                   <Link to="/case-studies">View Our Work</Link>
                 </Button>
               </MagneticWrapper>
-            </motion.div>
+            </div>
 
             {/* Micro-guarantees */}
-            <motion.div
-              variants={item}
-              className="flex flex-wrap items-center gap-6 pt-6 border-t border-slate-200/80 text-xs font-semibold text-slate-700"
-            >
+            <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-slate-200/80 text-xs font-semibold text-slate-700">
               <div className="flex items-center gap-2">
                 <CheckCircle2 size={15} className="text-[#4f47e6]" />
                 <span>100% Client Code Ownership</span>
@@ -160,28 +177,22 @@ export default function Hero() {
                 <CheckCircle2 size={15} className="text-[#4f47e6]" />
                 <span>2–4 Week Turnaround</span>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Right Column: Embedded Interactive 3D Earth on Mobile & Desktop */}
           <div className="lg:col-span-6 relative flex flex-col items-center justify-center w-full">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full relative flex items-center justify-center min-h-[340px] sm:min-h-[420px] lg:min-h-[500px]"
-            >
-              <Suspense
-                fallback={
-                  <div className="w-full h-[320px] sm:h-[420px] lg:h-[480px] xl:h-[520px] flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full border-2 border-indigo-200 border-t-indigo-600 animate-spin" />
-                  </div>
-                }
-              >
-                <EarthGlobe />
-              </Suspense>
-            </motion.div>
+            <div className="w-full relative flex items-center justify-center min-h-[340px] sm:min-h-[420px] lg:min-h-[500px]">
+              {canMount3D ? (
+                <Suspense fallback={<GlobeVisual />}>
+                  <EarthGlobe />
+                </Suspense>
+              ) : (
+                <GlobeVisual />
+              )}
+            </div>
           </div>
+
 
         </div>
       </div>
