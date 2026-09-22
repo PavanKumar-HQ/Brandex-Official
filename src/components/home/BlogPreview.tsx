@@ -85,7 +85,7 @@ export default function BlogPreview() {
                 </div>
 
                 <div className="pt-4 border-t border-slate-200/70 flex items-center justify-between">
-                  <span className="text-slate-400 font-mono font-medium text-[11px]">{post.date}</span>
+                  <span className="text-slate-600 font-mono font-semibold text-[11px]">{post.date}</span>
                   
                   <Button
                     asChild

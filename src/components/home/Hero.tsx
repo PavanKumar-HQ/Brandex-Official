@@ -211,20 +211,20 @@ export default function Hero() {
                   <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800/90 flex items-center justify-between">
                     <div>
                       <div className="text-white font-bold text-xs">Bangalore Primary HQ</div>
-                      <div className="text-slate-400 text-[10px] mt-0.5">12.97° N, 77.59° E &bull; Systems Cluster</div>
+                      <div className="text-slate-300 text-[10px] mt-0.5">12.97° N, 77.59° E &bull; Systems Cluster</div>
                     </div>
                     <span className="text-[11px] text-indigo-400 font-bold px-2 py-0.5 rounded bg-indigo-950/60 border border-indigo-800/40">Active</span>
                   </div>
                   <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800/90 flex items-center justify-between">
                     <div>
                       <div className="text-white font-bold text-xs">Cloud Edge Pipelines</div>
-                      <div className="text-slate-400 text-[10px] mt-0.5">Automated Multi-Region &bull; 99.9% SLA</div>
+                      <div className="text-slate-300 text-[10px] mt-0.5">Automated Multi-Region &bull; 99.9% SLA</div>
                     </div>
                     <span className="text-[11px] text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-800/40">Verified</span>
                   </div>
                 </div>
                 <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
-                  <span className="text-slate-400">Client Code Ownership</span>
+                  <span className="text-slate-300 font-medium">Client Code Ownership</span>
                   <span className="font-bold text-indigo-400">100% Guaranteed</span>
                 </div>
               </motion.div>

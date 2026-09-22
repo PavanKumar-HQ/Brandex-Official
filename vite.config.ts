@@ -26,10 +26,27 @@ export default defineConfig(({ mode }) => ({
     },
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ["react", "react-dom", "react-router-dom"],
-          motion: ["framer-motion"],
-          three: ["three", "@react-three/fiber", "@react-three/drei"],
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("three") || id.includes("@react-three")) {
+              return "three-bundle";
+            }
+            if (id.includes("framer-motion")) {
+              return "motion";
+            }
+            if (id.includes("lucide-react")) {
+              return "icons";
+            }
+            if (
+              id.includes("react") ||
+              id.includes("react-dom") ||
+              id.includes("react-router") ||
+              id.includes("scheduler") ||
+              id.includes("@radix-ui")
+            ) {
+              return "vendor";
+            }
+          }
         },
       },
     },
