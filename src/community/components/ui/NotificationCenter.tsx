@@ -95,14 +95,14 @@ export const NotificationCenter: React.FC = () => {
       setPushStatus(Notification.permission);
     }
     fetchLiveNotifications(false);
-
-    // Real-time live polling every 8 seconds
-    const interval = setInterval(() => {
-      fetchLiveNotifications(true);
-    }, 8000);
-
-    return () => clearInterval(interval);
   }, [identity.handle]);
+
+  // Refresh only when user explicitly opens the notification drawer
+  useEffect(() => {
+    if (isOpen) {
+      fetchLiveNotifications(false);
+    }
+  }, [isOpen]);
 
   // Click outside to close
   useEffect(() => {

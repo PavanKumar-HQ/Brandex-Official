@@ -125,7 +125,7 @@ export default function AboutPage() {
                 <div className="flex items-center justify-between pb-4 border-b border-slate-200/70">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-[#4f47e6] flex items-center justify-center p-2 shadow-xs">
-                      <img src="/logo_nobg.png" alt="Brandex" className="w-full h-full object-contain filter brightness-0 invert" />
+                      <img src="/logo_nobg.webp" alt="Brandex" width={40} height={40} className="w-full h-full object-contain filter brightness-0 invert" decoding="async" />
                     </div>
                     <div>
                       <div className="font-display font-bold text-sm text-slate-900">Brandex Digital Infrastructure</div>

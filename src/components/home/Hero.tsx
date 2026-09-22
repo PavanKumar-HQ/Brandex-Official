@@ -25,18 +25,10 @@ const item = {
   show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
-export default function Hero() {
+function TypewriterHeadline() {
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
-    return () => window.removeEventListener("resize", checkDesktop);
-  }, []);
 
   useEffect(() => {
     const currentPhrase = TYPED_PHRASES[phraseIndex];
@@ -65,6 +57,29 @@ export default function Hero() {
 
     return () => clearTimeout(timer);
   }, [text, isDeleting, phraseIndex]);
+
+  return (
+    <div className="grid mb-1">
+      <span className="invisible select-none pointer-events-none opacity-0 col-start-1 row-start-1 block" aria-hidden="true">
+        Crafting Bespoke Web Platforms
+      </span>
+      <span className="col-start-1 row-start-1 block text-slate-900">
+        {text}
+        <span className="inline-block w-[3.5px] sm:w-[4.5px] h-[0.88em] bg-[#4f47e6] ml-1.5 animate-pulse align-middle" />
+      </span>
+    </div>
+  );
+}
+
+export default function Hero() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+    return () => window.removeEventListener("resize", checkDesktop);
+  }, []);
 
   return (
     <section className="relative flex items-center justify-center overflow-hidden pt-24 pb-12 lg:pt-28 lg:pb-16 bg-[#f8fafd] border-b border-slate-200/60 w-full">
@@ -96,15 +111,7 @@ export default function Hero() {
               variants={item}
               className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[4.15rem] font-extrabold tracking-tight text-slate-900 leading-[1.08] mb-6"
             >
-              <div className="grid mb-1">
-                <span className="invisible select-none pointer-events-none opacity-0 col-start-1 row-start-1 block" aria-hidden="true">
-                  Crafting Bespoke Web Platforms
-                </span>
-                <span className="col-start-1 row-start-1 block text-slate-900">
-                  {text}
-                  <span className="inline-block w-[3.5px] sm:w-[4.5px] h-[0.88em] bg-[#4f47e6] ml-1.5 animate-pulse align-middle" />
-                </span>
-              </div>
+              <TypewriterHeadline />
               <span className="block text-[#4f47e6]">Built For Real Scale.</span>
             </motion.h1>
 

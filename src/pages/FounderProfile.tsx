@@ -53,7 +53,7 @@ const founders: Record<string, FounderData> = {
     role: "Co-Founder & Chief Systems Architect",
     tagline: "Engineering sub-second web platforms, enterprise cloud pipelines, and bespoke software systems.",
     location: "Bangalore, India",
-    avatar: "/logo_nobg.png",
+    avatar: "/logo_nobg.webp",
     brandexIdea:
       "Brandex wasn't created to be another mundane agency churning out bloated boilerplate WordPress templates with 40 unmaintained plugins. The thesis was simple: treat modern business software like high-frequency infrastructure — sub-second edge speeds, 100% client code ownership, zero recurring platform tax, and automated pipelines that run flawlessly.",
     dailyEngine:
@@ -156,7 +156,7 @@ const founders: Record<string, FounderData> = {
     role: "Co-Founder & Head of Product Design",
     tagline: "Bridging human-centered interaction design with high-performance digital engineering.",
     location: "Bangalore, India",
-    avatar: "/logo_nobg.png",
+    avatar: "/logo_nobg.webp",
     brandexIdea:
       "Most corporate software looks like it was designed in 2004 by someone who hated users. The idea behind Brandex is that enterprise software should feel as sleek, fluid, and delightful as a luxury sports car — zero clutter, razor-sharp typography, and conversion funnels that make users actually want to click.",
     dailyEngine:

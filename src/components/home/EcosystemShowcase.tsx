@@ -20,7 +20,7 @@ const pillars = [
     actionText: "Explore Community Hub",
     href: "/community",
     isExternal: false,
-    image: "/ecosystem/community.jpg",
+    image: "/ecosystem/community.webp",
     highlights: ["Bangalore Tech Meetups", "System Teardowns", "Peer Founder Sprints"],
   },
   {
@@ -32,7 +32,7 @@ const pillars = [
     actionText: "Launch Education Portal",
     href: "/education",
     isExternal: false,
-    image: "/ecosystem/education.jpg",
+    image: "/ecosystem/education.webp",
     highlights: ["Smartboard Presentation Mode", "Pre-Built Formative Quizzes", "Distraction-Free Theater"],
   },
   {
@@ -44,7 +44,7 @@ const pillars = [
     actionText: "Browse Repositories",
     href: "/community/projects",
     isExternal: false,
-    image: "/ecosystem/opensource.jpg",
+    image: "/ecosystem/opensource.webp",
     highlights: ["Liquid Glass UI Tokens", "Edge API Scaffolds", "Automated Intake Hooks"],
   },
 ];
@@ -93,8 +93,11 @@ export default function EcosystemShowcase() {
                     <img
                       src={item.image}
                       alt={item.title}
+                      width={640}
+                      height={360}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute top-2.5 right-2.5">
                       <span className="liquid-glass-pill px-3 py-1 rounded-full text-[10px] font-mono font-bold text-[#4f47e6] shadow-xs">
