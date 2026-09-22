@@ -38,9 +38,10 @@ export const SITE_CONFIG = {
   social: {
     instagram: "https://www.instagram.com/brandexlabs/",
     twitter: "https://x.com/brandexlabs",
-    linkedin: "https://www.linkedin.com/company/brandexlabs/",
-    github: "https://github.com/PavanKumar-HQ",
+    linkedin: "https://www.linkedin.com/company/brandex-lab",
+    github: "https://github.com/Brandex-Labs",
     discord: "https://discord.gg/6MVYPzBn9g",
+    whatsapp: "https://chat.whatsapp.com/JYJokicBTSE4suaJ2pKvgI?mode=gi_t",
   },
   founders: [
     {

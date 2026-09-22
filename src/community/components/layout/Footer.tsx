@@ -76,7 +76,7 @@ export const Footer: React.FC = () => {
             {/* Social Icons Row */}
             <div className="pt-0.5 flex flex-wrap items-center gap-1.5 sm:gap-2.5">
               {[
-                { icon: GithubIcon, href: 'https://github.com/PavanKumar-HQ/Brandex-Community', label: 'GitHub', hoverClass: 'hover:bg-white hover:text-[#181717] hover:border-white' },
+                { icon: GithubIcon, href: 'https://github.com/Brandex-Labs', label: 'GitHub', hoverClass: 'hover:bg-white hover:text-[#181717] hover:border-white' },
                 { icon: XIcon, href: 'https://x.com/brandexlabs', label: 'Twitter (X)', hoverClass: 'hover:bg-white hover:text-black hover:border-white' },
                 { icon: LinkedinIcon, href: 'https://www.linkedin.com/company/brandex-lab', label: 'LinkedIn', hoverClass: 'hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5]' },
                 { icon: InstagramIcon, href: 'https://www.instagram.com/brandexlabs/', label: 'Instagram', hoverClass: 'hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7] hover:text-white hover:border-transparent' },
