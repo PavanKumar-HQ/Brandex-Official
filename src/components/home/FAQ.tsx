@@ -138,21 +138,19 @@ export default function FAQ() {
                     </div>
                   </button>
 
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                      >
-                        <p className="text-slate-600 leading-relaxed text-sm sm:text-base pt-4 font-normal border-t border-slate-100 mt-3">
-                          {faq.a}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  <motion.div
+                    initial={false}
+                    animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                    id={`faq-answer-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-question-${i}`}
+                  >
+                    <p className="text-slate-600 leading-relaxed text-sm sm:text-base pt-4 font-normal border-t border-slate-100 mt-3">
+                      {faq.a}
+                    </p>
+                  </motion.div>
                 </div>
               );
             })}

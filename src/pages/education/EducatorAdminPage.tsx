@@ -18,6 +18,7 @@ import {
   Lock,
 } from "lucide-react";
 import { CURRICULUM_DATA, Lesson } from "@/education/lib/curriculum-data";
+import SEOHead from "@/components/SEOHead";
 
 export default function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState<"content" | "quizzes" | "classes">("content");
@@ -100,6 +101,11 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 py-8">
+      <SEOHead 
+        title="Institutional Administration Portal | Brandex Digital"
+        description="Restricted educator and institutional administration dashboard."
+        noindex={true}
+      />
       <div className="container mx-auto max-w-7xl px-4 lg:px-8 space-y-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 bg-slate-950 text-white rounded-2xl shadow-xl border border-slate-800">

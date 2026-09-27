@@ -7,6 +7,8 @@ import { EventRegistrationModal } from '@/community/components/events/EventRegis
 import { MediaPlaceholderCard } from '@/community/components/ui/MediaPlaceholders';
 import { EmptyState } from '@/community/components/ui/EmptyState';
 import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
+import SEOHead from '@/components/SEOHead';
+import { SITE_CONFIG, getCanonicalUrl, getAbsoluteAssetUrl } from '@/config/site';
 
 export const EventDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -26,6 +28,7 @@ export const EventDetailPage: React.FC = () => {
   if (!event) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-32 text-center bg-white">
+        <SEOHead title="Event Not Found | Brandex Events" noindex={true} />
         <EmptyState
           title="EVENT NOT FOUND"
           description="The event slug you requested does not exist or has been removed."
@@ -36,9 +39,45 @@ export const EventDetailPage: React.FC = () => {
     );
   }
 
+  const eventSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Event",
+        "@id": `${getCanonicalUrl(`/events/${event.slug}`)}#event`,
+        "name": event.title,
+        "description": event.shortDescription || event.description,
+        "image": event.coverImage ? getAbsoluteAssetUrl(event.coverImage) : undefined,
+        "startDate": event.date,
+        "eventStatus": event.isPast ? "https://schema.org/EventMovedOnline" : "https://schema.org/EventScheduled",
+        "eventAttendanceMode": event.type === "In-Person" ? "https://schema.org/OfflineEventAttendanceMode" : "https://schema.org/OnlineEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": event.venue || "Brandex Tech Hub",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": event.location || "Bangalore",
+            "addressCountry": "IN"
+          }
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "Brandex",
+          "url": SITE_CONFIG.url
+        }
+      }
+    ]
+  };
+
   return (
     <div className="space-y-8 sm:space-y-12 pb-16 pt-20 bg-white">
-      
+      <SEOHead
+        title={`${event.title} | Brandex Events`}
+        description={event.shortDescription || event.description.slice(0, 155)}
+        canonicalUrl={`/events/${event.slug}`}
+        image={event.coverImage}
+        schema={eventSchema}
+      />
       {/* Breadcrumb Navigation */}
       <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-24">
         <Breadcrumb items={[{ label: 'Events', path: '/events' }, { label: event.title }]} />

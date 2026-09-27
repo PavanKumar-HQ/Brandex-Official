@@ -47,7 +47,13 @@ const serviceIds = [
 ];
 const educationClasses = ['class-6', 'class-7', 'class-8', 'class-9', 'class-10'];
 
-console.log(`[SEO Generator] Discovered ${blogPostIds.length} blog posts, ${projectIds.length} case studies, ${serviceIds.length} services.`);
+// Extract dynamic Community stories, events, and trainings
+const mockDataContent = fs.readFileSync(path.resolve(rootDir, 'src/community/data/mockData.ts'), 'utf-8');
+const storySlugs = [...mockDataContent.matchAll(/id:\s*'(?:sto-[^']+)',[\s\S]*?slug:\s*'([^']+)'/g)].map(m => m[1]);
+const eventSlugs = [...mockDataContent.matchAll(/id:\s*'(?:evt-[^']+)',[\s\S]*?slug:\s*'([^']+)'/g)].map(m => m[1]);
+const trainingSlugs = [...mockDataContent.matchAll(/id:\s*'(?:tp-[^']+)',[\s\S]*?slug:\s*'([^']+)'/g)].map(m => m[1]);
+
+console.log(`[SEO Generator] Discovered ${blogPostIds.length} blog posts, ${projectIds.length} case studies, ${serviceIds.length} services, ${storySlugs.length} stories, ${eventSlugs.length} events, ${trainingSlugs.length} training programs.`);
 
 // 2. Build URL List for Sitemap
 const sitemapEntries = [
@@ -59,7 +65,6 @@ const sitemapEntries = [
   { loc: `${SITE_URL}/about`, priority: '0.8', changefreq: 'monthly' },
   { loc: `${SITE_URL}/blog`, priority: '0.9', changefreq: 'daily' },
   { loc: `${SITE_URL}/contact`, priority: '0.85', changefreq: 'monthly' },
-  { loc: `${SITE_URL}/contact-us`, priority: '0.7', changefreq: 'monthly' },
   { loc: `${SITE_URL}/pavan-kumar`, priority: '0.8', changefreq: 'monthly' },
   { loc: `${SITE_URL}/sathvik`, priority: '0.8', changefreq: 'monthly' },
   { loc: `${SITE_URL}/privacy-policy`, priority: '0.5', changefreq: 'yearly' },
@@ -79,6 +84,30 @@ const sitemapEntries = [
     changefreq: 'monthly'
   })),
 
+  // Stories (Builder Case Studies & Retrospectives)
+  { loc: `${SITE_URL}/stories`, priority: '0.85', changefreq: 'daily' },
+  ...storySlugs.map(slug => ({
+    loc: `${SITE_URL}/stories/${slug}`,
+    priority: '0.8',
+    changefreq: 'weekly'
+  })),
+
+  // Events & Tech Summits
+  { loc: `${SITE_URL}/events`, priority: '0.85', changefreq: 'weekly' },
+  ...eventSlugs.map(slug => ({
+    loc: `${SITE_URL}/events/${slug}`,
+    priority: '0.8',
+    changefreq: 'weekly'
+  })),
+
+  // Training & Apprenticeships
+  { loc: `${SITE_URL}/training`, priority: '0.85', changefreq: 'weekly' },
+  ...trainingSlugs.map(slug => ({
+    loc: `${SITE_URL}/training/${slug}`,
+    priority: '0.8',
+    changefreq: 'weekly'
+  })),
+
   // Education Platform
   { loc: `${SITE_URL}/education`, priority: '0.85', changefreq: 'weekly' },
   { loc: `${SITE_URL}/education/explore`, priority: '0.8', changefreq: 'weekly' },
@@ -91,8 +120,6 @@ const sitemapEntries = [
   // Community
   { loc: `${SITE_URL}/community`, priority: '0.8', changefreq: 'weekly' },
   { loc: `${SITE_URL}/community/projects`, priority: '0.75', changefreq: 'weekly' },
-  { loc: `${SITE_URL}/community/events`, priority: '0.75', changefreq: 'weekly' },
-  { loc: `${SITE_URL}/community/training`, priority: '0.75', changefreq: 'weekly' },
 
   // Blog Posts (All 50)
   ...blogPostIds.map(id => ({
@@ -138,12 +165,20 @@ Allow: /community
 Allow: /community/
 Allow: /about
 Allow: /contact
+Allow: /stories
+Allow: /stories/
+Allow: /events
+Allow: /events/
+Allow: /training
+Allow: /training/
 Allow: /llms.txt
 Allow: /llms-full.txt
 Disallow: /education/admin
 Disallow: /education/login
 Disallow: /admin
 Disallow: /api/private
+Disallow: /search
+Disallow: /community/search
 
 # Conventional Search Crawlers
 User-agent: Googlebot

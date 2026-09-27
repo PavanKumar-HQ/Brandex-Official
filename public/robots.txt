@@ -16,12 +16,20 @@ Allow: /community
 Allow: /community/
 Allow: /about
 Allow: /contact
+Allow: /stories
+Allow: /stories/
+Allow: /events
+Allow: /events/
+Allow: /training
+Allow: /training/
 Allow: /llms.txt
 Allow: /llms-full.txt
 Disallow: /education/admin
 Disallow: /education/login
 Disallow: /admin
 Disallow: /api/private
+Disallow: /search
+Disallow: /community/search
 
 # Conventional Search Crawlers
 User-agent: Googlebot

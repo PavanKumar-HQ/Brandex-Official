@@ -4,27 +4,27 @@ import { SITE_CONFIG, getCanonicalUrl, getAbsoluteAssetUrl } from "@/config/site
 
 const pageMeta: Record<string, { title: string; description: string; keywords?: string }> = {
   "/": {
-    title: "Brandex — Engineering Digital Systems Built For Real Scale",
+    title: "Brandex — High-Performance Web Development, Custom Cloud Software & Digital Systems in Bangalore",
     description: "Bespoke web platforms, high-throughput cloud applications, and automated workflows. Sub-second performance, zero recurring platform tax, 100% client code ownership.",
     keywords: "web development, custom software, business automation, React, Next.js, digital engineering, Bangalore",
   },
   "/services": {
-    title: "Services – Brandex | Software Development, AI & Cloud Infrastructure",
+    title: "Custom Software Development & Cloud Engineering Services in Bangalore | Brandex",
     description: "End-to-end bespoke digital services: sub-second web applications, AI automation engines, and cloud microservices designed for scale.",
     keywords: "custom software development, business workflows, API automation, responsive web design, mobile apps",
   },
   "/pricing": {
-    title: "Engineering Sprints & Investment Packages – Brandex",
+    title: "Software Engineering Pricing & Sprint Packages: Zero SaaS Tax | Brandex",
     description: "Transparent engineering sprint packages. Zero hidden costs, 100% client code ownership, fixed deliverables, and sub-second SLAs.",
     keywords: "web development pricing, engineering sprints, software packages",
   },
   "/solutions": {
-    title: "Solutions – Brandex | Industry-Specific Digital Systems",
+    title: "Industry-Specific Software Solutions: Healthcare, Retail, & EdTech | Brandex",
     description: "Tailored digital systems for restaurants, healthcare, finance, logistics, and retail. Built to solve real operational bottlenecks.",
     keywords: "industry solutions, enterprise SaaS, workflow automation, healthcare tech, restaurant digital systems",
   },
   "/case-studies": {
-    title: "Case Studies – Brandex | Real Projects, Real Results",
+    title: "Client Case Studies: Custom Web & Cloud Platforms Built by Brandex",
     description: "Explore how Brandex drove +340% order growth, sub-18ms latency, and 40+ hours saved weekly through digital transformation.",
     keywords: "case studies, client portfolio, software transformation, ROI metrics, web design success",
   },
@@ -94,32 +94,32 @@ const pageMeta: Record<string, { title: string; description: string; keywords?: 
     keywords: "terms and conditions, refund policy, service agreement",
   },
   "/services/custom-crm-erp": {
-    title: "Custom CRM & ERP Software Systems – Brandex Digital",
+    title: "Custom CRM & ERP Software Development: Build vs Buy Solution | Brandex",
     description: "Replace recurring per-seat SaaS costs with bespoke CRM and ERP systems engineered for your business workflows. Zero licensing tax, full data ownership.",
     keywords: "custom CRM development, ERP systems Bangalore, workflow automation, inventory ERP, sales CRM",
   },
   "/services/ai-workflow-automation": {
-    title: "AI Agents & Autonomous Workflow Automation – Brandex Digital",
+    title: "AI Agents & Autonomous Workflow Automation Services: WhatsApp & Webhooks | Brandex",
     description: "Custom AI agents, WhatsApp bots, and automated webhook pipelines that eliminate repetitive operational bottlenecks 24/7.",
     keywords: "AI workflow automation, WhatsApp business bots, autonomous agents, process automation Bangalore",
   },
   "/services/mobile-app-development": {
-    title: "High-Performance Mobile App Development (iOS & Android) – Brandex Digital",
+    title: "High-Performance Mobile App Development (iOS & Android) | Brandex",
     description: "Offline-first, native-performance iOS and Android applications built with React Native. Real-time sync, push notifications, and store deployment.",
     keywords: "mobile app development, React Native agency Bangalore, iOS development, Android app developers",
   },
   "/services/web-engineering": {
-    title: "Bespoke Web Platforms & SaaS Engineering – Brandex Digital",
+    title: "Bespoke Web Platforms & SaaS Product Engineering | Brandex",
     description: "Sub-second React & Next.js web applications, client portals, and SaaS platforms engineered for high throughput and search discoverability.",
     keywords: "SaaS engineering, Next.js web development, custom web portal, web architecture Bangalore",
   },
   "/services/cloud-devops-infrastructure": {
-    title: "Cloud Infrastructure, DevOps & Edge Deployment – Brandex Digital",
+    title: "Cloud DevOps Infrastructure, CI/CD & Edge Deployment Services | Brandex",
     description: "Automated CI/CD pipelines, container orchestration, edge CDN caching, and automated multi-region backup systems with 99.9% uptime SLAs.",
     keywords: "DevOps consulting, AWS infrastructure, Cloudflare edge, Docker Kubernetes Bangalore",
   },
   "/services/api-database-systems": {
-    title: "Custom APIs, Microservices & Database Architecture – Brandex Digital",
+    title: "Custom APIs, Microservices & PostgreSQL Database Architecture | Brandex",
     description: "High-throughput REST and GraphQL APIs, PostgreSQL optimization, Redis caching layers, and legacy system integrations built for sub-50ms latency.",
     keywords: "API development, microservices architecture, database design, backend engineering Bangalore",
   },
@@ -213,6 +213,20 @@ export default function SEOHead({
   const { pathname } = useLocation();
   const hasCustomProps = Boolean(propTitle || propDesc || propCanonical || schema);
 
+  const isPrivateOrAdminRoute = 
+    pathname.startsWith("/education/admin") ||
+    pathname.startsWith("/education/login") ||
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/education/classroom") ||
+    pathname.startsWith("/classroom") ||
+    pathname.startsWith("/education/studio") ||
+    pathname.startsWith("/studio") ||
+    pathname.startsWith("/community/status") ||
+    pathname.startsWith("/status");
+
+  const effectiveNoindex = noindex || isPrivateOrAdminRoute;
+
   useEffect(() => {
     // If this is a child call with explicit props, mark this route as customized
     if (hasCustomProps) {
@@ -225,22 +239,38 @@ export default function SEOHead({
     // Determine meta: check passed props first, then exact pathname match, then fallback
     const staticMeta = pageMeta[pathname];
     const title = propTitle || staticMeta?.title || (
-      pathname.startsWith("/blog/")
+      isPrivateOrAdminRoute
+        ? "Portal Access | Brandex Digital Infrastructure"
+        : pathname.startsWith("/blog/")
         ? "Blog Article – Brandex | Technical Architecture"
         : pathname.startsWith("/case-studies/")
         ? "Case Study – Brandex | Impact & Results"
         : pathname.startsWith("/services/")
         ? "Service Architecture – Brandex"
+        : pathname.startsWith("/stories/")
+        ? "Builder Story – Brandex Community"
+        : pathname.startsWith("/events/")
+        ? "Community Event – Brandex"
+        : pathname.startsWith("/training/")
+        ? "Engineering Training – Brandex"
         : pageMeta["/"].title
     );
 
     const description = propDesc || staticMeta?.description || (
-      pathname.startsWith("/blog/")
+      isPrivateOrAdminRoute
+        ? "Secure portal access. Restricted authentication and administrative area."
+        : pathname.startsWith("/blog/")
         ? "Read in-depth technical insights on software development, edge architectures, and scalable cloud systems from Brandex engineers."
         : pathname.startsWith("/case-studies/")
         ? "Discover our in-depth case study showcasing technical architecture and business growth results."
         : pathname.startsWith("/services/")
         ? "Bespoke digital architecture, workflow automation, and custom software systems built by Brandex."
+        : pathname.startsWith("/stories/")
+        ? "Read inspiring builder narratives, real-world case studies, and engineering milestones from Brandex builders."
+        : pathname.startsWith("/events/")
+        ? "Explore technical meetups, architectural breakdowns, and hackathons hosted across Bangalore."
+        : pathname.startsWith("/training/")
+        ? "Production-ready engineering apprenticeships and intensive technical training programs."
         : pageMeta["/"].description
     );
 
@@ -290,7 +320,7 @@ export default function SEOHead({
     }
     robotsTag.setAttribute(
       "content",
-      noindex
+      effectiveNoindex
         ? "noindex, nofollow"
         : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
     );

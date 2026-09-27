@@ -52,51 +52,187 @@ function extractObjects(filePath) {
 const servicesData = [
   {
     id: 'custom-crm-erp',
-    title: 'Custom CRM & ERP Software Systems – Brandex Digital',
+    title: 'Custom CRM & ERP Software Development: Build vs Buy Solution | Brandex',
+    shortTitle: 'CRM & ERP Systems',
     h1: 'Custom CRM & ERP Software Systems',
     description: 'Replace recurring per-seat SaaS costs with bespoke CRM and ERP systems engineered for your business workflows. Zero licensing tax, full data ownership.',
     deliverables: ['Custom sales pipeline & lead staging', 'Automated GST invoicing engine', 'Multi-tier RBAC & audit logging', 'Direct WhatsApp & SMS customer sync', '100% full source code ownership'],
     category: 'Enterprise Software',
+    targetAudience: [
+      'Companies with complex sales funnels outgrowing spreadsheets and generic CRMs',
+      'Retailers, manufacturers, and distributors needing unified inventory and order workflows',
+      'Educational institutions and training academies managing admissions and student records',
+      'Service agencies requiring integrated quotation, invoicing, and client tracking'
+    ],
+    problemsSolved: [
+      { problem: 'Paying thousands in recurring per-seat SaaS licensing for unused CRM features', solution: 'Bespoke internal software with unlimited user accounts, zero per-seat fees, and 100% source code ownership.' },
+      { problem: 'Sales reps manually updating spreadsheets leading to missed leads and delayed follow-ups', solution: 'Automated lead intake from websites, WhatsApp, and email with auto-assignment and activity tracking.' },
+      { problem: 'Disjointed invoicing and manual reconciliation with payment gateways', solution: 'One-click automated GST invoices, Razorpay/Stripe integration, and automated payment receipt generation.' },
+      { problem: 'Uncontrolled access to sensitive business numbers and client records', solution: 'Granular Role-Based Access Control (RBAC) ensuring staff only view authorized data.' }
+    ],
+    process: [
+      { step: '01', title: 'Workflow & Schema Mapping', detail: 'We audit your sales funnels, team roles, database schemas, and operational bottlenecks.' },
+      { step: '02', title: 'Interactive UX & Wireframes', detail: 'We design clean, fast dashboards with actionable tables, lead Kanban boards, and quick-filter search views.' },
+      { step: '03', title: 'Full-Stack Development & Integrations', detail: 'We build secure REST/GraphQL endpoints, database indexing, and seamless WhatsApp/Email transaction triggers.' },
+      { step: '04', title: 'Data Migration & Staff Onboarding', detail: 'We safely migrate historical records, train your team, and provide 60-day hypercare support post-deployment.' }
+    ],
+    faqs: [
+      { question: 'Can this replace Salesforce, HubSpot, or Zoho for our team?', answer: 'Yes. We build only what your business actually needs, eliminating the clunkiness, complexity, and steep monthly subscription fees of generic SaaS giants.' },
+      { question: 'How difficult is it to migrate our current spreadsheet data?', answer: 'We handle the entire data migration process, including cleaning, deduplicating, and indexing your historical records into the new relational database.' },
+      { question: 'Can our field team access the CRM on mobile devices?', answer: 'Yes. All our CRM interfaces are engineered mobile-first with touch-optimized controls, fast loading, and offline draft capabilities.' }
+    ]
   },
   {
     id: 'ai-workflow-automation',
-    title: 'AI Agents & Autonomous Workflow Automation – Brandex Digital',
+    title: 'AI Agents & Autonomous Workflow Automation Services: WhatsApp & Webhooks | Brandex',
+    shortTitle: 'AI & Automation',
     h1: 'AI Agents & Autonomous Workflow Automation',
     description: 'Custom AI agents, WhatsApp bots, and automated webhook pipelines that eliminate repetitive operational bottlenecks 24/7.',
     deliverables: ['24/7 WhatsApp customer booking bot', 'OCR document parsing & CRM sync', 'Automated multi-app webhook queues', 'Dead-letter retry & error alerts', 'Real-time telemetry & latency tracking'],
     category: 'AI Automation',
+    targetAudience: [
+      'Businesses receiving high volumes of WhatsApp, email, or web inquiries',
+      'Operations teams spending hours manually copying data between software tools',
+      'E-commerce & retail brands wanting automated order tracking and instant customer support',
+      'Service providers needing automated appointment booking and diagnostic workflows'
+    ],
+    problemsSolved: [
+      { problem: 'Slow response times to inquiries during nights and weekends causing lost sales', solution: 'Custom AI customer support agents on WhatsApp and web that qualify leads and answer FAQs 24/7.' },
+      { problem: 'Manual repetitive data entry across multiple disconnected platforms', solution: 'Event-driven webhook pipelines that sync order status, customer updates, and payments instantly.' },
+      { problem: 'Time wasted extracting data from scanned invoices, receipts, and documents', solution: 'Automated OCR and AI parsing models that extract key fields directly into your database.' },
+      { problem: 'Automations breaking silently when third-party APIs have temporary downtime', solution: 'Resilient message queues with exponential backoff retries and alert bots ensuring zero data loss.' }
+    ],
+    process: [
+      { step: '01', title: 'Process & Failure Point Audit', detail: 'We map out high-frequency repetitive tasks, customer touchpoints, and existing software integrations.' },
+      { step: '02', title: 'AI Logic & Pipeline Architecture', detail: 'We design conversation trees, webhook triggers, payload validation, and safety guardrails.' },
+      { step: '03', title: 'Bot Development & API Wiring', detail: 'We build custom cloud workers, WhatsApp Business API connections, and database synchronization logic.' },
+      { step: '04', title: 'Edge Case Testing & Monitoring', detail: 'We stress test message volumes, verify retry queues, and set up live alerting channels for your team.' }
+    ],
+    faqs: [
+      { question: 'Does the AI bot hallucinate or provide false company information?', answer: 'No. We implement strict Retrieval-Augmented Generation (RAG) guardrails. The AI only responds using your verified company documents and FAQs, gracefully handing off complex issues to human agents.' },
+      { question: 'Can you automate tools like WhatsApp Business and Google Sheets?', answer: 'Yes. We regularly connect WhatsApp Cloud API, Google Workspace, payment gateways, and custom internal systems.' }
+    ]
   },
   {
     id: 'mobile-app-development',
-    title: 'High-Performance Mobile App Development (iOS & Android) – Brandex Digital',
+    title: 'High-Performance Mobile App Development (iOS & Android) | Brandex',
+    shortTitle: 'Mobile Apps',
     h1: 'High-Performance Mobile App Development (iOS & Android)',
     description: 'Offline-first, native-performance iOS and Android applications built with React Native. Real-time sync, push notifications, and store deployment.',
     deliverables: ['Cross-platform React Native iOS & Android', 'Offline-first SQLite local caching', 'Background sync engine with retry logic', 'Native biometrics authentication', 'App Store & Google Play submission'],
     category: 'Mobile Engineering',
+    targetAudience: [
+      'Brands wanting a direct-to-consumer mobile app on the App Store and Google Play',
+      'Educational institutions delivering interactive learning modules to students',
+      'Logistics and service companies equipping field staff with offline-capable tools',
+      'Startups launching proprietary mobile products and subscription platforms'
+    ],
+    problemsSolved: [
+      { problem: 'Clunky hybrid web wrappers that feel laggy and unresponsive to native gestures', solution: 'Clean React Native / Flutter architecture utilizing native platform UI components and GPU acceleration.' },
+      { problem: 'App failure and blank screens when users enter low-connectivity or offline areas', solution: 'Offline-first local SQLite caching with automatic background synchronization once connectivity resumes.' },
+      { problem: 'Difficult and delayed App Store & Google Play approval processes', solution: 'End-to-end management of app store compliance, developer certificates, and automated store release pipelines.' }
+    ],
+    process: [
+      { step: '01', title: 'Mobile UX & Prototype Design', detail: 'We design tactile mobile layouts, thumb-friendly navigation, and interactive prototypes in Figma.' },
+      { step: '02', title: 'Cross-Platform Engineering', detail: 'We develop the application using React Native or Flutter with strict TypeScript safety and state management.' },
+      { step: '03', title: 'Hardware & Cloud Integration', detail: 'We hook up camera scanners, biometric authentication, GPS location, push notifications, and backend APIs.' },
+      { step: '04', title: 'App Store Publishing & Hypercare', detail: 'We prepare screenshots, privacy policies, and app store listings, ensuring swift Google Play and App Store approval.' }
+    ],
+    faqs: [
+      { question: 'Do you build separate apps for iOS and Android or one codebase?', answer: 'We use modern cross-platform frameworks (React Native / Flutter) that share up to 90% of the codebase across both iOS and Android, cutting development costs and time in half while maintaining native speed.' },
+      { question: 'Can the app function without an internet connection?', answer: 'Yes. We engineer offline-first architectures using local encrypted databases that store data locally and sync automatically when the device reconnects.' }
+    ]
   },
   {
     id: 'web-engineering',
-    title: 'Bespoke Web Platforms & SaaS Engineering – Brandex Digital',
+    title: 'Bespoke Web Platforms & SaaS Product Engineering | Brandex',
+    shortTitle: 'Web & SaaS Engineering',
     h1: 'Bespoke Web Platforms & SaaS Engineering',
     description: 'Sub-second React & Next.js web applications, client portals, and SaaS platforms engineered for high throughput and search discoverability.',
     deliverables: ['Sub-second Next.js / React edge rendering', 'Liquid Glass responsive design system', 'Role-based student & client portals', 'Automated recurring billing (Razorpay/Stripe)', 'Lighthouse 95+ Core Web Vitals'],
     category: 'Web Platforms',
+    targetAudience: [
+      'High-growth startups and established brands requiring lightning-fast web experiences',
+      'Educational institutions needing interactive student learning platforms and video portals',
+      'B2B service firms looking to elevate conversion rates from organic search',
+      'SaaS founders building multi-tenant web applications with recurring billing'
+    ],
+    problemsSolved: [
+      { problem: 'Slow page loads (>3s) causing high bounce rates and lost conversions', solution: 'Bespoke code-split assets, edge caching, and optimized media delivery guaranteeing sub-second LCP performance.' },
+      { problem: 'Heavy WordPress / Shopify monthly plugin subscriptions and security vulnerabilities', solution: 'Clean, zero-template architecture where you own 100% of the source code with zero ongoing platform licensing fees.' },
+      { problem: 'Inadequate SEO foundations and missing semantic search markup', solution: 'Built-in server-side metadata, clean canonical routing, and Schema.org JSON-LD structured data for Google, Bing, and AI search engines.' }
+    ],
+    process: [
+      { step: '01', title: 'Technical Discovery & Architecture', detail: 'We audit user journeys, data requirements, and deployment goals to define the database schema and component hierarchy.' },
+      { step: '02', title: 'UI/UX & Interactive Design', detail: 'We craft bespoke layouts focusing on clear spatial hierarchy, tactile action buttons, and fast checkout flows.' },
+      { step: '03', title: 'Full-Stack Implementation', detail: 'Strict TypeScript hygiene, zero-bloat styling, automated webhook hooks, and edge CDN routing configured for global speed.' },
+      { step: '04', title: 'QA & Hypercare Handover', detail: 'Rigorous cross-device validation, Core Web Vitals testing, full Git repository IP handover, and 30-day post-launch support.' }
+    ],
+    faqs: [
+      { question: 'Do I own the source code after launch?', answer: 'Yes, 100%. Upon project completion and handover, full IP rights, source repositories, and deployment configurations are completely transferred to your business.' },
+      { question: 'Can we integrate our existing CRM or booking tools?', answer: 'Absolutely. We build custom API bridges and webhooks to synchronize your web platform with your existing tools seamlessly.' }
+    ]
   },
   {
     id: 'cloud-devops-infrastructure',
-    title: 'Cloud Infrastructure, DevOps & Edge Deployment – Brandex Digital',
+    title: 'Cloud DevOps Infrastructure, CI/CD & Edge Deployment Services | Brandex',
+    shortTitle: 'Cloud & DevOps',
     h1: 'Cloud Infrastructure, DevOps & Edge Deployment',
     description: 'Automated CI/CD pipelines, container orchestration, edge CDN caching, and automated multi-region backup systems with 99.9% uptime SLAs.',
     deliverables: ['Terraform / Pulumi Infrastructure-as-Code', 'Automated GitHub Actions CI/CD pipelines', 'Cloudflare Enterprise edge caching & DDoS', 'Daily automated multi-region snapshots', 'Zero-downtime rolling deployments'],
     category: 'Cloud & DevOps',
+    targetAudience: [
+      'Companies experiencing server crashes, slow response times, or unexpected downtime',
+      'Development teams spending hours on manual, risky production deployments',
+      'Businesses storing sensitive client data requiring security hardening and backups',
+      'Founders scaling from local prototypes to production multi-server architectures'
+    ],
+    problemsSolved: [
+      { problem: 'Unplanned server crashes during marketing campaigns and traffic spikes', solution: 'Auto-scaling server clusters and edge CDN caching that handle traffic spikes without breaking a sweat.' },
+      { problem: 'Manual, fragile deployments leading to bugs and production downtime', solution: 'Automated Git CI/CD pipelines with preview environments, test suites, and zero-downtime rollback capabilities.' },
+      { problem: 'Catastrophic data loss risk due to missing or untested database backups', solution: 'Automated daily and point-in-time database backups stored across geographically redundant cloud regions.' },
+      { problem: 'Vulnerability to DDoS attacks, credential leaks, and data breaches', solution: 'Cloudflare enterprise firewall, SSL encryption, rate limiting, and environment variable vault security.' }
+    ],
+    process: [
+      { step: '01', title: 'Infrastructure & Security Audit', detail: 'We inspect your existing server configurations, DNS setup, database queries, and vulnerability vectors.' },
+      { step: '02', title: 'Architecture & Container Blueprint', detail: 'We design containerized microservices, VPC networks, managed database clusters, and edge CDN rules.' },
+      { step: '03', title: 'Automated CI/CD Pipeline Build', detail: 'We configure GitHub Actions, automated Docker builds, staging environments, and production rollouts.' },
+      { step: '04', title: 'Monitoring, Alerting & Runbooks', detail: 'We set up 24/7 uptime monitors, alert bots on Slack/WhatsApp, and deliver step-by-step disaster recovery runbooks.' }
+    ],
+    faqs: [
+      { question: 'Can you help migrate our existing servers without downtime?', answer: 'Yes. We execute zero-downtime database and DNS migrations with parallel staging and instant cutover.' },
+      { question: 'Which cloud providers do you work with?', answer: 'We specialize in AWS, Google Cloud Platform (GCP), Cloudflare, Vercel, Supabase, and DigitalOcean, matching the right provider to your budget and technical needs.' }
+    ]
   },
   {
     id: 'api-database-systems',
-    title: 'Custom APIs, Microservices & Database Architecture – Brandex Digital',
+    title: 'Custom APIs, Microservices & PostgreSQL Database Architecture | Brandex',
+    shortTitle: 'APIs & Data Pipelines',
     h1: 'Custom APIs, Microservices & Database Architecture',
     description: 'High-throughput REST and GraphQL APIs, PostgreSQL optimization, Redis caching layers, and legacy system integrations built for sub-50ms latency.',
     deliverables: ['Sub-50ms REST and GraphQL API microservices', 'PostgreSQL schema design & query indexing', 'Redis distributed caching & session store', 'Legacy software & ERP bridge adapters', 'Interactive OpenAPI / Swagger documentation'],
     category: 'Backend & Data',
+    targetAudience: [
+      'Companies with legacy accounting or ERP software that cannot talk to modern web tools',
+      'Businesses integrating multiple third-party APIs (payment gateways, WhatsApp, logistics)',
+      'Organizations with slow, unindexed databases causing application lag',
+      'Startups needing scalable backend microservices to support web and mobile apps'
+    ],
+    problemsSolved: [
+      { problem: 'Legacy software operating in silos, requiring manual data re-entry', solution: 'Custom middleware bridges that automatically extract, transform, and sync data between legacy and modern systems.' },
+      { problem: 'Sluggish database queries slowing down customer-facing applications', solution: 'Database indexing, query optimization, connection pooling, and Redis caching layers delivering <50ms queries.' },
+      { problem: 'Disjointed API documentation making it impossible for internal teams to integrate', solution: 'Interactive OpenAPI / Swagger documentation with interactive code snippets and sandbox environments.' }
+    ],
+    process: [
+      { step: '01', title: 'API Schema & Data Contract Design', detail: 'We define clean data models, authentication methods (OAuth2, JWT, API Keys), and endpoint specifications.' },
+      { step: '02', title: 'Microservice Engineering', detail: 'We build modular, stateless API handlers in TypeScript or Python with strict request validation.' },
+      { step: '03', title: 'Database Indexing & Caching Layer', detail: 'We configure connection pools, write optimized SQL queries, and implement Redis pub/sub for real-time events.' },
+      { step: '04', title: 'Stress Testing & Documentation', detail: 'We conduct automated load testing, document endpoints with Swagger/Postman, and deploy with telemetry.' }
+    ],
+    faqs: [
+      { question: 'Can you connect our custom database to WhatsApp or external services?', answer: 'Yes. We build secure webhook listeners and API gateways that trigger external events instantly whenever database records change.' },
+      { question: 'How do you handle API security and rate limiting?', answer: 'We employ cryptographically signed JWT tokens, IP rate limiting, input sanitization, and encrypted environment variable vaults.' }
+    ]
   },
 ];
 
@@ -252,18 +388,6 @@ const staticPages = [
     description: 'Interactive classroom player engineered for touch smartboards in schools across Karnataka.',
   },
   {
-    route: 'education/login',
-    title: 'Educator Portal Login – Brandex Digital Education',
-    h1: 'Educator & Institutional Login Portal',
-    description: 'Secure educator portal login for Karnataka State Board curriculum materials and lesson sequencing.',
-  },
-  {
-    route: 'education/admin',
-    title: 'Institutional Administration – Brandex Digital Education',
-    h1: 'School & Institutional Curriculum Administration',
-    description: 'Institutional metrics, classroom deployment status, and teacher licensing administration.',
-  },
-  {
     route: 'community/events',
     title: 'Tech Meetups, Hackathons & Architecture Sprints – Brandex Community',
     h1: 'Bangalore Tech Meetups & Architecture Sprints',
@@ -417,12 +541,11 @@ function renderPage(routePath, title, description, h1, extraBodyHtml = '', custo
     `.trim();
   }
 
-  // For crawlers/bots without JavaScript, inject rich semantic crawlable content in <noscript>
-  // This keeps <div id="root"></div> completely empty for React, eliminating any UI glitch or flash of different content!
+  // For crawlers/bots without JavaScript, inject rich semantic crawlable content directly into <div id="root">
   if (initialContent) {
     html = html.replace(
-      '<div id="root"></div>',
-      `<div id="root"></div>\n    <noscript id="seo-prerender">\n      ${initialContent}\n    </noscript>`
+      /<div id="root">[\s\S]*?<\/div>/i,
+      `<div id="root">\n      ${initialContent}\n    </div>`
     );
   }
 
@@ -458,7 +581,7 @@ console.log('[Prerender] Generating static HTML for indexable routes...');
 const homeHeroHtml = `
   <section style="padding: 3.5rem 1.5rem; max-width: 1200px; margin: 0 auto; text-align: center;">
     <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 9999px; background: rgba(79,71,230,0.08); border: 1px solid rgba(79,71,230,0.2); color: #4f47e6; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: 0.06em;">
-      Bespoke Digital Systems &amp; Cloud Architecture
+      Bespoke Digital Systems &amp; Cloud Architecture • Bangalore, India
     </div>
     <h1 style="font-size: clamp(2.2rem, 5vw, 3.75rem); font-weight: 900; color: #0f172a; line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 1.5rem;">
       Engineering Digital Systems<br />
@@ -481,7 +604,7 @@ const homeHeroHtml = `
 
 renderPage(
   '',
-  'Brandex | Next-Gen Digital Solutions for Ambitious Brands',
+  'Brandex — High-Performance Web Development, Custom Cloud Software & Digital Systems in Bangalore',
   'Brandex engineers digital systems built for real scale. Custom web applications, enterprise cloud architecture, automated workflows, and digital learning infrastructure in Bangalore, India.',
   'Engineering Digital Systems Built For Real Scale',
   homeHeroHtml
@@ -492,30 +615,106 @@ staticPages.forEach(p => {
   renderPage(p.route, p.title, p.description, p.h1, p.contentHtml || '');
 });
 
-// 2. Render 6 Service Pages
+// 2. Render 6 Service Pages with Full Rich Sections & FAQ Schema
 servicesData.forEach(s => {
   const serviceHtml = `
-    <section>
-      <h2>Architecture &amp; Deliverables</h2>
-      <ul>
-        ${s.deliverables.map(d => `<li>${d}</li>`).join('')}
-      </ul>
-      <p><a href="/contact">Schedule a Technical Architecture Diagnostic for ${s.h1}</a></p>
-    </section>
+    <article>
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem;">
+          What operational bottlenecks does this ${s.shortTitle || s.h1} solve?
+        </h2>
+        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+          ${(s.problemsSolved || []).map(p => `
+            <li style="padding: 1rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; background: #ffffff;">
+              <strong style="color: #991b1b;">Problem:</strong> ${p.problem}<br/>
+              <strong style="color: #1e293b;">Brandex Solution:</strong> ${p.solution}
+            </li>
+          `).join('')}
+        </ul>
+      </section>
+
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem;">
+          Who is this ${s.shortTitle || s.h1} service engineered for?
+        </h2>
+        <ul style="padding-left: 1.5rem; line-height: 1.8; color: #475569;">
+          ${(s.targetAudience || []).map(a => `<li>${a}</li>`).join('')}
+        </ul>
+      </section>
+
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem;">
+          What concrete deliverables do you receive with this build?
+        </h2>
+        <ul style="padding-left: 1.5rem; line-height: 1.8; color: #475569;">
+          ${s.deliverables.map(d => `<li>${d}</li>`).join('')}
+        </ul>
+      </section>
+
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem;">
+          How does Brandex execute the 4-step engineering process?
+        </h2>
+        <ol style="padding-left: 1.5rem; line-height: 1.8; color: #475569;">
+          ${(s.process || []).map(pr => `<li><strong>${pr.title}:</strong> ${pr.detail}</li>`).join('')}
+        </ol>
+      </section>
+
+      <section style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem;">
+          Frequently asked questions about ${s.shortTitle || s.h1}
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          ${(s.faqs || []).map(f => `
+            <details open style="padding: 1rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; background: #ffffff;">
+              <summary style="font-weight: 700; color: #0f172a; cursor: pointer;">${f.question}</summary>
+              <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #475569; line-height: 1.5;">${f.answer}</p>
+            </details>
+          `).join('')}
+        </div>
+      </section>
+
+      <p><a href="/contact" style="display: inline-block; padding: 0.75rem 1.5rem; background: #4f47e6; color: #ffffff; font-weight: 700; border-radius: 0.5rem; text-decoration: none;">Schedule a Technical Diagnostic for ${s.h1}</a></p>
+    </article>
   `;
 
   const serviceSchema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": `${CANONICAL_ORIGIN}/services/${s.id}#service`,
-    "name": s.h1,
-    "serviceType": s.category,
-    "description": s.description,
-    "provider": {
-      "@type": "Organization",
-      "name": "Brandex",
-      "url": CANONICAL_ORIGIN
-    }
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": `${CANONICAL_ORIGIN}/services/${s.id}#service`,
+        "name": s.h1,
+        "serviceType": s.category,
+        "description": s.description,
+        "provider": {
+          "@type": "Organization",
+          "name": "Brandex",
+          "url": CANONICAL_ORIGIN
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${CANONICAL_ORIGIN}/services/${s.id}#faq`,
+        "mainEntity": (s.faqs || []).map(f => ({
+          "@type": "Question",
+          "name": f.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": f.answer
+          }
+        }))
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${CANONICAL_ORIGIN}/services/${s.id}#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": `${CANONICAL_ORIGIN}/` },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": `${CANONICAL_ORIGIN}/services` },
+          { "@type": "ListItem", "position": 3, "name": s.h1, "item": `${CANONICAL_ORIGIN}/services/${s.id}` }
+        ]
+      }
+    ]
   };
 
   renderPage(`services/${s.id}`, s.title, s.description, s.h1, serviceHtml, serviceSchema);
@@ -578,6 +777,101 @@ blogPostsData.forEach(b => {
   renderPage(`blog/${b.id}`, `${b.title} | Brandex Engineering`, b.description, b.title, blogHtml, blogSchema);
 });
 
+// Extract Community stories, events, and trainings from mockData
+const mockDataPath = path.resolve(rootDir, 'src/community/data/mockData.ts');
+const mockDataContent = fs.readFileSync(mockDataPath, 'utf-8');
+
+function extractCommunityItems(pattern) {
+  const matches = [...mockDataContent.matchAll(pattern)];
+  return matches.map(m => ({
+    id: m[1],
+    title: m[2],
+    slug: m[3],
+    excerpt: m[4] ? m[4].replace(/\\n/g, ' ').replace(/"/g, '&quot;') : 'Brandex ecosystem initiative and engineering case study.'
+  }));
+}
+
+const storiesData = extractCommunityItems(/id:\s*'(sto-[^']+)',[\s\S]*?title:\s*['"]([^'"]+)['"],[\s\S]*?slug:\s*['"]([^'"]+)['"],[\s\S]*?excerpt:\s*['"]([^'"]+)['"]/g);
+const eventsData = extractCommunityItems(/id:\s*'(evt-[^']+)',[\s\S]*?title:\s*['"]([^'"]+)['"],[\s\S]*?slug:\s*['"]([^'"]+)['"],[\s\S]*?shortDescription:\s*['"]([^'"]+)['"]/g);
+const trainingsData = extractCommunityItems(/id:\s*'(tp-[^']+)',[\s\S]*?title:\s*['"]([^'"]+)['"],[\s\S]*?slug:\s*['"]([^'"]+)['"],[\s\S]*?shortDescription:\s*['"]([^'"]+)['"]/g);
+
+// Render 28 Stories
+storiesData.forEach(st => {
+  const storyHtml = `
+    <article>
+      <h2>Story Summary</h2>
+      <p>${st.excerpt}</p>
+      <p><a href="/stories">Back to All Stories</a></p>
+    </article>
+  `;
+  const storySchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${CANONICAL_ORIGIN}/stories/${st.slug}#article`,
+    "headline": st.title,
+    "description": st.excerpt,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Brandex",
+      "url": CANONICAL_ORIGIN
+    }
+  };
+  // Render canonical /stories/${slug}
+  renderPage(`stories/${st.slug}`, `${st.title} | Brandex Stories`, st.excerpt, st.title, storyHtml, storySchema);
+  // Render alias /community/stories/${slug} with canonical link pointing to /stories/${slug}
+  renderPage(`community/stories/${st.slug}`, `${st.title} | Brandex Stories`, st.excerpt, st.title, storyHtml, storySchema, `${CANONICAL_ORIGIN}/stories/${st.slug}`);
+});
+
+// Render 3 Events
+eventsData.forEach(ev => {
+  const eventHtml = `
+    <article>
+      <h2>Event Details</h2>
+      <p>${ev.excerpt}</p>
+      <p><a href="/events">Back to All Events</a></p>
+    </article>
+  `;
+  const eventSchema = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "@id": `${CANONICAL_ORIGIN}/events/${ev.slug}#event`,
+    "name": ev.title,
+    "description": ev.excerpt,
+    "organizer": {
+      "@type": "Organization",
+      "name": "Brandex",
+      "url": CANONICAL_ORIGIN
+    }
+  };
+  renderPage(`events/${ev.slug}`, `${ev.title} | Brandex Events`, ev.excerpt, ev.title, eventHtml, eventSchema);
+  renderPage(`community/events/${ev.slug}`, `${ev.title} | Brandex Events`, ev.excerpt, ev.title, eventHtml, eventSchema, `${CANONICAL_ORIGIN}/events/${ev.slug}`);
+});
+
+// Render 2 Training Programs
+trainingsData.forEach(tr => {
+  const trainHtml = `
+    <article>
+      <h2>Training Overview</h2>
+      <p>${tr.excerpt}</p>
+      <p><a href="/training">Back to Training Programs</a></p>
+    </article>
+  `;
+  const trainSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "@id": `${CANONICAL_ORIGIN}/training/${tr.slug}#course`,
+    "name": tr.title,
+    "description": tr.excerpt,
+    "provider": {
+      "@type": "Organization",
+      "name": "Brandex",
+      "url": CANONICAL_ORIGIN
+    }
+  };
+  renderPage(`training/${tr.slug}`, `${tr.title} | Brandex Training`, tr.excerpt, tr.title, trainHtml, trainSchema);
+  renderPage(`community/training/${tr.slug}`, `${tr.title} | Brandex Training`, tr.excerpt, tr.title, trainHtml, trainSchema, `${CANONICAL_ORIGIN}/training/${tr.slug}`);
+});
+
 // 5. Render Convenience Alias Routes (pointing canonical to primary parent route)
 const aliasRoutes = [
   { route: 'contact-us', parent: `${CANONICAL_ORIGIN}/contact`, title: 'Contact Brandex | Direct Founder Diagnostic' },
@@ -587,10 +881,10 @@ const aliasRoutes = [
   { route: 'sathvik-shetty', parent: `${CANONICAL_ORIGIN}/sathvik`, title: 'Sathvik Nagesh — Product Design | Brandex' },
   { route: 'founders/pavan', parent: `${CANONICAL_ORIGIN}/pavan-kumar`, title: 'Pavan Kumar — Systems Architect | Brandex' },
   { route: 'founders/sathvik', parent: `${CANONICAL_ORIGIN}/sathvik`, title: 'Sathvik Nagesh — Product Design | Brandex' },
-  { route: 'events', parent: `${CANONICAL_ORIGIN}/community/events`, title: 'Engineering Meetups & Hackathons | Brandex' },
+  { route: 'community/events', parent: `${CANONICAL_ORIGIN}/events`, title: 'Engineering Meetups & Hackathons | Brandex' },
+  { route: 'community/training', parent: `${CANONICAL_ORIGIN}/training`, title: 'Technical Sprints & Apprenticeships | Brandex' },
+  { route: 'community/stories', parent: `${CANONICAL_ORIGIN}/stories`, title: 'Member Stories & Engineering Case Studies | Brandex' },
   { route: 'projects', parent: `${CANONICAL_ORIGIN}/community/projects`, title: 'Open Source Projects & Architecture Labs | Brandex' },
-  { route: 'training', parent: `${CANONICAL_ORIGIN}/community/training`, title: 'Technical Sprints & Apprenticeships | Brandex' },
-  { route: 'stories', parent: `${CANONICAL_ORIGIN}/community/stories`, title: 'Member Stories & Engineering Case Studies | Brandex' },
   { route: 'ambassador', parent: `${CANONICAL_ORIGIN}/community/ambassador`, title: 'Brand Ambassador Guild | Brandex' },
   { route: 'status', parent: `${CANONICAL_ORIGIN}/community/status`, title: 'Application Status Tracker | Brandex' },
   { route: 'careers', parent: `${CANONICAL_ORIGIN}/community/careers`, title: 'Engineering & Design Careers | Brandex' },
@@ -602,8 +896,6 @@ const aliasRoutes = [
   { route: 'work-with-us', parent: `${CANONICAL_ORIGIN}/community/work-with-us`, title: 'Work With Us | Brandex' },
   { route: 'explore', parent: `${CANONICAL_ORIGIN}/education/explore`, title: 'Curriculum Explorer | Brandex' },
   { route: 'classroom', parent: `${CANONICAL_ORIGIN}/education/classroom`, title: 'Classroom Player | Brandex' },
-  { route: 'login', parent: `${CANONICAL_ORIGIN}/education/login`, title: 'Educator Login | Brandex' },
-  { route: 'admin', parent: `${CANONICAL_ORIGIN}/education/admin`, title: 'Educator Admin | Brandex' },
   { route: 'case-studies/srushti', parent: `${CANONICAL_ORIGIN}/case-studies/srushti-publications`, title: 'Srushti Publications E-Commerce Case Study | Brandex' },
   { route: 'srushti-publications', parent: `${CANONICAL_ORIGIN}/case-studies/srushti-publications`, title: 'Srushti Publications E-Commerce Case Study | Brandex' },
   { route: 'srushti', parent: `${CANONICAL_ORIGIN}/case-studies/srushti-publications`, title: 'Srushti Publications E-Commerce Case Study | Brandex' },

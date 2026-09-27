@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useAuth } from "@/education/lib/auth-context";
 import { BrandexLogo } from "@/education/lib/BrandexLogo";
 import { Lock, User, ArrowRight, ShieldCheck, CheckCircle2, KeyRound } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -45,6 +46,11 @@ function LoginForm() {
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[#FAFAFC] relative overflow-hidden py-12 px-4 selection:bg-indigo-500 selection:text-white">
+      <SEOHead
+        title="Educator Portal Login | Brandex Digital"
+        description="Secure educator and faculty access authentication portal."
+        noindex={true}
+      />
       
       {/* Background ambient lighting */}
       <div className="absolute top-0 right-0 w-[600px] h-[500px] bg-gradient-to-bl from-indigo-100/60 to-transparent rounded-full blur-3xl -z-10" />

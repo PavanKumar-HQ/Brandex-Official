@@ -53,10 +53,10 @@ export default function ServicesPreview() {
             What We Do
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-3 leading-[1.15] tracking-tight">
-            Everything you need to <span className="text-[#4f47e6]">grow online</span>
+            What digital systems does Brandex engineer to <span className="text-[#4f47e6]">scale your business?</span>
           </h2>
           <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
-            From custom websites and web apps to workflow automation, we build software that works for you.
+            Brandex engineers bespoke web platforms, custom CRM & ERP systems, mobile applications, and automated cloud workflows that eliminate operational bottlenecks.
           </p>
         </motion.div>
 

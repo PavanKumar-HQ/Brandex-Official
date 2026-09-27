@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import { RegistrationProvider } from "@/community/contexts/RegistrationContext";
@@ -89,19 +89,19 @@ function AnimatedRoutes() {
             <Route path="/solutions" element={<Solutions />} />
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
-            <Route path="/case-studies/srushti" element={<CaseStudyDetail forcedId="srushti-publications" />} />
-            <Route path="/srushti-publications" element={<CaseStudyDetail forcedId="srushti-publications" />} />
-            <Route path="/srushti" element={<CaseStudyDetail forcedId="srushti-publications" />} />
-            <Route path="/projects/srushti-publications" element={<CaseStudyDetail forcedId="srushti-publications" />} />
-            <Route path="/vignan-public-school" element={<CaseStudyDetail forcedId="vignan-public-school" />} />
-            <Route path="/vignan-tutorials" element={<CaseStudyDetail forcedId="vignan-tutorials" />} />
-            <Route path="/geniusphere" element={<CaseStudyDetail forcedId="geniusphere" />} />
-            <Route path="/propquant-ai" element={<CaseStudyDetail forcedId="propquant-ai" />} />
+            <Route path="/case-studies/srushti" element={<Navigate to="/case-studies/srushti-publications" replace />} />
+            <Route path="/srushti-publications" element={<Navigate to="/case-studies/srushti-publications" replace />} />
+            <Route path="/srushti" element={<Navigate to="/case-studies/srushti-publications" replace />} />
+            <Route path="/projects/srushti-publications" element={<Navigate to="/case-studies/srushti-publications" replace />} />
+            <Route path="/vignan-public-school" element={<Navigate to="/case-studies/vignan-public-school" replace />} />
+            <Route path="/vignan-tutorials" element={<Navigate to="/case-studies/vignan-tutorials" replace />} />
+            <Route path="/geniusphere" element={<Navigate to="/case-studies/geniusphere" replace />} />
+            <Route path="/propquant-ai" element={<Navigate to="/case-studies/propquant-ai" replace />} />
             <Route path="/about" element={<About />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPostPage />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/contact-us" element={<Navigate to="/contact" replace />} />
             <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             
@@ -128,11 +128,11 @@ function AnimatedRoutes() {
 
             {/* Community Sub-Portal Routes */}
             <Route path="/community" element={<CommunityHome />} />
-            <Route path="/community/events" element={<EventsPage />} />
+            <Route path="/community/events" element={<Navigate to="/events" replace />} />
             <Route path="/community/events/:slug" element={<EventDetailPage />} />
-            <Route path="/community/training" element={<TrainingPage />} />
+            <Route path="/community/training" element={<Navigate to="/training" replace />} />
             <Route path="/community/training/:slug" element={<TrainingDetailPage />} />
-            <Route path="/community/stories" element={<StoriesPage />} />
+            <Route path="/community/stories" element={<Navigate to="/stories" replace />} />
             <Route path="/community/stories/:slug" element={<StoryDetailPage />} />
             <Route path="/community/ambassador" element={<BrandAmbassadorPage />} />
             <Route path="/community/status" element={<ApplicationStatusPage />} />
@@ -144,36 +144,40 @@ function AnimatedRoutes() {
             <Route path="/community/guidelines" element={<CommunityGuidelinesPage />} />
             <Route path="/community/work-with-us" element={<WorkWithBrandexPage />} />
             <Route path="/community/overview" element={<CommunityPage />} />
-            <Route path="/community/privacy" element={<PrivacyPolicyPage />} />
-            <Route path="/community/terms" element={<TermsPage />} />
+            <Route path="/community/privacy" element={<Navigate to="/privacy-policy" replace />} />
+            <Route path="/community/terms" element={<Navigate to="/terms-and-conditions" replace />} />
             <Route path="/community/college-partnership" element={<CommunityEducationPage />} />
             <Route path="/community/education-pathways" element={<CommunityEducationPage />} />
-            <Route path="/work-with-us" element={<WorkWithBrandexPage />} />
+            
+            {/* Primary Community Canonical Shortcuts */}
             <Route path="/events" element={<EventsPage />} />
             <Route path="/events/:slug" element={<EventDetailPage />} />
             <Route path="/training" element={<TrainingPage />} />
             <Route path="/training/:slug" element={<TrainingDetailPage />} />
             <Route path="/stories" element={<StoriesPage />} />
             <Route path="/stories/:slug" element={<StoryDetailPage />} />
-            <Route path="/ambassador" element={<BrandAmbassadorPage />} />
-            <Route path="/status" element={<ApplicationStatusPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/careers" element={<CareersPage />} />
-            <Route path="/media" element={<MediaPage />} />
-            <Route path="/media/photos" element={<MediaPage />} />
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/brandex" element={<BrandexHQPage />} />
-            <Route path="/ecosystem" element={<BrandexHQPage />} />
-            <Route path="/privacy" element={<PrivacyPolicyPage />} />
-            <Route path="/terms" element={<TermsPage />} />
+
+            {/* Legacy & Convenience Redirects */}
+            <Route path="/work-with-us" element={<Navigate to="/community/work-with-us" replace />} />
+            <Route path="/ambassador" element={<Navigate to="/community/ambassador" replace />} />
+            <Route path="/status" element={<Navigate to="/community/status" replace />} />
+            <Route path="/projects" element={<Navigate to="/community/projects" replace />} />
+            <Route path="/careers" element={<Navigate to="/community/careers" replace />} />
+            <Route path="/media" element={<Navigate to="/community/media" replace />} />
+            <Route path="/media/photos" element={<Navigate to="/community/media" replace />} />
+            <Route path="/search" element={<Navigate to="/community/search" replace />} />
+            <Route path="/brandex" element={<Navigate to="/community/brandex" replace />} />
+            <Route path="/ecosystem" element={<Navigate to="/community/brandex" replace />} />
+            <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
+            <Route path="/terms" element={<Navigate to="/terms-and-conditions" replace />} />
             
             {/* Founder Direct Slug Routes */}
             <Route path="/pavan-kumar" element={<FounderProfile founderKey="pavan" />} />
-            <Route path="/pavan" element={<FounderProfile founderKey="pavan" />} />
-            <Route path="/founders/pavan" element={<FounderProfile founderKey="pavan" />} />
+            <Route path="/pavan" element={<Navigate to="/pavan-kumar" replace />} />
+            <Route path="/founders/pavan" element={<Navigate to="/pavan-kumar" replace />} />
             <Route path="/sathvik" element={<FounderProfile founderKey="sathvik" />} />
-            <Route path="/sathvik-shetty" element={<FounderProfile founderKey="sathvik" />} />
-            <Route path="/founders/sathvik" element={<FounderProfile founderKey="sathvik" />} />
+            <Route path="/sathvik-shetty" element={<Navigate to="/sathvik" replace />} />
+            <Route path="/founders/sathvik" element={<Navigate to="/sathvik" replace />} />
 
             {/* 404 Catch-all */}
             <Route path="*" element={<NotFound />} />

@@ -5,6 +5,8 @@ import { getStoryBySlug, getStories } from '@/community/repositories/repository'
 import { Story } from '@/community/models/types';
 import { EmptyState } from '@/community/components/ui/EmptyState';
 import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
+import SEOHead from '@/components/SEOHead';
+import { SITE_CONFIG, getCanonicalUrl, getAbsoluteAssetUrl } from '@/config/site';
 
 export const StoryDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -49,6 +51,7 @@ export const StoryDetailPage: React.FC = () => {
   if (!story) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-32 text-center bg-white">
+        <SEOHead title="Story Not Found | Brandex Community" noindex={true} />
         <EmptyState
           title="Story Not Found"
           description="The story you requested does not exist or has been archived."
@@ -77,9 +80,43 @@ export const StoryDetailPage: React.FC = () => {
         avatar: '/brandex-dp.webp'
       };
 
+  const storySchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${getCanonicalUrl(`/stories/${story.slug}`)}#article`,
+        "headline": story.title,
+        "description": story.excerpt || story.content.slice(0, 160),
+        "image": story.coverImage ? getAbsoluteAssetUrl(story.coverImage) : undefined,
+        "datePublished": story.date,
+        "author": {
+          "@type": "Person",
+          "name": authorInfo.name,
+          "jobTitle": authorInfo.role,
+          "url": authorInfo.linkedin
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Brandex",
+          "url": SITE_CONFIG.url
+        }
+      }
+    ]
+  };
+
   return (
     <div className="pb-20 pt-24 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 xl:px-24 bg-white text-slate-900 font-sans">
-      
+      <SEOHead
+        title={`${story.title} | Brandex Stories`}
+        description={story.excerpt || story.content.slice(0, 155)}
+        canonicalUrl={`/stories/${story.slug}`}
+        image={story.coverImage}
+        type="article"
+        publishedTime={story.date}
+        author={authorInfo.name}
+        schema={storySchema}
+      />
       {/* Breadcrumb Navigation */}
       <Breadcrumb items={[{ label: 'Stories', path: '/stories' }, { label: story.title }]} />
 

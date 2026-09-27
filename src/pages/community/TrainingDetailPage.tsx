@@ -7,6 +7,8 @@ import { TrainingProgram } from '@/community/models/types';
 import { EmptyState } from '@/community/components/ui/EmptyState';
 import { TrainingCard } from '@/community/components/cards/TrainingCard';
 import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
+import SEOHead from '@/components/SEOHead';
+import { SITE_CONFIG, getCanonicalUrl, getAbsoluteAssetUrl } from '@/config/site';
 
 export const TrainingDetailPage: React.FC = () => {
   const { openModal } = useRegistration();
@@ -36,6 +38,7 @@ export const TrainingDetailPage: React.FC = () => {
   if (!program) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-32 text-center bg-white">
+        <SEOHead title="Training Program Not Found | Brandex Training" noindex={true} />
         <EmptyState
           title="TRAINING PROGRAM NOT FOUND"
           description="The program slug you requested does not exist or has been archived."
@@ -55,9 +58,37 @@ export const TrainingDetailPage: React.FC = () => {
   const instructorBio = typeof program.instructor === 'object' ? program.instructor.bio : 'Instructor and domain specialist at Brandex.';
   const instructorAvatar = (typeof program.instructor === 'object' && program.instructor.avatar) ? program.instructor.avatar : '/brandex-logo.webp';
 
+  const courseSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Course",
+        "@id": `${getCanonicalUrl(`/training/${program.slug}`)}#course`,
+        "name": program.title,
+        "description": program.shortDescription || program.description,
+        "image": program.coverImage ? getAbsoluteAssetUrl(program.coverImage) : undefined,
+        "provider": {
+          "@type": "Organization",
+          "name": "Brandex",
+          "url": SITE_CONFIG.url
+        },
+        "instructor": {
+          "@type": "Person",
+          "name": instructorName
+        }
+      }
+    ]
+  };
+
   return (
     <div className="space-y-8 sm:space-y-12 pb-16 pt-20 bg-white">
-      
+      <SEOHead
+        title={`${program.title} | Brandex Training`}
+        description={program.shortDescription || program.description.slice(0, 155)}
+        canonicalUrl={`/training/${program.slug}`}
+        image={program.coverImage}
+        schema={courseSchema}
+      />
       {/* Breadcrumb Navigation */}
       <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-24">
         <Breadcrumb items={[{ label: 'Training', path: '/training' }, { label: program.title }]} />

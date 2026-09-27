@@ -36,6 +36,15 @@
       ]
     },
     {
+      "source": "/(education/admin|education/login|admin|login|education/classroom|classroom|education/studio|studio|community/status|status|community/search|search)(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
@@ -67,6 +76,11 @@
   ],
   "redirects": [
     {
+      "source": "/search",
+      "destination": "/community/search",
+      "permanent": true
+    },
+    {
       "source": "/services/custom-applications",
       "destination": "/services/custom-crm-erp",
       "permanent": true
@@ -89,6 +103,96 @@
     {
       "source": "/case-studies/srushti-publication",
       "destination": "/case-studies/srushti-publications",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/srushti",
+      "destination": "/case-studies/srushti-publications",
+      "permanent": true
+    },
+    {
+      "source": "/srushti",
+      "destination": "/case-studies/srushti-publications",
+      "permanent": true
+    },
+    {
+      "source": "/srushti-publications",
+      "destination": "/case-studies/srushti-publications",
+      "permanent": true
+    },
+    {
+      "source": "/projects/srushti-publications",
+      "destination": "/case-studies/srushti-publications",
+      "permanent": true
+    },
+    {
+      "source": "/vignan-public-school",
+      "destination": "/case-studies/vignan-public-school",
+      "permanent": true
+    },
+    {
+      "source": "/vignan-tutorials",
+      "destination": "/case-studies/vignan-tutorials",
+      "permanent": true
+    },
+    {
+      "source": "/geniusphere",
+      "destination": "/case-studies/geniusphere",
+      "permanent": true
+    },
+    {
+      "source": "/propquant-ai",
+      "destination": "/case-studies/propquant-ai",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/community/stories/:slug",
+      "destination": "/stories/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/community/stories",
+      "destination": "/stories",
+      "permanent": true
+    },
+    {
+      "source": "/community/events/:slug",
+      "destination": "/events/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/community/events",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/community/training/:slug",
+      "destination": "/training/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/community/training",
+      "destination": "/training",
+      "permanent": true
+    },
+    {
+      "source": "/explore",
+      "destination": "/education/explore",
+      "permanent": true
+    },
+    {
+      "source": "/explore/:classId",
+      "destination": "/education/explore/:classId",
+      "permanent": true
+    },
+    {
+      "source": "/explore/:classId/:subjectSlug",
+      "destination": "/education/explore/:classId/:subjectSlug",
       "permanent": true
     }
   ],

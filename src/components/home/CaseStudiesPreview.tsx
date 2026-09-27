@@ -39,10 +39,10 @@ export default function CaseStudiesPreview() {
               Our Work
             </div>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-              Real Results for <span className="text-[#4f47e6]">Real Businesses</span>
+              What results does Brandex deliver for <span className="text-[#4f47e6]">real businesses?</span>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base font-normal mt-1.5">
-              Explore websites, software, and platforms we've built for our clients.
+              Brandex delivers verified software results: +340% order growth, sub-18ms edge latency, and 40+ hours saved weekly through automated software pipelines.
             </p>
           </motion.div>
 

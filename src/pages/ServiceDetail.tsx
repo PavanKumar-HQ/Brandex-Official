@@ -186,7 +186,7 @@ export default function ServiceDetail() {
                     Target Profile
                   </span>
                   <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
-                    Who This Service Is For
+                    Who is this {service.shortTitle} service engineered for?
                   </h2>
                 </div>
                 <ul className="space-y-3.5">
@@ -206,7 +206,7 @@ export default function ServiceDetail() {
                     Operational Impact
                   </span>
                   <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
-                    Key Problems We Solve
+                    What operational bottlenecks does this {service.shortTitle} solve?
                   </h2>
                 </div>
                 <div className="space-y-4">
@@ -234,7 +234,7 @@ export default function ServiceDetail() {
                 Execution Methodology
               </span>
               <h2 id="engineering-process" className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Our 4-Step Engineering Process
+                How does Brandex execute the 4-step engineering process?
               </h2>
               <p className="text-xs sm:text-sm text-slate-600">
                 Transparent milestones with direct founder accountability and sub-second SLAs.
@@ -267,7 +267,7 @@ export default function ServiceDetail() {
                 What You Receive
               </span>
               <h2 id="deliverables-heading" className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Concrete Tangible Deliverables
+                What concrete deliverables do you receive with this build?
               </h2>
               <p className="text-xs sm:text-sm text-slate-600">
                 Every deliverable comes with 100% IP handover, zero vendor lock-in, and full architectural documentation.
@@ -387,7 +387,7 @@ export default function ServiceDetail() {
                 Common Inquiries
               </span>
               <h2 id="faq-heading" className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Frequently Asked Questions
+                Frequently asked questions about {service.shortTitle}
               </h2>
               <p className="text-xs sm:text-sm text-slate-600">
                 Direct answers to common technical and engagement questions about this service.
@@ -407,6 +407,7 @@ export default function ServiceDetail() {
                       onClick={() => setOpenFaq(isOpen ? null : idx)}
                       className="w-full text-left p-5 flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-slate-900 hover:text-[#4f47e6] transition-colors"
                       aria-expanded={isOpen}
+                      aria-controls={`service-faq-ans-${idx}`}
                     >
                       <span>{faq.question}</span>
                       <ChevronDown
@@ -415,11 +416,15 @@ export default function ServiceDetail() {
                         }`}
                       />
                     </button>
-                    {isOpen && (
-                      <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 font-normal">
-                        {faq.answer}
-                      </div>
-                    )}
+                    <div
+                      id={`service-faq-ans-${idx}`}
+                      role="region"
+                      className={`px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 font-normal transition-all duration-200 ${
+                        isOpen ? "block opacity-100" : "hidden opacity-0"
+                      }`}
+                    >
+                      {faq.answer}
+                    </div>
                   </div>
                 );
               })}

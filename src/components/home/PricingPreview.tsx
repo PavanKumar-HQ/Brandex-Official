@@ -72,10 +72,10 @@ export default function PricingPreview() {
             Pricing & Plans
           </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-3 tracking-tight">
-            Simple, Transparent <span className="text-[#4f47e6]">Plans</span>
+            How much does custom software engineering cost at <span className="text-[#4f47e6]">Brandex?</span>
           </h2>
           <p className="text-slate-600 text-base sm:text-lg font-normal">
-            Zero hidden costs. You own 100% of your source code and designs. Built for your exact needs.
+            Brandex provides transparent software engineering plans with zero recurring platform tax and 100% full source code ownership.
           </p>
         </motion.div>
 
