@@ -541,11 +541,12 @@ function renderPage(routePath, title, description, h1, extraBodyHtml = '', custo
     `.trim();
   }
 
-  // For crawlers/bots without JavaScript, inject rich semantic crawlable content directly into <div id="root">
-  if (initialContent) {
+  // For crawlers/bots without JavaScript, inject rich semantic crawlable content in <noscript id="seo-prerender">
+  // This keeps <div id="root"></div> completely empty for React, eliminating any UI bleed below the footer!
+  if (initialContent && cleanRoute !== '') {
     html = html.replace(
-      /<div id="root">[\s\S]*?<\/div>/i,
-      `<div id="root">\n      ${initialContent}\n    </div>`
+      /<noscript id="seo-prerender">[\s\S]*?<\/noscript>/i,
+      `<noscript id="seo-prerender">\n      ${initialContent}\n    </noscript>`
     );
   }
 
@@ -940,6 +941,7 @@ notFoundPageHtml = notFoundPageHtml.replace(/<title>[^<]*<\/title>/i, `<title>40
 notFoundPageHtml = notFoundPageHtml.replace(/<meta\s+name="description"[^>]*>/i, `<meta name="description" content="The requested page could not be found. Return to Brandex software engineering and cloud infrastructure." />`);
 notFoundPageHtml = notFoundPageHtml.replace(/<link\s+rel="canonical"[^>]*>/i, `<meta name="robots" content="noindex, nofollow" />`);
 notFoundPageHtml = notFoundPageHtml.replace('<div id="root"></div>', `<div id="root">${notFoundHtml}</div>`);
+notFoundPageHtml = notFoundPageHtml.replace(/<noscript id="seo-prerender">[\s\S]*?<\/noscript>/i, '');
 // Strip SPA script bundle from static 404.html to avoid unnecessary hydration on true 404s
 notFoundPageHtml = notFoundPageHtml.replace(/<script\s+type="module"[^>]*src="\/assets\/[^"]+"[^>]*><\/script>/gi, '');
 fs.writeFileSync(path.resolve(distDir, '404.html'), notFoundPageHtml, 'utf-8');

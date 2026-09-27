@@ -124,19 +124,19 @@ if (parsedJsonLd && parsedJsonLd['@graph']) {
   check('JSON-LD contains FAQPage entity with questions and answers', Boolean(faqPage && faqPage.mainEntity?.length >= 5));
 
   // Check raw HTML crawlability (non-JS bots & AI assistants like Claude, ChatGPT, Perplexity)
-  const rootDiv = doc.querySelector('#root');
-  check('index.html contains rich crawlable content in #root for non-JS bots', Boolean(rootDiv && rootDiv.innerHTML.trim().length > 500));
-  const h1Tag = rootDiv?.querySelector('h1');
-  check('index.html #root contains descriptive H1 heading', Boolean(h1Tag && h1Tag.textContent.includes('Engineering Digital Systems')));
+  const crawlContainer = doc.querySelector('#seo-prerender') || doc.querySelector('#root');
+  check('index.html contains rich crawlable content for non-JS bots', Boolean(crawlContainer && crawlContainer.innerHTML.trim().length > 500));
+  const h1Tag = crawlContainer?.querySelector('h1');
+  check('index.html crawlable content contains descriptive H1 heading', Boolean(h1Tag && h1Tag.textContent.includes('Engineering Digital Systems')));
   
   // Check question-based H2 headings for AI prompt matching
-  const h2Tags = [...(rootDiv?.querySelectorAll('h2') || [])];
+  const h2Tags = [...(crawlContainer?.querySelectorAll('h2') || [])];
   const questionH2s = h2Tags.filter(h => h.textContent.trim().endsWith('?') || h.textContent.includes('?'));
-  check('index.html #root contains question-oriented H2 headings for AI citations', questionH2s.length >= 2, `Found ${questionH2s.length}`);
+  check('index.html contains question-oriented H2 headings for AI citations', questionH2s.length >= 2, `Found ${questionH2s.length}`);
 
   // Parity check: Structured data visible text parity (Google's golden rule)
   if (faqPage && faqPage.mainEntity) {
-    const rawText = rootDiv?.textContent || '';
+    const rawText = crawlContainer?.textContent || '';
     const allQuestionsInDom = faqPage.mainEntity.every(q => rawText.includes(q.name));
     check('All JSON-LD FAQ questions are visibly present in the raw HTML DOM (parity check)', allQuestionsInDom);
   }

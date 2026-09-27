@@ -269,8 +269,9 @@
   </head>
 
   <body class="bg-background text-foreground antialiased selection:bg-indigo-500/20 selection:text-indigo-900">
-    <div id="root">
-      <!-- Semantic Static Fallback for Search Engines & Non-JS AI Crawlers (Replaced seamlessly upon React mount) -->
+    <div id="root"></div>
+    <noscript id="seo-prerender">
+      <!-- Semantic Static Fallback for Search Engines & Non-JS AI Crawlers (Indexed by search crawlers, invisible to JS-enabled users) -->
       <header role="banner" style="padding: 1.5rem 2rem; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto;">
         <div>
           <a href="/" style="font-weight: 800; font-size: 1.35rem; color: #0f172a; text-decoration: none;">BRANDEX</a>
@@ -421,7 +422,7 @@
           </div>
         </div>
       </footer>
-    </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
