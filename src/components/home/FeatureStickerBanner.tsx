@@ -1,0 +1,146 @@
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import {
+  Zap,
+  GraduationCap,
+  ShieldCheck,
+  Users,
+  Globe2,
+  Cpu,
+  ArrowRight,
+  Sparkles,
+  CheckCircle2,
+  Flame,
+} from "lucide-react";
+
+const STICKERS = [
+  {
+    id: "speed",
+    tag: "HIGH SPEED",
+    title: "Instant Page Loads",
+    subtitle: "Fast on Every Device & Network",
+    icon: Zap,
+    badgeColor: "bg-[#0f1e37] text-white",
+    cardBg: "bg-white border-slate-200/90 shadow-2xs",
+    link: "/services",
+  },
+  {
+    id: "edtech",
+    tag: "EDUCATION",
+    title: "Classroom Platform",
+    subtitle: "Karnataka State Syllabus Lessons",
+    icon: GraduationCap,
+    badgeColor: "bg-[#4338ca] text-white",
+    cardBg: "bg-white border-slate-200/90 shadow-2xs",
+    link: "/education",
+  },
+  {
+    id: "ownership",
+    tag: "OWNERSHIP",
+    title: "100% Code Ownership",
+    subtitle: "No Monthly Platform Lock-In",
+    icon: ShieldCheck,
+    badgeColor: "bg-[#0f1e37] text-white",
+    cardBg: "bg-white border-slate-200/90 shadow-2xs",
+    link: "/case-studies",
+  },
+  {
+    id: "community",
+    tag: "COMMUNITY",
+    title: "Bangalore Tech Guild",
+    subtitle: "Workshops & Real-World Projects",
+    icon: Users,
+    badgeColor: "bg-[#4338ca] text-white",
+    cardBg: "bg-white border-slate-200/90 shadow-2xs",
+    link: "/community",
+  },
+  {
+    id: "webgl",
+    tag: "INTERACTIVE",
+    title: "3D Visuals & Motion",
+    subtitle: "Engaging Modern Experiences",
+    icon: Globe2,
+    badgeColor: "bg-[#0f1e37] text-white",
+    cardBg: "bg-white border-slate-200/90 shadow-2xs",
+    link: "/solutions",
+  },
+  {
+    id: "automation",
+    tag: "AUTOMATION",
+    title: "Smart Workflows",
+    subtitle: "Save Hours of Repetitive Tasks",
+    icon: Cpu,
+    badgeColor: "bg-[#4338ca] text-white",
+    cardBg: "bg-white border-slate-200/90 shadow-2xs",
+    link: "/contact",
+  },
+];
+
+export default function FeatureStickerBanner() {
+  return (
+    <section className="py-8 bg-gradient-to-r from-slate-50 via-indigo-50/40 to-slate-50 border-y border-slate-200/80 overflow-hidden relative select-none">
+      {/* Subtle Background Glow */}
+      <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
+
+      {/* Top Banner Header Pill */}
+      <div className="max-w-7xl mx-auto px-4 mb-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-[#4f47e6] animate-pulse" />
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700">
+            Brandex Architectural Superpowers &bull; Live Telemetry
+          </span>
+        </div>
+
+        <Link
+          to="/services"
+          className="text-xs font-bold text-[#4f47e6] hover:underline inline-flex items-center gap-1 group"
+        >
+          <span>Explore All Engineering Standards</span>
+          <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
+        </Link>
+      </div>
+
+      {/* Continuous Marquee Scrolling Sticker Strip */}
+      <div className="relative w-full overflow-hidden group">
+        {/* Edge Fade Masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
+
+        <div className="css-marquee-left flex flex-row flex-nowrap items-center gap-4 sm:gap-6 py-2 w-max">
+          {[...STICKERS, ...STICKERS, ...STICKERS].map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={idx}
+                to={item.link}
+                className={`group/sticker p-4 sm:p-5 rounded-2xl border ${item.cardBg} hover:scale-[1.02] hover:border-indigo-300 transition-all duration-200 flex items-center gap-3.5 shrink-0 cursor-pointer hover:shadow-md`}
+              >
+                <div className={`w-11 h-11 rounded-xl ${item.badgeColor} flex items-center justify-center shadow-xs shrink-0 transition-transform group-hover/sticker:scale-110`}>
+                  <Icon size={20} />
+                </div>
+
+                <div className="space-y-0.5">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[9px] font-mono font-extrabold uppercase tracking-wider text-indigo-700">
+                      {item.tag}
+                    </span>
+                  </div>
+                  <span className="font-display font-bold text-sm text-slate-900 leading-tight group-hover/sticker:text-[#4f47e6] transition-colors block">
+                    {item.title}
+                  </span>
+                  <p className="text-[11px] text-slate-500 font-normal leading-tight">
+                    {item.subtitle}
+                  </p>
+                </div>
+
+                <div className="w-6 h-6 rounded-full bg-slate-100 group-hover/sticker:bg-[#4f47e6] group-hover/sticker:text-white text-slate-400 flex items-center justify-center transition-colors ml-2 shrink-0">
+                  <ArrowRight size={11} />
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}

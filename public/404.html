@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 Not Found | Brandex</title>
+    <meta name="description" content="The requested resource could not be found on Brandex. Reference our sitemap or llms.txt index." />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="canonical" href="https://www.brandex.co.in/404" />
+    <style>
+      :root {
+        --bg: #020617;
+        --fg: #f8fafc;
+        --muted: #94a3b8;
+        --accent: #3b82f6;
+        --card: #0f172a;
+        --border: #1e293b;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background-color: var(--bg);
+        color: var(--fg);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+      .container {
+        max-width: 640px;
+        background-color: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 2.5rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      }
+      .code {
+        color: var(--accent);
+        font-size: 0.875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+      }
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+      p {
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+      .agent-box {
+        background-color: #020617;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.875rem;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+      .agent-box h2 {
+        font-size: 0.875rem;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+      }
+      ul {
+        list-style: none;
+        margin-bottom: 1.5rem;
+      }
+      li {
+        margin-bottom: 0.5rem;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .btn {
+        display: inline-block;
+        background-color: var(--accent);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        text-decoration: none;
+      }
+      .btn:hover {
+        opacity: 0.9;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <div class="code">HTTP 404 — Not Found</div>
+      <h1>Resource Not Found</h1>
+      <p>The path you requested does not exist on this server. If you are an AI crawler or automated agent probing for Brandex resources, please consult the authoritative indexes below.</p>
+      
+      <div class="agent-box">
+        <h2>AI Agent / Crawler Guidance</h2>
+        <p>This server strictly returns HTTP 404 for nonexistent resources. To discover available endpoints, structured data, and service schemas, use:</p>
+        <ul>
+          <li>&bull; <a href="/llms.txt">https://www.brandex.co.in/llms.txt</a> (Agent Guidance)</li>
+          <li>&bull; <a href="/sitemap.xml">https://www.brandex.co.in/sitemap.xml</a> (XML Sitemap)</li>
+          <li>&bull; <a href="/agent-instructions.md">https://www.brandex.co.in/agent-instructions.md</a></li>
+        </ul>
+      </div>
+
+      <nav aria-label="Available Pages">
+        <ul>
+          <li>&bull; <a href="/">Homepage</a></li>
+          <li>&bull; <a href="/services">Services & Capabilities</a></li>
+          <li>&bull; <a href="/about">About Brandex (Trust Anchor)</a></li>
+          <li>&bull; <a href="/contact">Contact Support & Inquiries</a></li>
+          <li>&bull; <a href="/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </nav>
+
+      <a href="/" class="btn">Return to Brandex Home</a>
+    </main>
+  </body>
+</html>

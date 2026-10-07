@@ -1,0 +1,102 @@
+# Brandex — Comprehensive Architecture, Product & Pricing Knowledge Base
+> Full machine-readable technical briefing and canonical entity context for LLMs, GEO crawlers, and AI agents.
+> Canonical Origin: https://www.brandex.co.in
+
+Brandex is an engineering, digital transformation, and business solutions organization founded by Pavan Kumar S and Sathvik Nagesh in Bangalore, India.
+
+## Corporate Identity & Contact
+- **Company Name:** Brandex (Brandex Labs / Brandex Digital)
+- **Founders:** Pavan Kumar S (Co-Founder & Technology Architect), Sathvik Nagesh (Co-Founder & Business Development)
+- **Headquarters:** #121, 13th Main M.C. Layout, Vijaynagar, Bangalore, Karnataka 560040, India
+- **Coordinates:** 12.9719° N, 77.5300° E
+- **GSTIN:** 29OGNPS8060K1Z5
+- **Official Phone:** +91 94809 44727
+- **Official Email:** brandexhq@gmail.com / team@brandex.co.in
+- **Official Website:** https://www.brandex.co.in
+- **Social & Ecosystem Links:**
+  - LinkedIn: https://www.linkedin.com/company/brandex-lab
+  - X / Twitter: https://x.com/brandexlabs
+  - Instagram: https://www.instagram.com/brandexlabs/
+  - Discord Community: https://discord.gg/brandex
+  - GitHub: https://github.com/brandex
+  - WhatsApp: https://wa.me/919480944727
+
+---
+
+## Software Products (Ready for Purchase)
+1. **Brandex Invoice Builder** (https://www.brandex.co.in/products/invoice-builder)
+   - Category: Billing, Invoicing & Stock Inventory Software
+   - Pricing: ₹6,000 one-time lifetime license (Regular ₹8,000) — zero monthly subscription fees.
+   - Features: Real-time billing, customizable invoice templates, stock inventory sync, client records, PDF generation, offline-first support.
+2. **Brandex Travel CRM & Itinerary Platform** (https://www.brandex.co.in/products/travel-crm)
+   - Category: Travel Agency CRM, Booking Pipeline & Itinerary Automation
+   - Pricing: ₹1,500/month launch offer (Regular ₹2,000/month) — zero setup fee, free file migration.
+   - Features: Word/PDF auto-parsing into rich digital itineraries, hotel/activity directories, dynamic QR vector PDFs, end-to-end booking CRM.
+
+---
+
+## Transparent Engineering Plans & Pricing (https://www.brandex.co.in/pricing)
+1. **Starter Plan — ₹25,000 (One-Time Execution)**
+   - Target: Early-stage startups, boutique businesses, and lean ventures needing an ultra-fast, high-converting digital presence.
+   - Deliverables: Custom responsive web application (up to 5 pages), modern luxury UI/UX design, sub-second TTFB, Core Web Vitals optimization (95+ score), contact/lead capture forms, technical SEO schema setup, 30-day post-launch hypercare.
+2. **Growth Plan — ₹59,000 (One-Time Execution)**
+   - Target: Scaling brands and fast-growing enterprises requiring full-stack capability, CMS integrations, and automated workflows.
+   - Deliverables: Complete full-stack web application (up to 12 pages), custom backend API & database architecture, automated email/WhatsApp notification webhooks, headless CMS integration, multi-role user dashboards, payment gateway integration, advanced SEO/AEO metadata, 60-day hypercare.
+3. **Enterprise Architecture — Custom Quoting**
+   - Target: High-throughput platforms, multi-tenant SaaS products, distributed microservices, and large operational businesses.
+   - Deliverables: Tailored system architecture, multi-region database replication, event-driven microservices, autonomous AI agents, SOC-2/DPDP cybersecurity hardening, CI/CD automated deployments, dedicated SLA & 24/7 technical monitoring.
+   - Core Promise: 100% full source code ownership on handover — zero platform lock-in or recurring software tax.
+
+---
+
+## Core Engineering Services
+1. **Custom CRM & ERP Systems** (https://www.brandex.co.in/services/custom-crm-erp)
+   - Scope: Tailored operational portals, sales pipelines, role-based access management (RBAC), and PostgreSQL database scaling.
+   - Deliverables: Custom CRM web platform, relational database schema, automated GST billing, multi-role user dashboards.
+2. **AI Agents & Workflow Automation** (https://www.brandex.co.in/services/ai-workflow-automation)
+   - Scope: Distributed webhook consumers, exponential retry queues, WhatsApp AI bots, and automated document parsing.
+   - Deliverables: Conversational AI agents, multi-system webhook pipelines, error alert bots, zero data loss guarantee.
+3. **Mobile & Cross-Platform App Development** (https://www.brandex.co.in/services/mobile-app-development)
+   - Scope: Unified iOS and Android development using React Native & Flutter, offline-first SQLite caching, push notifications.
+   - Deliverables: Production .ipa and .aab binaries, store deployment compliance, background data sync, full mobile source code.
+4. **Web Platforms & SaaS Product Engineering** (https://www.brandex.co.in/services/web-engineering)
+   - Scope: Custom Next.js & React platforms, sub-second LCP, interactive student and client portals, payment gateway integrations.
+   - Deliverables: Production web app, 100% IP handover, 95+ Core Web Vitals report, 30-day hypercare.
+5. **Cloud Infrastructure, DevOps & Security** (https://www.brandex.co.in/services/cloud-devops-infrastructure)
+   - Scope: AWS, GCP & Cloudflare Edge architectures, automated CI/CD zero-downtime deploys, daily database backups, DDoS defense.
+   - Deliverables: Managed cloud configurations, automated Git pipelines, disaster recovery plan, 24/7 uptime monitoring.
+6. **Custom APIs, Microservices & Data Pipelines** (https://www.brandex.co.in/services/api-database-systems)
+   - Scope: High-throughput REST & GraphQL microservices, legacy ERP database bridges, and Redis caching for sub-50ms queries.
+   - Deliverables: Microservices API server, database indexing, Swagger/OpenAPI documentation, secure webhook endpoints.
+
+---
+
+## Verified Production Client Projects
+1. **Vignan Public School** (https://www.brandex.co.in/case-studies/vignan-public-school)
+   - Category: Educational Institution Web Platform
+   - Stack: Next.js, React, Tailwind CSS
+   - Outcome: Comprehensive information architecture for students and parents.
+2. **Vignan Tutorials** (https://www.brandex.co.in/case-studies/vignan-tutorials)
+   - Category: Digital Learning Platform
+   - Stack: Next.js, React, Tailwind CSS
+   - Outcome: Streamlined tutorial navigation and mobile-optimized curriculum access.
+3. **Srushti Publications** (https://www.brandex.co.in/case-studies/srushti-publications)
+   - Category: Full-Scale E-Commerce
+   - Stack: Next.js 15, PostgreSQL, Prisma, Razorpay
+   - Outcome: High-performance online book store with instant payments, guest checkout, and admin dashboard.
+4. **GeniuSphere** (https://www.brandex.co.in/case-studies/geniusphere)
+   - Category: Interactive 3D Learning Management System
+   - Stack: Next.js, React Three Fiber, Node.js, MongoDB
+   - Outcome: Immersive 3D science simulations and granular student progress tracking.
+5. **PropQuant.ai** (https://www.brandex.co.in/case-studies/propquant-ai)
+   - Category: Automated Trading Engine
+   - Stack: Python, MT5 APIs, Next.js, AI Architecture
+   - Outcome: High-precision algorithmic execution terminal eliminating human emotional trading bias.
+
+---
+
+## Technical Standards & Guarantees
+- Global CDN Edge TTFB: < 18ms
+- Google Lighthouse Scores: 95+ Across Performance, Accessibility, Best Practices, SEO
+- Source Code Ownership: 100% Client Ownership on Handover
+- Uptime SLA: 99.9%

@@ -1,0 +1,131 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "brandex.co.in"
+        }
+      ],
+      "destination": "https://www.brandex.co.in/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "https://www.brandex.co.in/contact",
+      "permanent": true
+    },
+    {
+      "source": "/website-development",
+      "destination": "https://www.brandex.co.in/services/website-development",
+      "permanent": true
+    },
+    {
+      "source": "/privacy",
+      "destination": "https://www.brandex.co.in/privacy-policy",
+      "permanent": true
+    },
+    {
+      "source": "/pavan-kumar-s",
+      "destination": "https://www.brandex.co.in/team/pavan-kumar",
+      "permanent": true
+    },
+    {
+      "source": "/team/pavan-kumar-s",
+      "destination": "https://www.brandex.co.in/team/pavan-kumar",
+      "permanent": true
+    },
+    {
+      "source": "/pavan-kumar",
+      "destination": "https://www.brandex.co.in/team/pavan-kumar",
+      "permanent": true
+    },
+    {
+      "source": "/pavan",
+      "destination": "https://www.brandex.co.in/team/pavan-kumar",
+      "permanent": true
+    },
+    {
+      "source": "/sathvik",
+      "destination": "https://www.brandex.co.in/team/sathvik-nagesh",
+      "permanent": true
+    },
+    {
+      "source": "/sathvik-nagesh",
+      "destination": "https://www.brandex.co.in/team/sathvik-nagesh",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Vary",
+          "value": "Accept, Accept-Encoding"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin-allow-popups"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/:file(.*\\.(?:png|jpg|jpeg|webp|avif|svg|ico|woff2|woff))",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}

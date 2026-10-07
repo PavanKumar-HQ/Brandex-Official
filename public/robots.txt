@@ -1,0 +1,156 @@
+# =============================================================================
+# robots.txt — Brandex (www.brandex.co.in)
+# Fully optimized for Search Engines, AI Crawlers & LLM Assistants (GEO / SEO)
+# =============================================================================
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dist/
+
+# ── SEARCH ENGINES ──────────────────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+User-agent: Google-InspectionTool
+Allow: /
+
+User-agent: Google-Read-Aloud
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# ── AI SEARCH ENGINES & LLM CRAWLERS (ALLOW ALL) ────────────────────────────
+# OpenAI (ChatGPT, SearchGPT & Training)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic (Claude & Claude Web)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google Gemini / Extended
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Meta / LLaMA
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Cohere, Mistral & Amazon AI
+User-agent: cohere-ai
+Allow: /
+
+User-agent: MistralBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Common Crawl & Open Datasets
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+# ── SOCIAL MEDIA PREVIEWS (OG Cards) ────────────────────────────────────────
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Facebot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+User-agent: Pinterest
+Allow: /
+
+# ── AGGRESSIVE SCRAPERS & MALICIOUS BOT BLOCKLIST ───────────────────────────
+User-agent: HTTrack
+Disallow: /
+
+User-agent: webscreenshotbot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# ── SITEMAP & LLMS DIRECTIVES ───────────────────────────────────────────────
+Sitemap: https://www.brandex.co.in/sitemap.xml
+# LLM & AI agent instructions
+# See: https://www.brandex.co.in/llms.txt
+# See: https://www.brandex.co.in/agent-instructions.md

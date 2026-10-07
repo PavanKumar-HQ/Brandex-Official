@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" fill="none">
+  <defs>
+    <linearGradient id="bg_pq" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#050811" />
+      <stop offset="50%" stop-color="#0a101f" />
+      <stop offset="100%" stop-color="#03050a" />
+    </linearGradient>
+    <linearGradient id="pq_emerald" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="pqCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.08)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0.02)" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg_pq)" />
+  <g opacity="0.05" stroke="#ffffff" stroke-width="1">
+    <path d="M0 50h800M0 100h800M0 150h800M0 200h800M0 250h800M0 300h800M0 350h800M0 400h800" />
+    <path d="M50 0v450M100 0v450M150 0v450M200 0v450M250 0v450M300 0v450M350 0v450M400 0v450M450 0v450M500 0v450M550 0v450M600 0v450M650 0v450M700 0v450M750 0v450" />
+  </g>
+
+  <circle cx="690" cy="110" r="160" fill="#10b981" opacity="0.15" filter="blur(60px)" />
+
+  <!-- Browser Chrome Top -->
+  <rect x="24" y="24" width="752" height="402" rx="16" fill="#080e18" stroke="rgba(255,255,255,0.12)" stroke-width="1" />
+  <path d="M24 64h752" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+  <circle cx="44" cy="44" r="5" fill="#f43f5e" />
+  <circle cx="60" cy="44" r="5" fill="#fbbf24" />
+  <circle cx="76" cy="44" r="5" fill="#10b981" />
+
+  <!-- URL Bar -->
+  <rect x="100" y="34" width="380" height="20" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+  <text x="114" y="48" fill="#6ee7b7" font-family="-apple-system, system-ui, sans-serif" font-size="10" font-weight="500">https://www.propquant.ai — Algorithmic Execution Platform</text>
+
+  <!-- Navigation Bar Inside Browser -->
+  <text x="44" y="96" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="800">PropQuant.ai</text>
+  <text x="175" y="95" fill="#34d399" font-family="-apple-system, system-ui, sans-serif" font-size="11" font-weight="600">Low-Latency MT5 Bridge</text>
+  
+  <rect x="600" y="80" width="156" height="24" rx="8" fill="url(#pq_emerald)" />
+  <text x="614" y="96" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="10" font-weight="700">● Live Execution Active</text>
+
+  <!-- Equity Curve Telemetry Chart -->
+  <rect x="44" y="116" width="480" height="286" rx="12" fill="url(#pqCard)" stroke="rgba(16,185,129,0.2)" stroke-width="1" />
+  <text x="64" y="146" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="14" font-weight="800">Real-Time Strategy Equity Curve</text>
+  <text x="64" y="166" fill="#94a3b8" font-family="-apple-system, system-ui, sans-serif" font-size="10">Sub-millisecond signal dispatcher &bull; Zero emotional slippage</text>
+
+  <!-- Simulated Glowing Trading Line Chart -->
+  <path d="M64 340 Q 140 310, 200 270 T 320 220 T 420 180 T 500 150" fill="none" stroke="#10b981" stroke-width="3" />
+  <circle cx="500" cy="150" r="5" fill="#34d399" />
+  
+  <g opacity="0.1" stroke="#ffffff" stroke-dasharray="2,2">
+    <path d="M64 200h440M64 260h440M64 320h440" />
+  </g>
+  <text x="64" y="380" fill="#34d399" font-family="-apple-system, system-ui, sans-serif" font-size="11" font-weight="700">Sharpe Ratio: 2.84 &bull; Max Drawdown: 4.2% &bull; MT5 Direct Sync</text>
+
+  <!-- Sidebar: Metrics & Risk Controls -->
+  <rect x="540" y="116" width="216" height="286" rx="12" fill="url(#pqCard)" stroke="rgba(16,185,129,0.3)" stroke-width="1" />
+  <text x="560" y="146" fill="#34d399" font-family="-apple-system, system-ui, sans-serif" font-size="11" font-weight="800">SYSTEM TELEMETRY</text>
+  
+  <text x="560" y="180" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="22" font-weight="900">&lt; 1.2ms</text>
+  <text x="560" y="198" fill="#94a3b8" font-family="-apple-system, system-ui, sans-serif" font-size="10">Order Dispatch Latency</text>
+
+  <text x="560" y="236" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="22" font-weight="900">100%</text>
+  <text x="560" y="254" fill="#94a3b8" font-family="-apple-system, system-ui, sans-serif" font-size="10">Automated Risk Guard</text>
+
+  <rect x="560" y="280" width="176" height="32" rx="6" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.4)" stroke-width="1" />
+  <text x="572" y="300" fill="#34d399" font-family="-apple-system, system-ui, sans-serif" font-size="10" font-weight="700">✓ Kill-Switch Guarded</text>
+
+  <rect x="560" y="324" width="176" height="32" rx="6" fill="#059669" />
+  <text x="574" y="344" fill="#ffffff" font-family="-apple-system, system-ui, sans-serif" font-size="10" font-weight="700">MT5 Broker Bridge OK</text>
+</svg>

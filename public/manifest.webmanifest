@@ -1,0 +1,24 @@
+{
+  "name": "Brandex Digital Systems",
+  "short_name": "Brandex",
+  "description": "Next-Gen Web Platforms, Microservices, and Business Automation Systems",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080417",
+  "theme_color": "#4f47e6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo_nobg.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo_nobg.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

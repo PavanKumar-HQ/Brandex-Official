@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Brandex",
+  "alternateName": ["Brandex Labs", "Brandex Digital"],
+  "description": "End-to-end Technology, Digital Transformation, Business Solutions and Infrastructure Company.",
+  "url": "https://www.brandex.co.in",
+  "provider": {
+    "name": "Brandex",
+    "email": "brandexhq@gmail.com",
+    "telephone": "+91-9480944727",
+    "address": {
+      "streetAddress": "#121, 13th Main M.C. Layout, Vijaynagar",
+      "addressLocality": "Bangalore",
+      "addressRegion": "Karnataka",
+      "postalCode": "560040",
+      "addressCountry": "IN"
+    }
+  },
+  "capabilities": [
+    "custom-software-development",
+    "web-application-development",
+    "business-automation",
+    "ai-agent-integration",
+    "cybersecurity-auditing",
+    "cloud-infrastructure"
+  ],
+  "agentInstructions": "https://www.brandex.co.in/agent-instructions.md",
+  "llmsTxt": "https://www.brandex.co.in/llms.txt",
+  "sitemap": "https://www.brandex.co.in/sitemap.xml",
+  "trustAnchors": {
+    "about": "https://www.brandex.co.in/about",
+    "contact": "https://www.brandex.co.in/contact",
+    "privacy": "https://www.brandex.co.in/privacy-policy",
+    "terms": "https://www.brandex.co.in/terms-and-conditions"
+  },
+  "protocols": {
+    "acceptMarkdown": true
+  }
+}
