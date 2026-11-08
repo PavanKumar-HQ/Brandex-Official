@@ -75,7 +75,7 @@ export const CommunityPage: React.FC = () => {
                   Official Channel
                 </span>
                 <span className="text-xs font-bold text-emerald-800">
-                  1,400+ Members
+                  Direct Broadcast Channel
                 </span>
               </div>
               <h3 className="font-display font-bold text-2xl text-slate-900">
@@ -96,19 +96,19 @@ export const CommunityPage: React.FC = () => {
                 <span>Join WhatsApp Group</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
-              <span className="text-[11px] text-slate-500 text-center sm:text-left">Moderated & Spam-Free</span>
+              <span className="text-[11px] text-slate-500 text-center sm:text-left">Moderated &amp; Spam-Free</span>
             </div>
           </div>
 
           {/* Discord Card */}
-          <div className="bg-gradient-to-br from-indigo-50 to-slate-50 border border-indigo-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm relative overflow-hidden flex flex-col justify-between">
+          <div className="bg-gradient-to-br from-violet-50 to-slate-50 border border-violet-200 rounded-2xl p-6 sm:p-8 space-y-4 shadow-sm relative overflow-hidden flex flex-col justify-between">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-100/80 px-2.5 py-0.5 rounded-full">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-violet-700 bg-violet-100/80 px-2.5 py-0.5 rounded-full">
                   Developer Server
                 </span>
-                <span className="text-xs font-bold text-indigo-800">
-                  2,850+ Online
+                <span className="text-xs font-bold text-violet-800">
+                  Open Builder Guild
                 </span>
               </div>
               <h3 className="font-display font-bold text-2xl text-slate-900">

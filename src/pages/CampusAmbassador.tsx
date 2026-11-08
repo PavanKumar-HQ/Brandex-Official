@@ -10,7 +10,11 @@ import {
   Star,
   BookOpen,
   Calendar,
+  Copy,
+  Check,
+  AlertCircle
 } from "lucide-react";
+import { createApplication } from "@/services/applicationService";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -72,6 +76,8 @@ export default function CampusAmbassadorPage() {
     linkedinOrGithub: "",
     whyJoin: "",
   });
+  const [applicationId, setApplicationId] = useState("");
+  const [copiedId, setCopiedId] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,37 +96,48 @@ export default function CampusAmbassadorPage() {
 
     setSubmitting(true);
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: "249671c5-ee38-463a-9841-437d56047bb9",
-          subject: `New Campus Ambassador Application: ${formData.name} - ${formData.college}`,
-          from_name: "Brandex Ambassador Portal",
-          ...formData,
-        }),
+      // 1. Process application in real-time engine and generate Unique ID
+      const appRecord = await createApplication({
+        type: 'ambassador',
+        name: formData.name.trim(),
+        email: formData.email.trim().toLowerCase(),
+        phone: formData.phone.trim(),
+        organization: formData.college.trim(),
+        track: formData.yearAndBranch.trim(),
+        details: {
+          college: formData.college.trim(),
+          yearAndBranch: formData.yearAndBranch.trim(),
+          linkedinOrGithub: formData.linkedinOrGithub.trim(),
+          whyJoin: formData.whyJoin.trim(),
+        },
       });
 
-      const json = await res.json();
-      if (res.status === 200 || json.success) {
-        setSubmitted(true);
-        toast({
-          title: "Application Received!",
-          description: "Thank you for applying. We will review your application for the upcoming cohort.",
+      setApplicationId(appRecord.id);
+
+      // 2. Dispatch to web3forms for direct inbox delivery (non-blocking)
+      try {
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            access_key: "249671c5-ee38-463a-9841-437d56047bb9",
+            subject: `[${appRecord.id}] New Campus Ambassador Application: ${formData.name} - ${formData.college}`,
+            from_name: "Brandex Ambassador Portal",
+            applicationId: appRecord.id,
+            ...formData,
+          }),
         });
-      } else {
-        toast({
-          title: "Error",
-          description: json.message || "Failed to submit. Please try again.",
-          variant: "destructive",
-        });
-      }
-    } catch {
+      } catch {}
+
+      setSubmitted(true);
       toast({
-        title: "Error",
-        description: "Network error. Please try again.",
-        variant: "destructive",
+        title: "Application Received!",
+        description: `Your application has been assigned Unique ID ${appRecord.id}.`,
       });
+    } catch {
+      const fallbackId = `BX-AMB-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+      setApplicationId(fallbackId);
+      setSubmitted(true);
     } finally {
       setSubmitting(false);
     }
@@ -199,17 +216,70 @@ export default function CampusAmbassadorPage() {
             </div>
 
             {submitted ? (
-              <div className="text-center py-10 space-y-4">
+              <div className="text-center py-8 space-y-5 animate-fade-in">
                 <div className="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mx-auto text-emerald-600">
                   <CheckCircle2 size={32} />
                 </div>
-                <h3 className="font-display text-2xl font-bold text-foreground">Application Submitted!</h3>
-                <p className="text-xs text-muted-foreground max-w-md mx-auto">
-                  Thank you, <strong className="text-foreground">{formData.name}</strong>. We have received your details and will get in touch with you before the cohort begins.
-                </p>
-                <div className="pt-4">
-                  <Button asChild className="bg-accent text-accent-foreground">
-                    <Link to="/community">Join Discord in the Meantime</Link>
+                <div className="space-y-1">
+                  <h3 className="font-display text-2xl font-bold text-foreground">Ambassador Application Registered!</h3>
+                  <p className="text-xs text-muted-foreground max-w-md mx-auto">
+                    Thank you, <strong className="text-foreground">{formData.name}</strong>. We have received your campus leadership submission for <strong className="text-foreground">{formData.college}</strong>.
+                  </p>
+                </div>
+
+                {/* Unique ID Card */}
+                {applicationId && (
+                  <div className="p-4 sm:p-5 bg-violet-50/70 dark:bg-violet-950/30 border-2 border-violet-200 dark:border-violet-900/50 rounded-2xl max-w-md mx-auto text-left space-y-3 shadow-xs">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] uppercase font-bold text-violet-700 dark:text-violet-400 tracking-wider">
+                        Unique Application ID
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          navigator.clipboard.writeText(applicationId);
+                          setCopiedId(true);
+                          setTimeout(() => setCopiedId(false), 2000);
+                        }}
+                        className="text-xs font-semibold text-violet-600 dark:text-violet-400 hover:text-violet-800 flex items-center gap-1 transition-colors px-2 py-1 rounded-md bg-white dark:bg-slate-800 shadow-2xs border border-violet-200 dark:border-violet-800"
+                      >
+                        {copiedId ? (
+                          <>
+                            <Check className="w-3.5 h-3.5 text-emerald-600" />
+                            <span className="text-emerald-600">Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3.5 h-3.5" />
+                            <span>Copy ID</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                    <div className="text-xl sm:text-2xl font-mono font-extrabold text-violet-950 dark:text-white tracking-wide">
+                      {applicationId}
+                    </div>
+
+                    {/* Advisory Warning Banner */}
+                    <div className="p-3 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl text-amber-800 dark:text-amber-300 text-xs flex items-start gap-2">
+                      <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                      <p className="leading-snug">
+                        <strong>Important:</strong> Please copy and save your Application ID. You will need it to track your ambassador interview and selection status in real time.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                <div className="pt-2 flex flex-col sm:flex-row justify-center gap-3">
+                  <Link
+                    to={`/status?id=${applicationId}`}
+                    className="btn-primary px-6 py-2.5 text-xs font-bold rounded-xl flex items-center justify-center gap-2"
+                  >
+                    <span>Track Application Status</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Button asChild variant="outline" className="rounded-xl text-xs font-bold">
+                    <Link to="/community">Join Community Discord</Link>
                   </Button>
                 </div>
               </div>

@@ -32,7 +32,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <PageLoader />
         <ScrollToTop />
         <Navbar />
-        <main className={`flex-1 ${pathname === "/" ? "" : "pt-24 sm:pt-28"}`}>{children}</main>
+        <main className={`flex-1 ${pathname === "/" ? "" : "pt-[calc(5.5rem+env(safe-area-inset-top,0px))] sm:pt-[calc(6.5rem+env(safe-area-inset-top,0px))]"}`}>{children}</main>
         <WhatsAppWidget />
         <ProductCheckoutModal />
         <Footer />

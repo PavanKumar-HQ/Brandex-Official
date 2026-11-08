@@ -121,9 +121,9 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
   const currentSectionName = currentLink ? currentLink.name : 'Brandex Platform';
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-white dark:bg-slate-900 text-slate-900 dark:text-white animate-fade-in md:hidden">
-      {/* Top Header Bar */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div className="fixed inset-0 z-50 flex flex-col h-[100dvh] bg-white dark:bg-slate-900 text-slate-900 dark:text-white animate-fade-in md:hidden">
+      {/* Top Header Bar with Safe-Area Inset Top */}
+      <div className="flex items-center justify-between px-5 py-3 sm:py-4 border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md pt-[calc(0.75rem+env(safe-area-inset-top,0px))]">
         <NavLink to="/" onClick={onClose} className="flex items-center gap-3">
           <img src="/brandex-logo.webp" alt="Brandex Logo" className="h-8 w-auto object-contain" />
           <span className="font-display font-bold text-lg text-slate-900 dark:text-white">Brandex</span>
@@ -250,8 +250,8 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
         ))}
       </div>
 
-      {/* Persistent Bottom Action Buttons */}
-      <div className="p-4 border-t border-slate-200 dark:border-slate-800 space-y-2 bg-slate-50/50 dark:bg-slate-900/50">
+      {/* Persistent Bottom Action Buttons with Safe-Area Bottom Inset */}
+      <div className="p-4 border-t border-slate-200 dark:border-slate-800 space-y-2 bg-slate-50/50 dark:bg-slate-900/50 pb-[calc(1rem+env(safe-area-inset-bottom,0px))]">
         <button
           onClick={handleJoinCircle}
           className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-4 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-sm active:scale-98 transition-all"

@@ -5,6 +5,7 @@ import CTABanner from "@/components/home/CTABanner";
 import SEOTags from "@/components/SEOTags";
 import Breadcrumb from "@/components/Breadcrumb";
 import { motion } from "framer-motion";
+import { UNSDGAlignment } from "@/components/common/UNSDGAlignment";
 
 const values = [
   {
@@ -106,21 +107,34 @@ export default function AboutPage() {
           },
           {
             "@type": "Person",
-            "@id": "https://www.brandex.co.in/about#sathvik-nagesh",
+            "@id": "https://www.brandex.co.in/team/sathvik-nagesh#person",
             "name": "Sathvik Nagesh",
+            "url": "https://www.brandex.co.in/team/sathvik-nagesh",
+            "image": "https://www.brandex.co.in/team/sathvik-nagesh.jpg",
             "jobTitle": "Founder & Chief Technology Officer",
             "description": "Sathvik Nagesh leads technology, engineering, and product vision at Brandex.",
             "worksFor": { "@id": "https://www.brandex.co.in/#organization" },
-            "knowsAbout": ["Software Development", "AI Engineering", "Cloud Architecture", "Cybersecurity"]
+            "knowsAbout": ["Software Development", "AI Engineering", "Cloud Architecture", "Cybersecurity"],
+            "sameAs": [
+              "https://www.linkedin.com/in/sathvik-nagesh/",
+              "https://github.com/Sathvik-Nagesh"
+            ]
           },
           {
             "@type": "Person",
-            "@id": "https://www.brandex.co.in/about#pavan-kumar",
-            "name": "Pavan Kumar S",
-            "jobTitle": "Co-founder & Chief Executive Officer",
-            "description": "Pavan Kumar S drives company vision, institutional university partnerships, student ecosystem growth, and executive operations at Brandex.",
+            "@id": "https://www.brandex.co.in/team/pavan-kumar#person",
+            "name": "Pavan Kumar",
+            "url": "https://www.brandex.co.in/team/pavan-kumar",
+            "image": "https://www.brandex.co.in/team/pavan-kumar.webp",
+            "jobTitle": "Co-Founder & Chief Executive Officer",
+            "description": "Pavan Kumar is a co-founder of Brandex, a technology company based in Bengaluru, leading executive strategy, AI literacy, university partnerships, and builder communities.",
+            "disambiguatingDescription": "Co-Founder and Chief Executive Officer (CEO) of Brandex, a technology and AI systems enterprise based in Bengaluru, Karnataka, distinct from the Indian film director Pawan Kumar.",
             "worksFor": { "@id": "https://www.brandex.co.in/#organization" },
-            "knowsAbout": ["Executive Leadership", "Strategic Partnerships", "Technology Education", "Enterprise Operations"]
+            "knowsAbout": ["Executive Leadership", "Strategic Partnerships", "AI Literacy & Workshops", "Technology Education", "Enterprise Operations"],
+            "sameAs": [
+              "https://www.linkedin.com/in/pavankumarofficialcareers/",
+              "https://github.com/Pavan-Kumar-HQ"
+            ]
           }
         ]}
       />
@@ -285,7 +299,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 5. Vision */}
+      {/* 5. United Nations Sustainable Development Goals Alignment */}
+      <section className="py-12 lg:py-16 bg-white border-b border-slate-200/80">
+        <div className="container mx-auto px-6 max-w-[1400px]">
+          <UNSDGAlignment />
+        </div>
+      </section>
+
+      {/* 6. Vision */}
       <section className="py-14 lg:py-18 bg-[#111d36] text-white relative overflow-hidden">
         <div className="container mx-auto px-6 text-center max-w-3xl scroll-reveal">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-slate-300 text-xs font-mono font-bold tracking-wider uppercase mb-4">

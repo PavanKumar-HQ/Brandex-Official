@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import SEOTags from "@/components/SEOTags";
 import Breadcrumb from "@/components/Breadcrumb";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { UNSDGAlignment } from "@/components/common/UNSDGAlignment";
 
 const detailedWorkshops = [
   {
@@ -170,6 +171,11 @@ export default function EducationWorkshopsPage() {
                 </div>
               );
             })}
+          </div>
+
+          {/* United Nations Sustainable Development Goals Alignment */}
+          <div className="mt-14">
+            <UNSDGAlignment />
           </div>
         </div>
       </section>

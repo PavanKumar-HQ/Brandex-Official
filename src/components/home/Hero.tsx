@@ -25,7 +25,7 @@ const headlines = [
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pt-24 pb-8 sm:pt-28 sm:pb-10 lg:pt-32 lg:pb-12 bg-background border-b border-border/40 w-full">
+    <section className="relative overflow-hidden pt-[calc(5.5rem+env(safe-area-inset-top,0px))] pb-8 sm:pt-28 sm:pb-10 lg:pt-32 lg:pb-12 bg-background border-b border-border/40 w-full">
       {/* Background grid */}
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
       
@@ -54,7 +54,7 @@ export default function Hero() {
             {/* Stacked headline */}
             <motion.h1
               variants={item}
-              className="font-display text-4xl sm:text-6xl lg:text-[4.25rem] xl:text-[4.75rem] font-bold leading-[1.08] tracking-tight text-foreground mb-6"
+              className="font-display text-3xl sm:text-5xl lg:text-[4.25rem] xl:text-[4.75rem] font-bold leading-[1.1] tracking-tight text-foreground mb-6 break-words"
             >
               {headlines.map((word, i) => (
                 <span
@@ -68,19 +68,19 @@ export default function Hero() {
 
             <motion.p
               variants={item}
-              className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-10 font-normal"
+              className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-8 sm:mb-10 font-normal"
             >
               Helping businesses build, automate, secure, design, and scale through modern technology solutions.
             </motion.p>
 
-            <motion.div variants={item} className="flex flex-wrap items-center gap-4">
+            <motion.div variants={item} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
               <MagneticWrapper>
                 <Button
                   asChild
                   size="lg"
-                  className="group bg-[#475fd1] hover:bg-[#3b51be] text-white h-13 sm:h-14 px-8 sm:px-10 rounded-full text-base sm:text-lg font-semibold shadow-lg shadow-[#475fd1]/25 hover:shadow-xl hover:shadow-[#475fd1]/35 transition-all duration-300"
+                  className="w-full sm:w-auto group bg-[#475fd1] hover:bg-[#3b51be] text-white h-12 sm:h-14 px-6 sm:px-10 rounded-full text-base sm:text-lg font-semibold shadow-lg shadow-[#475fd1]/25 hover:shadow-xl hover:shadow-[#475fd1]/35 transition-all duration-300 justify-center"
                 >
-                  <Link to="/contact" className="flex items-center gap-2">
+                  <Link to="/contact" className="flex items-center justify-center gap-2">
                     <span>Get Free Consultation</span>
                     <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                   </Link>
@@ -92,7 +92,7 @@ export default function Hero() {
                   asChild
                   variant="outline"
                   size="lg"
-                  className="h-13 sm:h-14 px-8 sm:px-10 rounded-full text-base sm:text-lg font-semibold border-slate-300 hover:border-[#4f47e6]/60 hover:bg-[#4f47e6]/5 text-slate-900 transition-all duration-300 bg-white"
+                  className="w-full sm:w-auto h-12 sm:h-14 px-6 sm:px-10 rounded-full text-base sm:text-lg font-semibold border-slate-300 hover:border-[#4f47e6]/60 hover:bg-[#4f47e6]/5 text-slate-900 transition-all duration-300 bg-white justify-center"
                 >
                   <Link to="/services">Explore Services</Link>
                 </Button>

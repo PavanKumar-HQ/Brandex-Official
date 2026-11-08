@@ -59,7 +59,7 @@ export default function CommunityHome() {
                 An ecosystem for <span className="text-[#4f47e6]">builders, founders & creators</span>.
               </h1>
               <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
-                Connect with 500+ software engineers, product architects, and startup founders in Bangalore and worldwide. Real peer reviews, live meetups, and open-source sprints.
+                Connect with software engineers, product architects, and startup founders in Bangalore and worldwide. Real peer reviews, live meetups, and open-source sprints.
               </p>
             </div>
 
@@ -88,7 +88,7 @@ export default function CommunityHome() {
                   Official WhatsApp Channel
                 </span>
                 <span className="text-xs font-mono font-bold text-emerald-800">
-                  1,400+ Members
+                  Direct Broadcast Channel
                 </span>
               </div>
               <h3 className="font-display font-extrabold text-2xl text-slate-900">
@@ -119,7 +119,7 @@ export default function CommunityHome() {
                   Developer Server
                 </span>
                 <span className="text-xs font-mono font-bold text-[#4f47e6]">
-                  2,850+ Online
+                  Active Builder Lounge
                 </span>
               </div>
               <h3 className="font-display font-extrabold text-2xl text-slate-900">
@@ -181,11 +181,12 @@ export default function CommunityHome() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-[10px] font-mono font-bold text-[#4f47e6] liquid-glass-pill px-2.5 py-0.5 rounded-full">
+                    <span className="text-[10px] font-mono font-bold text-violet-600 liquid-glass-pill px-2.5 py-0.5 rounded-full">
                       {circle.category}
                     </span>
-                    <span className="text-xs font-mono font-bold text-slate-500">
-                      {circle.memberCount || 0} Members
+                    <span className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-violet-700 bg-violet-50 px-2 py-0.5 rounded-full border border-violet-200">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      Active Guild
                     </span>
                   </div>
 
@@ -198,8 +199,8 @@ export default function CommunityHome() {
 
                   <div className="space-y-1.5 pt-3 border-t border-slate-100 text-xs text-slate-600">
                     <div className="flex items-center gap-2">
-                      <Code2 size={13} className="text-[#4f47e6]" />
-                      <span>{circle.activeTopicsCount || 12} Active Repos & Builds</span>
+                      <Code2 size={13} className="text-violet-600" />
+                      <span>Weekly Sprints &amp; Open Source</span>
                     </div>
                   </div>
                 </div>

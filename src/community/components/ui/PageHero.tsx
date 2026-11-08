@@ -21,8 +21,8 @@ export const PageHero: React.FC<PageHeroProps> = ({
   title,
   description,
   widgetTitle = "Brandex.Network",
-  widgetStatLabel = "Active Members",
-  widgetStatValue = "1,204",
+  widgetStatLabel = "Builder Guilds",
+  widgetStatValue = "2026 Season",
   widgetStatusLabel = "System Status",
   widgetStatusText = "All systems operational",
 }) => {

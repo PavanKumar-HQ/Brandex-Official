@@ -24,7 +24,7 @@ const NETWORK_ARCS = [
   { from: 5, to: 6 }, // London -> San Francisco
 ];
 
-export default function PurpleGlobe3D() {
+export default function VioletGlobe3D() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [rotation, setRotation] = useState(1.85); // Initial view angled toward India & Asia
   const isDraggingRef = useRef(false);
@@ -74,7 +74,7 @@ export default function PurpleGlobe3D() {
       ctx.fillStyle = haloGrad;
       ctx.fill();
 
-      // 2. Base Sphere (Deep, elegant midnight cosmic navy/purple)
+      // 2. Base Sphere (Deep, elegant midnight cosmic navy/violet)
       const sphereGrad = ctx.createRadialGradient(
         centerX - radius * 0.35,
         centerY - radius * 0.3,

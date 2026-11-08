@@ -12,7 +12,7 @@ const showcaseItems = [
       nav: ["Home", "About", "Services", "Contact"],
       hero: "Launch Your Brand Online",
       subtitle: "Beautiful, fast websites that convert visitors into customers",
-      stats: [{ label: "Visitors", value: "12.4K" }, { label: "Conversion", value: "4.8%" }, { label: "Bounce", value: "28%" }],
+      stats: [{ label: "Architecture", value: "Edge SSR" }, { label: "Lighthouse", value: "100" }, { label: "Hydration", value: "<50ms" }],
     },
   },
   {

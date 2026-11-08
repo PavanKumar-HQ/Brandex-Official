@@ -69,8 +69,8 @@ export const ImpactStatisticsSection: React.FC = () => {
     <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-24 py-5 sm:py-8">
       <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-8 shadow-sm space-y-5 sm:space-y-8">
         <div className="space-y-1.5 max-w-2xl">
-          <span className="inline-block px-2.5 py-0.5 bg-indigo-50 text-indigo-600 text-[11px] font-semibold rounded-full uppercase tracking-wider">
-            Verified Community Impact
+          <span className="inline-block px-2.5 py-0.5 bg-violet-50 text-violet-600 text-[11px] font-semibold rounded-full uppercase tracking-wider border border-violet-200">
+            Verified Platform Telemetry
           </span>
           <h2 className="text-xl sm:text-3xl font-display font-bold text-slate-900">
             Real Numbers & Verified Outcomes
@@ -83,7 +83,7 @@ export const ImpactStatisticsSection: React.FC = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {stats.map((stat, index) => {
             const icons = [Users, Building2, Calendar, FolderGit2];
-            const colors = ['text-blue-600 bg-blue-50', 'text-purple-600 bg-purple-50', 'text-emerald-600 bg-emerald-50', 'text-orange-600 bg-orange-50'];
+            const colors = ['text-blue-600 bg-blue-50', 'text-violet-600 bg-violet-50', 'text-emerald-600 bg-emerald-50', 'text-orange-600 bg-orange-50'];
             const Icon = icons[index % icons.length];
             const colorClass = colors[index % colors.length];
 

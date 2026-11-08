@@ -234,7 +234,7 @@ export const Home: React.FC = () => {
               </div>
 
               <div className="pt-3 sm:pt-5 flex items-center justify-between border-t border-slate-100 mt-2.5">
-                <span className="text-[10px] sm:text-xs font-bold text-indigo-600 tracking-wider uppercase">15+ Active Circles</span>
+                <span className="text-[10px] sm:text-xs font-bold text-indigo-600 tracking-wider uppercase">Active Domain Circles</span>
                 <span className="inline-flex items-center gap-1 bg-indigo-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl text-xs font-bold hover:bg-indigo-700 transition-colors shadow-2xs">
                   <span>Explore</span>
                   <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -567,15 +567,15 @@ export const Home: React.FC = () => {
                   <div className="w-8 h-8 rounded-full bg-indigo-50 border-2 border-white flex items-center justify-center text-xs font-bold text-indigo-600 shadow-2xs">+</div>
                 </div>
                 <div className="text-xs">
-                  <p className="font-bold text-slate-900">1,200+ Active Builders</p>
+                  <p className="font-bold text-slate-900">Open Builder Community</p>
                   <p className="text-slate-500 text-[11px]">Collaborating on projects</p>
                 </div>
               </div>
 
               <div className="border-t border-slate-100 pt-2.5 flex items-center justify-between text-xs text-slate-600">
                 <div>
-                  <span className="font-bold text-indigo-600 block text-xs sm:text-sm">15+ Circles</span>
-                  <span className="text-[10px] text-slate-500">Active Domains</span>
+                  <span className="font-bold text-indigo-600 block text-xs sm:text-sm">Domain Circles</span>
+                  <span className="text-[10px] text-slate-500">Active Disciplines</span>
                 </div>
                 <div className="border-l border-slate-150 pl-3 flex-1">
                   <span className="font-bold text-indigo-600 block text-xs sm:text-sm">Weekly Labs</span>

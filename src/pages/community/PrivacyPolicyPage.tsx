@@ -69,7 +69,7 @@ export const PrivacyPolicyPage: React.FC = () => {
         {/* Section 2 */}
         <article className="space-y-3">
           <div className="flex items-center gap-3 text-slate-900">
-            <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-violet-50 text-violet-600 flex items-center justify-center shrink-0">
               <Lock className="w-4 h-4" />
             </div>
             <h2 className="text-xl font-display font-bold">2. How We Use Your Information</h2>

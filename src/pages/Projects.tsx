@@ -14,13 +14,18 @@ import {
   FileCheck,
   Tag,
   CreditCard,
-  Briefcase
+  Briefcase,
+  Eye
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import SEOTags from "@/components/SEOTags";
 import Breadcrumb from "@/components/Breadcrumb";
 import { projects } from "@/data/projects";
+import {
+  LiveProjectPreviewModal,
+  PreviewProject
+} from "@/components/common/LiveProjectPreviewModal";
 
 const categories = [
   "All Projects & Products",
@@ -32,6 +37,28 @@ export default function ProjectsPage() {
   useScrollReveal();
   const [activeCategory, setActiveCategory] = useState("All Projects & Products");
   const [searchQuery, setSearchQuery] = useState("");
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewProject, setPreviewProject] = useState<PreviewProject | null>(null);
+
+  const handleOpenPreview = (p: {
+    id: string;
+    title: string;
+    url?: string;
+    description?: string;
+    tech?: string[];
+    category?: string;
+  }) => {
+    if (!p.url) return;
+    setPreviewProject({
+      id: p.id,
+      title: p.title,
+      previewUrl: p.url,
+      description: p.description,
+      tech: p.tech,
+      category: p.category
+    });
+    setPreviewOpen(true);
+  };
 
   const filteredProjects = useMemo(() => {
     return projects.filter((project) => {
@@ -156,6 +183,14 @@ export default function ProjectsPage() {
                       <Link to="/products/travel-crm">
                         View Travel CRM &amp; Pricing (₹1,500/mo) <ArrowRight size={15} className="ml-1.5" />
                       </Link>
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => handleOpenPreview(featuredProduct)}
+                      className="border-accent/40 text-accent hover:bg-accent/10 font-semibold"
+                    >
+                      <Eye size={15} className="mr-1.5" /> Live Interactive Preview
                     </Button>
                     <Button asChild variant="outline" className="border-border hover:bg-secondary">
                       <Link to="/products/invoice-builder">
@@ -351,25 +386,44 @@ export default function ProjectsPage() {
                       ))}
                     </div>
 
-                    <div className="pt-3 border-t border-border/50 flex items-center justify-between">
+                    <div className="pt-3 border-t border-border/50 flex items-center justify-between gap-2">
                       <span
-                        className="text-xs font-bold text-foreground group-hover:text-accent flex items-center gap-1 transition-colors"
+                        className="text-xs font-bold text-foreground group-hover:text-accent flex items-center gap-1 transition-colors truncate"
                       >
-                        {isProduct ? "View Product & Pricing" : "Explore Case Study"} <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+                        {isProduct ? "View Product & Pricing" : "Explore Case Study"} <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform shrink-0" />
                       </span>
 
-                      {project.url && project.url.startsWith("http") && (
-                        <span
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            window.open(project.url, "_blank", "noopener,noreferrer");
-                          }}
-                          className="text-[11px] text-muted-foreground hover:text-foreground flex items-center gap-1 hover:underline cursor-pointer z-20"
-                        >
-                          Live Site <ExternalLink size={11} />
-                        </span>
-                      )}
+                      <div className="flex items-center gap-2 shrink-0">
+                        {project.url && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleOpenPreview(project);
+                            }}
+                            className="text-[11px] font-semibold text-accent hover:text-accent/90 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-accent/10 hover:bg-accent/20 transition-all cursor-pointer z-20 shadow-2xs"
+                            title="Open live interactive preview with device switcher"
+                          >
+                            <Eye size={12} />
+                            <span>Live Preview</span>
+                          </button>
+                        )}
+
+                        {project.url && project.url.startsWith("http") && (
+                          <span
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              window.open(project.url, "_blank", "noopener,noreferrer");
+                            }}
+                            className="text-[11px] text-muted-foreground hover:text-foreground flex items-center gap-1 hover:underline cursor-pointer z-20"
+                            title="Open direct in new tab"
+                          >
+                            <ExternalLink size={11} />
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -395,6 +449,13 @@ export default function ProjectsPage() {
           )}
         </div>
       </section>
+
+      {/* ── Live Project Interactive Preview Modal ── */}
+      <LiveProjectPreviewModal
+        isOpen={previewOpen}
+        onClose={() => setPreviewOpen(false)}
+        project={previewProject}
+      />
     </article>
   );
 }

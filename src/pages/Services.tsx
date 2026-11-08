@@ -294,7 +294,7 @@ export default function ServicesPage() {
         <div className="absolute inset-0 bg-grid opacity-15 pointer-events-none" />
         <div className="absolute top-10 right-10 w-96 h-96 bg-accent/[0.04] rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <Breadcrumb items={[{ label: "Services & Capabilities" }]} className="mb-6" />
 
           <div className="max-w-4xl space-y-4">
@@ -355,13 +355,13 @@ export default function ServicesPage() {
       </section>
 
       {/* Interactive Category Selector + Deep Detail Explorer */}
-      <section className="py-12 lg:py-18 bg-background relative">
-        <div className="container mx-auto px-6">
+      <section className="py-12 lg:py-18 bg-background relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-10">
             {/* Left Column: Category Navigation Tabs */}
             <div className="lg:col-span-4 space-y-2">
-              <div className="p-3 bg-card border-2 border-border/80 rounded-2xl space-y-1.5 max-h-[720px] overflow-y-auto shadow-sm">
-                <div className="px-3 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground border-b border-border/60 mb-1 flex items-center justify-between">
+              <div className="p-2 sm:p-3 bg-card border-2 border-border/80 rounded-2xl space-y-1.5 max-h-[720px] overflow-y-auto shadow-sm">
+                <div className="px-2.5 sm:px-3 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground border-b border-border/60 mb-1 flex items-center justify-between">
                   <span>Select Capability</span>
                   <span className="text-[11px] font-semibold text-accent">{filteredCategories.length} available</span>
                 </div>
@@ -373,24 +373,24 @@ export default function ServicesPage() {
                     <button
                       key={cat.id}
                       onClick={() => setActiveCategory(cat.id)}
-                      className={`w-full flex items-center justify-between p-3 rounded-xl text-left transition-all duration-200 cursor-pointer border ${isCurrent
+                      className={`w-full flex items-center justify-between p-2.5 sm:p-3 rounded-xl text-left transition-all duration-200 cursor-pointer border ${isCurrent
                           ? "bg-accent/15 text-accent border-accent/40 shadow-sm"
                           : "border-transparent text-foreground/80 hover:bg-secondary hover:text-foreground"
                         }`}
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
                         <div
-                          className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
                           style={{ background: `${cat.color}20` }}
                         >
                           <Icon size={16} style={{ color: cat.color }} />
                         </div>
-                        <div>
-                          <span className="text-xs font-bold block">{cat.title}</span>
-                          <span className="text-[10px] text-muted-foreground line-clamp-1">{cat.tagline}</span>
+                        <div className="min-w-0 flex-1">
+                          <span className="text-xs font-bold block truncate">{cat.title}</span>
+                          <span className="text-[10px] text-muted-foreground line-clamp-1 truncate">{cat.tagline}</span>
                         </div>
                       </div>
-                      <ChevronRight size={14} className={isCurrent ? "text-accent" : "text-muted-foreground/40"} />
+                      <ChevronRight size={14} className={`shrink-0 ml-1.5 ${isCurrent ? "text-accent" : "text-muted-foreground/40"}`} />
                     </button>
                   );
                 })}
@@ -517,8 +517,8 @@ export default function ServicesPage() {
 
 
       {/* Why Single-Partner Advantage */}
-      <section className="py-16 lg:py-20 bg-background">
-        <div className="container mx-auto px-6">
+      <section className="py-16 lg:py-20 bg-background overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-14 scroll-reveal">
             <h2 className="font-display text-3xl lg:text-4xl font-bold text-foreground mb-3">
               The Single-Partner Advantage

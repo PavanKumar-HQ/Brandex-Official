@@ -45,8 +45,8 @@ export const TrainingPage: React.FC = () => {
         title="Brandex Cohort Training Catalog"
         description="Rigorous, cohort-based courses engineered to take you from foundational concepts to production-grade engineering mastery across AI, Cybersecurity, Systems, and Swiss UX."
         widgetTitle="Training.Cohorts"
-        widgetStatLabel="Active Students"
-        widgetStatValue="450+"
+        widgetStatLabel="Curriculum Tracks"
+        widgetStatValue="4 Core Domains"
         widgetStatusLabel="Enrollment Status"
         widgetStatusText="Accepting Applications"
       />

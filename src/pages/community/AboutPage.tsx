@@ -51,8 +51,8 @@ export const AboutPage: React.FC = () => {
         title="Building the Digital Home of an Emerging Technology Community."
         description="Brandex was founded to eliminate the disconnect between static computer science education and the rapid pace of real-world technology engineering."
         widgetTitle="Brandex.Network"
-        widgetStatLabel="Active Members"
-        widgetStatValue="1,204"
+        widgetStatLabel="Builder Guilds"
+        widgetStatValue="2026 Season"
         widgetStatusLabel="System Status"
         widgetStatusText="All systems operational"
         gradientFrom="text-indigo-600"
@@ -102,48 +102,60 @@ export const AboutPage: React.FC = () => {
           </div>
 
           <div className="space-y-6">
-            {/* Founder 1: Pavan Kumar.S */}
+            {/* Founder 1: Pavan Kumar */}
             <div className="bg-white rounded-2xl p-6 border border-slate-200/60 shadow-sm flex gap-6 hover:border-indigo-200 hover:shadow-md transition-all duration-300 relative overflow-hidden group">
-              <div className="w-16 h-16 rounded-xl overflow-hidden shadow shrink-0 bg-slate-900 flex items-center justify-center">
-                <img src="/brandex-dp.webp" alt="Pavan Kumar.S" className="w-full h-full object-cover p-1.5 bg-slate-950" />
-              </div>
+              <NavLink to="/team/pavan-kumar" className="w-16 h-16 rounded-xl overflow-hidden shadow shrink-0 bg-slate-900 flex items-center justify-center block">
+                <img src="/team/pavan-kumar.webp" alt="Pavan Kumar" className="w-full h-full object-cover" />
+              </NavLink>
               <div className="space-y-2 flex-1">
                 <div>
-                  <h4 className="font-display font-bold text-lg text-slate-900 leading-tight">Pavan Kumar.S</h4>
+                  <NavLink to="/team/pavan-kumar" className="hover:text-indigo-600 transition-colors">
+                    <h4 className="font-display font-bold text-lg text-slate-900 leading-tight">Pavan Kumar</h4>
+                  </NavLink>
                   <p className="text-xs text-indigo-600 font-bold uppercase tracking-wider mt-0.5">Co-Founder & CEO</p>
                 </div>
                 <p className="text-slate-600 text-xs leading-relaxed">
-                  Driving Brandex's platform engineering, agentic AI research, and scalable community architecture. Devoted to avoiding academic barriers.
+                  Driving Brandex's executive vision, AI literacy workshops, and institutional university partnerships across Karnataka.
                 </p>
-                <div className="flex gap-2.5 text-slate-500 pt-1">
+                <div className="flex items-center gap-3 text-slate-500 pt-1">
+                  <NavLink to="/team/pavan-kumar" className="text-xs font-semibold text-indigo-600 hover:underline inline-flex items-center gap-1">
+                    View Profile <ArrowRight className="w-3 h-3" />
+                  </NavLink>
+                  <span className="text-slate-300">|</span>
                   <a href="https://www.linkedin.com/in/pavankumarofficialcareers/" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-indigo-600 transition-colors" title="LinkedIn Profile">
                     <Linkedin className="w-4 h-4" />
                   </a>
-                  <a href="mailto:contact@brandex.co.in" className="text-slate-400 hover:text-indigo-600 transition-colors" title="Email Founder">
+                  <a href="mailto:pavankumar@brandex.co.in" className="text-slate-400 hover:text-indigo-600 transition-colors" title="Email Founder">
                     <Mail className="w-4 h-4" />
                   </a>
                 </div>
               </div>
             </div>
 
-            {/* Founder 2: Sathvik.N */}
+            {/* Founder 2: Sathvik Nagesh */}
             <div className="bg-white rounded-2xl p-6 border border-slate-200/60 shadow-sm flex gap-6 hover:border-indigo-200 hover:shadow-md transition-all duration-300 relative overflow-hidden group">
-              <div className="w-16 h-16 rounded-xl overflow-hidden shadow shrink-0 bg-slate-900 flex items-center justify-center">
-                <img src="/brandex-dp.webp" alt="Sathvik.N" className="w-full h-full object-cover p-1.5 bg-slate-950" />
-              </div>
+              <NavLink to="/team/sathvik-nagesh" className="w-16 h-16 rounded-xl overflow-hidden shadow shrink-0 bg-slate-900 flex items-center justify-center block">
+                <img src="/team/sathvik-nagesh.jpg" alt="Sathvik Nagesh" className="w-full h-full object-cover" />
+              </NavLink>
               <div className="space-y-2 flex-1">
                 <div>
-                  <h4 className="font-display font-bold text-lg text-slate-900 leading-tight">Sathvik.N</h4>
+                  <NavLink to="/team/sathvik-nagesh" className="hover:text-indigo-600 transition-colors">
+                    <h4 className="font-display font-bold text-lg text-slate-900 leading-tight">Sathvik Nagesh</h4>
+                  </NavLink>
                   <p className="text-xs text-indigo-600 font-bold uppercase tracking-wider mt-0.5">Founder & CTO</p>
                 </div>
                 <p className="text-slate-600 text-xs leading-relaxed">
-                  Pioneering school technology education initiatives, institutional partnerships, and Geniusphere workshop series.
+                  Leading software architecture, zero-trust cybersecurity engineering, and autonomous AI agents in production.
                 </p>
-                <div className="flex gap-2.5 text-slate-500 pt-1">
+                <div className="flex items-center gap-3 text-slate-500 pt-1">
+                  <NavLink to="/team/sathvik-nagesh" className="text-xs font-semibold text-indigo-600 hover:underline inline-flex items-center gap-1">
+                    View Profile <ArrowRight className="w-3 h-3" />
+                  </NavLink>
+                  <span className="text-slate-300">|</span>
                   <a href="https://www.linkedin.com/in/sathvik-nagesh/" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-indigo-600 transition-colors" title="LinkedIn Profile">
                     <Linkedin className="w-4 h-4" />
                   </a>
-                  <a href="mailto:contact@brandex.co.in" className="text-slate-400 hover:text-indigo-600 transition-colors" title="Email Founder">
+                  <a href="mailto:sathvik@brandex.co.in" className="text-slate-400 hover:text-indigo-600 transition-colors" title="Email Founder">
                     <Mail className="w-4 h-4" />
                   </a>
                 </div>

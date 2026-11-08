@@ -19,9 +19,20 @@ const pages = [
 
         <h2>Founders & Leadership Team</h2>
         <ul>
-          <li><strong>Sathvik Nagesh</strong> — Founder & Chief Technology Officer (CTO). Leads software architecture, AI agent research, and enterprise infrastructure engineering.</li>
-          <li><strong>Pavan Kumar S</strong> — Co-founder & Chief Executive Officer (CEO). Leads company vision, institutional education, university partnerships, and business scaling.</li>
+          <li><strong>Sathvik Nagesh</strong> — Founder & Chief Technology Officer (CTO). Leads software architecture, AI agent research, and enterprise infrastructure engineering. (<a href="/team/sathvik-nagesh">Profile</a>)</li>
+          <li><strong>Pavan Kumar</strong> — Co-Founder & Chief Executive Officer (CEO). Leads company vision, institutional university partnerships, Geniusphere AI literacy workshops, and builder community operations. (<a href="/team/pavan-kumar">Profile</a>)</li>
         </ul>
+
+        <h2>United Nations Sustainable Development Goals (SDG) Alignment</h2>
+        <p>Brandex supports the United Nations 2030 Agenda for Sustainable Development, aligning its software engineering, educational programs, and community initiatives with:</p>
+        <ul>
+          <li><strong>SDG 4: Quality Education</strong> (Target 4.4, 4.7) — Hands-on AI literacy, prompt engineering, and collegiate coding workshops.</li>
+          <li><strong>SDG 8: Decent Work & Economic Growth</strong> (Target 8.2, 8.6) — Campus Ambassador leadership, student developer mentorship, and builder incubation.</li>
+          <li><strong>SDG 9: Industry, Innovation & Infrastructure</strong> (Target 9.5, 9.c) — High-performance enterprise software systems and open-source developer tooling.</li>
+          <li><strong>SDG 10: Reduced Inequalities</strong> (Target 10.2) — Democratizing frontier technology education in tier-2 and tier-3 colleges across Karnataka.</li>
+          <li><strong>SDG 17: Partnerships for the Goals</strong> (Target 17.16, 17.17) — Academic, school, and builder community partnerships.</li>
+        </ul>
+        <p><small>Compliance Disclaimer: Brandex supports the Sustainable Development Goals. The content of this website has not been approved by the United Nations and does not reflect the official views of the United Nations.</small></p>
 
         <h2>Why Ambitious Brands Choose Brandex</h2>
         <ul>
@@ -756,24 +767,26 @@ const pages = [
     h1: 'Sathvik Nagesh — Founder & Chief Technology Officer',
     content: `
       <article>
+        <img src="/team/sathvik-nagesh.jpg" alt="Sathvik Nagesh, Founder & CTO of Brandex" width="400" height="500" />
         <h2>About Sathvik Nagesh</h2>
         <p>Sathvik Nagesh is the Founder and Chief Technology Officer at Brandex. With a deep background in full-stack software engineering, distributed systems, and modern web architectures, Sathvik oversees technical strategy, code quality, and engineering execution across all Brandex products and client engagements.</p>
         <h2>Core Technical Competencies</h2>
         <p>Full-Stack Web Engineering (React, Next.js, TypeScript, Node.js), Distributed Systems & Cloud Architecture (AWS, GCP, Supabase, Edge), Autonomous AI Agents & Contextual LLM Workflows, Core Web Vitals Optimization, Technical SEO, and Zero-Trust Cybersecurity.</p>
-        <h2>Direct Contact</h2>
-        <p>Email: <a href="mailto:sathvik@brandex.co.in">sathvik@brandex.co.in</a> | Headquarters: Bangalore, India.</p>
+        <h2>Direct Contact & Verified Channels</h2>
+        <p>Email: <a href="mailto:sathvik@brandex.co.in">sathvik@brandex.co.in</a> | LinkedIn: <a href="https://www.linkedin.com/in/sathvik-nagesh/">sathvik-nagesh</a> | GitHub: <a href="https://github.com/Sathvik-Nagesh">Sathvik-Nagesh</a> | Headquarters: Bangalore, India.</p>
       </article>
     `
   },
   {
     path: 'team/pavan-kumar',
-    title: 'Pavan Kumar — Co-Founder at Brandex',
-    description: 'Pavan Kumar is a co-founder of Brandex, a technology company based in Bengaluru, working across software, AI literacy, and university education initiatives.',
+    title: 'Pavan Kumar — Co-Founder & CEO | Brandex',
+    description: 'Pavan Kumar is a co-founder and CEO of Brandex, a technology and AI engineering enterprise based in Bengaluru. Leading executive strategy, AI literacy, and university partnerships.',
     h1: 'Pavan Kumar — Co-Founder & Chief Executive Officer',
     content: `
       <article>
+        <img src="/team/pavan-kumar.webp" alt="Pavan Kumar, Co-Founder & CEO of Brandex" width="400" height="500" />
         <h2>About Pavan Kumar</h2>
-        <p>Pavan Kumar is a co-founder of Brandex, a technology company based in Bengaluru. As Co-Founder and Chief Executive Officer (CEO), Pavan directs enterprise strategy, institutional university partnerships, Geniusphere AI literacy workshops, and builder community ecosystems.</p>
+        <p>Pavan Kumar is a co-founder and Chief Executive Officer (CEO) of Brandex, a technology and AI systems enterprise based in Bengaluru, Karnataka. Pavan directs enterprise strategy, institutional university partnerships, Geniusphere AI literacy workshops, and builder community ecosystems.</p>
         <h2>Core Executive & Technology Competencies</h2>
         <p>Executive Leadership & Strategy, AI Literacy & Technology Workshops, Geniusphere Educational Programs, Campus Ambassador Networks, Custom Software Project Governance, and Builder Hackathons.</p>
         <h2>Direct Contact & Entity Channels</h2>

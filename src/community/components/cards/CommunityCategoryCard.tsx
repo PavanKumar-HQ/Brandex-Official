@@ -34,9 +34,9 @@ export const CommunityCategoryCard: React.FC<CommunityCategoryCardProps> = ({ ca
 
       <div className="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between">
         <div className="flex items-center gap-3 text-xs text-slate-500 font-medium">
-          <span className="flex items-center gap-1.5">
-            <Users className="w-3.5 h-3.5 text-indigo-600" />
-            {(category.memberCount || 0).toLocaleString()} Members
+          <span className="flex items-center gap-1.5 text-violet-700 font-semibold bg-violet-50 px-2.5 py-0.5 rounded-full text-[11px] border border-violet-200">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            Active Guild • Open Admissions
           </span>
         </div>
 

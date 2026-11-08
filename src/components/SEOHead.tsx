@@ -29,8 +29,8 @@ const pageMeta: Record<string, { title: string; description: string; keywords?: 
     keywords: "case studies, client portfolio, software transformation, ROI metrics, web design success",
   },
   "/community": {
-    title: "Brandex Community | 500+ Software Builders & Founders Guild",
-    description: "Connect with 500+ software engineers, product architects, and startup founders in Bangalore. Live meetups, peer reviews, and open-source sprints.",
+    title: "Brandex Community | Software Builders & Founders Guild",
+    description: "Connect with software engineers, product architects, and startup founders in Bangalore. Live meetups, peer reviews, and open-source sprints.",
     keywords: "developer community, Bangalore tech meetup, open source contributors, builder guild",
   },
   "/education": {

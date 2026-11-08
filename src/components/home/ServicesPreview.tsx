@@ -47,8 +47,8 @@ export default function ServicesPreview() {
   const headerY = useTransform(scrollYProgress, [0, 0.5], [40, 0]);
 
   return (
-    <section ref={ref} className="py-10 lg:py-14">
-      <div className="container mx-auto px-6">
+    <section ref={ref} className="py-10 lg:py-14 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           className="max-w-2xl mb-8"
           style={{ y: headerY }}
@@ -61,7 +61,7 @@ export default function ServicesPreview() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#475fd1] animate-pulse" />
             Capabilities &amp; Services
           </div>
-          <h2 className="font-display text-4xl lg:text-5xl font-extrabold text-slate-900 mb-3 leading-[1.1] tracking-tight">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-3 leading-[1.15] tracking-tight">
             Everything you need to <span className="text-[#475fd1]">go digital</span>
           </h2>
           <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
@@ -126,11 +126,11 @@ export default function ServicesPreview() {
           <Button
             asChild
             size="lg"
-            className="rounded-full shadow-xs hover:shadow-md px-8 h-12 bg-white text-slate-900 border-2 border-slate-200 hover:border-[#475fd1] hover:bg-[#475fd1] hover:text-white font-bold text-xs sm:text-sm transition-all duration-200 group"
+            className="w-full sm:w-auto max-w-full rounded-full shadow-xs hover:shadow-md px-5 sm:px-8 py-3.5 sm:py-0 h-auto sm:h-12 bg-white text-slate-900 border-2 border-slate-200 hover:border-[#475fd1] hover:bg-[#475fd1] hover:text-white font-bold text-xs sm:text-sm transition-all duration-200 group whitespace-normal sm:whitespace-nowrap text-center"
           >
-            <Link to="/services" className="inline-flex items-center gap-2.5">
-              <span>View All Engineering Services &amp; Specifications</span>
-              <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+            <Link to="/services" className="inline-flex items-center justify-center gap-2">
+              <span className="text-center">View All Engineering Services &amp; Specifications</span>
+              <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform shrink-0" />
             </Link>
           </Button>
         </motion.div>

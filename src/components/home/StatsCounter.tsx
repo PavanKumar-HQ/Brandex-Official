@@ -8,10 +8,10 @@ interface StatItem {
 }
 
 const stats: StatItem[] = [
-  { value: 50, suffix: "+", label: "Projects Delivered" },
-  { value: 340, suffix: "%", label: "Avg Client Growth" },
-  { value: 20, suffix: "+", label: "Happy Clients" },
-  { value: 98, suffix: "%", label: "Client Retention" },
+  { value: 8, suffix: "+", label: "Production Platforms Built" },
+  { value: 62, suffix: "", label: "Prerendered Fast Pages" },
+  { value: 100, suffix: "%", label: "TypeScript & SEO Validated" },
+  { value: 24, suffix: "/7", label: "Monitored Platform Health" },
 ];
 
 function AnimatedNumber({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) {
@@ -62,8 +62,8 @@ export default function StatsCounter() {
       <div className="absolute inset-0 bg-grid opacity-15" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-accent/[0.03] blur-[100px]" />
 
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10" ref={ref}>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -72,8 +72,8 @@ export default function StatsCounter() {
               transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
               className="text-center group"
             >
-              <div className="relative inline-block mb-3">
-                <span className="font-display text-5xl lg:text-6xl xl:text-7xl font-extrabold text-slate-900 tracking-tight">
+              <div className="relative inline-block mb-2 sm:mb-3">
+                <span className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-slate-900 tracking-tight block">
                   <AnimatedNumber value={stat.value} suffix={stat.suffix} inView={inView} />
                 </span>
                 {/* Glow effect behind number */}

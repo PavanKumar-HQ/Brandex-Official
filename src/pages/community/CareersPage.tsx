@@ -23,6 +23,7 @@ import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
 import { SectionHeading } from '@/community/components/ui/SectionHeading';
 import { CareerApplyModal } from '@/community/components/careers/CareerApplyModal';
 import { SkeletonCard } from '@/community/components/ui/Skeleton';
+import { getApplicationByIdOrEmail } from '@/services/applicationService';
 
 export const CareersPage: React.FC = () => {
   useSEO("Careers & Team", "Join our team. Work remotely and help build the future of tech education.");
@@ -38,8 +39,8 @@ export const CareersPage: React.FC = () => {
           title="Join Our Mission to Build the Future of Tech Education."
           description="We're always looking for passionate engineers, designers, and community builders to help us scale the Brandex Showcase Ecosystem."
           widgetTitle="Brandex.Team"
-          widgetStatLabel="Global Members"
-          widgetStatValue="Growing"
+          widgetStatLabel="Admissions Pipeline"
+          widgetStatValue="Active 2026"
           widgetStatusLabel="Hiring Status"
           widgetStatusText="Open Roles Below"
         />
@@ -180,6 +181,24 @@ const FusedCareerTracker: React.FC = () => {
     setNotFound(false);
 
     try {
+      // 1. Check real-time persistent engine & local database
+      const appRecord = await getApplicationByIdOrEmail(cleanQuery);
+      if (appRecord) {
+        setRecord({
+          id: appRecord.id,
+          refCode: appRecord.id,
+          status: appRecord.status,
+          program: appRecord.track || 'Engineering / Design Fellowship',
+          userHandle: appRecord.name,
+          email: appRecord.email,
+          reviewerNotes: appRecord.reviewerNotes || 'Application cached in live admissions queue. Technical evaluation in progress.',
+          submittedAt: new Date(appRecord.createdAt).toLocaleDateString(),
+        });
+        setLoading(false);
+        return;
+      }
+
+      // 2. Fallback check API endpoint
       const res = await fetch(`/api/pwa/status/${encodeURIComponent(cleanQuery)}`);
       if (res.ok) {
         const data = await res.json();

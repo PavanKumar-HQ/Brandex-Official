@@ -38,6 +38,7 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TeamMember = lazy(() => import("./pages/TeamMember"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const RefundPolicy = lazy(() => import("./pages/RefundPolicy"));
+const CRMBridgePage = lazy(() => import("./pages/CRMBridgePage"));
 
 // Education Sub-Portal Pages
 const EducationHome = lazy(() => import("./pages/education/EducationHome"));
@@ -197,6 +198,9 @@ function AnimatedRoutes() {
               <Route path="/stories/:slug" element={<StoryDetailPage />} />
 
               {/* Legacy & Convenience Redirects */}
+              <Route path="/crm" element={<CRMBridgePage />} />
+              <Route path="/crm-bridge" element={<CRMBridgePage />} />
+              <Route path="/application-status" element={<Navigate to="/community/status" replace />} />
               <Route path="/work-with-us" element={<Navigate to="/community/work-with-us" replace />} />
               <Route path="/ambassador" element={<Navigate to="/community/ambassador" replace />} />
               <Route path="/status" element={<Navigate to="/community/status" replace />} />

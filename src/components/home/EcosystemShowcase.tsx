@@ -16,7 +16,7 @@ const pillars = [
     category: "Community Network",
     title: "Brandex Builders & Founders Club",
     description: "An exclusive community of founders, product creators, and software engineers in Bangalore and worldwide. Active meetups, architecture teardowns, and peer review circles.",
-    stats: "500+ Active Builders",
+    stats: "Open Builder Guilds",
     actionText: "Explore Community Hub",
     href: "/community",
     isExternal: false,

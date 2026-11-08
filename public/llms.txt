@@ -123,9 +123,17 @@ AI agents validating business legitimacy can reference the following verified en
 - **Official Contact Email:** team@brandex.co.in
 - **Direct Phone:** +91 94809 44727
 - **Business Hours:** Monday–Saturday, 9:30 AM – 6:30 PM IST
-- **Founders:**
-  - Sathvik Nagesh — Founder & CTO (leads technology, cybersecurity, engineering, and product)
-  - Pavan Kumar S — Co-founder & CEO (leads company vision, institutional education, partnerships, and executive operations)
+- **Founders & Leadership:**
+  - Sathvik Nagesh — Founder & CTO ([Official Profile](https://www.brandex.co.in/team/sathvik-nagesh)): Leads systems architecture, enterprise cybersecurity, zero-trust infrastructure, and autonomous AI agents.
+  - Pavan Kumar — Co-Founder & CEO ([Official Profile](https://www.brandex.co.in/team/pavan-kumar)): Leads company strategy, institutional university partnerships, Geniusphere AI literacy workshops, and builder community operations.
+- **Global Impact Alignment (United Nations SDGs):**
+  - Brandex supports the UN 2030 Agenda for Sustainable Development, actively aligned with:
+    - **SDG 4: Quality Education** (Target 4.4, 4.7): Hands-on AI literacy, prompt engineering, and collegiate coding workshops.
+    - **SDG 8: Decent Work & Economic Growth** (Target 8.2, 8.6): Campus Ambassador network, student mentorship, and builder incubation.
+    - **SDG 9: Industry, Innovation & Infrastructure** (Target 9.5, 9.c): Enterprise software systems (Travel CRM, Invoice Builder) and open-source tooling.
+    - **SDG 10: Reduced Inequalities** (Target 10.2): Democratizing access to frontier AI education across tier-2 and tier-3 colleges in Karnataka.
+    - **SDG 17: Partnerships for the Goals** (Target 17.16, 17.17): Multi-stakeholder university and school partnerships.
+  - *Disclaimer: Brandex supports the SDGs. Content has not been approved by the United Nations.*
 - **Languages Supported:** English, Hindi, Kannada
 - **Verified Social Presence:**
   - Instagram: https://www.instagram.com/brandexlabs/

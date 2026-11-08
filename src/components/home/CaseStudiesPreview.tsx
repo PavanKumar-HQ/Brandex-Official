@@ -58,7 +58,7 @@ export default function CaseStudiesPreview() {
       {/* Subtle Ambient Light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-accent/[0.03] blur-[120px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header with Clean Separation */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
           <motion.div
@@ -100,38 +100,38 @@ export default function CaseStudiesPreview() {
           </motion.div>
         </div>
 
-        {/* Carousel Container with Left and Right Flanking Arrows */}
+        {/* Carousel Container with Responsive Touch Snap & Clean Desktop Flanking Arrows */}
         <div className="relative group/carousel">
-          {/* Left Arrow Button */}
+          {/* Left Arrow Button (Desktop only - mobile uses native touch swipe) */}
           <button
             onClick={() => scrollByAmount("left")}
             disabled={!canScrollLeft}
             aria-label="Previous case study"
-            className="absolute -left-3 sm:-left-5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-card/95 backdrop-blur-md border-2 border-border shadow-xl flex items-center justify-center text-foreground hover:bg-accent hover:border-accent hover:text-white transition-all duration-200 disabled:opacity-0 disabled:pointer-events-none hover:scale-105 active:scale-95"
+            className="hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-card/95 backdrop-blur-md border-2 border-border shadow-xl items-center justify-center text-foreground hover:bg-accent hover:border-accent hover:text-white transition-all duration-200 disabled:opacity-0 disabled:pointer-events-none hover:scale-105 active:scale-95"
           >
             <ChevronLeft size={22} />
           </button>
 
-          {/* Right Arrow Button */}
+          {/* Right Arrow Button (Desktop only) */}
           <button
             onClick={() => scrollByAmount("right")}
             disabled={!canScrollRight}
             aria-label="Next case study"
-            className="absolute -right-3 sm:-right-5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-card/95 backdrop-blur-md border-2 border-border shadow-xl flex items-center justify-center text-foreground hover:bg-accent hover:border-accent hover:text-white transition-all duration-200 disabled:opacity-0 disabled:pointer-events-none hover:scale-105 active:scale-95"
+            className="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-card/95 backdrop-blur-md border-2 border-border shadow-xl items-center justify-center text-foreground hover:bg-accent hover:border-accent hover:text-white transition-all duration-200 disabled:opacity-0 disabled:pointer-events-none hover:scale-105 active:scale-95"
           >
             <ChevronRight size={22} />
           </button>
 
-          {/* Scrollable Track with Zero Overlap */}
+          {/* Scrollable Track with Responsive Zero Overflow Margins */}
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto pb-6 pt-2 scrollbar-none snap-x snap-mandatory scroll-smooth -mx-6 px-6"
+            className="flex gap-4 sm:gap-6 overflow-x-auto pb-6 pt-2 scrollbar-none snap-x snap-mandatory scroll-smooth -mx-4 px-4 sm:-mx-6 sm:px-6"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {projects.map((cs, i) => (
               <div
                 key={cs.id || cs.title}
-                className="w-[85vw] sm:w-[380px] lg:w-[390px] xl:w-[410px] flex-shrink-0 snap-start"
+                className="w-[82vw] sm:w-[360px] md:w-[380px] lg:w-[410px] max-w-[410px] flex-shrink-0 snap-start"
               >
                 <CaseStudyCard cs={cs} index={i} />
               </div>

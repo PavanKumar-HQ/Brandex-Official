@@ -62,9 +62,9 @@ export const BrandexUnifiedHub: React.FC = () => {
       link: '/community',
       actionText: 'Join a Domain Circle',
       onClick: handleJoinCircle,
-      badge: '15+ Circles',
+      badge: 'Guild Circles',
       icon: Users,
-      iconColor: 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 border-purple-200 dark:border-purple-800'
+      iconColor: 'text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-950/60 border-violet-200 dark:border-violet-800'
     },
     {
       id: 'projects',

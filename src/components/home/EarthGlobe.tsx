@@ -29,8 +29,8 @@ const TECH_HUBS = [
 // Cache textures so we only generate them once
 let cachedTextures: { earthMap: THREE.CanvasTexture; bumpMap: THREE.CanvasTexture } | null = null;
 
-// High-definition Procedural Purple Earth Texture Generator using True GIS Natural Earth GeoJSON
-function createPurpleEarthCanvasTexture(geojson?: any): { earthMap: THREE.CanvasTexture; bumpMap: THREE.CanvasTexture } {
+// High-definition Procedural Violet Earth Texture Generator using True GIS Natural Earth GeoJSON
+function createVioletEarthCanvasTexture(geojson?: any): { earthMap: THREE.CanvasTexture; bumpMap: THREE.CanvasTexture } {
   const width = 1024;
   const height = 512;
 
@@ -44,7 +44,7 @@ function createPurpleEarthCanvasTexture(geojson?: any): { earthMap: THREE.Canvas
   bumpCanvas.height = height;
   const bCtx = bumpCanvas.getContext("2d")!;
 
-  // 1. Fill Deep Cosmic Purple-Indigo Oceanic Base
+  // 1. Fill Deep Cosmic Violet-Indigo Oceanic Base
   const oceanGrad = ctx.createLinearGradient(0, 0, 0, height);
   oceanGrad.addColorStop(0, "#070314");
   oceanGrad.addColorStop(0.25, "#0d0628");
@@ -319,7 +319,7 @@ function RealisticEarthScene({
 
   const [textures, setTextures] = useState<{ earthMap: THREE.CanvasTexture; bumpMap: THREE.CanvasTexture }>(() => {
     if (cachedTextures) return cachedTextures;
-    const initial = createPurpleEarthCanvasTexture();
+    const initial = createVioletEarthCanvasTexture();
     return initial;
   });
 
@@ -330,7 +330,7 @@ function RealisticEarthScene({
     fetch("/world-land.json")
       .then((res) => res.json())
       .then((geojson) => {
-        const trueGIS = createPurpleEarthCanvasTexture(geojson);
+        const trueGIS = createVioletEarthCanvasTexture(geojson);
         cachedTextures = trueGIS;
         setTextures(trueGIS);
       })
@@ -350,7 +350,7 @@ function RealisticEarthScene({
 
   return (
     <group ref={globeRef} rotation={[0, 2.3, 0]}>
-      {/* 1. Main Purple Procedural Earth Sphere */}
+      {/* 1. Main Violet Procedural Earth Sphere */}
       <mesh receiveShadow castShadow>
         <sphereGeometry args={[RADIUS, 64, 64]} />
         <meshStandardMaterial
@@ -416,7 +416,7 @@ export default function EarthGlobe() {
       ref={containerRef}
       className="relative w-full h-[320px] sm:h-[420px] lg:h-[480px] xl:h-[520px] flex items-center justify-center select-none"
     >
-      {/* Ambient Purple / Indigo Halo Backlight */}
+      {/* Ambient Violet / Indigo Halo Backlight */}
       <div className="absolute w-80 h-80 rounded-full bg-[#4f47e6]/25 blur-3xl pointer-events-none" />
       <div className="absolute w-96 h-96 rounded-full bg-[#818cf8]/15 blur-3xl pointer-events-none" />
 

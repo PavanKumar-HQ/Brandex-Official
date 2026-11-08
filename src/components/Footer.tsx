@@ -10,6 +10,8 @@ const footerLinks = [
       { label: "Builder Stories", href: "/stories" },
       { label: "Education & Workshops", href: "/education/workshops" },
       { label: "Campus Ambassadors", href: "/education/campus-ambassador" },
+      { label: "Application Status", href: "/status" },
+      { label: "CRM Bridge & API", href: "/crm-bridge" },
     ],
   },
   {
@@ -162,7 +164,7 @@ export default function Footer() {
                 </svg>
               </a>
 
-              {/* Discord (Uniform Dark Box, Colors to Discord Purple on Hover) */}
+              {/* Discord (Uniform Dark Box, Colors to Discord Violet/Blurple on Hover) */}
               <a
                 href="https://discord.gg/brandex"
                 target="_blank"

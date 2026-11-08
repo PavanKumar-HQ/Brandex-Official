@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
 import { PageHero } from '@/community/components/ui/PageHero';
-import { CheckCircle2, Award, Send, Users, Shield, GraduationCap, Building2 } from 'lucide-react';
+import { CheckCircle2, Award, Send, Users, Shield, GraduationCap, Building2, Copy, Check, AlertCircle } from 'lucide-react';
 
 import { createEnquiry } from '@/community/repositories/repository';
+import { createApplication } from '@/services/applicationService';
 
 export const BrandAmbassadorPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -21,33 +22,43 @@ export const BrandAmbassadorPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [referenceId, setReferenceId] = useState('');
+  const [copiedId, setCopiedId] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const generatedRef = `BX-AMB-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
-      await createEnquiry({
+      const appRecord = await createApplication({
         type: 'ambassador',
-        orgName: formData.institution,
-        contactName: `${formData.fullName} (${formData.roleType} - ${formData.yearOrRole || 'Ambassador'})`,
-        email: formData.email,
-        phone: formData.phone,
-        message: `Motivation: ${formData.motivation}\nProfiles: ${formData.socialLinks || 'N/A'}`,
-        adminNotes: `Ambassador Ref: ${generatedRef}`
+        name: formData.fullName.trim(),
+        email: formData.email.trim().toLowerCase(),
+        phone: formData.phone.trim(),
+        organization: formData.institution.trim(),
+        track: `${formData.roleType} - ${formData.yearOrRole}`,
+        details: {
+          institution: formData.institution.trim(),
+          roleType: formData.roleType,
+          yearOrRole: formData.yearOrRole,
+          motivation: formData.motivation,
+          socialLinks: formData.socialLinks,
+        },
       });
 
-      if (typeof window !== 'undefined') {
-        try {
-          const saved = JSON.parse(localStorage.getItem('brandex_recent_refs') || '[]');
-          localStorage.setItem('brandex_recent_refs', JSON.stringify(Array.from(new Set([generatedRef, ...saved]))));
-        } catch { }
-      }
+      try {
+        await createEnquiry({
+          type: 'ambassador',
+          orgName: formData.institution,
+          contactName: `${formData.fullName} (${formData.roleType} - ${formData.yearOrRole || 'Ambassador'})`,
+          email: formData.email,
+          phone: formData.phone,
+          message: `Motivation: ${formData.motivation}\nProfiles: ${formData.socialLinks || 'N/A'}`,
+          adminNotes: `Ambassador Ref: ${appRecord.id}`,
+        });
+      } catch {}
 
-      setReferenceId(generatedRef);
+      setReferenceId(appRecord.id);
       setSubmitted(true);
     } catch {
-      // Fallback
       setReferenceId(`BX-AMB-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`);
       setSubmitted(true);
     } finally {
@@ -117,23 +128,62 @@ export const BrandAmbassadorPage: React.FC = () => {
         </div>
 
         {submitted ? (
-          <div className="p-8 bg-emerald-50 border-2 border-emerald-200 rounded-2xl text-center space-y-4 animate-fade-in">
-            <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+          <div className="p-8 bg-emerald-50/70 border-2 border-emerald-200 rounded-3xl text-center space-y-5 animate-fade-in">
+            <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner border border-emerald-200">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className="text-2xl font-display font-bold text-slate-900">Application Submitted Successfully!</h3>
-            <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-              Thank you for applying to become a Brandex Campus Ambassador. Our admissions and community team will review your application within 48 hours.
-            </p>
-            <div className="p-4 bg-white border border-emerald-200 rounded-2xl max-w-md mx-auto text-left space-y-2">
-              <div className="text-xs text-slate-400 font-mono">Your Tracking Reference:</div>
-              <div className="text-base font-mono font-bold text-indigo-600">{referenceId}</div>
-              <div className="text-[11px] text-slate-500">You can use this reference to track your application status anytime.</div>
+            <div className="space-y-1">
+              <h3 className="text-2xl font-display font-bold text-slate-900">Application Submitted Successfully!</h3>
+              <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                Thank you for applying to become a Brandex Campus Ambassador. Our admissions and community team will review your application within 48 hours.
+              </p>
             </div>
+
+            {/* Unique ID Card */}
+            <div className="p-4 sm:p-5 bg-violet-50/70 border-2 border-violet-200 rounded-2xl max-w-md mx-auto text-left space-y-3 shadow-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] uppercase font-bold text-violet-700 tracking-wider">
+                  Unique Application ID
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard.writeText(referenceId);
+                    setCopiedId(true);
+                    setTimeout(() => setCopiedId(false), 2000);
+                  }}
+                  className="text-xs font-semibold text-violet-600 hover:text-violet-800 flex items-center gap-1 transition-colors px-2 py-1 rounded-md bg-white shadow-2xs border border-violet-200"
+                >
+                  {copiedId ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                      <span className="text-emerald-600">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copy ID</span>
+                    </>
+                  )}
+                </button>
+              </div>
+              <div className="text-xl sm:text-2xl font-mono font-extrabold text-violet-950 tracking-wide">
+                {referenceId}
+              </div>
+
+              {/* Advisory Warning Banner */}
+              <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 text-xs flex items-start gap-2">
+                <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                <p className="leading-snug">
+                  <strong>Important:</strong> Please copy and save your Application ID. You will need it to track your ambassador application review and interview scheduling in real time.
+                </p>
+              </div>
+            </div>
+
             <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
               <NavLink
                 to={`/status?id=${referenceId}`}
-                className="btn-primary text-xs px-5 py-2.5 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 transition-colors"
+                className="btn-primary text-xs px-6 py-3 bg-violet-600 text-white rounded-xl shadow-sm hover:bg-violet-700 transition-colors font-bold"
               >
                 <span>Track Application Status</span>
               </NavLink>

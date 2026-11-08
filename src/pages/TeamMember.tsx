@@ -37,13 +37,13 @@ export default function TeamMemberPage() {
   return (
     <>
       <SEOTags
-        title={`${member.name} — Co-Founder at Brandex`}
+        title={`${member.name} — Co-Founder & CEO | Brandex`}
         description={
           member.slug === "pavan-kumar"
-            ? "Pavan Kumar is a co-founder at Brandex, working across software, technology, AI and education initiatives based in Bengaluru."
+            ? "Pavan Kumar is a co-founder and CEO of Brandex, a technology and AI engineering enterprise based in Bengaluru. Leading executive strategy, AI literacy, and university partnerships."
             : `${member.name} is the ${member.role} at Brandex. ${member.bio}`
         }
-        keywords={`${member.name}, ${member.role}, Brandex co-founder, ${member.slug === "pavan-kumar" ? "Pavan Kumar Bangalore, Geniusphere, AI literacy workshops" : "Sathvik Nagesh cybersecurity, Zero-Trust"}, Brandex leadership, technology team Bangalore, ${member.expertise.slice(0, 3).join(", ")}`}
+        keywords={`${member.name}, ${member.role}, Brandex co-founder, ${member.slug === "pavan-kumar" ? "Pavan Kumar Bangalore, Pavan Kumar CEO, Geniusphere, AI literacy workshops, technology entrepreneur Bangalore" : "Sathvik Nagesh cybersecurity, Zero-Trust"}, Brandex leadership, technology team Bangalore, ${member.expertise.slice(0, 3).join(", ")}`}
         canonicalUrl={canonicalUrl}
         type="profile"
         image={member.image ? `https://www.brandex.co.in${member.image}` : "https://www.brandex.co.in/og/about.png"}
@@ -60,14 +60,27 @@ export default function TeamMemberPage() {
             "@type": "Person",
             "@id": `${canonicalUrl}#person`,
             "name": member.name,
+            "alternateName": member.slug === "pavan-kumar" ? ["Pavan Kumar S", "Pavan K."] : ["Sathvik N."],
             "jobTitle": member.role,
             "description": member.bio,
+            "disambiguatingDescription": member.slug === "pavan-kumar"
+              ? "Co-Founder and Chief Executive Officer (CEO) of Brandex, a technology and AI systems enterprise based in Bengaluru, Karnataka, distinct from the Indian film director Pawan Kumar."
+              : "Founder and Chief Technology Officer (CTO) of Brandex, enterprise cybersecurity architect and full-stack software engineer based in Bengaluru.",
             "email": member.email,
+            "image": member.image ? `https://www.brandex.co.in${member.image}` : undefined,
             "worksFor": {
               "@type": "Organization",
               "@id": "https://www.brandex.co.in/#organization",
               "name": "Brandex",
               "url": "https://www.brandex.co.in"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "#121, 13th Main M.C. Layout, Vijaynagar",
+              "addressLocality": "Bangalore",
+              "addressRegion": "Karnataka",
+              "postalCode": "560040",
+              "addressCountry": "IN"
             },
             "knowsAbout": member.expertise,
             "sameAs": [

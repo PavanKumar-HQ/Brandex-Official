@@ -29,15 +29,15 @@ export const mockInstitution: Institution = {
   coverImage: '/brandex-full-logo.webp',
   shortDescription: 'A technology, education, training and community showcase platform.',
   fullDescription: 'Brandex organizes and presents live community initiatives, educational workshops, student projects, achievements, and events into a polished digital experience.',
-  location: 'Berlin, Germany / Digital Stage',
-  website: 'https://brandex.org',
-  email: 'hello@brandex.org',
-  phone: '+49 30 901820',
+  location: 'Bangalore, Karnataka, India / Global',
+  website: 'https://www.brandex.co.in',
+  email: 'team@brandex.co.in',
+  phone: '+91 91104 22026',
   socialLinks: {
-    website: 'https://brandex.org',
-    github: 'https://github.com/brandex',
-    twitter: 'https://twitter.com/brandex',
-    linkedin: 'https://linkedin.com/company/brandex',
+    website: 'https://www.brandex.co.in',
+    github: 'https://github.com/Brandex-Labs',
+    twitter: 'https://twitter.com/brandex_hq',
+    linkedin: 'https://linkedin.com/company/brandex-official',
     youtube: 'https://youtube.com/@brandex'
   },
   institutionType: 'Technology & Education Ecosystem',
@@ -50,40 +50,40 @@ export const mockStatistics: Statistic[] = [
   {
     id: 'stat-1',
     institutionId: defaultInstitutionId,
-    label: 'Students & Learners',
-    number: 1250,
-    suffix: '+',
-    description: 'Active participants across workshops and school programs.',
+    label: 'Open-Source Repos',
+    number: 6,
+    suffix: '',
+    description: 'Public production codebases, AI agent runtimes, and developer tooling on GitHub.',
     displayOrder: 1,
     visible: true
   },
   {
     id: 'stat-2',
     institutionId: defaultInstitutionId,
-    label: 'Communities & Circles',
-    number: 8,
+    label: 'Domain Guilds',
+    number: 3,
     suffix: '',
-    description: 'Specialized domain communities in AI, Cyber, and UX.',
+    description: 'Active builder circles in Artificial Intelligence, Cybersecurity, and Systems.',
     displayOrder: 2,
     visible: true
   },
   {
     id: 'stat-3',
     institutionId: defaultInstitutionId,
-    label: 'Events & Summits',
-    number: 45,
+    label: 'Production Systems',
+    number: 8,
     suffix: '+',
-    description: 'Live hackathons, school series, and technology panels.',
+    description: 'Commercial SaaS products, client enterprise portals, and interactive LMS platforms.',
     displayOrder: 3,
     visible: true
   },
   {
     id: 'stat-4',
     institutionId: defaultInstitutionId,
-    label: 'Projects Built',
-    number: 120,
-    suffix: '+',
-    description: 'Open-source software, security tools, and models.',
+    label: 'Open Curriculum',
+    number: 100,
+    suffix: '%',
+    description: 'Karnataka State secondary curriculum fully mapped with zero paywalls.',
     displayOrder: 4,
     visible: true
   }
@@ -105,12 +105,11 @@ export const mockCommunities: Community[] = [
       'Open Weights Model Fine-Tuning Labs',
       'AI Safety & Evaluation Benchmarking'
     ],
-    socialLinks: { github: 'https://github.com/brandex/ai' },
-    contactEmail: 'ai@brandex.org',
+    socialLinks: { github: 'https://github.com/brandex-community/geniusphere' },
+    contactEmail: 'ai@brandex.co.in',
     featured: true,
     displayOrder: 1,
-    status: 'published',
-    memberCount: 420
+    status: 'published'
   },
   {
     id: 'comm-2',
@@ -127,12 +126,11 @@ export const mockCommunities: Community[] = [
       'eBPF System Call Monitoring Workshops',
       'SIEM Alert Tuning & Forensic Analysis'
     ],
-    socialLinks: { github: 'https://github.com/brandex/cyber' },
-    contactEmail: 'security@brandex.org',
+    socialLinks: { github: 'https://github.com/brandex-community/code-audit-agent' },
+    contactEmail: 'security@brandex.co.in',
     featured: true,
     displayOrder: 2,
-    status: 'published',
-    memberCount: 310
+    status: 'published'
   },
   {
     id: 'comm-3',
@@ -149,11 +147,11 @@ export const mockCommunities: Community[] = [
       'PostgreSQL Query Plan Optimization',
       'Modern Frontend Component Architecture'
     ],
-    contactEmail: 'systems@brandex.org',
+    socialLinks: { github: 'https://github.com/brandex-official/brandex-official' },
+    contactEmail: 'systems@brandex.co.in',
     featured: true,
     displayOrder: 3,
-    status: 'published',
-    memberCount: 520
+    status: 'published'
   }
 ];
 

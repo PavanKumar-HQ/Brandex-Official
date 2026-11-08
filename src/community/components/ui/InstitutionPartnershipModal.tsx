@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { useRegistration } from '@/community/contexts/RegistrationContext';
 import { createEnquiry } from '@/community/repositories/repository';
+import { createApplication } from '@/services/applicationService';
 
 export const InstitutionPartnershipModal: React.FC = () => {
   const navigate = useNavigate();
@@ -204,26 +205,36 @@ export const InstitutionPartnershipModal: React.FC = () => {
     setErrorMsg('');
 
     try {
-      const generatedRef = `BX-COLL-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
-
-      await createEnquiry({
-        type: 'school',
-        orgName: formData.institutionName,
-        contactName: `${formData.coordinatorName} (${formData.coordinatorRole || 'Coordinator'}) - ${formData.department || 'Academic Department'}`,
+      const appRecord = await createApplication({
+        type: 'institution',
+        name: formData.coordinatorName,
         email: formData.email,
         phone: formData.phone,
-        message: `[Track: ${formData.track}] [Cohort Size: ${formData.batchSize}] [Timeline: ${formData.timeline}]\nObjectives: ${formData.specificGoals || 'Standard institutional syllabus & campus buildathon collaboration.'}`,
-        adminNotes: `Generated Ref: ${generatedRef}`
+        organization: formData.institutionName,
+        track: formData.track,
+        details: {
+          coordinatorRole: formData.coordinatorRole,
+          department: formData.department,
+          batchSize: formData.batchSize,
+          timeline: formData.timeline,
+          specificGoals: formData.specificGoals,
+        },
       });
 
-      if (typeof window !== 'undefined') {
-        try {
-          const saved = JSON.parse(localStorage.getItem('brandex_recent_refs') || '[]');
-          localStorage.setItem('brandex_recent_refs', JSON.stringify(Array.from(new Set([generatedRef, ...saved]))));
-        } catch { }
-      }
+      // Also create repository enquiry for legacy compatibility
+      try {
+        await createEnquiry({
+          type: 'school',
+          orgName: formData.institutionName,
+          contactName: `${formData.coordinatorName} (${formData.coordinatorRole || 'Coordinator'}) - ${formData.department || 'Academic Department'}`,
+          email: formData.email,
+          phone: formData.phone,
+          message: `[Track: ${formData.track}] [Cohort Size: ${formData.batchSize}] [Timeline: ${formData.timeline}]\nObjectives: ${formData.specificGoals || 'Standard institutional syllabus & campus buildathon collaboration.'}`,
+          adminNotes: `Generated Ref: ${appRecord.id}`
+        });
+      } catch {}
 
-      setReferenceId(generatedRef);
+      setReferenceId(appRecord.id);
       setIsSuccess(true);
     } catch {
       setErrorMsg('Failed to log partnership inquiry. Please check your connection and try again.');
@@ -446,15 +457,15 @@ export const InstitutionPartnershipModal: React.FC = () => {
                   </div>
 
                   {/* Reference ID Card */}
-                  <div className="p-4 sm:p-5 bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/50 rounded-2xl max-w-md mx-auto text-left space-y-2 shadow-xs">
+                  <div className="p-4 sm:p-5 bg-violet-50/70 dark:bg-violet-950/30 border-2 border-violet-200 dark:border-violet-900/50 rounded-2xl max-w-md mx-auto text-left space-y-3 shadow-xs">
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] uppercase font-bold text-indigo-700 dark:text-indigo-400 tracking-wider">
+                      <span className="text-[10px] uppercase font-bold text-violet-700 dark:text-violet-400 tracking-wider">
                         Official Partnership Reference ID
                       </span>
                       <button
                         type="button"
                         onClick={handleCopyRef}
-                        className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 flex items-center gap-1 transition-colors cursor-pointer"
+                        className="text-xs font-semibold text-violet-600 dark:text-violet-400 hover:text-violet-800 flex items-center gap-1 transition-colors cursor-pointer px-2 py-1 rounded-md bg-white dark:bg-slate-800 shadow-2xs border border-violet-200 dark:border-violet-800"
                       >
                         {copiedRef ? (
                           <>
@@ -464,17 +475,22 @@ export const InstitutionPartnershipModal: React.FC = () => {
                         ) : (
                           <>
                             <Copy className="w-3.5 h-3.5" />
-                            <span>Copy</span>
+                            <span>Copy ID</span>
                           </>
                         )}
                       </button>
                     </div>
-                    <div className="text-lg sm:text-xl font-mono font-bold text-slate-900 dark:text-white tracking-wide">
+                    <div className="text-xl sm:text-2xl font-mono font-extrabold text-violet-950 dark:text-white tracking-wide">
                       {referenceId}
                     </div>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">
-                      Save this reference ID. You can track proposal review progress anytime on our status tracker.
-                    </p>
+
+                    {/* Advisory Warning Banner */}
+                    <div className="p-3 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl text-amber-800 dark:text-amber-300 text-xs flex items-start gap-2">
+                      <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                      <p className="leading-snug">
+                        <strong>Important:</strong> Please copy and save your Partnership Reference ID. You will need it to track your institutional proposal review and scheduling in real time.
+                      </p>
+                    </div>
                   </div>
 
                   <div className="pt-2 flex flex-col sm:flex-row justify-center gap-3 text-sm font-semibold">

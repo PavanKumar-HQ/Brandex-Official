@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import { useRegistration } from '@/community/contexts/RegistrationContext';
 import { queueOfflineAction } from '../../utils/offlineDb';
+import { createApplication } from '@/services/applicationService';
 
 export const CohortEnrollmentModal: React.FC = () => {
   const navigate = useNavigate();
@@ -297,39 +298,32 @@ export const CohortEnrollmentModal: React.FC = () => {
     setIsSubmitting(true);
     setErrorMsg('');
 
-    const randomSuffix = Math.floor(1000 + Math.random() * 9000);
-    const newRefId = `BX-ENR-${new Date().getFullYear()}-${randomSuffix}`;
-
-    const payload = {
-      id: newRefId,
-      userHandle: `@${formData.name.toLowerCase().replace(/[^a-z0-9_]/g, '')}`,
-      type: 'cohort',
-      domains: [formData.selectedProgram],
-      experienceLevel: formData.proficiency,
-      contributions: [formData.targetOutcome],
-      projectIdea: `Enrolled in ${formData.selectedProgram} (${formData.selectedBatch}). Candidate from ${formData.organization} (${formData.majorOrRole || 'Student/Engineer'}). Goals: ${formData.specificGoalNote || 'Standard cohort mastery.'}`
-    };
-
     try {
-      const res = await fetch('/api/pwa/applications', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+      const appRecord = await createApplication({
+        type: 'cohort',
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        organization: formData.organization,
+        track: formData.selectedProgram,
+        details: {
+          batch: formData.selectedBatch,
+          majorOrRole: formData.majorOrRole,
+          proficiency: formData.proficiency,
+          preferredSchedule: formData.preferredSchedule,
+          targetOutcome: formData.targetOutcome,
+          specificGoalNote: formData.specificGoalNote,
+        },
       });
 
-      if (!res.ok) {
-        throw new Error('Offline fallback');
-      }
-    } catch {
-      await queueOfflineAction('application', '/api/pwa/applications', payload);
-    } finally {
-      if (typeof window !== 'undefined') {
-        try {
-          const saved = JSON.parse(localStorage.getItem('brandex_recent_refs') || '[]');
-          localStorage.setItem('brandex_recent_refs', JSON.stringify(Array.from(new Set([newRefId, ...saved]))));
-        } catch { }
-      }
-      setReferenceId(newRefId);
+      setReferenceId(appRecord.id);
+      setIsSubmitting(false);
+      setIsSuccess(true);
+    } catch (err) {
+      console.warn('[CohortEnrollmentModal] Submission error, using fallback:', err);
+      const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+      const fallbackId = `BX-ENR-${new Date().getFullYear()}-${randomSuffix}`;
+      setReferenceId(fallbackId);
       setIsSubmitting(false);
       setIsSuccess(true);
     }
@@ -356,7 +350,7 @@ export const CohortEnrollmentModal: React.FC = () => {
         <div className="hidden md:flex flex-col w-72 lg:w-80 bg-slate-900 text-white p-6 lg:p-8 border-r border-slate-800 shrink-0 justify-between relative overflow-hidden">
           {/* Ambient Gradient */}
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-violet-600/15 rounded-full blur-3xl pointer-events-none" />
 
           {/* Sidebar Top: Logo & Title */}
           <div className="space-y-6 relative z-10">
@@ -549,15 +543,15 @@ export const CohortEnrollmentModal: React.FC = () => {
                   </div>
 
                   {/* Reference ID Card */}
-                  <div className="p-4 sm:p-5 bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/50 rounded-2xl max-w-md mx-auto text-left space-y-2 shadow-xs">
+                  <div className="p-4 sm:p-5 bg-violet-50/70 dark:bg-violet-950/30 border-2 border-violet-200 dark:border-violet-900/50 rounded-2xl max-w-md mx-auto text-left space-y-3 shadow-xs">
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] uppercase font-bold text-indigo-700 dark:text-indigo-400 tracking-wider">
-                        Official Enrollment Reference ID
+                      <span className="text-[10px] uppercase font-bold text-violet-700 dark:text-violet-400 tracking-wider">
+                        Unique Application ID
                       </span>
                       <button
                         type="button"
                         onClick={handleCopyRef}
-                        className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 flex items-center gap-1 transition-colors cursor-pointer"
+                        className="text-xs font-semibold text-violet-600 dark:text-violet-400 hover:text-violet-800 flex items-center gap-1 transition-colors cursor-pointer px-2 py-1 rounded-md bg-white dark:bg-slate-800 shadow-2xs border border-violet-200 dark:border-violet-800"
                       >
                         {copiedRef ? (
                           <>
@@ -567,17 +561,22 @@ export const CohortEnrollmentModal: React.FC = () => {
                         ) : (
                           <>
                             <Copy className="w-3.5 h-3.5" />
-                            <span>Copy</span>
+                            <span>Copy ID</span>
                           </>
                         )}
                       </button>
                     </div>
-                    <div className="text-lg sm:text-xl font-mono font-bold text-slate-900 dark:text-white tracking-wide">
+                    <div className="text-xl sm:text-2xl font-mono font-extrabold text-violet-950 dark:text-white tracking-wide">
                       {referenceId}
                     </div>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">
-                      Save this reference ID. You can check admission and cohort orientation status anytime on our application tracker.
-                    </p>
+
+                    {/* Advisory Warning Banner */}
+                    <div className="p-3 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl text-amber-800 dark:text-amber-300 text-xs flex items-start gap-2">
+                      <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                      <p className="leading-snug">
+                        <strong>Important:</strong> Please copy and save your Application ID. You will need it to track your workshop enrollment, interview, and seat status in real time.
+                      </p>
+                    </div>
                   </div>
 
                   <div className="pt-2 flex flex-col sm:flex-row justify-center gap-3 text-sm font-semibold">

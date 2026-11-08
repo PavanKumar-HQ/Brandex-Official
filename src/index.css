@@ -47,6 +47,12 @@
 
     --gradient-start: 230 60% 55%;
     --gradient-end: 270 50% 50%;
+
+    /* Device Viewport Safe-Area Insets (Notch, Dynamic Island, Home Indicator) */
+    --sat: env(safe-area-inset-top, 0px);
+    --sar: env(safe-area-inset-right, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left, 0px);
   }
 
   .dark {
@@ -97,6 +103,49 @@
 }
 
 @layer utilities {
+  /* Safe-Area Viewport Inset Utilities */
+  .safe-area-top,
+  .pt-safe {
+    padding-top: max(0.5rem, env(safe-area-inset-top, 0px));
+  }
+
+  .safe-area-bottom,
+  .pb-safe {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .safe-area-left,
+  .pl-safe {
+    padding-left: max(0rem, env(safe-area-inset-left, 0px));
+  }
+
+  .safe-area-right,
+  .pr-safe {
+    padding-right: max(0rem, env(safe-area-inset-right, 0px));
+  }
+
+  .px-safe {
+    padding-left: max(0rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0rem, env(safe-area-inset-right, 0px));
+  }
+
+  .py-safe {
+    padding-top: max(0.5rem, env(safe-area-inset-top, 0px));
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Touch-optimized ergonomics */
+  .touch-friendly {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Safe text wrapping */
+  .break-safe {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
   .text-gradient {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, #475fd1 0%, #6377e8 100%);

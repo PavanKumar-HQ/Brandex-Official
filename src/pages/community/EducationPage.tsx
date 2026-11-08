@@ -58,8 +58,8 @@ export const EducationPage: React.FC = () => {
       desc: 'Upskilling cohorts for software engineers, cybersecurity professionals, and design leads looking to master production engineering.',
       outcomes: ['Production Architecture', 'Zero-Trust Hardening', 'System Concurrency'],
       ctaText: 'View Professional Courses',
-      accentBg: 'bg-purple-50/70 border-purple-100',
-      badgeBg: 'bg-purple-600 text-white',
+      accentBg: 'bg-violet-50/70 border-violet-100',
+      badgeBg: 'bg-violet-600 text-white',
       linkTo: '/training',
     },
     {
@@ -115,7 +115,7 @@ export const EducationPage: React.FC = () => {
 
         {/* Hero Visual Right Side */}
         <div className="lg:col-span-5 bg-slate-900 text-white border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 to-purple-500/10 mix-blend-screen pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 to-violet-500/10 mix-blend-screen pointer-events-none"></div>
           <div className="space-y-3 relative z-10">
             <span className="text-xs font-semibold uppercase text-indigo-400 tracking-wider">
               Educational Impact
@@ -124,7 +124,7 @@ export const EducationPage: React.FC = () => {
               Geniusphere School Initiative
             </h3>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Bringing interactive technology foundation labs to over 180+ secondary school students at Vignan Public High School.
+              Bringing interactive technology foundation labs to secondary school students at Vignan Public High School.
             </p>
           </div>
 

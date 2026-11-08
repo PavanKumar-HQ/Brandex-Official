@@ -60,10 +60,10 @@ export default function ClassDetailPage() {
       default:
         return {
           icon: <BookOpen className="w-8 h-8" />,
-          accentBg: "bg-purple-50 text-purple-600 border-purple-100 group-hover:bg-purple-600 group-hover:text-white",
-          glowBorder: "hover:border-purple-300 hover:shadow-purple-500/10",
-          tagBg: "bg-purple-50 text-purple-700 border-purple-100",
-          buttonColor: "text-purple-600 group-hover:text-purple-700",
+          accentBg: "bg-violet-50 text-violet-600 border-violet-100 group-hover:bg-violet-600 group-hover:text-white",
+          glowBorder: "hover:border-violet-300 hover:shadow-violet-500/10",
+          tagBg: "bg-violet-50 text-violet-700 border-violet-100",
+          buttonColor: "text-violet-600 group-hover:text-violet-700",
           subtitle: "Grammar, Prose & Poetry",
         };
     }

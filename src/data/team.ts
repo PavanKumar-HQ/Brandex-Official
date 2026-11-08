@@ -136,7 +136,7 @@ export const teamMembers: TeamMember[] = [
     title: "Co-Founder & CEO, Brandex",
     tagline: "Co-founder at Brandex, working across software engineering, AI literacy, and education initiatives based in Bengaluru.",
     initials: "PK",
-    image: null, // Verified official asset
+    image: "/team/pavan-kumar.webp",
     bio: "Pavan Kumar is a co-founder of Brandex, a technology company based in Bengaluru, leading executive strategy, AI literacy, university partnerships, and builder communities.",
     longBio: [
       "Pavan Kumar is a co-founder of Brandex, a technology company based in Bengaluru. As Co-Founder and Chief Executive Officer (CEO), Pavan directs enterprise strategy, institutional university partnerships, AI literacy initiatives, and product operations.",

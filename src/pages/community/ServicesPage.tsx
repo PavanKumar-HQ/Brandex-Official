@@ -4,6 +4,7 @@ import { useSEO } from '@/community/hooks/useSEO';
 import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
 import { getOrCreateIdentity } from '@/community/utils/identity';
 import { queueOfflineAction } from '@/community/utils/offlineDb';
+import { createApplication } from '@/services/applicationService';
 import {
   Globe,
   Layout,
@@ -219,47 +220,29 @@ export const ServicesPage: React.FC = () => {
     setIsSubmitting(true);
     setErrorMsg('');
 
-    const randomSuffix = Math.floor(1000 + Math.random() * 9000);
-    const generatedId = `SRV-2026-${randomSuffix}`;
-
-    const payload = {
-      id: generatedId,
-      userHandle: contactInfo.trim() || identity.handle,
-      serviceId: currentService.id,
-      serviceTitle: currentService.name,
-      tier: 'Standard',
-      organization: contactName.trim(),
-      preferredSlot: timeline,
-      scopeNotes: scopeDescription.trim()
-    };
-
     try {
-      if (typeof navigator !== 'undefined' && !navigator.onLine) {
-        throw new Error('Offline');
-      }
-
-      const res = await fetch('/api/pwa/bookings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+      // 1. Process and persist via real-time Application Engine & CRM bridge
+      const appRecord = await createApplication({
+        type: 'contact',
+        name: contactName.trim(),
+        email: contactInfo.includes('@') ? contactInfo.trim() : `${contactName.toLowerCase().replace(/[^a-z0-9]/g, '')}@lead.brandex.in`,
+        phone: !contactInfo.includes('@') ? contactInfo.trim() : undefined,
+        organization: contactName.trim(),
+        track: currentService.name,
+        details: {
+          serviceId: currentService.id,
+          serviceTitle: currentService.name,
+          timeline,
+          scopeDescription: scopeDescription.trim()
+        }
       });
 
-      if (!res.ok) {
-        throw new Error(`Server returned ${res.status}`);
-      }
-
-      const data = await res.json();
-      const receiptId = data.id || data.bookingId || generatedId;
-      try {
-        const existing = JSON.parse(localStorage.getItem('brandex_recent_refs') || '[]');
-        const updated = Array.from(new Set([receiptId, ...existing])).slice(0, 5);
-        localStorage.setItem('brandex_recent_refs', JSON.stringify(updated));
-      } catch {}
+      const receiptId = appRecord.id;
 
       setBookingReceipt({
         id: receiptId,
         serviceName: currentService.name,
-        status: data.status || 'Scheduled',
+        status: 'Scheduled',
         isOfflineQueued: false
       });
       if (typeof window !== 'undefined') {
@@ -267,6 +250,18 @@ export const ServicesPage: React.FC = () => {
       }
     } catch {
       // Offline fallback: Queue in IndexedDB for Background Sync
+      const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+      const generatedId = `BX-INQ-2026-${randomSuffix}`;
+      const payload = {
+        id: generatedId,
+        userHandle: contactInfo.trim() || identity.handle,
+        serviceId: currentService.id,
+        serviceTitle: currentService.name,
+        tier: 'Standard',
+        organization: contactName.trim(),
+        preferredSlot: timeline,
+        scopeNotes: scopeDescription.trim()
+      };
       await queueOfflineAction('booking', '/api/pwa/bookings', payload);
       try {
         const existing = JSON.parse(localStorage.getItem('brandex_recent_refs') || '[]');
@@ -340,7 +335,7 @@ export const ServicesPage: React.FC = () => {
                 </span>
               </div>
               <div className="flex items-center justify-between gap-3">
-                <span className="font-mono text-2xl sm:text-3xl font-bold text-indigo-600 dark:text-indigo-400">
+                <span className="font-mono text-2xl sm:text-3xl font-bold text-violet-600 dark:text-violet-400">
                   {bookingReceipt.id}
                 </span>
                 <button
@@ -360,15 +355,23 @@ export const ServicesPage: React.FC = () => {
                 </div>
                 <div>
                   <span className="text-slate-400 block font-medium">Target Timeline:</span>
-                  <span className="font-bold text-indigo-600 dark:text-indigo-400 mt-0.5 block">{timeline}</span>
+                  <span className="font-bold text-violet-600 dark:text-violet-400 mt-0.5 block">{timeline}</span>
                 </div>
               </div>
+            </div>
+
+            {/* Advisory Warning Banner */}
+            <div className="mt-4 p-3.5 bg-amber-500/10 border border-amber-500/25 rounded-xl text-left flex items-start gap-2.5">
+              <span className="text-amber-500 text-sm mt-0.5">⚠️</span>
+              <p className="text-[11px] sm:text-xs text-amber-900 dark:text-amber-200 leading-relaxed font-medium">
+                <strong>Important:</strong> Please copy and save your Application ID (<strong>{bookingReceipt.id}</strong>). You will need this ID to track your project scope review, technical quotation, and engineer assignment in real time.
+              </p>
             </div>
 
             <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3">
               <NavLink
                 to={`/status?id=${bookingReceipt.id}`}
-                className="w-full sm:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2 border border-indigo-700"
+                className="w-full sm:w-auto px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-xl text-xs font-bold shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2 border border-violet-700"
               >
                 <span>Track Status in Real-Time</span>
                 <ArrowRight className="w-4 h-4" />

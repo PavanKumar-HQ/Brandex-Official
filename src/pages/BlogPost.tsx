@@ -184,12 +184,13 @@ export default function BlogPost() {
           },
           "author": {
             "@type": "Person",
+            "@id": post.author.includes("Sathvik")
+              ? "https://www.brandex.co.in/team/sathvik-nagesh#person"
+              : "https://www.brandex.co.in/team/pavan-kumar#person",
             "name": post.author,
             "url": post.author.includes("Sathvik") 
               ? "https://www.brandex.co.in/team/sathvik-nagesh" 
-              : post.author.includes("Pavan") 
-              ? "https://www.brandex.co.in/team/pavan-kumar-s" 
-              : "https://www.brandex.co.in/about"
+              : "https://www.brandex.co.in/team/pavan-kumar"
           },
           "publisher": {
             "@type": "Organization",

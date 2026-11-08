@@ -121,16 +121,16 @@ export default function Testimonials() {
 
       {/* Row 1: Leftward Infinite Marquee */}
       <div className="relative overflow-hidden group mb-5">
-        <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-36 bg-gradient-to-r from-[#f8fafd] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-36 bg-gradient-to-l from-[#f8fafd] to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-6 sm:w-20 md:w-36 bg-gradient-to-r from-[#f8fafd] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-6 sm:w-20 md:w-36 bg-gradient-to-l from-[#f8fafd] to-transparent z-10 pointer-events-none" />
 
-        <div className="css-marquee-left flex flex-row flex-nowrap w-max gap-5 items-stretch px-4">
+        <div className="css-marquee-left flex flex-row flex-nowrap w-max gap-4 sm:gap-5 items-stretch px-4">
           {row1Doubled.map((t, i) => {
             const initials = t.name.split(" ").map((n) => n[0]).join("").slice(0, 2);
             return (
               <div
                 key={`r1-${t.name}-${i}`}
-                className="w-[300px] sm:w-[360px] liquid-glass-card hover:bg-white rounded-2xl p-5 transition-all duration-200 flex flex-col justify-between hover:-translate-y-1 select-none"
+                className="w-[275px] sm:w-[350px] liquid-glass-card hover:bg-white rounded-2xl p-5 transition-all duration-200 flex flex-col justify-between hover:-translate-y-1 select-none"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
@@ -166,16 +166,16 @@ export default function Testimonials() {
 
       {/* Row 2: Rightward Infinite Marquee */}
       <div className="relative overflow-hidden group">
-        <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-36 bg-gradient-to-r from-[#f8fafd] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-36 bg-gradient-to-l from-[#f8fafd] to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-6 sm:w-20 md:w-36 bg-gradient-to-r from-[#f8fafd] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-6 sm:w-20 md:w-36 bg-gradient-to-l from-[#f8fafd] to-transparent z-10 pointer-events-none" />
 
-        <div className="css-marquee-right flex flex-row flex-nowrap w-max gap-5 items-stretch px-4">
+        <div className="css-marquee-right flex flex-row flex-nowrap w-max gap-4 sm:gap-5 items-stretch px-4">
           {row2Doubled.map((t, i) => {
             const initials = t.name.split(" ").map((n) => n[0]).join("").slice(0, 2);
             return (
               <div
                 key={`r2-${t.name}-${i}`}
-                className="w-[300px] sm:w-[360px] liquid-glass-card hover:bg-white rounded-2xl p-5 transition-all duration-200 flex flex-col justify-between hover:-translate-y-1 select-none"
+                className="w-[275px] sm:w-[350px] liquid-glass-card hover:bg-white rounded-2xl p-5 transition-all duration-200 flex flex-col justify-between hover:-translate-y-1 select-none"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">

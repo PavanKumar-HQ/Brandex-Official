@@ -177,8 +177,17 @@ export function getMarkdownForRoute(pathname: string): { content: string; status
 Every line of code we write serves a concrete business goal. We combine software engineering, cloud infrastructure, AI automation, and cybersecurity to help businesses scale securely.
 
 ## Leadership & Founders
-- **Sathvik Nagesh**: Founder & CTO
-- **Pavan Kumar S**: Co-founder & CEO
+- **Sathvik Nagesh**: Founder & CTO ([Profile](https://www.brandex.co.in/team/sathvik-nagesh))
+- **Pavan Kumar**: Co-Founder & CEO ([Profile](https://www.brandex.co.in/team/pavan-kumar))
+
+## United Nations Sustainable Development Goals (SDG) Alignment
+Brandex supports the UN 2030 Agenda for Sustainable Development, actively aligned with:
+- **SDG 4 (Quality Education)**: Applied AI literacy, prompt engineering, and collegiate coding workshops.
+- **SDG 8 (Decent Work & Economic Growth)**: Campus Ambassador program, student mentorship, and builder incubation.
+- **SDG 9 (Industry, Innovation & Infrastructure)**: Enterprise software (Travel CRM, Invoice Builder) and open-source tooling.
+- **SDG 10 (Reduced Inequalities)**: Democratizing access to frontier AI education across tier-2 and tier-3 colleges in Karnataka.
+- **SDG 17 (Partnerships for the Goals)**: Institutional university, school, and builder community partnerships.
+*(Brandex supports the SDGs. Content has not been approved by the United Nations.)*
 
 ## Physical Headquarters & Trust Verification
 - **Address**: #121, 13th Main M.C. Layout, Vijaynagar, Bangalore - 560040, Karnataka, India

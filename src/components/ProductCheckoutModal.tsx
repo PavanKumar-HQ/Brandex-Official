@@ -25,9 +25,12 @@ import {
   Phone,
   HelpCircle,
   Clock,
-  Layers
+  Layers,
+  Copy,
+  Check
 } from "lucide-react";
 import { toast } from "sonner";
+import { createApplication } from "@/services/applicationService";
 
 export default function ProductCheckoutModal() {
   const { isOpen, product, closeCheckout } = useProductCheckout();
@@ -42,12 +45,13 @@ export default function ProductCheckoutModal() {
   const [notes, setNotes] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderRef, setOrderRef] = useState("");
+  const [copiedId, setCopiedId] = useState(false);
 
   useEffect(() => {
     if (isOpen && product) {
       setStep("form");
       setIsSubmitting(false);
-      setOrderRef(`BX-${Math.floor(100000 + Math.random() * 900000)}`);
+      setCopiedId(false);
     }
   }, [isOpen, product]);
 
@@ -67,6 +71,15 @@ export default function ProductCheckoutModal() {
       }).format(product.regularPrice)
     : null;
 
+  const handleCopyId = () => {
+    if (orderRef) {
+      navigator.clipboard.writeText(orderRef);
+      setCopiedId(true);
+      toast.success("Order ID copied to clipboard!");
+      setTimeout(() => setCopiedId(false), 2000);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName.trim() || !email.trim() || !phone.trim()) {
@@ -76,14 +89,34 @@ export default function ProductCheckoutModal() {
 
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      // 1. Save to real-time database engine with collision-free Unique ID
+      const appRecord = await createApplication({
+        type: 'product',
+        name: fullName,
+        email,
+        phone,
+        organization: company || 'Individual',
+        track: product.title,
+        details: {
+          productTitle: product.title,
+          price: formattedPrice,
+          cadence: product.cadence || 'Standard',
+          deploymentPreference,
+          notes: notes || 'None',
+        },
+      });
+
+      setOrderRef(appRecord.id);
+
+      // 2. Dispatch to Web3Forms for notification redundancy
+      fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: "249671c5-ee38-463a-9841-437d56047bb9",
           subject: `Product Purchase Request: ${product.title} - ${fullName}`,
           from_name: "Brandex Product Desk",
-          orderReference: orderRef,
+          orderReference: appRecord.id,
           productTitle: product.title,
           price: formattedPrice,
           cadence: product.cadence || "Standard",
@@ -94,17 +127,12 @@ export default function ProductCheckoutModal() {
           deploymentPreference,
           notes: notes || "None",
         }),
-      });
+      }).catch((e) => console.warn("Web3Forms submission background note:", e));
 
-      const json = await response.json();
-      if (response.status === 200 || json.success) {
-        setStep("success");
-        toast.success("Purchase request submitted! Our team is on standby.");
-      } else {
-        toast.error(json.message || "Something went wrong. Connecting you via WhatsApp...");
-        setStep("success");
-      }
+      setStep("success");
+      toast.success(`Order logged! ID: ${appRecord.id}`);
     } catch (err) {
+      console.error("Order submission error:", err);
       // Fallback directly to success state to keep friction zero
       setStep("success");
     } finally {
@@ -325,18 +353,49 @@ export default function ProductCheckoutModal() {
 
             <div className="space-y-2">
               <span className="text-xs font-bold uppercase tracking-wider text-emerald-500 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                Request Confirmed • Reference #{orderRef}
+                Order Logged • Instant Engineering Desk Queue
               </span>
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground">
                 We're Ready to Onboard You!
               </h3>
               <p className="text-xs sm:text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
-                Thank you, <strong className="text-foreground">{fullName}</strong>. Your software provisioning request for <strong className="text-foreground">{product.title}</strong> has been assigned to our Bangalore engineering team.
+                Thank you, <strong className="text-foreground">{fullName}</strong>. Your software provisioning request for <strong className="text-foreground">{product.title}</strong> has been logged in real time and assigned to our Bangalore engineering team.
+              </p>
+            </div>
+
+            {/* Generated Unique Order ID with Copy Button */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-secondary/60 border-2 border-border/80 max-w-lg mx-auto text-left shadow-sm">
+              <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-muted-foreground mb-2">
+                <span>Unique Application / Order ID</span>
+                <span className="text-emerald-500 font-semibold font-sans">Live in Database Queue</span>
+              </div>
+              <div className="flex items-center justify-between gap-3">
+                <span className="font-mono text-xl sm:text-2xl font-black text-accent tracking-wide select-all">
+                  {orderRef}
+                </span>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCopyId}
+                  className="h-9 px-3.5 rounded-xl border-border text-xs font-bold gap-1.5 shrink-0"
+                >
+                  {copiedId ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
+                  <span>{copiedId ? "Copied!" : "Copy ID"}</span>
+                </Button>
+              </div>
+            </div>
+
+            {/* Advisory Warning Banner */}
+            <div className="p-3.5 bg-amber-500/10 border border-amber-500/25 rounded-xl text-left flex items-start gap-2.5 max-w-lg mx-auto">
+              <span className="text-amber-500 text-sm mt-0.5">⚠️</span>
+              <p className="text-[11px] sm:text-xs text-amber-900 dark:text-amber-200 leading-relaxed font-medium">
+                <strong>Important:</strong> Please copy and save your Application / Order ID (<strong>{orderRef}</strong>). You will need this ID to track your license issuance, invoice status, and engineering onboarding in real time.
               </p>
             </div>
 
             {/* Next Steps Card */}
-            <div className="bg-card border-2 border-border/80 rounded-2xl p-5 max-w-lg mx-auto text-left space-y-3 shadow-md">
+            <div className="bg-card border border-border/80 rounded-2xl p-4 sm:p-5 max-w-lg mx-auto text-left space-y-2.5 shadow-xs">
               <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
                 <CheckCircle2 size={14} className="text-accent" /> What Happens Next:
               </span>
@@ -352,15 +411,22 @@ export default function ProductCheckoutModal() {
               </ul>
             </div>
 
-            {/* Direct Connect Buttons */}
+            {/* Direct Connect Buttons & Real-Time Tracking Link */}
             <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+              <a
+                href={`/status?id=${encodeURIComponent(orderRef)}`}
+                className="inline-flex items-center justify-center bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-xs sm:text-sm h-12 px-6 rounded-xl shadow-lg shadow-accent/20 transition-all"
+              >
+                Track Status in Real-Time <ArrowRight size={15} className="ml-1.5" />
+              </a>
+
               <Button
                 type="button"
                 onClick={handleWhatsAppConnect}
                 size="lg"
                 className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm h-12 px-6 rounded-xl shadow-lg shadow-emerald-500/20"
               >
-                <MessageSquare size={16} className="mr-2" /> Connect on WhatsApp Now
+                <MessageSquare size={16} className="mr-2" /> Connect on WhatsApp
               </Button>
 
               <Button
@@ -373,7 +439,7 @@ export default function ProductCheckoutModal() {
                 size="lg"
                 className="border-border text-xs sm:text-sm h-12 px-6 rounded-xl font-semibold"
               >
-                <Calendar size={15} className="mr-2" /> Book Product Walkthrough
+                <Calendar size={15} className="mr-2" /> Book Walkthrough
               </Button>
 
               <Button

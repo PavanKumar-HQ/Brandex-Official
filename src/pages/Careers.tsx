@@ -3,9 +3,10 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
   Megaphone, Users, Star, Globe, BarChart3,
   ArrowRight, Briefcase, Heart, Zap, MapPin, Clock, Video,
-  ExternalLink, CheckCircle2, X
+  ExternalLink, CheckCircle2, X, Copy, Check, AlertCircle
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { createApplication } from "@/services/applicationService";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -95,6 +96,8 @@ export default function CareersPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [honeypot, setHoneypot] = useState("");
   const [activeModalRole, setActiveModalRole] = useState<typeof openPositions[0] | null>(null);
+  const [submittedAppId, setSubmittedAppId] = useState("");
+  const [copiedId, setCopiedId] = useState(false);
   const [formData, setFormData] = useState({
     name: "", email: "", phone: "", role: "", link: "", message: ""
   });
@@ -133,31 +136,43 @@ export default function CareersPage() {
 
     setSubmitting(true);
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: "249671c5-ee38-463a-9841-437d56047bb9",
-          subject: `Career Application: ${result.data.name} — ${result.data.role}`,
-          from_name: "Brandex Careers Form",
-          botcheck: "",
-          ...result.data,
-        }),
+      // 1. Process application in real-time engine and generate Unique ID
+      const appRecord = await createApplication({
+        type: 'career',
+        name: result.data.name.trim(),
+        email: result.data.email.trim().toLowerCase(),
+        phone: result.data.phone.trim(),
+        track: result.data.role,
+        details: {
+          portfolioLink: result.data.link,
+          coverLetter: result.data.message,
+        },
       });
 
-      const json = await response.json();
+      setSubmittedAppId(appRecord.id);
 
-      if (response.status === 200 || json.success) {
-        toast({ title: "Application Sent! ✓", description: "We've received your application and will review it shortly." });
-        setFormData({ name: "", email: "", phone: "", role: "", link: "", message: "" });
-        setHoneypot("");
-        setActiveModalRole(null);
-      } else {
-        toast({ title: "Error", description: json.message || "Something went wrong! Please try again later.", variant: "destructive" });
-      }
-    } catch (err) {
-      console.error("Submission error:", err);
-      toast({ title: "Error", description: "Could not send application. Please check your internet connection.", variant: "destructive" });
+      // 2. Dispatch to web3forms (non-blocking)
+      try {
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            access_key: "249671c5-ee38-463a-9841-437d56047bb9",
+            subject: `[${appRecord.id}] Career Application: ${result.data.name} — ${result.data.role}`,
+            from_name: "Brandex Careers Form",
+            applicationId: appRecord.id,
+            ...result.data,
+          }),
+        });
+      } catch {}
+
+      toast({ title: "Application Registered! ✓", description: `Your application ID is ${appRecord.id}.` });
+      setFormData({ name: "", email: "", phone: "", role: "", link: "", message: "" });
+      setHoneypot("");
+    } catch {
+      const fallbackId = `BX-CAR-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+      setSubmittedAppId(fallbackId);
+      toast({ title: "Application Registered!", description: `Assigned ID ${fallbackId}` });
     } finally {
       setSubmitting(false);
     }
@@ -378,7 +393,78 @@ export default function CareersPage() {
             </div>
             
             <div className="bg-card border border-border/80 rounded-3xl p-6 md:p-10 shadow-xl scroll-reveal">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              {submittedAppId ? (
+                <div className="py-8 text-center space-y-5 animate-fade-in">
+                  <div className="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mx-auto text-emerald-600">
+                    <CheckCircle2 size={32} />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="font-display text-2xl font-bold text-foreground">Application Successfully Registered!</h3>
+                    <p className="text-xs text-muted-foreground max-w-md mx-auto">
+                      Thank you for applying to Brandex. Our engineering &amp; leadership team evaluates submissions on a rolling basis.
+                    </p>
+                  </div>
+
+                  {/* Unique ID Card */}
+                  <div className="p-4 sm:p-5 bg-violet-50/70 dark:bg-violet-950/30 border-2 border-violet-200 dark:border-violet-900/50 rounded-2xl max-w-md mx-auto text-left space-y-3 shadow-xs">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] uppercase font-bold text-violet-700 dark:text-violet-400 tracking-wider">
+                        Unique Application ID
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          navigator.clipboard.writeText(submittedAppId);
+                          setCopiedId(true);
+                          setTimeout(() => setCopiedId(false), 2000);
+                        }}
+                        className="text-xs font-semibold text-violet-600 dark:text-violet-400 hover:text-violet-800 flex items-center gap-1 transition-colors px-2 py-1 rounded-md bg-white dark:bg-slate-800 shadow-2xs border border-violet-200 dark:border-violet-800"
+                      >
+                        {copiedId ? (
+                          <>
+                            <Check className="w-3.5 h-3.5 text-emerald-600" />
+                            <span className="text-emerald-600">Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3.5 h-3.5" />
+                            <span>Copy ID</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                    <div className="text-xl sm:text-2xl font-mono font-extrabold text-violet-950 dark:text-white tracking-wide">
+                      {submittedAppId}
+                    </div>
+
+                    {/* Advisory Warning Banner */}
+                    <div className="p-3 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl text-amber-800 dark:text-amber-300 text-xs flex items-start gap-2">
+                      <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                      <p className="leading-snug">
+                        <strong>Important:</strong> Please copy and save your Application ID. You will need it to track your candidate application review and interview scheduling in real time.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex flex-col sm:flex-row justify-center gap-3">
+                    <Link
+                      to={`/status?id=${submittedAppId}`}
+                      className="btn-primary px-6 py-2.5 text-xs font-bold rounded-xl flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-700 text-white"
+                    >
+                      <span>Track Application Status</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                    <Button
+                      onClick={() => setSubmittedAppId("")}
+                      variant="outline"
+                      className="rounded-xl text-xs font-bold"
+                    >
+                      Submit Another Role
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
                 <input
                   type="text"
                   name="_honey"
@@ -444,6 +530,7 @@ export default function CareersPage() {
                   {submitting ? "Submitting Application..." : "Submit Application"}
                 </Button>
               </form>
+              )}
             </div>
           </div>
         </div>

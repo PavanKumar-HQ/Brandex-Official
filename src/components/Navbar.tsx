@@ -21,6 +21,7 @@ import {
   Layers,
   Sparkles,
   ArrowUpRight,
+  Webhook,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -104,8 +105,14 @@ const communityDropdownSections = [
       {
         title: "Application Tracker",
         desc: "Live status for cohorts & roles",
-        href: "/community/status",
+        href: "/status",
         icon: ShieldCheck,
+      },
+      {
+        title: "CRM Bridge & API",
+        desc: "Real-time webhook & leads gateway",
+        href: "/crm-bridge",
+        icon: Webhook,
       },
       {
         title: "Community Guidelines",
@@ -259,7 +266,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || activeDropdown || pathname !== "/"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-[env(safe-area-inset-top,0px)] ${scrolled || activeDropdown || pathname !== "/"
           ? "liquid-glass border-b border-slate-200/70 bg-white/95 dark:bg-slate-950/95 py-2.5 backdrop-blur-xl shadow-2xs"
           : "bg-transparent py-3 sm:py-3.5"
         }`}
@@ -367,12 +374,12 @@ export default function Navbar() {
                           {/* Dropdown Footer Action */}
                           <div className="mt-5 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                             <span className="text-[11px] text-slate-500 font-medium">
-                              Builders &amp; Founders Club • 1,400+ Active Members
+                              Builders &amp; Founders Club • Open Guild 2026
                             </span>
                             <Link
                               to="/community/search"
                               onClick={() => setActiveDropdown(null)}
-                              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-indigo-50 text-[#4f47e6] hover:bg-[#4f47e6] hover:text-white text-xs font-bold transition-all shadow-2xs"
+                              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-violet-50 text-violet-600 hover:bg-violet-600 hover:text-white text-xs font-bold transition-all shadow-2xs"
                             >
                               <Search size={12} />
                               <span>Search Community</span>
@@ -401,7 +408,7 @@ export default function Navbar() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 6, scale: 0.98 }}
                           transition={{ duration: 0.18, ease: "easeOut" }}
-                          className="w-[680px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl rounded-3xl border border-slate-200/90 dark:border-slate-800/90 shadow-2xl p-6 overflow-hidden"
+                          className="w-[680px] max-w-[calc(100vw-48px)] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl rounded-3xl border border-slate-200/90 dark:border-slate-800/90 shadow-2xl p-6 overflow-hidden"
                         >
                           <div className="grid grid-cols-2 gap-6">
                             {educationDropdownSections.map((section, idx) => (
@@ -498,7 +505,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="lg:hidden fixed inset-x-0 top-[3.75rem] liquid-glass border-b border-slate-200 shadow-xl p-5 overflow-y-auto max-h-[calc(100vh-3.75rem)]"
+            className="lg:hidden fixed inset-x-0 top-[calc(3.5rem+env(safe-area-inset-top,0px))] liquid-glass border-b border-slate-200 shadow-xl p-4 sm:p-5 pb-[calc(1.5rem+env(safe-area-inset-bottom,0px))] overflow-y-auto max-h-[calc(100dvh-3.5rem-env(safe-area-inset-top,0px))]"
           >
             <div className="flex flex-col space-y-2">
               <div className="text-[11px] font-mono tracking-widest text-[#4f47e6] uppercase mb-1 font-bold">

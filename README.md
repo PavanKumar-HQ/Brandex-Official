@@ -29,7 +29,7 @@
 [![Performance](https://img.shields.io/badge/Lighthouse-95%2B_Performance-brightgreen?style=flat-square&logo=googlechrome&logoColor=white)](#)
 [![Core Web Vitals](https://img.shields.io/badge/Core_Web_Vitals-Sub--50ms_INP-success?style=flat-square)](#)
 [![SEO & AEO](https://img.shields.io/badge/SEO_%26_AEO-JSON--LD_100%25-orange?style=flat-square)](#)
-[![GEO / LLMs](https://img.shields.io/badge/GEO_%2F_LLMs-llms.txt_Compliant-purple?style=flat-square)](#)
+[![GEO / LLMs](https://img.shields.io/badge/GEO_%2F_LLMs-llms.txt_Compliant-violet?style=flat-square)](#)
 [![License](https://img.shields.io/badge/License-Proprietary_Brandex-lightgrey?style=flat-square)](#)
 
 </div>
