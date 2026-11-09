@@ -66,7 +66,7 @@ export const StoryDetailPage: React.FC = () => {
   const isPavan = story.author.includes('Pavan');
   const authorInfo = isPavan 
     ? {
-        name: 'Pavan Kumar.S',
+        name: 'Pavan Kumar S',
         role: 'Co-founder & CEO, Brandex',
         bio: 'Driving platform engineering and AI systems at Brandex. Focused on bridging the gap between classroom theory and real-world execution.',
         linkedin: 'https://www.linkedin.com/in/pavankumarofficialcareers/',

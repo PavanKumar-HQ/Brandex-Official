@@ -20,7 +20,7 @@ const pages = [
         <h2>Founders & Leadership Team</h2>
         <ul>
           <li><strong>Sathvik Nagesh</strong> — Founder & Chief Technology Officer (CTO). Leads software architecture, AI agent research, and enterprise infrastructure engineering. (<a href="/team/sathvik-nagesh">Profile</a>)</li>
-          <li><strong>Pavan Kumar</strong> — Co-Founder & Chief Executive Officer (CEO). Leads company vision, institutional university partnerships, Geniusphere AI literacy workshops, and builder community operations. (<a href="/team/pavan-kumar">Profile</a>)</li>
+          <li><strong>Pavan Kumar S</strong> — Co-Founder & Chief Executive Officer (CEO). Leads company vision, strategic software delivery, institutional university partnerships, Geniusphere AI literacy workshops, and builder community operations. (<a href="/team/pavan-kumar">Profile</a>)</li>
         </ul>
 
         <h2>United Nations Sustainable Development Goals (SDG) Alignment</h2>
@@ -164,7 +164,7 @@ const pages = [
         <h2>Enterprise Software, CRMs & Web Applications</h2>
         <p>Explore how Brandex designs, builds, and deploys custom CRMs, automation systems, and high-conversion web applications:</p>
         <ul>
-          <li><strong><a href="/projects/travel-crm">Travel CRM Platform:</a></strong> Custom Travel CRM and automated itinerary management software featuring Word/PDF document parsing, travel directory knowledge bases, dynamic QR codes, and vector PDF generation.</li>
+          <li><strong><a href="/products/travel-crm">Travel CRM Platform:</a></strong> Custom Travel CRM and automated itinerary management software featuring Word/PDF document parsing, travel directory knowledge bases, dynamic QR codes, and vector PDF generation.</li>
           <li><strong><a href="/case-studies/the-man-wanders-globe">The Man Wanders Globe:</a></strong> Luxury bespoke travel portal with curated tour packages and fast booking workflows.</li>
           <li><strong><a href="/case-studies/srushti-publications">Srushti Publications:</a></strong> High-throughput e-commerce publishing architecture with instant search and automated invoicing.</li>
           <li><strong><a href="/case-studies/geniusphere">GeniuSphere:</a></strong> Immersive 3D WebGL Learning Management System.</li>
@@ -364,7 +364,7 @@ const pages = [
         <h2>Measurable Impact Across Industries</h2>
         <p>See how Brandex helps brands achieve exceptional growth, operational efficiency, and performance:</p>
         <ul>
-          <li><strong><a href="/projects/travel-crm">Travel CRM Platform:</a></strong> Custom Travel CRM with itinerary automation, document parsing, and dynamic QR PDFs.</li>
+          <li><strong><a href="/products/travel-crm">Travel CRM Platform:</a></strong> Custom Travel CRM with itinerary automation, document parsing, and dynamic QR PDFs.</li>
           <li><strong>The Man Wanders Globe:</strong> Luxury travel booking platform with sub-second speeds and custom booking workflows.</li>
           <li><strong>Vignan Public School:</strong> Comprehensive institutional management platform and parent-teacher portal.</li>
           <li><strong>Vignan Tutorials:</strong> Interactive student learning management system and exam portal.</li>
@@ -779,14 +779,15 @@ const pages = [
   },
   {
     path: 'team/pavan-kumar',
-    title: 'Pavan Kumar — Co-Founder & CEO | Brandex',
-    description: 'Pavan Kumar is a co-founder and CEO of Brandex, a technology and AI engineering enterprise based in Bengaluru. Leading executive strategy, AI literacy, and university partnerships.',
-    h1: 'Pavan Kumar — Co-Founder & Chief Executive Officer',
+    title: 'Pavan Kumar S — Co-Founder & CEO | Brandex',
+    description: 'Pavan Kumar S is the Co-Founder and CEO of Brandex, a technology and custom software engineering enterprise based in Bengaluru. Leading executive strategy, AI literacy, and university partnerships.',
+    h1: 'Pavan Kumar S — Co-Founder & Chief Executive Officer',
     content: `
       <article>
-        <img src="/team/pavan-kumar.webp" alt="Pavan Kumar, Co-Founder & CEO of Brandex" width="400" height="500" />
-        <h2>About Pavan Kumar</h2>
-        <p>Pavan Kumar is a co-founder and Chief Executive Officer (CEO) of Brandex, a technology and AI systems enterprise based in Bengaluru, Karnataka. Pavan directs enterprise strategy, institutional university partnerships, Geniusphere AI literacy workshops, and builder community ecosystems.</p>
+        <img src="/team/pavan-kumar.webp" alt="Pavan Kumar S, Co-Founder & CEO of Brandex" width="400" height="500" />
+        <h2>About Pavan Kumar S</h2>
+        <p>Pavan Kumar S is the Co-Founder and Chief Executive Officer (CEO) of Brandex, an end-to-end technology and custom software systems enterprise headquartered in Bengaluru, Karnataka, India. Pavan directs enterprise strategy, custom software delivery governance, institutional university partnerships, Geniusphere AI literacy workshops, and builder community ecosystems.</p>
+        <p><em>Disambiguation Note:</em> Pavan Kumar S is an Indian technology executive and software entrepreneur based in Bengaluru, distinct from the Indian film director Pawan Kumar.</p>
         <h2>Core Executive & Technology Competencies</h2>
         <p>Executive Leadership & Strategy, AI Literacy & Technology Workshops, Geniusphere Educational Programs, Campus Ambassador Networks, Custom Software Project Governance, and Builder Hackathons.</p>
         <h2>Direct Contact & Entity Channels</h2>
@@ -836,7 +837,7 @@ function prerender() {
           <a href="/">Brandex Home</a> |
           <a href="/services">Services</a> |
           <a href="/projects">Projects Hub</a> |
-          <a href="/projects/travel-crm">Travel CRM</a> |
+          <a href="/products/travel-crm">Travel CRM</a> |
           <a href="/products/invoice-builder">Invoice Builder</a> |
           <a href="/community">Community</a> |
           <a href="/community/events">Events</a> |
@@ -862,7 +863,7 @@ function prerender() {
       <footer>
         <p>&copy; 2026 Brandex. #121, 13th Main M.C. Layout, Vijaynagar, Bangalore - 560040, India.</p>
         <p>Phone: +91 94809 44727 | Email: team@brandex.co.in</p>
-        <p><a href="/community">Community</a> | <a href="/education">Education</a> | <a href="/projects">Projects</a> | <a href="/projects/travel-crm">Travel CRM Platform</a> | <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-and-conditions">Terms</a> | <a href="/llms.txt">llms.txt</a> | <a href="/sitemap.xml">Sitemap</a></p>
+        <p><a href="/community">Community</a> | <a href="/education">Education</a> | <a href="/projects">Projects</a> | <a href="/products/travel-crm">Travel CRM Platform</a> | <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-and-conditions">Terms</a> | <a href="/llms.txt">llms.txt</a> | <a href="/sitemap.xml">Sitemap</a></p>
       </footer>
     </div>`;
 

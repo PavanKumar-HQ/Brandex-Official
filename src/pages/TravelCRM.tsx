@@ -206,12 +206,12 @@ export default function TravelCRMPage() {
 
   const softwareSchema = {
     "@type": "SoftwareApplication",
-    "@id": "https://www.brandex.co.in/projects/travel-crm#software",
+    "@id": "https://www.brandex.co.in/products/travel-crm#software",
     "name": "Brandex Travel CRM & Itinerary Automation Platform",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web Browser, Cloud-Native",
     "description": "A custom Travel CRM built by Brandex for travel agencies and tour operators to manage clients, quotations, itineraries, travel directories, and automated PDF generation from Word and PDF files.",
-    "url": "https://www.brandex.co.in/projects/travel-crm",
+    "url": "https://www.brandex.co.in/products/travel-crm",
     "creator": {
       "@type": "Organization",
       "@id": "https://www.brandex.co.in/#organization",
@@ -239,7 +239,7 @@ export default function TravelCRMPage() {
 
   const faqSchema = {
     "@type": "FAQPage",
-    "@id": "https://www.brandex.co.in/projects/travel-crm#faq",
+    "@id": "https://www.brandex.co.in/products/travel-crm#faq",
     "mainEntity": [
       {
         "@type": "Question",

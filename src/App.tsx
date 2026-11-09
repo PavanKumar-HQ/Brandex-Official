@@ -105,14 +105,14 @@ function AnimatedRoutes() {
               <Route path="/industries" element={<Industries />} />
               <Route path="/products" element={<Products />} />
               <Route path="/projects" element={<Projects />} />
-              <Route path="/projects/travel-crm" element={<TravelCRM />} />
+              <Route path="/projects/travel-crm" element={<Navigate to="/products/travel-crm" replace />} />
               <Route path="/products/travel-crm" element={<TravelCRM />} />
-              <Route path="/projects/invoice-builder" element={<InvoiceBuilder />} />
+              <Route path="/projects/invoice-builder" element={<Navigate to="/products/invoice-builder" replace />} />
               <Route path="/products/invoice-builder" element={<InvoiceBuilder />} />
               <Route path="/projects/:id" element={<CaseStudyDetail />} />
               <Route path="/case-studies" element={<CaseStudies />} />
-              <Route path="/case-studies/travel-crm" element={<TravelCRM />} />
-              <Route path="/case-studies/invoice-builder" element={<InvoiceBuilder />} />
+              <Route path="/case-studies/travel-crm" element={<Navigate to="/products/travel-crm" replace />} />
+              <Route path="/case-studies/invoice-builder" element={<Navigate to="/products/invoice-builder" replace />} />
               <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
               <Route path="/case-studies/srushti" element={<Navigate to="/case-studies/srushti-publications" replace />} />
               <Route path="/srushti-publications" element={<Navigate to="/case-studies/srushti-publications" replace />} />

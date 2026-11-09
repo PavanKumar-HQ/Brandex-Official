@@ -12,6 +12,37 @@
       "permanent": true
     },
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "brandex-official.vercel.app"
+        }
+      ],
+      "destination": "https://www.brandex.co.in/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/projects/travel-crm",
+      "destination": "https://www.brandex.co.in/products/travel-crm",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/travel-crm",
+      "destination": "https://www.brandex.co.in/products/travel-crm",
+      "permanent": true
+    },
+    {
+      "source": "/projects/invoice-builder",
+      "destination": "https://www.brandex.co.in/products/invoice-builder",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/invoice-builder",
+      "destination": "https://www.brandex.co.in/products/invoice-builder",
+      "permanent": true
+    },
+    {
       "source": "/contact-us",
       "destination": "https://www.brandex.co.in/contact",
       "permanent": true
@@ -115,6 +146,15 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(api|crm|crm-bridge|status|community/status|education/admin|education/login|admin|login|education/classroom|classroom)(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
         }
       ]
     },

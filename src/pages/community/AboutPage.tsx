@@ -7,7 +7,7 @@ import { PageHero } from '@/community/components/ui/PageHero';
 import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
 
 export const AboutPage: React.FC = () => {
-  useSEO("About Our Vision", "Learn the story of Brandex. Founded by Pavan Kumar.S and Sathvik.N to enhance real-world tech sharing and open-source welfare.");
+  useSEO("About Our Vision", "Learn the story of Brandex. Founded by Pavan Kumar S and Sathvik Nagesh to enhance real-world tech sharing and open-source welfare.");
   const principles = [
     {
       title: 'Learn Openly',
@@ -105,12 +105,12 @@ export const AboutPage: React.FC = () => {
             {/* Founder 1: Pavan Kumar */}
             <div className="bg-white rounded-2xl p-6 border border-slate-200/60 shadow-sm flex gap-6 hover:border-indigo-200 hover:shadow-md transition-all duration-300 relative overflow-hidden group">
               <NavLink to="/team/pavan-kumar" className="w-16 h-16 rounded-xl overflow-hidden shadow shrink-0 bg-slate-900 flex items-center justify-center block">
-                <img src="/team/pavan-kumar.webp" alt="Pavan Kumar" className="w-full h-full object-cover" />
+                <img src="/team/pavan-kumar.webp" alt="Pavan Kumar S" className="w-full h-full object-cover" />
               </NavLink>
               <div className="space-y-2 flex-1">
                 <div>
                   <NavLink to="/team/pavan-kumar" className="hover:text-indigo-600 transition-colors">
-                    <h4 className="font-display font-bold text-lg text-slate-900 leading-tight">Pavan Kumar</h4>
+                    <h4 className="font-display font-bold text-lg text-slate-900 leading-tight">Pavan Kumar S</h4>
                   </NavLink>
                   <p className="text-xs text-indigo-600 font-bold uppercase tracking-wider mt-0.5">Co-Founder & CEO</p>
                 </div>

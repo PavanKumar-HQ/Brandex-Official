@@ -51,7 +51,6 @@ const routes = [
   { path: '/services', changefreq: 'weekly', priority: '0.9' },
   { path: '/products', changefreq: 'weekly', priority: '0.9' },
   { path: '/projects', changefreq: 'weekly', priority: '0.9' },
-  { path: '/projects/travel-crm', changefreq: 'weekly', priority: '0.9' },
   { path: '/products/travel-crm', changefreq: 'weekly', priority: '0.9' },
   { path: '/products/invoice-builder', changefreq: 'weekly', priority: '0.9' },
   { path: '/pricing', changefreq: 'weekly', priority: '0.9' },

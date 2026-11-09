@@ -9,7 +9,7 @@ import { Breadcrumb } from '@/community/components/ui/Breadcrumb';
 import { EmptyState } from '@/community/components/ui/EmptyState';
 
 export const StoriesPage: React.FC = () => {
-  useSEO("Impact Stories & Blog", "Read tech articles, case studies, and impact stories written by Pavan Kumar.S and Sathvik.N.");
+  useSEO("Impact Stories & Blog", "Read tech articles, case studies, and impact stories written by Pavan Kumar S and Sathvik Nagesh.");
   const [stories, setStories] = useState<Story[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 

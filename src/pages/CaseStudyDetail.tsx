@@ -13,7 +13,11 @@ export default function CaseStudyDetail() {
   }, [id]);
 
   if (id === "travel-crm") {
-    return <Navigate to="/projects/travel-crm" replace />;
+    return <Navigate to="/products/travel-crm" replace />;
+  }
+
+  if (id === "invoice-builder") {
+    return <Navigate to="/products/invoice-builder" replace />;
   }
 
   const project = projects.find((p) => p.id === id);

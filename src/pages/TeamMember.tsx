@@ -37,13 +37,17 @@ export default function TeamMemberPage() {
   return (
     <>
       <SEOTags
-        title={`${member.name} — Co-Founder & CEO | Brandex`}
+        title={
+          member.slug === "pavan-kumar"
+            ? `${member.name} — Co-Founder & CEO | Brandex`
+            : `${member.name} — Founder & Chief Technology Officer (CTO) | Brandex`
+        }
         description={
           member.slug === "pavan-kumar"
-            ? "Pavan Kumar is a co-founder and CEO of Brandex, a technology and AI engineering enterprise based in Bengaluru. Leading executive strategy, AI literacy, and university partnerships."
+            ? "Pavan Kumar S is the Co-Founder and CEO of Brandex, an end-to-end technology and custom software engineering enterprise based in Bengaluru. Leading executive strategy, AI literacy, and university partnerships."
             : `${member.name} is the ${member.role} at Brandex. ${member.bio}`
         }
-        keywords={`${member.name}, ${member.role}, Brandex co-founder, ${member.slug === "pavan-kumar" ? "Pavan Kumar Bangalore, Pavan Kumar CEO, Geniusphere, AI literacy workshops, technology entrepreneur Bangalore" : "Sathvik Nagesh cybersecurity, Zero-Trust"}, Brandex leadership, technology team Bangalore, ${member.expertise.slice(0, 3).join(", ")}`}
+        keywords={`${member.name}, ${member.role}, Brandex co-founder, ${member.slug === "pavan-kumar" ? "Pavan Kumar S, Pavan Kumar S Bangalore, Pavan Kumar CEO, Geniusphere, AI literacy workshops, technology entrepreneur Bangalore" : "Sathvik Nagesh, Sathvik Nagesh CTO, cybersecurity, Zero-Trust, systems architect"}, Brandex leadership, technology team Bangalore, ${member.expertise.slice(0, 3).join(", ")}`}
         canonicalUrl={canonicalUrl}
         type="profile"
         image={member.image ? `https://www.brandex.co.in${member.image}` : "https://www.brandex.co.in/og/about.png"}
@@ -60,11 +64,11 @@ export default function TeamMemberPage() {
             "@type": "Person",
             "@id": `${canonicalUrl}#person`,
             "name": member.name,
-            "alternateName": member.slug === "pavan-kumar" ? ["Pavan Kumar S", "Pavan K."] : ["Sathvik N."],
+            "alternateName": member.slug === "pavan-kumar" ? ["Pavan Kumar", "Pavan Kumar S.", "Pavan K."] : ["Sathvik N."],
             "jobTitle": member.role,
             "description": member.bio,
             "disambiguatingDescription": member.slug === "pavan-kumar"
-              ? "Co-Founder and Chief Executive Officer (CEO) of Brandex, a technology and AI systems enterprise based in Bengaluru, Karnataka, distinct from the Indian film director Pawan Kumar."
+              ? "Co-Founder and Chief Executive Officer (CEO) of Brandex, an end-to-end technology and custom software engineering enterprise based in Bengaluru, Karnataka, distinct from the Indian film director Pawan Kumar."
               : "Founder and Chief Technology Officer (CTO) of Brandex, enterprise cybersecurity architect and full-stack software engineer based in Bengaluru.",
             "email": member.email,
             "image": member.image ? `https://www.brandex.co.in${member.image}` : undefined,

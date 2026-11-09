@@ -123,12 +123,13 @@ export default function AboutPage() {
           {
             "@type": "Person",
             "@id": "https://www.brandex.co.in/team/pavan-kumar#person",
-            "name": "Pavan Kumar",
+            "name": "Pavan Kumar S",
+            "alternateName": ["Pavan Kumar", "Pavan K."],
             "url": "https://www.brandex.co.in/team/pavan-kumar",
             "image": "https://www.brandex.co.in/team/pavan-kumar.webp",
             "jobTitle": "Co-Founder & Chief Executive Officer",
-            "description": "Pavan Kumar is a co-founder of Brandex, a technology company based in Bengaluru, leading executive strategy, AI literacy, university partnerships, and builder communities.",
-            "disambiguatingDescription": "Co-Founder and Chief Executive Officer (CEO) of Brandex, a technology and AI systems enterprise based in Bengaluru, Karnataka, distinct from the Indian film director Pawan Kumar.",
+            "description": "Pavan Kumar S is the Co-Founder and Chief Executive Officer (CEO) of Brandex, a technology and custom software enterprise based in Bengaluru, leading executive strategy, AI literacy, university partnerships, and builder communities.",
+            "disambiguatingDescription": "Co-Founder and Chief Executive Officer (CEO) of Brandex, an end-to-end technology and custom software enterprise based in Bengaluru, Karnataka, distinct from the Indian film director Pawan Kumar.",
             "worksFor": { "@id": "https://www.brandex.co.in/#organization" },
             "knowsAbout": ["Executive Leadership", "Strategic Partnerships", "AI Literacy & Workshops", "Technology Education", "Enterprise Operations"],
             "sameAs": [

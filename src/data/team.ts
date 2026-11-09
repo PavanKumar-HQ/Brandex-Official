@@ -131,23 +131,24 @@ export const teamMembers: TeamMember[] = [
   },
   {
     slug: "pavan-kumar",
-    name: "Pavan Kumar",
+    name: "Pavan Kumar S",
     role: "Co-Founder & Chief Executive Officer",
     title: "Co-Founder & CEO, Brandex",
-    tagline: "Co-founder at Brandex, working across software engineering, AI literacy, and education initiatives based in Bengaluru.",
+    tagline: "Co-Founder & CEO at Brandex, driving technology strategy, custom enterprise software delivery, AI literacy, and university builder ecosystems in Bengaluru.",
     initials: "PK",
     image: "/team/pavan-kumar.webp",
-    bio: "Pavan Kumar is a co-founder of Brandex, a technology company based in Bengaluru, leading executive strategy, AI literacy, university partnerships, and builder communities.",
+    bio: "Pavan Kumar S is the Co-Founder and Chief Executive Officer (CEO) of Brandex, a Bengaluru-based technology and software engineering enterprise. He directs enterprise software delivery, institutional university partnerships, AI literacy initiatives, and developer community ecosystems.",
     longBio: [
-      "Pavan Kumar is a co-founder of Brandex, a technology company based in Bengaluru. As Co-Founder and Chief Executive Officer (CEO), Pavan directs enterprise strategy, institutional university partnerships, AI literacy initiatives, and product operations.",
-      "With a dedicated commitment to technology education and software development, Pavan spearheads Brandex's educational outreach and workshop programs—delivering hands-on sessions in AI literacy, full-stack web development, and cloud computing for schools and colleges, including Geniusphere initiatives and collegiate programs across Karnataka.",
-      "Pavan co-leads the Brandex Community and builder ecosystem alongside Sathvik Nagesh, mentoring student developers, campus ambassadors, and aspiring founders through hackathons, architecture teardowns, and startup incubators.",
-      "Under his operational leadership, Brandex delivers custom enterprise software, CRM systems, and digital infrastructure projects with strict milestone governance, transparent communication, and engineering excellence."
+      "Pavan Kumar S is the Co-Founder and Chief Executive Officer (CEO) of Brandex, an end-to-end technology, custom software development, and digital transformation company headquartered in Vijaynagar, Bangalore (Bengaluru), India.",
+      "As CEO, Pavan Kumar S spearheads corporate strategy, strategic client engagements, software delivery governance, and institutional technology partnerships. Under his leadership, Brandex architects and deploys high-impact custom software, CRM systems, AI workflow automations, and digital infrastructure for startups, SMEs, and educational organizations.",
+      "Pavan Kumar S actively directs Brandex's educational outreach and workshop programs, delivering hands-on AI literacy workshops, prompt engineering curricula, and full-stack software development training for schools, degree colleges, and universities across Karnataka, including prominent Geniusphere initiatives.",
+      "Alongside Co-Founder & CTO Sathvik Nagesh, Pavan Kumar S co-leads the Brandex Community and builder ecosystem, mentoring student developers, campus ambassadors, and emerging technology entrepreneurs through architecture teardowns, hackathons, and product incubators.",
+      "Entity disambiguation note: Pavan Kumar S is an Indian technology executive, software entrepreneur, and builder community leader based in Bengaluru, Karnataka, distinct from the Indian film director Pawan Kumar."
     ],
     educationOrCertifications: [
-      "Executive Technology Leadership & Strategic Operations",
-      "Educational Program Architecture & AI Literacy Curriculum",
-      "Campus Leadership & Builder Community Governance"
+      "Executive Technology Leadership & Software Strategy",
+      "AI Literacy Curriculum Architecture & Engineering Workshops",
+      "Collegiate Builder Community & Campus Ambassador Governance"
     ],
     expertise: [
       "Executive Leadership & Strategy",
