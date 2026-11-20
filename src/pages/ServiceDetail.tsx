@@ -23,12 +23,12 @@ const serviceSEOMap: Record<string, { title: string; description: string; keywor
   "software-development": {
     title: "Custom Software Development Company | Brandex Bangalore",
     description: "Bespoke custom software development company in Bangalore. We engineer custom CRMs, enterprise ERPs, cloud SaaS applications, and automated workflows with 100% IP ownership.",
-    keywords: "custom software development company, software development bangalore, custom CRM development, ERP development, enterprise software solutions, SaaS development"
+    keywords: "custom software development company, software development bangalore, custom CRM development, ERP development, enterprise software solutions, SaaS development, business management software"
   },
   "website-development": {
-    title: "High-Performance Website Development Services | Brandex",
-    description: "Custom website development company in Bangalore. We build high-speed corporate websites, headless e-commerce platforms, and web portals optimized for SEO and conversion.",
-    keywords: "website development services, web development company bangalore, high-performance websites, corporate website design, e-commerce development, technical SEO"
+    title: "Website Development & Custom CMS Building Software | Brandex",
+    description: "High-performance website development & custom CMS building software company in Bangalore. We engineer sub-second Next.js websites and bespoke headless CMS platforms with 100% IP ownership.",
+    keywords: "website development services, custom CMS development, CMS building software, headless CMS bangalore, web development company bangalore, nextjs website development, high-performance websites, corporate website design, e-commerce development, technical SEO, AEO optimization"
   },
   "ai-automation": {
     title: "AI & Workflow Automation Services | Custom Agents & LLMs | Brandex",
@@ -177,6 +177,59 @@ export default function ServiceDetail() {
                 </div>
               </div>
 
+              {/* Technology Stack Matrix */}
+              {service.techStack && service.techStack.length > 0 && (
+                <div className="scroll-reveal">
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-1">Architecture &amp; Tooling</p>
+                      <h2 className="text-3xl font-bold">Engineered with Modern Technology</h2>
+                    </div>
+                  </div>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {service.techStack.map((tech, i) => (
+                      <div key={i} className="p-4 bg-card border border-border/70 rounded-xl shadow-xs">
+                        <span className="font-bold text-sm text-foreground block">{tech.name}</span>
+                        <span className="text-xs text-muted-foreground">{tech.role}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Why Brandex Outperforms Legacy Agencies (Comparison Table) */}
+              {service.comparison && service.comparison.length > 0 && (
+                <div className="scroll-reveal">
+                  <div className="mb-6">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-1">The Engineering Advantage</p>
+                    <h2 className="text-3xl font-bold">How Brandex Outperforms Legacy Agencies</h2>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      Why modern startups and enterprises switch from 10-year-old legacy agencies to Brandex:
+                    </p>
+                  </div>
+                  <div className="overflow-x-auto rounded-2xl border border-border/80 bg-card shadow-sm">
+                    <table className="w-full text-left text-sm">
+                      <thead className="bg-secondary/70 border-b border-border/70 text-xs uppercase tracking-wider text-muted-foreground">
+                        <tr>
+                          <th className="py-3.5 px-4 font-semibold">Capability</th>
+                          <th className="py-3.5 px-4 font-bold text-accent">Brandex Engineering</th>
+                          <th className="py-3.5 px-4 font-semibold">Legacy Agencies &amp; Old CMS</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-border/60">
+                        {service.comparison.map((row, i) => (
+                          <tr key={i} className="hover:bg-secondary/30 transition-colors">
+                            <td className="py-3.5 px-4 font-bold text-foreground">{row.feature}</td>
+                            <td className="py-3.5 px-4 text-accent font-medium">{row.brandex}</td>
+                            <td className="py-3.5 px-4 text-muted-foreground">{row.legacy}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
               {/* FAQs */}
               {service.faqs.length > 0 && (
                 <div className="scroll-reveal">
@@ -237,7 +290,7 @@ export default function ServiceDetail() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/projects/travel-crm" className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-center gap-2">
+                    <Link to="/products/travel-crm" className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-center gap-2">
                       <ArrowRight size={14} /> Travel CRM Platform
                     </Link>
                   </li>
@@ -276,7 +329,7 @@ export default function ServiceDetail() {
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedProjects.map((project) => {
-                const targetUrl = project.id === "travel-crm" ? "/projects/travel-crm" : `/case-studies/${project.id}`;
+                const targetUrl = project.id === "travel-crm" ? "/products/travel-crm" : `/case-studies/${project.id}`;
                 return (
                   <Link
                     key={project.id}

@@ -514,45 +514,48 @@ const pages = [
     path: 'services/software-development',
     title: 'Custom Software Development Company | Brandex Bangalore',
     description: 'Bespoke custom software development company in Bangalore. We engineer custom CRMs, enterprise ERPs, cloud SaaS applications, and automated workflows with 100% IP ownership.',
-    h1: 'Custom Software Development — Brandex',
+    h1: 'Custom Software Development & Enterprise Architecture — Brandex',
     content: `
       <article>
-        <h2>Bespoke Software Engineering</h2>
-        <p>Brandex builds custom software solutions tailored to your exact business requirements — from simple web applications to complex enterprise systems:</p>
+        <h2>Bespoke Software Engineering & Enterprise Architecture</h2>
+        <p>Brandex is a premier custom software development company in Bangalore, engineering tailor-made software systems, enterprise resource planning (ERP) suites, customer relationship management (CRM) platforms, and multi-tenant SaaS products designed around your exact operational workflows:</p>
         <ul>
-          <li>Full-stack web application development (React, Next.js, Node.js, Python)</li>
-          <li>Scalable RESTful API and microservices architecture</li>
-          <li>Enterprise ERP and CRM systems</li>
-          <li>SaaS platform development with multi-tenant architecture</li>
-          <li>Mobile application development (iOS & Android)</li>
-          <li>Database design and optimization (PostgreSQL, MySQL, MongoDB)</li>
-          <li>Third-party API integrations and payment gateway setup</li>
-          <li>Annual Maintenance Contracts (AMC) and post-launch support</li>
+          <li><strong>Custom CRM &amp; Sales Pipelines:</strong> Custom quotation builders, dynamic itinerary parsing, lead tracking, and revenue management (proven by the Brandex Travel CRM platform).</li>
+          <li><strong>Enterprise ERPs &amp; SCM:</strong> Consolidate accounting, inventory, supply chain, and billing into one unified system without recurring per-seat SaaS subscription taxes.</li>
+          <li><strong>Document &amp; Workflow Automation:</strong> Ingestion and automated conversion of unstructured Word files, PDFs, and spreadsheets into clean relational databases.</li>
+          <li><strong>High-Throughput API &amp; Microservices:</strong> Scalable Node.js, TypeScript, PostgreSQL, and Supabase backend services with zero-trust authorization.</li>
+          <li><strong>100% Intellectual Property Ownership:</strong> Full handover of git repositories, database schemas, and documentation with zero vendor lock-in.</li>
         </ul>
-        <p><a href="/contact">Get a free consultation</a> for your software project.</p>
+        <h3>Why Ambitious Businesses Choose Brandex Over Generic Software Vendors</h3>
+        <p>Unlike off-the-shelf software vendors that force your business into rigid predefined templates and charge escalating monthly seat fees, Brandex builds systems customized to your exact operational logic with zero ongoing software tax.</p>
+        <p><a href="/contact">Schedule an architectural consultation</a> with the Brandex engineering team in Bangalore.</p>
       </article>
     `
   },
   {
     path: 'services/website-development',
-    title: 'High-Performance Website Development Services | Brandex',
-    description: 'Custom website development company in Bangalore. We build high-speed corporate websites, headless e-commerce platforms, and web portals optimized for SEO and conversion.',
-    h1: 'Website Development — Brandex',
+    title: 'Website Development & Custom CMS Building Software | Brandex',
+    description: 'High-performance website development & custom CMS building software company in Bangalore. We engineer sub-second Next.js websites and bespoke headless CMS platforms with 100% IP ownership.',
+    h1: 'Website Development & Custom CMS Engineering — Brandex',
     content: `
       <article>
-        <h2>High-Performance Websites Built to Convert</h2>
-        <p>Brandex designs and develops websites that establish credibility, drive leads, and rank on search engines:</p>
+        <h2>High-Performance Websites &amp; Custom CMS Building Software</h2>
+        <p>Brandex engineers high-speed corporate websites, bespoke headless Content Management Systems (CMS), and digital portals built from the ground up for search dominance, conversion, and sub-second load times in Bangalore, Karnataka.</p>
+        
+        <h2>How We Outperform Legacy Agencies (Modern Stack vs Old WordPress)</h2>
+        <p>Traditional web development agencies that have been around for decades still rely on monolithic, slow WordPress installations weighed down by 40+ plugins, slow MySQL queries, security holes, and poor Core Web Vitals. Brandex defeats legacy competitors by engineering modern Jamstack and Next.js architectures that deliver:</p>
         <ul>
-          <li>Corporate and business websites optimized for SEO and Core Web Vitals</li>
-          <li>E-commerce platforms with product management and payment integration</li>
-          <li>Landing pages optimized for conversion</li>
-          <li>Portfolio and professional websites</li>
-          <li>Real estate listing portals</li>
-          <li>Educational and institutional websites</li>
-          <li>Responsive, mobile-first design</li>
-          <li>WordPress, Shopify, and custom-built solutions</li>
+          <li><strong>Bespoke Headless CMS:</strong> Fast, custom-built content management panels (Strapi, Sanity, Payload, or Custom React Admin) tailored to your editorial team with zero plugin conflicts.</li>
+          <li><strong>Sub-Second Core Web Vitals:</strong> Sub-second LCP, sub-50ms INP responsiveness, and 0 Cumulative Layout Shift (CLS) on mobile and desktop.</li>
+          <li><strong>Technical SEO &amp; AEO Architecture:</strong> Fully prerendered semantic HTML, Schema.org JSON-LD graphs, automated XML sitemaps, and machine-readable llms.txt integration for Google Search and AI Overviews.</li>
+          <li><strong>Fluid Mobile-First UX:</strong> Viewport safety across all 15 mobile breakpoint sizes (320px to 1920px+) with zero horizontal scrolling.</li>
+          <li><strong>100% Code &amp; Asset Ownership:</strong> You own every single line of code, design file, and database record. Zero proprietary platform lock-in.</li>
         </ul>
-        <p><a href="/contact">Start your website project</a> with Brandex today.</p>
+
+        <h2>Technology Stack Matrix</h2>
+        <p>We build with production-grade modern frameworks: Next.js, React 18+, Astro Island Architecture, TypeScript, Tailwind CSS, Headless CMS, and Cloud Edge CDNs.</p>
+
+        <p><a href="/contact">Start your custom website and CMS project</a> with Brandex today.</p>
       </article>
     `
   },
