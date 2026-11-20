@@ -51,26 +51,80 @@ export const STATIC_ROUTES = [
   "/about",
   "/team/sathvik-nagesh",
   "/team/pavan-kumar",
+  "/team/pavan-kumar-s",
+  "/pavan-kumar",
+  "/pavan-kumar-s",
+  "/pavan",
+  "/sathvik",
+  "/sathvik-nagesh",
   "/contact",
+  "/contact-us",
   "/careers",
   "/faq",
   "/blog",
+  "/blogs",
   "/products",
   "/projects",
   "/projects/travel-crm",
   "/products/travel-crm",
   "/products/invoice-builder",
   "/projects/invoice-builder",
+  "/case-studies/travel-crm",
+  "/case-studies/invoice-builder",
+  "/case-studies/srushti",
+  "/case-studies/srushti-publications",
+  "/srushti-publications",
+  "/srushti",
+  "/pricing",
+  "/pricing-and-plans",
+  "/terms-and-conditions",
+  "/terms",
+  "/privacy-policy",
+  "/privacy",
+  "/refund-policy",
+  "/cancellation-and-refund",
   "/community",
   "/community/events",
   "/community/stories",
+  "/community/training",
+  "/community/ambassador",
+  "/community/status",
+  "/community/projects",
+  "/community/careers",
+  "/community/media",
+  "/community/search",
+  "/community/brandex",
+  "/community/guidelines",
+  "/community/work-with-us",
+  "/community/overview",
+  "/community/college-partnership",
+  "/community/education-pathways",
+  "/events",
+  "/training",
+  "/stories",
+  "/ambassador",
+  "/status",
+  "/application-status",
+  "/work-with-us",
+  "/media",
+  "/search",
+  "/brandex",
+  "/ecosystem",
   "/education",
   "/education/workshops",
+  "/workshops",
   "/education/campus-ambassador",
-  "/privacy-policy",
-  "/privacy",
-  "/terms-and-conditions",
-  "/contact-us",
+  "/campus-ambassador",
+  "/education/explore",
+  "/explore",
+  "/education/classroom",
+  "/classroom",
+  "/education/login",
+  "/login",
+  "/education/admin",
+  "/admin",
+  "/crm",
+  "/crm-bridge",
   "/website-development",
   "/404",
   "/404.html"
@@ -93,7 +147,8 @@ export function isStaticAsset(pathname: string): boolean {
     clean.startsWith("/Favicon/") ||
     clean.startsWith("/og/") ||
     clean.startsWith("/api/") ||
-    clean.startsWith("/.well-known/")
+    clean.startsWith("/.well-known/") ||
+    clean.startsWith("/google")
   ) {
     return true;
   }
@@ -101,7 +156,7 @@ export function isStaticAsset(pathname: string): boolean {
   const staticExtensions = [
     ".ico", ".png", ".jpg", ".jpeg", ".webp", ".svg", ".gif",
     ".js", ".css", ".webmanifest", ".xml", ".txt", ".json", ".md",
-    ".woff", ".woff2", ".ttf", ".eot"
+    ".woff", ".woff2", ".ttf", ".eot", ".html"
   ];
   return staticExtensions.some(ext => clean.endsWith(ext));
 }
@@ -119,17 +174,32 @@ export function isKnownRoute(pathname: string): boolean {
 
   if (clean.startsWith("/case-studies/")) {
     const slug = clean.replace("/case-studies/", "");
-    return VALID_CASE_STUDIES.includes(slug);
+    return VALID_CASE_STUDIES.includes(slug) || slug === "travel-crm" || slug === "invoice-builder" || slug.startsWith("srushti");
   }
 
-  if (clean.startsWith("/blog/")) {
-    const slug = clean.replace("/blog/", "");
+  if (clean.startsWith("/blog/") || clean.startsWith("/blogs/")) {
+    const slug = clean.replace(/^\/(blog|blogs)\//, "");
     return VALID_BLOG_POSTS.includes(slug);
   }
 
   if (clean.startsWith("/team/")) {
     const slug = clean.replace("/team/", "");
-    return VALID_TEAM_MEMBERS.includes(slug);
+    return VALID_TEAM_MEMBERS.includes(slug) || slug === "pavan-kumar-s";
+  }
+
+  if (
+    clean.startsWith("/community/") ||
+    clean.startsWith("/education/") ||
+    clean.startsWith("/events/") ||
+    clean.startsWith("/stories/") ||
+    clean.startsWith("/training/") ||
+    clean.startsWith("/explore/") ||
+    clean.startsWith("/studio/") ||
+    clean.startsWith("/lesson/") ||
+    clean.startsWith("/projects/") ||
+    clean.startsWith("/products/")
+  ) {
+    return true;
   }
 
   return false;

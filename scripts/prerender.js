@@ -829,6 +829,35 @@ function prerender() {
       .replace(/<meta property="og:description" content=".*?" \/>/, `<meta property="og:description" content="${page.description}" />`)
       .replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="${canonicalUrl}" />`);
 
+    // Inject BreadcrumbList JSON-LD into prerendered head
+    const pathSegments = page.path.split('/').filter(Boolean);
+    const breadcrumbSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": BASE_URL
+        },
+        ...pathSegments.map((seg, idx) => {
+          const itemUrl = `${BASE_URL}/${pathSegments.slice(0, idx + 1).join('/')}`;
+          const isLast = idx === pathSegments.length - 1;
+          const cleanName = isLast
+            ? (page.h1 ? page.h1.split('—')[0].split('|')[0].trim() : seg.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()))
+            : seg.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+          return {
+            "@type": "ListItem",
+            "position": idx + 2,
+            "name": cleanName,
+            "item": itemUrl
+          };
+        })
+      ]
+    };
+    pageHtml = pageHtml.replace('</head>', `  <script type="application/ld+json" id="brandex-prerender-breadcrumbs">${JSON.stringify(breadcrumbSchema)}</script>\n</head>`);
+
     // Replace root content
     const rootRegex = /<div id="root">[\s\S]*?<\/div>/;
     const replacementRoot = `<div id="root">

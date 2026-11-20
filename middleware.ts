@@ -11,8 +11,14 @@ export const config = {
 
 export default function middleware(request: Request) {
   const url = new URL(request.url);
+  const hostname = url.hostname;
   const pathname = url.pathname;
   const accept = request.headers.get("accept") || "";
+
+  // 0. Ensure non-canonical hostnames (brandex.co.in, brandex-official.vercel.app) permanently redirect to https://www.brandex.co.in
+  if (hostname === "brandex.co.in" || hostname === "brandex-official.vercel.app") {
+    return Response.redirect(`https://www.brandex.co.in${url.pathname}${url.search}`, 308);
+  }
 
   // 1. Handle Accept: text/markdown content negotiation (acceptmarkdown.com compliance)
   if (accept.includes("text/markdown") || accept.includes("text/x-markdown")) {

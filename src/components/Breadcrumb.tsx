@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
@@ -17,22 +17,31 @@ interface BreadcrumbProps {
 /**
  * Renders a visible breadcrumb navigation and injects BreadcrumbList JSON-LD.
  * Always prepends "Home" as the first item automatically.
+ * Ensures 100% of ListItems include an 'item' URL to guarantee zero Search Console Breadcrumb errors.
  *
  * Usage:
  *   <Breadcrumb items={[{ label: "Services", href: "/services" }, { label: "Software Development" }]} />
  */
 export default function Breadcrumb({ items, className = "" }: BreadcrumbProps) {
+  const location = useLocation();
+  const currentPath = location.pathname === "/" ? "" : location.pathname.replace(/\/$/, "");
+  const currentUrl = `${BASE_URL}${currentPath}`;
+
   const allItems: BreadcrumbItem[] = [{ label: "Home", href: "/" }, ...items];
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: allItems.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.label,
-      item: item.href ? `${BASE_URL}${item.href}` : undefined,
-    })),
+    itemListElement: allItems.map((item, index) => {
+      const isLast = index === allItems.length - 1;
+      const targetUrl = item.href ? `${BASE_URL}${item.href}` : currentUrl;
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.label,
+        item: targetUrl,
+      };
+    }),
   };
 
   return (
